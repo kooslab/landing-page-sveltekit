@@ -60,13 +60,20 @@
 		"@fortawesome/free-brands-svg-icons": "^6.6.0",
 		"@supabase/ssr": "^0.5.1",
 		"@supabase/supabase-js": "^2.45.4",
+		"@tiptap/core": "^2.12.0",
+		"@tiptap/extension-placeholder": "^2.12.0",
+		"@tiptap/pm": "^2.12.0",
+		"@tiptap/starter-kit": "^2.12.0",
 		"dotenv": "^16.4.5",
 		"just-extend": "^6.2.0",
 		"lucide-react": "^0.469.0",
+		"marked": "^15.0.11",
 		"mode-watcher": "^0.4.1",
 		"svelte-fa": "^4.0.3",
 		"svelte-i18n": "^4.0.1",
-		"svelte-sonner": "^0.3.28"
+		"svelte-markdown": "^0.4.1",
+		"svelte-sonner": "^0.3.28",
+		"svelte-tiptap": "^2.1.0"
 	},
 	"engines": {
 		"node": "18.x"
