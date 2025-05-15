@@ -43,6 +43,7 @@
 	import TestimonialCarousel from '$lib/components/ui/testimonial-carousel.svelte';
 	import { testimonials } from '$lib/data/testimonials';
 	import AIAssistantSection from './components/AIAssistantSection.svelte';
+	import PricingSection from './components/PricingSection.svelte';
 
 	// Add CSS for custom toast animation
 	const toastAnimationCSS = `
@@ -1275,330 +1276,7 @@ Requirements Management System Team
 	<AIAssistantSection />
 
 	<!-- Pricing Section -->
-	<section id="pricing" class="bg-gray-50 py-12 dark:bg-gray-800 md:py-20">
-		<div class="container mx-auto px-4">
-			<div class="mx-auto max-w-4xl text-center">
-				<h2
-					class="mb-4 text-2xl font-bold text-gray-900 dark:text-white md:mb-6 md:text-3xl lg:text-4xl"
-				>
-					Simple, Transparent Pricing
-				</h2>
-				<p class="mb-8 text-lg text-gray-600 dark:text-gray-300">
-					Choose the plan that works best for your requirements management needs
-				</p>
-			</div>
-
-			<!-- Free Trial Banner -->
-			<div class="mx-auto mb-12 max-w-3xl rounded-lg bg-blue-50 p-6 dark:bg-blue-900/30">
-				<div class="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
-					<div>
-						<h3 class="text-lg font-semibold text-blue-800 dark:text-blue-300">
-							Try All Features Free for 4 Weeks
-						</h3>
-						<p class="text-blue-700 dark:text-blue-200">
-							Get full access to all features with no credit card required
-						</p>
-					</div>
-					<Button
-						href="#contact"
-						variant="default"
-						class="whitespace-nowrap"
-						onclick={() =>
-							document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
-					>
-						Start Free Trial
-					</Button>
-				</div>
-			</div>
-
-			<div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-				<!-- Free Plan -->
-				<Card class="flex flex-col overflow-hidden">
-					<CardHeader>
-						<CardTitle class="text-center text-xl font-bold">Free</CardTitle>
-						<div class="mt-4 text-center">
-							<span class="text-4xl font-bold">{currency === 'usd' ? '$0' : '€0'}</span>
-							<span class="text-gray-500 dark:text-gray-400">/ month</span>
-						</div>
-						<CardDescription class="mt-2 text-center">
-							For individuals and small teams
-						</CardDescription>
-					</CardHeader>
-					<CardContent class="flex-grow">
-						<ul class="space-y-3">
-							<li class="flex items-start">
-								<CheckIcon
-									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
-								/>
-								<span class="text-gray-700 dark:text-gray-300">
-									<strong>1</strong> project
-								</span>
-							</li>
-							<li class="flex items-start">
-								<CheckIcon
-									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
-								/>
-								<span class="text-gray-700 dark:text-gray-300">
-									<strong>3</strong> team members
-								</span>
-							</li>
-							<li class="flex items-start">
-								<CheckIcon
-									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
-								/>
-								<span class="text-gray-700 dark:text-gray-300">User story management</span>
-							</li>
-							<li class="flex items-start">
-								<CheckIcon
-									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
-								/>
-								<span class="text-gray-700 dark:text-gray-300">
-									Basic requirements documentation
-								</span>
-							</li>
-							<li class="flex items-start">
-								<CheckIcon
-									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
-								/>
-								<span class="text-gray-700 dark:text-gray-300">1GB storage</span>
-							</li>
-							<li class="flex items-start">
-								<CheckIcon
-									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
-								/>
-								<span class="text-gray-700 dark:text-gray-300">Community support</span>
-							</li>
-						</ul>
-					</CardContent>
-					<CardFooter class="pt-4">
-						<Button
-							href="#contact"
-							variant="outline"
-							size="lg"
-							class="w-full font-medium"
-							onclick={() =>
-								document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
-						>
-							Start Free
-						</Button>
-					</CardFooter>
-				</Card>
-
-				<!-- Basic Plan -->
-				<Card
-					class="flex flex-col overflow-hidden border-blue-200 bg-white dark:border-blue-800 dark:bg-gray-900"
-				>
-					<div
-						class="bg-blue-100 py-2 text-center text-sm font-medium text-blue-800 dark:bg-blue-900/50 dark:text-blue-300"
-					>
-						Most Popular
-					</div>
-					<CardHeader>
-						<CardTitle class="text-center text-xl font-bold">Basic</CardTitle>
-						<div class="mt-4 text-center">
-							<span class="text-4xl font-bold">{currency === 'usd' ? '$29' : '€26'}</span>
-							<span class="text-gray-500 dark:text-gray-400">/ month</span>
-						</div>
-						<CardDescription class="mt-2 text-center">For growing teams</CardDescription>
-					</CardHeader>
-					<CardContent class="flex-grow">
-						<ul class="space-y-3">
-							<li class="flex items-start">
-								<CheckIcon
-									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
-								/>
-								<span class="text-gray-700 dark:text-gray-300">
-									<strong>10</strong> projects
-								</span>
-							</li>
-							<li class="flex items-start">
-								<CheckIcon
-									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
-								/>
-								<span class="text-gray-700 dark:text-gray-300">
-									<strong>15</strong> team members
-								</span>
-							</li>
-							<li class="flex items-start">
-								<CheckIcon
-									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
-								/>
-								<span class="text-gray-700 dark:text-gray-300">
-									Advanced user story management
-								</span>
-							</li>
-							<li class="flex items-start">
-								<CheckIcon
-									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
-								/>
-								<span class="text-gray-700 dark:text-gray-300">
-									Comprehensive requirements documentation
-								</span>
-							</li>
-							<li class="flex items-start">
-								<CheckIcon
-									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
-								/>
-								<span class="text-gray-700 dark:text-gray-300"> 10GB storage </span>
-							</li>
-							<li class="flex items-start">
-								<CheckIcon
-									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
-								/>
-								<span class="text-gray-700 dark:text-gray-300"> Traceability matrix </span>
-							</li>
-							<li class="flex items-start">
-								<CheckIcon
-									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
-								/>
-								<span class="text-gray-700 dark:text-gray-300"> Basic AI assistance </span>
-							</li>
-							<li class="flex items-start">
-								<CheckIcon
-									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
-								/>
-								<span class="text-gray-700 dark:text-gray-300"> Email & chat support </span>
-							</li>
-						</ul>
-					</CardContent>
-					<CardFooter class="pt-4">
-						<Button
-							href="#contact"
-							variant="default"
-							size="lg"
-							class="w-full font-medium"
-							onclick={() =>
-								document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
-						>
-							Start Free Trial
-						</Button>
-					</CardFooter>
-				</Card>
-
-				<!-- Professional Plan -->
-				<Card class="flex flex-col overflow-hidden">
-					<CardHeader>
-						<CardTitle class="text-center text-xl font-bold">Professional</CardTitle>
-						<div class="mt-4 text-center">
-							<span class="text-4xl font-bold">Contact Us</span>
-							<span class="text-gray-500 dark:text-gray-400">for pricing</span>
-						</div>
-						<CardDescription class="mt-2 text-center"
-							>For large organizations & unlimited needs</CardDescription
-						>
-					</CardHeader>
-					<CardContent class="flex-grow">
-						<ul class="space-y-3">
-							<li class="flex items-start">
-								<CheckIcon
-									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
-								/>
-								<span class="text-gray-700 dark:text-gray-300">
-									<strong>Unlimited</strong> projects
-								</span>
-							</li>
-							<li class="flex items-start">
-								<CheckIcon
-									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
-								/>
-								<span class="text-gray-700 dark:text-gray-300">
-									<strong>Unlimited</strong> team members
-								</span>
-							</li>
-							<li class="flex items-start">
-								<CheckIcon
-									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
-								/>
-								<span class="text-gray-700 dark:text-gray-300">Enterprise-grade security</span>
-							</li>
-							<li class="flex items-start">
-								<CheckIcon
-									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
-								/>
-								<span class="text-gray-700 dark:text-gray-300">Advanced AI-powered analysis</span>
-							</li>
-							<li class="flex items-start">
-								<CheckIcon
-									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
-								/>
-								<span class="text-gray-700 dark:text-gray-300">MECE redundancy analysis</span>
-							</li>
-							<li class="flex items-start">
-								<CheckIcon
-									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
-								/>
-								<span class="text-gray-700 dark:text-gray-300">Custom integrations</span>
-							</li>
-							<li class="flex items-start">
-								<CheckIcon
-									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
-								/>
-								<span class="text-gray-700 dark:text-gray-300">Dedicated support manager</span>
-							</li>
-							<li class="flex items-start">
-								<CheckIcon
-									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
-								/>
-								<span class="text-gray-700 dark:text-gray-300">Priority 24/7 support</span>
-							</li>
-							<li class="flex items-start">
-								<CheckIcon
-									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
-								/>
-								<span class="font-semibold text-gray-700 dark:text-gray-300"
-									>All current & future features included</span
-								>
-							</li>
-						</ul>
-					</CardContent>
-					<CardFooter class="pt-4">
-						<Button
-							href="#contact"
-							variant="outline"
-							size="lg"
-							class="w-full font-medium"
-							onclick={() =>
-								document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
-						>
-							Contact Us
-						</Button>
-					</CardFooter>
-				</Card>
-			</div>
-
-			<div class="mx-auto mt-12 max-w-xl rounded-lg bg-blue-50 p-6 dark:bg-blue-900/30">
-				<div class="mb-4 flex items-center justify-center">
-					<div class="flex items-center space-x-2">
-						<button
-							class={`rounded-l-md px-4 py-2 text-sm font-medium ${
-								currency === 'usd'
-									? 'bg-blue-600 text-white'
-									: 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
-							}`}
-							onclick={() => toggleCurrency('usd')}
-						>
-							USD
-						</button>
-						<button
-							class={`rounded-r-md px-4 py-2 text-sm font-medium ${
-								currency === 'eur'
-									? 'bg-blue-600 text-white'
-									: 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
-							}`}
-							onclick={() => toggleCurrency('eur')}
-						>
-							EUR
-						</button>
-					</div>
-				</div>
-				<p class="text-center text-sm text-blue-800 dark:text-blue-200">
-					All plans include a <strong>4-week free trial</strong> with full access to all features.
-					No credit card required to start.
-					<a href="#contact" class="font-semibold underline">Contact us</a> for custom enterprise solutions.
-				</p>
-			</div>
-		</div>
-	</section>
+	<PricingSection />
 
 	<!-- Contact Form Section -->
 	<section id="contact" class="py-16 md:py-20">
@@ -1616,8 +1294,170 @@ Requirements Management System Team
 
 				<div class="rounded-xl bg-white p-8 shadow-lg dark:bg-gray-900 md:p-10">
 					<div id="contact-form">
+						<form
+							onsubmit={(e) => {
+								e.preventDefault();
+								handleSubmit();
+							}}
+							class="space-y-6"
+						>
+							<div class="grid gap-6 md:grid-cols-2">
+								<div>
+									<label
+										for="name"
+										class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+									>
+										Your Name
+									</label>
+									<Input
+										type="text"
+										id="name"
+										placeholder="John Doe"
+										bind:value={formData.name}
+										required
+										class="w-full"
+									/>
+								</div>
+								<div>
+									<label
+										for="email"
+										class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+									>
+										Your Email
+									</label>
+									<Input
+										type="email"
+										id="email"
+										placeholder="john@example.com"
+										bind:value={formData.email}
+										required
+										class="w-full"
+									/>
+								</div>
+							</div>
+
+							<div>
+								<label
+									for="phone"
+									class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+								>
+									Phone Number (Optional)
+								</label>
+								<Input
+									type="tel"
+									id="phone"
+									placeholder="+1 (555) 123-4567"
+									bind:value={formData.phone}
+									class="w-full"
+								/>
+							</div>
+
+							<div>
+								<label
+									for="project-outline"
+									class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+								>
+									Project Outline
+								</label>
+								<Textarea
+									id="project-outline"
+									placeholder="Tell us about your project's requirements, goals, and timeline..."
+									class="min-h-[150px]"
+									bind:value={formData.projectOutline}
+									required
+								/>
+							</div>
+
+							<!-- Honeypot field to catch bots -->
+							<div class="hidden">
+								<label for="website">Website</label>
+								<Input id="website" bind:value={formData.website} />
+							</div>
+
+							<div class="flex items-start">
+								<div class="flex h-5 items-center">
+									<input
+										id="privacy"
+										type="checkbox"
+										bind:checked={formData.privacyConsent}
+										required
+										class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+									/>
+								</div>
+								<div class="ml-3 text-sm">
+									<label for="privacy" class="font-medium text-gray-900 dark:text-white">
+										I agree to the
+										<a href="/privacy" class="text-blue-600 hover:underline dark:text-blue-500"
+											>privacy policy</a
+										>
+									</label>
+								</div>
+							</div>
+
+							{#if submitError}
+								<div class="rounded-md bg-red-50 p-4 dark:bg-red-900/30">
+									<div class="flex">
+										<div class="flex-shrink-0">
+											<svg
+												class="h-5 w-5 text-red-400 dark:text-red-500"
+												viewBox="0 0 20 20"
+												fill="currentColor"
+												aria-hidden="true"
+											>
+												<path
+													fill-rule="evenodd"
+													d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z"
+													clip-rule="evenodd"
+												/>
+											</svg>
+										</div>
+										<div class="ml-3">
+											<h3 class="text-sm font-medium text-red-800 dark:text-red-400">
+												Form submission error
+											</h3>
+											<div class="mt-2 text-sm text-red-700 dark:text-red-300">
+												<p>{submitError}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							{/if}
+
+							<Button
+								type="submit"
+								disabled={isSubmitting}
+								class="w-full bg-blue-600 font-medium text-white hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700"
+							>
+								{#if isSubmitting}
+									<svg
+										class="-ml-1 mr-3 h-5 w-5 animate-spin text-white"
+										xmlns="http://www.w3.org/2000/svg"
+										fill="none"
+										viewBox="0 0 24 24"
+									>
+										<circle
+											class="opacity-25"
+											cx="12"
+											cy="12"
+											r="10"
+											stroke="currentColor"
+											stroke-width="4"
+										></circle>
+										<path
+											class="opacity-75"
+											fill="currentColor"
+											d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+										></path>
+									</svg>
+									Submitting...
+								{:else}
+									Get Your Requirements Document
+								{/if}
+							</Button>
+						</form>
+
 						{#if submitSuccess}
-							<div class="rounded-md bg-green-50 p-4 dark:bg-green-900/30">
+							<div class="mt-8 rounded-md bg-green-50 p-4 dark:bg-green-900/30">
 								<div class="flex">
 									<div class="flex-shrink-0">
 										<svg
@@ -1646,168 +1486,6 @@ Requirements Management System Team
 									</div>
 								</div>
 							</div>
-						{:else}
-							<form
-								onsubmit={(e) => {
-									e.preventDefault();
-									handleSubmit();
-								}}
-								class="space-y-6"
-							>
-								<div class="grid gap-6 md:grid-cols-2">
-									<div>
-										<label
-											for="name"
-											class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-										>
-											Your Name
-										</label>
-										<Input
-											type="text"
-											id="name"
-											placeholder="John Doe"
-											bind:value={formData.name}
-											required
-											class="w-full"
-										/>
-									</div>
-									<div>
-										<label
-											for="email"
-											class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-										>
-											Your Email
-										</label>
-										<Input
-											type="email"
-											id="email"
-											placeholder="john@example.com"
-											bind:value={formData.email}
-											required
-											class="w-full"
-										/>
-									</div>
-								</div>
-
-								<div>
-									<label
-										for="phone"
-										class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-									>
-										Phone Number (Optional)
-									</label>
-									<Input
-										type="tel"
-										id="phone"
-										placeholder="+1 (555) 123-4567"
-										bind:value={formData.phone}
-										class="w-full"
-									/>
-								</div>
-
-								<div>
-									<label
-										for="project-outline"
-										class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-									>
-										Project Outline
-									</label>
-									<Textarea
-										id="project-outline"
-										placeholder="Tell us about your project's requirements, goals, and timeline..."
-										class="min-h-[150px]"
-										bind:value={formData.projectOutline}
-										required
-									/>
-								</div>
-
-								<!-- Honeypot field to catch bots -->
-								<div class="hidden">
-									<label for="website">Website</label>
-									<Input id="website" bind:value={formData.website} />
-								</div>
-
-								<div class="flex items-start">
-									<div class="flex h-5 items-center">
-										<input
-											id="privacy"
-											type="checkbox"
-											bind:checked={formData.privacyConsent}
-											required
-											class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
-										/>
-									</div>
-									<div class="ml-3 text-sm">
-										<label for="privacy" class="font-medium text-gray-900 dark:text-white">
-											I agree to the
-											<a href="/privacy" class="text-blue-600 hover:underline dark:text-blue-500"
-												>privacy policy</a
-											>
-										</label>
-									</div>
-								</div>
-
-								{#if submitError}
-									<div class="rounded-md bg-red-50 p-4 dark:bg-red-900/30">
-										<div class="flex">
-											<div class="flex-shrink-0">
-												<svg
-													class="h-5 w-5 text-red-400 dark:text-red-500"
-													viewBox="0 0 20 20"
-													fill="currentColor"
-													aria-hidden="true"
-												>
-													<path
-														fill-rule="evenodd"
-														d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z"
-														clip-rule="evenodd"
-													/>
-												</svg>
-											</div>
-											<div class="ml-3">
-												<h3 class="text-sm font-medium text-red-800 dark:text-red-400">
-													Form submission error
-												</h3>
-												<div class="mt-2 text-sm text-red-700 dark:text-red-300">
-													<p>{submitError}</p>
-												</div>
-											</div>
-										</div>
-									</div>
-								{/if}
-
-								<Button
-									type="submit"
-									disabled={isSubmitting}
-									class="w-full bg-blue-600 font-medium text-white hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700"
-								>
-									{#if isSubmitting}
-										<svg
-											class="-ml-1 mr-3 h-5 w-5 animate-spin text-white"
-											xmlns="http://www.w3.org/2000/svg"
-											fill="none"
-											viewBox="0 0 24 24"
-										>
-											<circle
-												class="opacity-25"
-												cx="12"
-												cy="12"
-												r="10"
-												stroke="currentColor"
-												stroke-width="4"
-											></circle>
-											<path
-												class="opacity-75"
-												fill="currentColor"
-												d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-											></path>
-										</svg>
-										Submitting...
-									{:else}
-										Get Your Requirements Document
-									{/if}
-								</Button>
-							</form>
 						{/if}
 					</div>
 				</div>
