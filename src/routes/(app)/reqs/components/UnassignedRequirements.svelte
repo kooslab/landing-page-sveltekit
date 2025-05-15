@@ -13,14 +13,14 @@
 		requirement: Requirement
 	) => void = () => {};
 
-	// Filter requirements without an epic
+	// Filter unassigned requirements (no epic)
 	$: unassignedRequirements = requirements.filter((r) => !r.epic);
 </script>
 
 {#if unassignedRequirements.length > 0}
 	<div class="mb-4 rounded border dark:border-gray-700">
-		<div class="bg-gray-100 p-3 dark:bg-gray-700">
-			<h3 class="font-semibold dark:text-gray-200">Unassigned Requirements</h3>
+		<div class="bg-gray-100 p-2 dark:bg-gray-700 sm:p-3">
+			<h3 class="text-sm font-semibold dark:text-gray-200 sm:text-base">Unassigned Requirements</h3>
 		</div>
 
 		<RequirementTable

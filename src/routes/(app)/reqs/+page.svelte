@@ -3,15 +3,7 @@
 	import EnumManager from './components/EnumManager.svelte';
 	import EpicSection from './components/EpicSection.svelte';
 	import UnassignedRequirements from './components/UnassignedRequirements.svelte';
-
-	type Requirement = {
-		id: string;
-		epic: string;
-		user: string;
-		userStory: string;
-		priority: string;
-		acceptanceCriteria: string;
-	};
+	import type { Requirement } from './types';
 
 	// Generate ID based on epic name
 	function generateRequirementId(epicName: string, requirements: Requirement[]): string {
