@@ -231,6 +231,7 @@
 		submitSuccess = false;
 
 		if (formData.website) {
+			// This is a honeypot field to catch bots
 			submitSuccess = true;
 			isSubmitting = false;
 			return;
@@ -242,15 +243,14 @@
 					name: formData.name,
 					email: formData.email,
 					phone: formData.phone,
-					content: formData.projectOutline,
-					privacy_consent: formData.privacyConsent,
-					marketing_consent: formData.marketingConsent
+					content: formData.projectOutline
 				}
 			]);
 
 			if (error) throw error;
 
 			submitSuccess = true;
+			// Reset form after successful submission
 			formData = {
 				name: '',
 				email: '',
@@ -266,6 +266,13 @@
 		} finally {
 			isSubmitting = false;
 		}
+	}
+
+	// In the script section, add a currency state and update the toggleCurrency function
+	let currency = $state('usd');
+
+	function toggleCurrency(newCurrency: 'usd' | 'eur') {
+		currency = newCurrency;
 	}
 </script>
 
@@ -1578,4 +1585,541 @@
 			<TestimonialCarousel {testimonials} />
 		</div>
 	</section>
+
+	<!-- Pricing Section -->
+	<section class="bg-gray-50 py-20 dark:bg-gray-800" id="pricing">
+		<div class="container mx-auto px-4">
+			<div class="mx-auto max-w-3xl text-center">
+				<h2 class="mb-4 text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
+					Simple, Transparent Pricing
+				</h2>
+				<p class="mb-12 text-xl text-gray-600 dark:text-gray-300">
+					Choose the plan that's right for your team. All plans include a 4-week free trial.
+				</p>
+
+				<!-- Currency Toggle -->
+				<div
+					class="mb-8 inline-flex items-center rounded-lg border bg-white p-1 dark:border-gray-700 dark:bg-gray-900"
+				>
+					<button
+						type="button"
+						class="currency-btn {currency === 'usd'
+							? 'active bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white'
+							: 'text-gray-600 dark:text-gray-400'} rounded-md px-6 py-2 font-medium transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+						on:click={() => toggleCurrency('usd')}
+					>
+						USD $
+					</button>
+					<button
+						type="button"
+						class="currency-btn {currency === 'eur'
+							? 'active bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white'
+							: 'text-gray-600 dark:text-gray-400'} rounded-md px-6 py-2 font-medium transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
+						on:click={() => toggleCurrency('eur')}
+					>
+						EUR €
+					</button>
+				</div>
+			</div>
+
+			<div class="mt-8 grid gap-8 lg:grid-cols-3">
+				<!-- Basic Plan -->
+				<div
+					class="flex flex-col rounded-lg border bg-white shadow-sm transition-all hover:shadow-md dark:border-gray-700 dark:bg-gray-900"
+				>
+					<div class="p-6">
+						<h3 class="mb-2 text-2xl font-bold text-gray-900 dark:text-white">Basic</h3>
+						<p class="mb-4 text-gray-600 dark:text-gray-400">
+							Perfect for small teams getting started
+						</p>
+						<div class="mb-4 flex items-baseline">
+							<span class="text-4xl font-extrabold text-gray-900 dark:text-white"
+								>{currency === 'usd' ? '$49' : '€45'}</span
+							>
+							<span class="ml-1 text-gray-600 dark:text-gray-400">/month starter</span>
+						</div>
+						<p class="text-gray-600 dark:text-gray-400">
+							<span>{currency === 'usd' ? '$25' : '€23'}</span> per additional user
+						</p>
+						<ul class="mb-6 mt-6 space-y-4 text-left">
+							<li class="flex items-center">
+								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
+								<span>1 project</span>
+							</li>
+							<li class="flex items-center">
+								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
+								<span>Up to 3 collaborators</span>
+							</li>
+							<li class="flex items-center">
+								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
+								<span>Up to 50 user stories per project</span>
+							</li>
+							<li class="flex items-center">
+								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
+								<span>Basic AI assistance</span>
+							</li>
+							<li class="flex items-center">
+								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
+								<span>Email support</span>
+							</li>
+						</ul>
+					</div>
+					<div class="mt-auto border-t p-6 dark:border-gray-700">
+						<Button onclick={() => demoClick('Basic Plan')} variant="default" class="w-full"
+							>Get Started</Button
+						>
+					</div>
+				</div>
+
+				<!-- Pro Plan -->
+				<div
+					class="relative flex flex-col rounded-lg border-2 border-primary bg-white shadow-md transition-all hover:shadow-lg dark:bg-gray-900"
+				>
+					<div
+						class="absolute -top-4 left-0 right-0 mx-auto w-32 rounded-full bg-primary px-3 py-1 text-center text-sm font-semibold text-white"
+					>
+						Most Popular
+					</div>
+					<div class="p-6">
+						<h3 class="mb-2 text-2xl font-bold text-gray-900 dark:text-white">Pro</h3>
+						<p class="mb-4 text-gray-600 dark:text-gray-400">Best for growing teams</p>
+						<div class="mb-4 flex items-baseline">
+							<span class="text-4xl font-extrabold text-gray-900 dark:text-white"
+								>{currency === 'usd' ? '$99' : '€90'}</span
+							>
+							<span class="ml-1 text-gray-600 dark:text-gray-400">/month starter</span>
+						</div>
+						<p class="text-gray-600 dark:text-gray-400">
+							<span>{currency === 'usd' ? '$25' : '€23'}</span> per additional user
+						</p>
+						<ul class="mb-6 mt-6 space-y-4 text-left">
+							<li class="flex items-center">
+								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
+								<span>Up to 5 projects</span>
+							</li>
+							<li class="flex items-center">
+								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
+								<span>Up to 10 collaborators</span>
+							</li>
+							<li class="flex items-center">
+								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
+								<span>Unlimited user stories per project</span>
+							</li>
+							<li class="flex items-center">
+								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
+								<span>Advanced AI assistance</span>
+							</li>
+							<li class="flex items-center">
+								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
+								<span>Priority email support</span>
+							</li>
+							<li class="flex items-center">
+								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
+								<span>Custom templates</span>
+							</li>
+						</ul>
+					</div>
+					<div class="mt-auto border-t p-6 dark:border-gray-700">
+						<Button onclick={() => demoClick('Pro Plan')} variant="default" class="w-full"
+							>Get Started</Button
+						>
+					</div>
+				</div>
+
+				<!-- Enterprise Plan -->
+				<div
+					class="flex flex-col rounded-lg border bg-white shadow-sm transition-all hover:shadow-md dark:border-gray-700 dark:bg-gray-900"
+				>
+					<div class="p-6">
+						<h3 class="mb-2 text-2xl font-bold text-gray-900 dark:text-white">Enterprise</h3>
+						<p class="mb-4 text-gray-600 dark:text-gray-400">Custom solutions for large teams</p>
+						<div class="mb-4 flex items-baseline">
+							<span class="text-4xl font-extrabold text-gray-900 dark:text-white">Custom</span>
+						</div>
+						<p class="text-gray-600 dark:text-gray-400">Tailored to your organization</p>
+						<ul class="mb-6 mt-6 space-y-4 text-left">
+							<li class="flex items-center">
+								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
+								<span>Unlimited projects</span>
+							</li>
+							<li class="flex items-center">
+								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
+								<span>Unlimited collaborators</span>
+							</li>
+							<li class="flex items-center">
+								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
+								<span>Custom integrations</span>
+							</li>
+							<li class="flex items-center">
+								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
+								<span>Enterprise-grade security</span>
+							</li>
+							<li class="flex items-center">
+								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
+								<span>Dedicated account manager</span>
+							</li>
+							<li class="flex items-center">
+								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
+								<span>24/7 phone & email support</span>
+							</li>
+							<li class="flex items-center">
+								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
+								<span>Custom onboarding</span>
+							</li>
+						</ul>
+					</div>
+					<div class="mt-auto border-t p-6 dark:border-gray-700">
+						<Button onclick={() => demoClick('Enterprise Plan')} variant="outline" class="w-full"
+							>Contact Sales</Button
+						>
+					</div>
+				</div>
+			</div>
+
+			<!-- Consulting Services Card -->
+			<div
+				class="mt-16 rounded-lg border bg-white p-8 shadow-sm dark:border-gray-700 dark:bg-gray-900"
+			>
+				<div class="grid gap-8 md:grid-cols-2">
+					<div>
+						<h3 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
+							Professional Requirements Consulting
+						</h3>
+						<p class="mb-4 text-lg text-gray-600 dark:text-gray-300">
+							Don't have time to write requirements? Let our experts handle it for you.
+						</p>
+						<ul class="mb-6 space-y-4">
+							<li class="flex items-start">
+								<CheckIcon class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500" />
+								<span>Our experts write comprehensive requirements for your project</span>
+							</li>
+							<li class="flex items-start">
+								<CheckIcon class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500" />
+								<span>Fully documented user stories with detailed acceptance criteria</span>
+							</li>
+							<li class="flex items-start">
+								<CheckIcon class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500" />
+								<span>Professional outcome ready for immediate development</span>
+							</li>
+							<li class="flex items-start">
+								<CheckIcon class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500" />
+								<span>2-week turnaround for most projects</span>
+							</li>
+						</ul>
+					</div>
+					<div
+						class="flex flex-col items-center justify-center rounded-lg bg-gray-50 p-6 dark:bg-gray-800"
+					>
+						<div class="mb-4 text-center">
+							<span class="text-3xl font-extrabold text-gray-900 dark:text-white"
+								>{currency === 'usd' ? '$4,999' : '€4,550'}</span
+							>
+							<span class="ml-1 text-gray-600 dark:text-gray-400">per 2-week project</span>
+						</div>
+						<p class="mb-6 text-center text-gray-600 dark:text-gray-400">
+							Skip the learning curve and get professional requirements from day one.
+						</p>
+						<Button
+							onclick={() => demoClick('Consulting Services')}
+							variant="default"
+							class="w-full md:w-auto">Schedule Consultation</Button
+						>
+					</div>
+				</div>
+			</div>
+
+			<div class="mx-auto mt-10 max-w-2xl text-center">
+				<p class="text-gray-600 dark:text-gray-300">
+					All plans include a 4-week free trial with full features. No credit card required to
+					start.
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- Contact Us Section -->
+	<section class="bg-white py-20 dark:bg-gray-900" id="contact">
+		<div class="container mx-auto px-4">
+			<div class="mx-auto max-w-4xl">
+				<div class="text-center">
+					<h2 class="mb-4 text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
+						Get in Touch
+					</h2>
+					<p class="mb-12 text-xl text-gray-600 dark:text-gray-300">
+						Have questions or ready to get started? Our team is here to help.
+					</p>
+				</div>
+
+				<div class="grid gap-8 md:grid-cols-2">
+					<div class="rounded-lg bg-gray-50 p-8 dark:bg-gray-800">
+						<h3 class="mb-6 text-xl font-bold text-gray-900 dark:text-white">
+							Contact Information
+						</h3>
+
+						<div class="mb-6">
+							<div class="mb-4 flex items-start">
+								<div
+									class="mr-3 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary"
+								>
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="20"
+										height="20"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+									>
+										<path
+											d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+										></path>
+										<polyline points="22,6 12,13 2,6"></polyline>
+									</svg>
+								</div>
+								<div>
+									<h4 class="text-sm font-medium text-gray-900 dark:text-white">Email</h4>
+									<p class="mt-1 text-gray-600 dark:text-gray-400">johnnykoo@kooslab.net</p>
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<h4 class="mb-3 text-sm font-medium text-gray-900 dark:text-white">Follow Us</h4>
+							<div class="flex space-x-4">
+								<a
+									href="#"
+									on:click|preventDefault={() => {}}
+									class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+								>
+									<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+										<path
+											d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+										/>
+									</svg>
+								</a>
+								<a
+									href="#"
+									on:click|preventDefault={() => {}}
+									class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+								>
+									<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+										<path
+											d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
+										/>
+									</svg>
+								</a>
+								<a
+									href="#"
+									on:click|preventDefault={() => {}}
+									class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+								>
+									<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+										<path
+											d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
+										/>
+									</svg>
+								</a>
+								<a
+									href="#"
+									on:click|preventDefault={() => {}}
+									class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
+								>
+									<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+										<path
+											fill-rule="evenodd"
+											d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+											clip-rule="evenodd"
+										/>
+									</svg>
+								</a>
+							</div>
+						</div>
+
+						<div class="mt-8 rounded-lg bg-primary/10 p-6 dark:bg-primary/5">
+							<blockquote class="border-l-4 border-primary pl-4">
+								<p class="italic text-gray-800 dark:text-gray-200">
+									"Never delay your development project because of missing requirements or
+									documentation. Start quickly — time is gold."
+								</p>
+							</blockquote>
+							<p class="mt-4 text-sm text-gray-700 dark:text-gray-400">
+								Our requirements management system helps you document and organize requirements
+								efficiently, so you can focus on building great software.
+							</p>
+						</div>
+					</div>
+
+					<div
+						class="rounded-lg border bg-white p-8 shadow-sm dark:border-gray-700 dark:bg-gray-900"
+					>
+						<h3 class="mb-6 text-xl font-bold text-gray-900 dark:text-white">Send Us a Message</h3>
+
+						<form class="space-y-4" on:submit|preventDefault={handleSubmit}>
+							<div class="grid gap-4 md:grid-cols-2">
+								<div>
+									<label
+										for="name"
+										class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+										>Your Name</label
+									>
+									<Input
+										type="text"
+										id="name"
+										placeholder="John Doe"
+										bind:value={formData.name}
+										required
+									/>
+								</div>
+								<div>
+									<label
+										for="email"
+										class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+										>Your Email</label
+									>
+									<Input
+										type="email"
+										id="email"
+										placeholder="john@example.com"
+										bind:value={formData.email}
+										required
+									/>
+								</div>
+							</div>
+
+							<div>
+								<label
+									for="phone"
+									class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+									>Your Phone (optional)</label
+								>
+								<Input
+									type="tel"
+									id="phone"
+									placeholder="+1 (123) 456-7890"
+									bind:value={formData.phone}
+								/>
+							</div>
+
+							<div>
+								<label
+									for="subject"
+									class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+									>Subject</label
+								>
+								<Input type="text" id="subject" placeholder="How can we help you?" required />
+							</div>
+
+							<div>
+								<label
+									for="message"
+									class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+									>Your Message</label
+								>
+								<Textarea
+									id="message"
+									rows={4}
+									placeholder="Tell us about your requirements or questions..."
+									bind:value={formData.projectOutline}
+									required
+								></Textarea>
+							</div>
+
+							{#if submitError}
+								<div
+									class="rounded-md bg-red-50 p-4 text-sm text-red-600 dark:bg-red-900/20 dark:text-red-400"
+								>
+									{submitError}
+								</div>
+							{/if}
+
+							{#if submitSuccess}
+								<div
+									class="rounded-md bg-green-50 p-4 text-sm text-green-600 dark:bg-green-900/20 dark:text-green-400"
+								>
+									Thank you for your message! We will get back to you soon.
+								</div>
+							{/if}
+
+							<!-- Honeypot field to catch bots -->
+							<div class="hidden">
+								<Input type="text" id="website" name="website" bind:value={formData.website} />
+							</div>
+
+							<Button type="submit" variant="default" class="w-full" disabled={isSubmitting}>
+								{#if isSubmitting}
+									Sending...
+								{:else}
+									Send Message
+								{/if}
+							</Button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- Footer -->
+	<footer class="bg-white py-12 text-gray-800 dark:bg-gray-900 dark:text-white">
+		<div class="container mx-auto px-4">
+			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+				<div>
+					<h3 class="mb-4 text-lg font-bold">Requirements Management System</h3>
+					<p class="mb-4 text-gray-600 dark:text-gray-400">
+						Advanced tools for teams who build great software.
+					</p>
+					<ThemeToggle />
+				</div>
+
+				<div>
+					<h4 class="mb-4 text-base font-medium">Product</h4>
+					<ul class="space-y-2">
+						<li>
+							<a href="#" on:click|preventDefault={() => {}} class="hover:text-primary">Features</a>
+						</li>
+						<li><a href="#pricing" class="hover:text-primary">Pricing</a></li>
+					</ul>
+				</div>
+
+				<div>
+					<h4 class="mb-4 text-base font-medium">Resources</h4>
+					<ul class="space-y-2">
+						<li>
+							<a href="#" on:click|preventDefault={() => {}} class="hover:text-primary"
+								>Documentation</a
+							>
+						</li>
+						<li>
+							<a href="#" on:click|preventDefault={() => {}} class="hover:text-primary">Blog</a>
+						</li>
+					</ul>
+				</div>
+
+				<div>
+					<h4 class="mb-4 text-base font-medium">Company</h4>
+					<ul class="space-y-2">
+						<li>
+							<a href="#" on:click|preventDefault={() => {}} class="hover:text-primary">About Us</a>
+						</li>
+						<li><a href="#contact" class="hover:text-primary">Contact</a></li>
+						<li>
+							<a href="#" on:click|preventDefault={() => {}} class="hover:text-primary"
+								>Privacy Policy</a
+							>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div
+				class="mt-12 border-t border-gray-200 pt-8 text-center text-sm text-gray-600 dark:border-gray-800 dark:text-gray-400"
+			>
+				<p>
+					Kooslab © {new Date().getFullYear()} Requirements Management System. All rights reserved.
+				</p>
+			</div>
+		</div>
+	</footer>
 </main>
