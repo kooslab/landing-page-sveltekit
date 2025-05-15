@@ -111,17 +111,22 @@
 					{#each testimonials as testimonial}
 						<div class="carousel-slide flex-shrink-0 {isMobile ? 'w-full' : 'w-1/3'}">
 							<div class="p-2">
-								<Card class="h-full bg-gray-900 text-white">
+								<Card class="h-full bg-white text-gray-900 dark:bg-gray-900 dark:text-white">
 									<CardContent class="p-6">
 										<p class="mb-6 text-lg italic">"{testimonial.quote}"</p>
 										<div class="flex items-center">
-											<Avatar class="mr-4 h-12 w-12">
+											<Avatar class="mr-4 h-12 w-12 border-2 border-gray-200 dark:border-gray-700">
 												<AvatarImage src={testimonial.avatar} alt={testimonial.name} />
-												<AvatarFallback>{testimonial.name.charAt(0)}</AvatarFallback>
+												<AvatarFallback
+													class="bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-white"
+													>{testimonial.name.charAt(0)}</AvatarFallback
+												>
 											</Avatar>
 											<div>
-												<p class="font-semibold text-white">{testimonial.name}</p>
-												<p class="text-sm text-gray-300">{testimonial.title}</p>
+												<p class="font-semibold text-gray-900 dark:text-white">
+													{testimonial.name}
+												</p>
+												<p class="text-sm text-gray-600 dark:text-gray-300">{testimonial.title}</p>
 											</div>
 										</div>
 									</CardContent>
@@ -134,7 +139,7 @@
 
 			<!-- Left arrow -->
 			<button
-				class="absolute bottom-0 left-2 z-10 rounded-full bg-white p-2 text-gray-900 shadow-lg transition-colors hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50 sm:bottom-0 sm:left-4 sm:p-3"
+				class="absolute bottom-0 left-2 z-10 rounded-full bg-white p-2 text-gray-900 shadow-lg transition-colors hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 sm:bottom-0 sm:left-4 sm:p-3"
 				onclick={prevSlide}
 				disabled={disablePrev}
 				aria-label="Previous testimonials"
@@ -145,7 +150,7 @@
 
 			<!-- Right arrow -->
 			<button
-				class="absolute bottom-0 right-2 z-10 rounded-full bg-white p-2 text-gray-900 shadow-lg transition-colors hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50 sm:bottom-0 sm:right-4 sm:p-3"
+				class="absolute bottom-0 right-2 z-10 rounded-full bg-white p-2 text-gray-900 shadow-lg transition-colors hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 sm:bottom-0 sm:right-4 sm:p-3"
 				onclick={nextSlide}
 				disabled={disableNext}
 				aria-label="Next testimonials"
@@ -161,8 +166,8 @@
 				{#if i <= testimonials.length - visibleCount}
 					<button
 						class="h-2 w-2 rounded-full transition-colors {i === currentIndex
-							? 'bg-blue-500'
-							: 'bg-gray-400'} {transitioning ? 'pointer-events-none' : ''}"
+							? 'bg-blue-500 dark:bg-blue-400'
+							: 'bg-gray-400 dark:bg-gray-600'} {transitioning ? 'pointer-events-none' : ''}"
 						onclick={() => goToSlide(i)}
 						aria-label={`Go to testimonial set starting at ${i + 1}`}
 					></button>
@@ -170,7 +175,7 @@
 			{/each}
 		</div>
 	{:else}
-		<div class="py-10 text-center text-gray-500">No testimonials available.</div>
+		<div class="py-10 text-center text-gray-500 dark:text-gray-400">No testimonials available.</div>
 	{/if}
 </div>
 
