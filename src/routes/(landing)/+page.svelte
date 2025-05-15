@@ -26,7 +26,10 @@
 		CalendarIcon,
 		Pencil,
 		FileText,
-		Hash
+		Hash,
+		Bell,
+		MessageSquare,
+		History
 	} from 'lucide-svelte';
 	import ThemeToggle from '$lib/components/theme-controller/theme-toggle.svelte';
 	import { createClient } from '@supabase/supabase-js';
@@ -407,15 +410,54 @@
 			<Card class="p-4">
 				<CardHeader>
 					<div class="flex items-center justify-between">
-						<CardTitle>Project Requirements</CardTitle>
-						<div class="flex space-x-2">
-							<Badge variant="outline">Epic</Badge>
-							<Badge variant="outline">Sprint 4</Badge>
+						<div>
+							<CardTitle>Project Requirements</CardTitle>
+							<CardDescription class="mt-1">
+								Track, assign, and prioritize user stories across your project
+							</CardDescription>
+						</div>
+						<div class="flex items-center space-x-3">
+							<div class="flex -space-x-2">
+								<Avatar class="border-2 border-white dark:border-gray-900">
+									<AvatarImage src="https://ui.shadcn.com/avatars/01.png" alt="Team member" />
+									<AvatarFallback>JS</AvatarFallback>
+								</Avatar>
+								<Avatar class="border-2 border-white dark:border-gray-900">
+									<AvatarImage src="https://ui.shadcn.com/avatars/02.png" alt="Team member" />
+									<AvatarFallback>MC</AvatarFallback>
+								</Avatar>
+								<Avatar class="border-2 border-white dark:border-gray-900">
+									<AvatarImage src="https://ui.shadcn.com/avatars/03.png" alt="Team member" />
+									<AvatarFallback>KL</AvatarFallback>
+								</Avatar>
+								<div
+									class="flex h-9 w-9 items-center justify-center rounded-full bg-gray-100 text-xs font-medium dark:bg-gray-800"
+								>
+									+3
+								</div>
+							</div>
+							<Button variant="outline" size="sm" class="ml-2">
+								<Users2 size={14} class="mr-1" />
+								Invite Team
+							</Button>
+							<div class="flex space-x-2">
+								<Badge variant="outline">Sprint 4</Badge>
+							</div>
 						</div>
 					</div>
-					<CardDescription>Track and prioritize user stories across your project</CardDescription>
 				</CardHeader>
 				<CardContent>
+					<div class="mb-4 flex items-center justify-between">
+						<div class="flex items-center gap-2">
+							<Badge variant="secondary" class="text-xs">6 Active</Badge>
+							<Badge variant="outline" class="text-xs">4 Completed</Badge>
+							<Badge variant="outline" class="text-xs">2 Blocked</Badge>
+						</div>
+						<div class="text-sm text-gray-500 dark:text-gray-400">
+							<span class="font-medium text-gray-900 dark:text-white">Sprint Progress:</span> 65% Complete
+						</div>
+					</div>
+
 					<div class="rounded border dark:border-gray-700">
 						<div class="flex items-center justify-between bg-gray-100 p-3 dark:bg-gray-700">
 							<h3 class="font-semibold dark:text-gray-200">User Stories</h3>
@@ -431,7 +473,8 @@
 										<th class="p-2 text-left">Epic</th>
 										<th class="p-2 text-left">Priority</th>
 										<th class="p-2 text-left">Status</th>
-										<th class="p-2 text-left">Assigned</th>
+										<th class="p-2 text-left">Assignee</th>
+										<th class="p-2 text-left">Due Date</th>
 									</tr>
 								</thead>
 								<tbody class="text-left">
@@ -445,7 +488,27 @@
 										<td class="p-2">Auth</td>
 										<td class="p-2"><Badge variant="destructive">High</Badge></td>
 										<td class="p-2">In Progress</td>
-										<td class="p-2">Jane S.</td>
+										<td class="p-2">
+											<div class="flex items-center">
+												<Avatar class="mr-2 h-6 w-6">
+													<AvatarImage
+														src="https://ui.shadcn.com/avatars/01.png"
+														alt="Jane Smith"
+													/>
+													<AvatarFallback>JS</AvatarFallback>
+												</Avatar>
+												<span>Jane S.</span>
+											</div>
+										</td>
+										<td class="p-2">
+											<div class="flex items-center">
+												<span class="text-yellow-600 dark:text-yellow-400">Oct 15, 2023</span>
+												<span
+													class="ml-2 rounded-full bg-yellow-100 px-1.5 py-0.5 text-xs text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300"
+													>2 days left</span
+												>
+											</div>
+										</td>
 									</tr>
 									<tr class="border-t dark:border-gray-700">
 										<td class="p-2">PAY-031</td>
@@ -457,7 +520,27 @@
 										<td class="p-2">Payments</td>
 										<td class="p-2"><Badge variant="destructive">High</Badge></td>
 										<td class="p-2">Approved</td>
-										<td class="p-2">Michael J.</td>
+										<td class="p-2">
+											<div class="flex items-center">
+												<Avatar class="mr-2 h-6 w-6">
+													<AvatarImage
+														src="https://ui.shadcn.com/avatars/02.png"
+														alt="Michael Johnson"
+													/>
+													<AvatarFallback>MJ</AvatarFallback>
+												</Avatar>
+												<span>Michael J.</span>
+											</div>
+										</td>
+										<td class="p-2">
+											<div class="flex items-center">
+												<span class="text-green-600 dark:text-green-400">Oct 30, 2023</span>
+												<span
+													class="ml-2 rounded-full bg-green-100 px-1.5 py-0.5 text-xs text-green-800 dark:bg-green-900 dark:text-green-300"
+													>17 days left</span
+												>
+											</div>
+										</td>
 									</tr>
 									<tr class="border-t dark:border-gray-700">
 										<td class="p-2">RPT-056</td>
@@ -469,7 +552,27 @@
 										<td class="p-2">Analytics</td>
 										<td class="p-2"><Badge variant="secondary">Medium</Badge></td>
 										<td class="p-2">Planned</td>
-										<td class="p-2">Sarah C.</td>
+										<td class="p-2">
+											<div class="flex items-center">
+												<Avatar class="mr-2 h-6 w-6">
+													<AvatarImage
+														src="https://ui.shadcn.com/avatars/03.png"
+														alt="Sarah Chen"
+													/>
+													<AvatarFallback>SC</AvatarFallback>
+												</Avatar>
+												<span>Sarah C.</span>
+											</div>
+										</td>
+										<td class="p-2">
+											<div class="flex items-center">
+												<span class="text-gray-600 dark:text-gray-400">Nov 12, 2023</span>
+												<span
+													class="ml-2 rounded-full bg-gray-100 px-1.5 py-0.5 text-xs text-gray-800 dark:bg-gray-700 dark:text-gray-300"
+													>30 days left</span
+												>
+											</div>
+										</td>
 									</tr>
 									<tr class="border-t dark:border-gray-700">
 										<td class="p-2">API-023</td>
@@ -481,7 +584,24 @@
 										<td class="p-2">API</td>
 										<td class="p-2"><Badge variant="secondary">Medium</Badge></td>
 										<td class="p-2">In Review</td>
-										<td class="p-2">Alex T.</td>
+										<td class="p-2">
+											<div class="flex items-center">
+												<Avatar class="mr-2 h-6 w-6">
+													<AvatarImage src="https://ui.shadcn.com/avatars/04.png" alt="Alex Tran" />
+													<AvatarFallback>AT</AvatarFallback>
+												</Avatar>
+												<span>Alex T.</span>
+											</div>
+										</td>
+										<td class="p-2">
+											<div class="flex items-center">
+												<span class="text-red-600 dark:text-red-400">Oct 10, 2023</span>
+												<span
+													class="ml-2 rounded-full bg-red-100 px-1.5 py-0.5 text-xs text-red-800 dark:bg-red-900 dark:text-red-300"
+													>Overdue</span
+												>
+											</div>
+										</td>
 									</tr>
 									<tr class="border-t dark:border-gray-700">
 										<td class="p-2">USR-046</td>
@@ -493,16 +613,49 @@
 										<td class="p-2">Auth</td>
 										<td class="p-2"><Badge variant="destructive">High</Badge></td>
 										<td class="p-2">Backlog</td>
-										<td class="p-2">—</td>
+										<td class="p-2">
+											<Button
+												variant="ghost"
+												size="sm"
+												class="h-7 rounded-full px-2 text-xs text-blue-600 hover:bg-blue-50 dark:text-blue-400 dark:hover:bg-blue-950"
+											>
+												+ Assign
+											</Button>
+										</td>
+										<td class="p-2">
+											<span class="text-gray-500 dark:text-gray-400">Not scheduled</span>
+										</td>
 									</tr>
 								</tbody>
 							</table>
 						</div>
 					</div>
 				</CardContent>
-				<CardFooter class="flex justify-center">
-					<div class="text-center text-sm text-gray-500 dark:text-gray-400">
-						Easily track and manage all project requirements in one place
+				<CardFooter>
+					<div class="mx-auto mt-2 max-w-2xl rounded-lg bg-blue-50 p-4 dark:bg-blue-900/30">
+						<h4 class="mb-2 text-center text-sm font-semibold text-blue-800 dark:text-blue-300">
+							Collaborate Seamlessly with Your Team
+						</h4>
+						<div
+							class="flex flex-wrap justify-center gap-4 text-center text-xs text-blue-700 dark:text-blue-300"
+						>
+							<div class="flex items-center">
+								<Users2 size={16} class="mr-1.5" />
+								<span>Invite unlimited team members</span>
+							</div>
+							<div class="flex items-center">
+								<Bell size={16} class="mr-1.5" />
+								<span>Deadline notifications</span>
+							</div>
+							<div class="flex items-center">
+								<MessageSquare size={16} class="mr-1.5" />
+								<span>Comment on requirements</span>
+							</div>
+							<div class="flex items-center">
+								<History size={16} class="mr-1.5" />
+								<span>Track changes history</span>
+							</div>
+						</div>
 					</div>
 				</CardFooter>
 			</Card>
