@@ -419,13 +419,7 @@ Requirements Management System Team
 					Manage your project requirements with an intuitive interface. Track user stories, epics,
 					and acceptance criteria with ease.
 				</p>
-				<Button
-					href="#"
-					variant="default"
-					size="lg"
-					class="font-semibold"
-					onclick={() => demoClick('Try It Now')}>Try It Now</Button
-				>
+				<Button href="/reqs" variant="default" size="lg" class="font-semibold">Try Demo Now</Button>
 			</div>
 		</div>
 	</section>
@@ -563,12 +557,7 @@ Requirements Management System Team
 					</div>
 				</div>
 				<div class="mt-10 text-center">
-					<Button
-						href="#"
-						variant="default"
-						size="lg"
-						onclick={() => demoClick('Start Managing Requirements')}
-					>
+					<Button href="#contact" variant="default" size="lg">
 						Start Managing Requirements Better
 						<ArrowRight class="ml-2" size={18} />
 					</Button>
@@ -578,7 +567,7 @@ Requirements Management System Team
 	</section>
 
 	<!-- User Stories Sheet Example -->
-	<section class="mx-auto mb-16 max-w-6xl px-4">
+	<section id="services" class="mx-auto mb-16 max-w-6xl px-4">
 		<h2 class="mb-8 text-center text-3xl font-bold text-gray-900 dark:text-white">
 			Organize Your Requirements
 		</h2>
@@ -964,12 +953,7 @@ Requirements Management System Team
 								collaborate on requirements with rich acceptance criteria that everyone understands.
 							</p>
 							<div class="text-center">
-								<Button
-									href="#"
-									variant="default"
-									class="px-6 py-3 font-medium"
-									onclick={() => demoClick('Try Requirements Management')}
-								>
+								<Button href="/reqs" variant="default" class="px-6 py-3 font-medium">
 									Try Requirements Management
 								</Button>
 							</div>
@@ -1748,9 +1732,7 @@ Requirements Management System Team
 						</ul>
 					</div>
 					<div class="mt-auto border-t p-6 dark:border-gray-700">
-						<Button onclick={() => demoClick('Basic Plan')} variant="default" class="w-full"
-							>Get Started</Button
-						>
+						<Button href="#contact" variant="default" class="w-full">Get Started</Button>
 					</div>
 				</div>
 
@@ -1803,9 +1785,7 @@ Requirements Management System Team
 						</ul>
 					</div>
 					<div class="mt-auto border-t p-6 dark:border-gray-700">
-						<Button onclick={() => demoClick('Pro Plan')} variant="default" class="w-full"
-							>Get Started</Button
-						>
+						<Button href="#contact" variant="default" class="w-full">Get Started</Button>
 					</div>
 				</div>
 
@@ -1852,9 +1832,7 @@ Requirements Management System Team
 						</ul>
 					</div>
 					<div class="mt-auto border-t p-6 dark:border-gray-700">
-						<Button onclick={() => demoClick('Enterprise Plan')} variant="outline" class="w-full"
-							>Contact Sales</Button
-						>
+						<Button href="#contact" variant="outline" class="w-full">Contact Sales</Button>
 					</div>
 				</div>
 			</div>
@@ -1902,11 +1880,9 @@ Requirements Management System Team
 						<p class="mb-6 text-center text-gray-600 dark:text-gray-400">
 							Skip the learning curve and get professional requirements from day one.
 						</p>
-						<Button
-							onclick={() => demoClick('Consulting Services')}
-							variant="default"
-							class="w-full md:w-auto">Schedule Consultation</Button
-						>
+						<Button href="#contact" variant="default" class="w-full md:w-auto">
+							Schedule Consultation
+						</Button>
 					</div>
 				</div>
 			</div>
