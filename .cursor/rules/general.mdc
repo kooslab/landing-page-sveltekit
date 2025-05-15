@@ -4,3 +4,5 @@ globs:
 alwaysApply: false
 ---
 - i use pnpm instead of npm
+- use bits ui for all ui components as much as possible
+- for svelte code, never use on:click, use onclick it is svelte 5 syntac

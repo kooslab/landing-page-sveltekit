@@ -29,7 +29,10 @@
 		Hash,
 		Bell,
 		MessageSquare,
-		History
+		History,
+		ThumbsUp,
+		Paperclip,
+		Smile
 	} from 'lucide-svelte';
 	import ThemeToggle from '$lib/components/theme-controller/theme-toggle.svelte';
 	import { createClient } from '@supabase/supabase-js';
@@ -56,6 +59,32 @@
 	let submitError = $state('');
 	let submitSuccess = $state(false);
 	let currentExampleIndex = $state(0);
+
+	// Custom demo toast notification
+	let toast = $state({
+		show: false,
+		message: '',
+		timeout: null as number | null
+	});
+
+	function showToast(message: string) {
+		// Clear any existing timeout
+		if (toast.timeout) clearTimeout(toast.timeout);
+
+		// Show the toast with the message
+		toast.message = message;
+		toast.show = true;
+
+		// Set a timeout to hide the toast after 3 seconds
+		toast.timeout = setTimeout(() => {
+			toast.show = false;
+		}, 3000) as unknown as number;
+	}
+
+	function demoClick(featureName: string = 'This feature') {
+		showToast(`${featureName} is just a demo and not functional`);
+		return false;
+	}
 
 	// Examples of detailed requirements with acceptance criteria
 	const exampleRequirements = [
@@ -241,6 +270,52 @@
 </script>
 
 <main class="min-h-screen bg-white dark:bg-gray-900">
+	<!-- Custom Toast Component -->
+	{#if toast.show}
+		<div class="animate-in slide-in-from-top-5 fixed right-4 top-4 z-50 max-w-sm">
+			<div class="rounded-md bg-slate-900 p-4 shadow-lg dark:bg-slate-50">
+				<div class="flex items-center gap-3">
+					<div class="text-white dark:text-slate-900">
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							viewBox="0 0 20 20"
+							fill="currentColor"
+							class="h-5 w-5"
+						>
+							<path
+								fill-rule="evenodd"
+								d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z"
+								clip-rule="evenodd"
+							/>
+						</svg>
+					</div>
+					<p class="text-sm font-medium text-white dark:text-slate-900">{toast.message}</p>
+				</div>
+			</div>
+		</div>
+	{/if}
+
+	<!-- Mobile Optimization Notice - Only visible on mobile -->
+	<div
+		class="fixed bottom-0 left-0 right-0 z-40 block bg-blue-600 px-4 py-3 text-center text-white shadow-lg md:hidden"
+	>
+		<div class="flex items-center justify-center gap-2">
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				viewBox="0 0 20 20"
+				fill="currentColor"
+				class="h-5 w-5"
+			>
+				<path
+					fill-rule="evenodd"
+					d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z"
+					clip-rule="evenodd"
+				/>
+			</svg>
+			<p class="text-sm font-medium">This site is optimized for desktop viewing</p>
+		</div>
+	</div>
+
 	<!-- Hero Section -->
 	<section class="py-20">
 		<div class="container mx-auto px-4">
@@ -254,7 +329,13 @@
 					Manage your project requirements with an intuitive interface. Track user stories, epics,
 					and acceptance criteria with ease.
 				</p>
-				<Button href="/reqs" variant="default" size="lg" class="font-semibold">Try It Now</Button>
+				<Button
+					href="#"
+					variant="default"
+					size="lg"
+					class="font-semibold"
+					onclick={() => demoClick('Try It Now')}>Try It Now</Button
+				>
 			</div>
 		</div>
 	</section>
@@ -392,7 +473,12 @@
 					</div>
 				</div>
 				<div class="mt-10 text-center">
-					<Button href="/reqs" variant="default" size="lg">
+					<Button
+						href="#"
+						variant="default"
+						size="lg"
+						onclick={() => demoClick('Start Managing Requirements')}
+					>
 						Start Managing Requirements Better
 						<ArrowRight class="ml-2" size={18} />
 					</Button>
@@ -618,6 +704,7 @@
 												variant="ghost"
 												size="sm"
 												class="h-7 rounded-full px-2 text-xs text-blue-600 hover:bg-blue-50 dark:text-blue-400 dark:hover:bg-blue-950"
+												onclick={() => demoClick('Assign button')}
 											>
 												+ Assign
 											</Button>
@@ -787,7 +874,12 @@
 								collaborate on requirements with rich acceptance criteria that everyone understands.
 							</p>
 							<div class="text-center">
-								<Button href="/reqs" variant="default" class="px-6 py-3 font-medium">
+								<Button
+									href="#"
+									variant="default"
+									class="px-6 py-3 font-medium"
+									onclick={() => demoClick('Try Requirements Management')}
+								>
 									Try Requirements Management
 								</Button>
 							</div>
@@ -795,6 +887,684 @@
 					</div>
 				</div>
 			</Card>
+		</div>
+	</section>
+
+	<!-- Discussion Feature Section -->
+	<section class="mx-auto mb-16 max-w-6xl px-4">
+		<h2 class="mb-8 text-center text-3xl font-bold text-gray-900 dark:text-white">
+			Collaborate Through Discussions
+		</h2>
+		<div class="mx-auto max-w-6xl">
+			<Card class="overflow-hidden">
+				<div class="flex flex-col lg:flex-row">
+					<!-- Left side - Requirement summary -->
+					<div
+						class="border-b border-gray-200 bg-gray-50 p-6 dark:border-gray-700 dark:bg-gray-800 lg:w-1/3 lg:border-b-0 lg:border-r"
+					>
+						<div class="mb-4 flex items-center justify-between">
+							<Badge variant="destructive">High Priority</Badge>
+							<span class="text-sm text-gray-500 dark:text-gray-400">In Progress</span>
+						</div>
+
+						<h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">
+							Payment Processing Integration
+						</h3>
+						<div class="mb-4 flex items-center text-sm text-gray-500 dark:text-gray-400">
+							<Hash size={16} class="mr-1" />
+							<span>PAY-031</span>
+						</div>
+
+						<div
+							class="mb-6 rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-900"
+						>
+							<p class="text-gray-800 dark:text-gray-200">
+								<span class="font-medium">As a</span> financial analyst,
+								<span class="font-medium">I want to</span>
+								integrate with multiple payment processors <span class="font-medium">so that</span> I
+								can provide flexible payment options to customers.
+							</p>
+						</div>
+
+						<div class="mb-4">
+							<div class="mb-2 flex items-center">
+								<Users2 size={16} class="mr-2 text-gray-500" />
+								<span class="text-sm font-medium text-gray-700 dark:text-gray-300">Assigned to</span
+								>
+							</div>
+							<div class="flex items-center">
+								<Avatar class="mr-2 h-6 w-6">
+									<AvatarImage src="https://ui.shadcn.com/avatars/02.png" alt="Michael Johnson" />
+									<AvatarFallback>MJ</AvatarFallback>
+								</Avatar>
+								<span class="text-gray-800 dark:text-gray-200">Michael Johnson</span>
+							</div>
+						</div>
+
+						<div>
+							<div class="mb-2 flex items-center">
+								<CalendarIcon size={16} class="mr-2 text-gray-500" />
+								<span class="text-sm font-medium text-gray-700 dark:text-gray-300">Due Date</span>
+							</div>
+							<div
+								class="flex items-center rounded-full bg-green-100 px-3 py-1 text-sm text-green-800 dark:bg-green-900 dark:text-green-300"
+							>
+								<span>October 30, 2023</span>
+								<span
+									class="ml-2 rounded-full bg-white px-1.5 py-0.5 text-xs font-medium text-green-800 dark:bg-gray-800"
+									>17 days left</span
+								>
+							</div>
+						</div>
+					</div>
+
+					<!-- Right side - Discussion thread -->
+					<div class="flex-1 p-6">
+						<div class="mb-4 flex items-center justify-between">
+							<div class="flex items-center">
+								<MessageSquare size={20} class="mr-2 text-blue-600 dark:text-blue-400" />
+								<h3 class="text-lg font-bold text-gray-900 dark:text-white">
+									Requirement Discussion
+								</h3>
+							</div>
+							<Badge
+								variant="outline"
+								class="flex items-center gap-1 bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
+							>
+								<span class="h-2 w-2 rounded-full bg-blue-500"></span> Live Updates
+							</Badge>
+						</div>
+
+						<div class="mb-6 space-y-4">
+							<!-- Comment 1 -->
+							<div class="rounded-lg border border-gray-200 p-4 dark:border-gray-700">
+								<div class="mb-2 flex items-start justify-between">
+									<div class="flex items-center">
+										<Avatar class="mr-2 h-8 w-8">
+											<AvatarImage
+												src="https://ui.shadcn.com/avatars/02.png"
+												alt="Michael Johnson"
+											/>
+											<AvatarFallback>MJ</AvatarFallback>
+										</Avatar>
+										<div>
+											<div class="font-medium text-gray-900 dark:text-white">Michael Johnson</div>
+											<div class="text-xs text-gray-500 dark:text-gray-400">
+												Financial Analyst • 2 days ago
+											</div>
+										</div>
+									</div>
+									<Badge variant="outline" class="text-xs">Author</Badge>
+								</div>
+								<div class="pl-10 text-sm text-gray-700 dark:text-gray-300">
+									<p>
+										I've drafted acceptance criteria for the Stripe integration. Can stakeholders
+										review the security requirements section? We need to ensure PCI DSS Level 1
+										compliance for all transactions.
+									</p>
+								</div>
+							</div>
+
+							<!-- Comment 2 -->
+							<div class="rounded-lg border border-gray-200 p-4 dark:border-gray-700">
+								<div class="mb-2 flex items-start justify-between">
+									<div class="flex items-center">
+										<Avatar class="mr-2 h-8 w-8">
+											<AvatarImage src="https://ui.shadcn.com/avatars/03.png" alt="Sarah Chen" />
+											<AvatarFallback>SC</AvatarFallback>
+										</Avatar>
+										<div>
+											<div class="font-medium text-gray-900 dark:text-white">Sarah Chen</div>
+											<div class="text-xs text-gray-500 dark:text-gray-400">
+												Security Engineer • Yesterday
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="pl-10 text-sm text-gray-700 dark:text-gray-300">
+									<p>
+										The security requirements look good, but we need to add AVS (Address
+										Verification System) as an acceptance criterion. Also, 3D Secure 2.0 should be
+										mandatory for all eligible transactions to meet regulatory requirements.
+									</p>
+									<div class="mt-2 flex items-center gap-2">
+										<Button
+											variant="ghost"
+											size="sm"
+											class="h-7 text-xs"
+											onclick={() => demoClick('Like button')}
+										>
+											<ThumbsUp size={14} class="mr-1" /> 3
+										</Button>
+										<Button
+											variant="ghost"
+											size="sm"
+											class="h-7 text-xs"
+											onclick={() => demoClick('Reply button')}>Reply</Button
+										>
+									</div>
+								</div>
+							</div>
+
+							<!-- Comment 3 -->
+							<div class="rounded-lg border border-gray-200 p-4 dark:border-gray-700">
+								<div class="mb-2 flex items-start justify-between">
+									<div class="flex items-center">
+										<Avatar class="mr-2 h-8 w-8">
+											<AvatarImage src="https://ui.shadcn.com/avatars/05.png" alt="Taylor Kim" />
+											<AvatarFallback>TK</AvatarFallback>
+										</Avatar>
+										<div>
+											<div class="font-medium text-gray-900 dark:text-white">Taylor Kim</div>
+											<div class="text-xs text-gray-500 dark:text-gray-400">
+												Product Manager • 2 hours ago
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="pl-10 text-sm text-gray-700 dark:text-gray-300">
+									<p>
+										I've updated the acceptance criteria to include both AVS and 3D Secure 2.0. We
+										also need to clarify the requirement for international payment support - our
+										survey showed customers need support for these currencies: USD, EUR, GBP, JPY,
+										CAD.
+									</p>
+									<div class="mt-3 rounded-md bg-gray-50 p-3 dark:bg-gray-800">
+										<div class="mb-1 text-xs font-medium text-gray-500 dark:text-gray-400">
+											Updated Acceptance Criteria
+										</div>
+										<div class="text-xs text-gray-700 dark:text-gray-300">
+											<p class="mb-1 font-medium">AC-2: Security & Compliance</p>
+											<p class="mb-0.5">• PCI DSS Level 1 compliance for all transactions</p>
+											<p class="mb-0.5">• Card data must never be stored on our servers</p>
+											<p class="mb-0.5 font-semibold text-blue-600 dark:text-blue-400">
+												• 3D Secure 2.0 support for all eligible transactions
+											</p>
+											<p class="mb-0.5 font-semibold text-blue-600 dark:text-blue-400">
+												• Address Verification System (AVS) for fraud prevention
+											</p>
+											<p>• Transaction data must be encrypted in transit and at rest</p>
+										</div>
+									</div>
+									<div class="mt-2 flex items-center gap-2">
+										<Button
+											variant="ghost"
+											size="sm"
+											class="h-7 text-xs"
+											onclick={() => demoClick('Like button')}
+										>
+											<ThumbsUp size={14} class="mr-1" /> 5
+										</Button>
+										<Button
+											variant="ghost"
+											size="sm"
+											class="h-7 text-xs"
+											onclick={() => demoClick('Reply button')}>Reply</Button
+										>
+									</div>
+								</div>
+							</div>
+
+							<!-- New comment form -->
+							<div class="mt-4 rounded-lg border border-gray-200 p-4 dark:border-gray-700">
+								<div class="mb-2 flex items-center">
+									<Avatar class="mr-2 h-8 w-8">
+										<AvatarImage src="https://ui.shadcn.com/avatars/01.png" alt="You" />
+										<AvatarFallback>You</AvatarFallback>
+									</Avatar>
+									<div class="text-sm font-medium text-gray-900 dark:text-white">
+										Add requirement feedback...
+									</div>
+								</div>
+								<div class="pl-10">
+									<Textarea
+										placeholder="Comment on this requirement..."
+										class="mb-2 min-h-[80px] resize-none"
+									/>
+									<div class="flex items-center justify-between">
+										<div class="flex items-center space-x-2">
+											<Button
+												variant="ghost"
+												size="sm"
+												class="h-8 w-8 rounded-full p-0"
+												onclick={() => demoClick('Attachment button')}
+											>
+												<Paperclip size={16} class="text-gray-500" />
+											</Button>
+											<Button
+												variant="ghost"
+												size="sm"
+												class="h-8 w-8 rounded-full p-0"
+												onclick={() => demoClick('Link button')}
+											>
+												<Link2Icon size={16} class="text-gray-500" />
+											</Button>
+											<Button
+												variant="ghost"
+												size="sm"
+												class="h-8 w-8 rounded-full p-0"
+												onclick={() => demoClick('Code button')}
+											>
+												<CodeIcon size={16} class="text-gray-500" />
+											</Button>
+										</div>
+										<Button size="sm" onclick={() => demoClick('Post Feedback button')}
+											>Post Feedback</Button
+										>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="mt-6 rounded-lg bg-blue-50 p-4 dark:bg-blue-900/30">
+							<div class="flex items-start">
+								<FileCheck size={20} class="mr-3 mt-0.5 text-blue-600 dark:text-blue-300" />
+								<div>
+									<h4 class="mb-1 font-medium text-blue-900 dark:text-blue-300">
+										Requirement Validation
+									</h4>
+									<p class="text-sm text-blue-800 dark:text-blue-200">
+										All stakeholders must review and approve requirement changes before
+										implementation. Track requirements from ideation to acceptance testing.
+									</p>
+								</div>
+								<Button
+									variant="outline"
+									size="sm"
+									class="ml-auto whitespace-nowrap border-blue-300 bg-white text-blue-600 hover:bg-blue-50 dark:border-blue-700 dark:bg-gray-800 dark:text-blue-400 dark:hover:bg-gray-700"
+									onclick={() => demoClick('Approve button')}
+								>
+									Approve
+								</Button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</Card>
+		</div>
+	</section>
+
+	<!-- AI Assistant Section -->
+	<section class="mx-auto mb-16 max-w-6xl px-4">
+		<h2 class="mb-8 text-center text-3xl font-bold text-gray-900 dark:text-white">
+			Your AI Requirements Assistant
+		</h2>
+
+		<div class="grid gap-8 md:grid-cols-2">
+			<!-- Left side - AI Assistant UI -->
+			<Card class="overflow-hidden">
+				<div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-4">
+					<div class="flex items-center justify-between">
+						<div class="flex items-center">
+							<div class="flex h-10 w-10 items-center justify-center rounded-full bg-white/90">
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									class="h-6 w-6 text-blue-600"
+								>
+									<path d="M12 2c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2Z"></path>
+									<path d="M12 8v8"></path>
+									<path d="M8 12h8"></path>
+								</svg>
+							</div>
+							<h3 class="ml-2 text-lg font-bold text-white">ReqsAI Assistant</h3>
+						</div>
+						<Badge variant="outline" class="border-white/30 bg-white/10 text-white">Beta</Badge>
+					</div>
+				</div>
+
+				<CardContent class="p-0">
+					<div class="space-y-4 p-4">
+						<div class="flex items-start space-x-3">
+							<div
+								class="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-blue-600"
+							>
+								<span class="font-semibold">AI</span>
+							</div>
+							<div class="flex-1 rounded-lg bg-gray-100 p-3 dark:bg-gray-800">
+								<p class="text-sm text-gray-700 dark:text-gray-300">
+									What kind of requirement can I help you with today?
+								</p>
+							</div>
+						</div>
+
+						<div class="flex items-start justify-end space-x-3">
+							<div class="flex-1 rounded-lg bg-blue-600 p-3 text-right">
+								<p class="text-sm text-white">
+									We need a user authentication feature for our SaaS platform.
+								</p>
+							</div>
+							<div
+								class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-gray-800"
+							>
+								<span class="font-semibold">U</span>
+							</div>
+						</div>
+
+						<div class="flex items-start space-x-3">
+							<div
+								class="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-blue-600"
+							>
+								<span class="font-semibold">AI</span>
+							</div>
+							<div class="flex-1 space-y-3 rounded-lg bg-gray-100 p-3 dark:bg-gray-800">
+								<p class="text-sm text-gray-700 dark:text-gray-300">
+									I've created 5 user stories for authentication:
+								</p>
+								<ol class="ml-5 list-decimal text-xs text-gray-700 dark:text-gray-300">
+									<li class="mb-1.5">
+										<strong>As a user</strong>, I want to create an account so I can access the
+										platform.
+									</li>
+									<li class="mb-1.5">
+										<strong>As a user</strong>, I want to login securely with MFA so I can protect
+										my account.
+									</li>
+									<li class="mb-1.5">
+										<strong>As a user</strong>, I want to reset my password so I can regain access
+										if I forget it.
+									</li>
+									<li class="mb-1.5">
+										<strong>As an admin</strong>, I want to manage user access and permissions.
+									</li>
+									<li>
+										<strong>As a security engineer</strong>, I want to implement OAuth SSO so users
+										can login with existing accounts.
+									</li>
+								</ol>
+								<p class="text-sm text-gray-700 dark:text-gray-300">
+									Would you like me to add acceptance criteria for any of these?
+								</p>
+							</div>
+						</div>
+					</div>
+
+					<div class="border-t border-gray-200 p-4 dark:border-gray-700">
+						<div class="flex items-center space-x-2">
+							<Input type="text" placeholder="Tell the AI what you need..." class="flex-1" />
+							<Button size="sm" onclick={() => demoClick('AI Assistant')}>
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									class="h-5 w-5"
+								>
+									<path d="m22 2-7 20-4-9-9-4 20-7Z"></path>
+									<path d="M22 2 11 13"></path>
+								</svg>
+							</Button>
+						</div>
+					</div>
+				</CardContent>
+			</Card>
+
+			<!-- Right side - Feature highlights -->
+			<div class="flex flex-col justify-center space-y-6">
+				<div>
+					<h3 class="mb-6 text-2xl font-bold text-gray-900 dark:text-white">
+						Let AI Do the Heavy Lifting
+					</h3>
+					<p class="mb-6 text-gray-600 dark:text-gray-300">
+						Our AI assistant helps you create professional requirements in seconds, not hours. Boost
+						your productivity with intelligent automation.
+					</p>
+				</div>
+
+				<div class="grid gap-4 sm:grid-cols-2">
+					<div
+						class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+					>
+						<div
+							class="mb-2 flex h-8 w-8 items-center justify-center rounded-md bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								class="h-5 w-5"
+							>
+								<path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
+								></path>
+								<path d="m9 12 2 2 4-4"></path>
+							</svg>
+						</div>
+						<h4 class="text-sm font-semibold text-gray-900 dark:text-white">
+							Auto-Generate Stories
+						</h4>
+						<p class="text-xs text-gray-600 dark:text-gray-300">
+							Create complete professional user stories from simple keywords or descriptions
+						</p>
+					</div>
+
+					<div
+						class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+					>
+						<div
+							class="mb-2 flex h-8 w-8 items-center justify-center rounded-md bg-purple-100 text-purple-600 dark:bg-purple-900 dark:text-purple-300"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								class="h-5 w-5"
+							>
+								<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"
+								></path>
+								<path d="M12 9v4"></path>
+								<path d="M12 17h.01"></path>
+							</svg>
+						</div>
+						<h4 class="text-sm font-semibold text-gray-900 dark:text-white">Gap Analysis</h4>
+						<p class="text-xs text-gray-600 dark:text-gray-300">
+							Identify missing or redundant requirements across your project
+						</p>
+					</div>
+
+					<div
+						class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+					>
+						<div
+							class="mb-2 flex h-8 w-8 items-center justify-center rounded-md bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-300"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								class="h-5 w-5"
+							>
+								<path d="M9 11l3 3L22 4"></path>
+								<path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
+							</svg>
+						</div>
+						<h4 class="text-sm font-semibold text-gray-900 dark:text-white">Smart Criteria</h4>
+						<p class="text-xs text-gray-600 dark:text-gray-300">
+							Auto-generate detailed acceptance criteria based on industry best practices
+						</p>
+					</div>
+
+					<div
+						class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+					>
+						<div
+							class="mb-2 flex h-8 w-8 items-center justify-center rounded-md bg-orange-100 text-orange-600 dark:bg-orange-900 dark:text-orange-300"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								class="h-5 w-5"
+							>
+								<path
+									d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2m5.66 0H14a2 2 0 0 1 2 2v3.34"
+								></path>
+								<path d="M14 3v4a2 2 0 0 0 2 2h4"></path>
+								<path d="M8 12h8"></path>
+								<path d="M8 16h8"></path>
+							</svg>
+						</div>
+						<h4 class="text-sm font-semibold text-gray-900 dark:text-white">Domain Templates</h4>
+						<p class="text-xs text-gray-600 dark:text-gray-300">
+							Domain-specific templates for ecommerce, SaaS, auth, RBAC, and more
+						</p>
+					</div>
+				</div>
+
+				<div class="grid gap-4 sm:grid-cols-2">
+					<div
+						class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+					>
+						<div
+							class="mb-2 flex h-8 w-8 items-center justify-center rounded-md bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-300"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								class="h-5 w-5"
+							>
+								<path d="M8 2h8"></path>
+								<path d="M9 2v2.5L12 7l3-2.5V2"></path>
+								<path d="M12 17V7"></path>
+								<path d="M9 22 6 19l3-3"></path>
+								<path d="m15 22 3-3-3-3"></path>
+							</svg>
+						</div>
+						<h4 class="text-sm font-semibold text-gray-900 dark:text-white">Auto-Prioritize</h4>
+						<p class="text-xs text-gray-600 dark:text-gray-300">
+							Get AI-suggested priority levels based on business impact and dependencies
+						</p>
+					</div>
+
+					<div
+						class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+					>
+						<div
+							class="mb-2 flex h-8 w-8 items-center justify-center rounded-md bg-pink-100 text-pink-600 dark:bg-pink-900 dark:text-pink-300"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								class="h-5 w-5"
+							>
+								<path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
+							</svg>
+						</div>
+						<h4 class="text-sm font-semibold text-gray-900 dark:text-white">Auto-Fix</h4>
+						<p class="text-xs text-gray-600 dark:text-gray-300">
+							Fix typos, improve clarity, and refine user story formatting
+						</p>
+					</div>
+
+					<div
+						class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+					>
+						<div
+							class="mb-2 flex h-8 w-8 items-center justify-center rounded-md bg-teal-100 text-teal-600 dark:bg-teal-900 dark:text-teal-300"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								class="h-5 w-5"
+							>
+								<path d="M3 3h7v7H3z"></path>
+								<path d="M14 3h7v7h-7z"></path>
+								<path d="M14 14h7v7h-7z"></path>
+								<path d="M3 14h7v7H3z"></path>
+							</svg>
+						</div>
+						<h4 class="text-sm font-semibold text-gray-900 dark:text-white">Story Refinement</h4>
+						<p class="text-xs text-gray-600 dark:text-gray-300">
+							Intelligently combine or break down user stories for optimal organization
+						</p>
+					</div>
+
+					<div
+						class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+					>
+						<div
+							class="mb-2 flex h-8 w-8 items-center justify-center rounded-md bg-indigo-100 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-300"
+						>
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								class="h-5 w-5"
+							>
+								<path d="M7 22h10"></path>
+								<path d="M12 17v5"></path>
+								<path d="M22 8.5V12A10 10 0 1 1 2 12V8.5a3 3 0 1 1 0-6H22a3 3 0 1 1 0 6Z"></path>
+								<path d="M19 8.5v9a3 3 0 1 1-6 0v-9"></path>
+								<path d="M5 8.5v1a7 7 0 1 0 14 0v-1"></path>
+							</svg>
+						</div>
+						<h4 class="text-sm font-semibold text-gray-900 dark:text-white">Team-Ready Content</h4>
+						<p class="text-xs text-gray-600 dark:text-gray-300">
+							Generate comprehensive documentation that's immediately actionable
+						</p>
+					</div>
+				</div>
+
+				<div class="mt-4 rounded-lg bg-blue-50 p-4 dark:bg-blue-900/30">
+					<p class="mb-2 text-sm font-medium text-blue-900 dark:text-blue-300">
+						Popular Domain Templates
+					</p>
+					<div class="flex flex-wrap gap-2">
+						<Badge
+							variant="outline"
+							class="border-blue-300 bg-blue-100 text-blue-700 dark:border-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
+							>User Authentication</Badge
+						>
+						<Badge
+							variant="outline"
+							class="border-blue-300 bg-blue-100 text-blue-700 dark:border-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
+							>E-commerce</Badge
+						>
+						<Badge
+							variant="outline"
+							class="border-blue-300 bg-blue-100 text-blue-700 dark:border-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
+							>SaaS Platform</Badge
+						>
+						<Badge
+							variant="outline"
+							class="border-blue-300 bg-blue-100 text-blue-700 dark:border-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
+							>Multi-tenant</Badge
+						>
+						<Badge
+							variant="outline"
+							class="border-blue-300 bg-blue-100 text-blue-700 dark:border-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
+							>RBAC</Badge
+						>
+						<Badge
+							variant="outline"
+							class="border-blue-300 bg-blue-100 text-blue-700 dark:border-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
+							>API Gateway</Badge
+						>
+						<Badge
+							variant="outline"
+							class="border-blue-300 bg-blue-100 text-blue-700 dark:border-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
+							>Payment Processing</Badge
+						>
+						<Badge
+							variant="outline"
+							class="border-blue-300 bg-blue-100 text-blue-700 dark:border-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
+							>Analytics Dashboard</Badge
+						>
+					</div>
+				</div>
+			</div>
 		</div>
 	</section>
 
