@@ -1,0 +1,12 @@
+---
+description: when install new packages
+globs: 
+alwaysApply: false
+---
+# Package Management
+
+- Use pnpm instead of npm for all package management operations
+- Keep dependencies up to date
+- Use exact version numbers for critical dependencies
+- Avoid adding unnecessary dependencies
+- Document any non-standard dependency requirements

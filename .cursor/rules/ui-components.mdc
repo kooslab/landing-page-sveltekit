@@ -1,0 +1,13 @@
+---
+description: 
+globs: *.svelte
+alwaysApply: false
+---
+# UI Components
+
+- Use Bits UI components whenever possible for consistent UI design
+- Follow component naming conventions (PascalCase for component files)
+- Use TypeScript for component props
+- Ensure components are responsive and accessible
+- Implement proper error handling in components
+- Use CSS custom properties for theming

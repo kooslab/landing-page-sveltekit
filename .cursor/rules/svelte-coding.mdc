@@ -1,0 +1,14 @@
+---
+description: 
+globs: 
+alwaysApply: true
+---
+# Svelte Coding Standards
+
+- Use Svelte 5 syntax with `onclick` instead of `on:click` directives
+- Follow SvelteKit conventions for routing and API endpoints
+- Use reactive declarations with the `$state`, `$derived`, and `$effect` runes
+- Use snippets (`{#snippet}`) rather than slots when appropriate
+- Ensure proper typing of components and functions
+- Keep components focused and reusable
+

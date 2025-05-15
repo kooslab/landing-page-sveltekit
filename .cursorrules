@@ -1,0 +1,18 @@
+# Kooslab Landing Page SvelteKit Project Rules
+
+## Package Management
+
+- Use pnpm instead of npm for all package management operations.
+
+## UI Components
+
+- Use Bits UI components whenever possible for consistent UI design.
+
+## Svelte Coding Standards
+
+- Use the Svelte 5 syntax with `onclick` instead of `on:click` directives.
+- Follow SvelteKit conventions for routing and API endpoints.
+
+## Email Services
+
+- The project uses Resend email service with a verified domain (mail.kooslab.net).
