@@ -70,6 +70,7 @@
 		"lucide-react": "^0.469.0",
 		"marked": "^15.0.11",
 		"mode-watcher": "^0.4.1",
+		"resend": "^4.5.1",
 		"svelte-fa": "^4.0.3",
 		"svelte-i18n": "^4.0.1",
 		"svelte-markdown": "^0.4.1",
