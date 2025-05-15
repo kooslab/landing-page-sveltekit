@@ -58,7 +58,8 @@ const config: Config = {
 				sans: [...fontFamily.sans]
 			}
 		}
-	}
+	},
+	plugins: [require('@tailwindcss/typography')]
 };
 
 export default config;
