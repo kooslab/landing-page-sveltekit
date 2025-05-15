@@ -47,47 +47,6 @@
 <MetaTags {...metaTags} />
 <Navbar />
 
-{#await waitLocale()}
-	<div class="loading-container">
-		<div class="loading-bar"></div>
-	</div>
-{:then}
+{#await waitLocale() then}
 	{@render children()}
 {/await}
-
-<style>
-	.loading-container {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		height: 100vh;
-		background-color: #fff;
-	}
-
-	.loading-bar {
-		width: 50vw;
-		height: 10px;
-		background-color: #ccc;
-		border-radius: 5px;
-		overflow: hidden;
-		position: relative;
-	}
-
-	.loading-bar::before {
-		content: '';
-		display: block;
-		width: 0;
-		height: 100%;
-		background-color: #007bff;
-		animation: loading 1.5s forwards;
-	}
-
-	@keyframes loading {
-		0% {
-			width: 0;
-		}
-		100% {
-			width: 100%;
-		}
-	}
-</style>

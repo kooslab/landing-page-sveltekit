@@ -10,45 +10,47 @@
 	let { session } = $derived($page.data);
 </script>
 
-<div class="hidden h-9 w-full justify-between md:flex">
-	<div>
-		<a
-			href="/#services"
-			class="mr-4 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-		>
-			Services
-		</a>
-		<a
-			href="/#pricing"
-			class="mr-4 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-		>
-			Pricing
-		</a>
-		<Button size="sm" variant="ghost" class="rounded-full text-foreground/60" href="/blog"
-			>Blog</Button
-		>
-	</div>
-	<!-- <div class="flex items-center">
-		{#if session}
-			<Dropdown.Root>
-				<Dropdown.Trigger class={buttonVariants({ variant: 'ghost', size: 'sm' })}>
-					<CircleUserIcon />
-				</Dropdown.Trigger>
-				<Dropdown.Content>
-					<Dropdown.Group>
-						<form method="POST" action="/auth?/logout" class="contents" use:enhance>
-							<button type="submit" class="contents">
-								<Dropdown.Item>Log out</Dropdown.Item>
-							</button>
-						</form>
-					</Dropdown.Group>
-				</Dropdown.Content>
-			</Dropdown.Root>
-		{:else}
-			<div>
-				<Button size="sm" variant="outline" href="/login">Log in</Button>
-				<Button size="sm" href="/signup">Sign up</Button>
-			</div>
-		{/if}
-	</div> -->
+<div class="hidden items-center md:ml-6 md:flex">
+	<a
+		href="/#services"
+		class="mr-4 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+	>
+		Services
+	</a>
+	<a
+		href="/#pricing"
+		class="mr-4 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+	>
+		Pricing
+	</a>
+	<Button size="sm" variant="ghost" class="rounded-full text-foreground/60" href="/blog"
+		>Blog</Button
+	>
 </div>
+
+<!-- Commented out user account section for future use -->
+<!-- 
+<div class="flex items-center">
+	{#if session}
+		<Dropdown.Root>
+			<Dropdown.Trigger class={buttonVariants({ variant: 'ghost', size: 'sm' })}>
+				<CircleUserIcon />
+			</Dropdown.Trigger>
+			<Dropdown.Content>
+				<Dropdown.Group>
+					<form method="POST" action="/auth?/logout" class="contents" use:enhance>
+						<button type="submit" class="contents">
+							<Dropdown.Item>Log out</Dropdown.Item>
+						</button>
+					</form>
+				</Dropdown.Group>
+			</Dropdown.Content>
+		</Dropdown.Root>
+	{:else}
+		<div>
+			<Button size="sm" variant="outline" href="/login">Log in</Button>
+			<Button size="sm" href="/signup">Sign up</Button>
+		</div>
+	{/if}
+</div>
+-->

@@ -4,6 +4,16 @@ import { sequence } from '@sveltejs/kit/hooks';
 
 import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public';
 
+// Handle to filter out Chrome DevTools requests
+const filterDevToolsRequests: Handle = async ({ event, resolve }) => {
+	// Ignore Chrome DevTools requests
+	if (event.url.pathname.includes('/.well-known/appspecific/com.chrome.devtools')) {
+		return new Response(null, { status: 200 });
+	}
+
+	return await resolve(event);
+};
+
 const supabase: Handle = async ({ event, resolve }) => {
 	/**
 	 * Creates a Supabase client specific to this server request.
@@ -78,4 +88,5 @@ const supabase: Handle = async ({ event, resolve }) => {
 // 	return resolve(event);
 // };
 
-export const handle: Handle = sequence(supabase);
+// Apply the handlers in sequence - filter DevTools requests first, then handle Supabase
+export const handle: Handle = sequence(filterDevToolsRequests, supabase);

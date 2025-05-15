@@ -42,6 +42,26 @@
 	import { browser } from '$app/environment';
 	import TestimonialCarousel from '$lib/components/ui/testimonial-carousel.svelte';
 	import { testimonials } from '$lib/data/testimonials';
+	import AIAssistantSection from './components/AIAssistantSection.svelte';
+
+	// Add CSS for custom toast animation
+	const toastAnimationCSS = `
+		@keyframes slideUpAndStop {
+			0% {
+				opacity: 0;
+				transform: translateY(40px);
+			}
+			20% {
+				opacity: 1;
+			}
+			100% {
+				transform: translateY(0);
+			}
+		}
+		.toast-animation {
+			animation: slideUpAndStop 0.6s ease-out forwards;
+		}
+	`;
 
 	const supabase = createClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY);
 
@@ -174,25 +194,25 @@ Requirements Management System Team
 					id: 'AC-1',
 					title: 'Password Requirements',
 					content:
-						'- Passwords must be at least 10 characters long\n- Must contain at least one uppercase letter\n- Must contain at least one lowercase letter\n- Must contain at least one number\n- Must contain at least one special character\n- Cannot be one of the last 5 passwords used'
+						'- Minimum 10 characters\n- Include uppercase, lowercase, number, and special character\n- Cannot reuse last 5 passwords'
 				},
 				{
 					id: 'AC-2',
 					title: 'Multi-Factor Authentication',
 					content:
-						'- System must support SMS-based verification codes\n- System must support authentication apps (Google Authenticator, Authy)\n- System must support hardware security keys (YubiKey)\n- Users must be able to enable/disable MFA from account settings\n- Backup recovery codes must be provided when MFA is enabled'
+						'- Support SMS codes and authentication apps\n- Support hardware security keys\n- Provide backup recovery codes'
 				},
 				{
 					id: 'AC-3',
-					title: 'Login Attempt Security',
+					title: 'Login Security',
 					content:
-						'- Account should lock after 5 failed login attempts\n- Time-based escalating lockout periods (1min, 5min, 30min, 24hrs)\n- Email notifications must be sent on suspicious login attempts\n- IP address and device information should be logged for each login attempt'
+						'- Lock after 5 failed attempts\n- Send email for suspicious logins\n- Log IP and device info'
 				},
 				{
 					id: 'AC-4',
 					title: 'Session Management',
 					content:
-						'- Sessions must timeout after 30 minutes of inactivity\n- Users must be able to view and terminate active sessions\n- Remember me option extends session lifetime to 30 days\n- Sessions must be invalidated when a user changes their password'
+						'- 30-minute inactivity timeout\n- View/terminate active sessions\n- Invalidate on password change'
 				}
 			],
 			relatedRequirements: ['USR-046', 'SEC-018', 'API-023'],
@@ -216,25 +236,25 @@ Requirements Management System Team
 					id: 'AC-1',
 					title: 'Payment Processor Support',
 					content:
-						'- Must integrate with Stripe, PayPal, and Square\n- Support for credit/debit cards (Visa, Mastercard, Amex, Discover)\n- Support for digital wallets (Apple Pay, Google Pay)\n- Support for ACH bank transfers\n- International currency conversion for at least USD, EUR, GBP, JPY, CAD'
+						'- Integrate with Stripe, PayPal, and Square\n- Support credit/debit cards and digital wallets\n- Support major international currencies'
 				},
 				{
 					id: 'AC-2',
 					title: 'Security & Compliance',
 					content:
-						'- PCI DSS Level 1 compliance for all transactions\n- Card data must never be stored on our servers\n- 3D Secure 2.0 support for all eligible transactions\n- Address Verification System (AVS) for fraud prevention\n- Transaction data must be encrypted in transit and at rest'
+						'- PCI DSS Level 1 compliance\n- No card storage on servers\n- 3D Secure and AVS support'
 				},
 				{
 					id: 'AC-3',
 					title: 'Payment Workflow',
 					content:
-						'- Pre-authorization capability for holding funds\n- Capture/void/refund functionality\n- Partial refunds must be supported\n- Payment retry mechanism for failed transactions\n- Webhook support for asynchronous payment events'
+						'- Pre-authorization and capture/void/refund\n- Support partial refunds\n- Webhook integration'
 				},
 				{
 					id: 'AC-4',
-					title: 'Reporting & Reconciliation',
+					title: 'Reporting',
 					content:
-						'- Daily settlement reports\n- Transaction history with filtering and search\n- Exportable reports in CSV and PDF formats\n- Fee calculation and breakdown for each processor\n- Automatic reconciliation with accounting system'
+						'- Daily settlement reports\n- Exportable transaction history\n- Fee breakdown by processor'
 				}
 			],
 			relatedRequirements: ['INV-025', 'REP-042', 'SEC-020'],
@@ -258,25 +278,24 @@ Requirements Management System Team
 					id: 'AC-1',
 					title: 'Data Visualization',
 					content:
-						'- Must include line charts, bar graphs, pie charts, and heat maps\n- Time-series data with adjustable time ranges (day, week, month, quarter, year)\n- Comparative analysis between time periods\n- Drill-down capability from summary to detailed data\n- Export visualizations as PNG, JPG, and SVG'
+						'- Support charts, graphs, and heatmaps\n- Adjustable time ranges\n- Export as PNG, JPG, SVG'
 				},
 				{
 					id: 'AC-2',
 					title: 'Dashboard Customization',
 					content:
-						'- Users can add, remove, and rearrange dashboard widgets\n- Custom widgets can be created from existing data sources\n- Saved dashboard configurations per user\n- Dashboard sharing with role-based permissions\n- Mobile-responsive design for all dashboard elements'
+						'- Add/remove/rearrange widgets\n- Save configurations per user\n- Mobile-responsive design'
 				},
 				{
 					id: 'AC-3',
 					title: 'Marketing Metrics',
 					content:
-						'- Campaign attribution tracking\n- Conversion funnel visualization\n- Customer acquisition cost calculation\n- Lifetime value metrics\n- Channel performance comparison\n- Social media engagement metrics\n- Email campaign metrics (open rates, click-through rates, conversions)'
+						'- Campaign attribution tracking\n- Conversion funnel visualization\n- Email and social metrics'
 				},
 				{
 					id: 'AC-4',
-					title: 'Alerting & Automation',
-					content:
-						'- Threshold-based alerts for key metrics\n- Scheduled report delivery via email\n- Anomaly detection with notification\n- Automated insights based on significant data changes\n- Integration with task management system for actionable insights'
+					title: 'Alerts',
+					content: '- Threshold-based alerts\n- Scheduled report delivery\n- Anomaly detection'
 				}
 			],
 			relatedRequirements: ['API-034', 'USR-028', 'DAT-067'],
@@ -357,12 +376,37 @@ Requirements Management System Team
 	function toggleCurrency(newCurrency: 'usd' | 'eur') {
 		currency = newCurrency;
 	}
+
+	// Add a state variable to track the active tab in the AI Assistant section
+	let activeTab = $state('create-stories'); // Possible values: 'create-stories', 'break-down', 'find-redundancy'
+
+	function setActiveTab(tabId: string) {
+		activeTab = tabId;
+	}
 </script>
 
 <main class="min-h-screen bg-white dark:bg-gray-900">
 	<!-- Custom Toast Component -->
+	<style>
+		@keyframes slideUpAndStop {
+			0% {
+				opacity: 0;
+				transform: translateY(40px);
+			}
+			20% {
+				opacity: 1;
+			}
+			100% {
+				transform: translateY(0);
+			}
+		}
+		.toast-animation {
+			animation: slideUpAndStop 0.6s ease-out forwards;
+		}
+	</style>
+
 	{#if toast.show}
-		<div class="animate-in slide-in-from-top-5 fixed right-4 top-4 z-50 max-w-sm">
+		<div class="toast-animation fixed bottom-6 right-6 z-50 max-w-sm">
 			<div class="rounded-md bg-slate-900 p-4 shadow-lg dark:bg-slate-50">
 				<div class="flex items-center gap-3">
 					<div class="text-white dark:text-slate-900">
@@ -386,36 +430,18 @@ Requirements Management System Team
 	{/if}
 
 	<!-- Mobile Optimization Notice - Only visible on mobile -->
-	<div
-		class="fixed bottom-0 left-0 right-0 z-40 block bg-blue-600 px-4 py-3 text-center text-white shadow-lg md:hidden"
-	>
-		<div class="flex items-center justify-center gap-2">
-			<svg
-				xmlns="http://www.w3.org/2000/svg"
-				viewBox="0 0 20 20"
-				fill="currentColor"
-				class="h-5 w-5"
-			>
-				<path
-					fill-rule="evenodd"
-					d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a.75.75 0 000 1.5h.253a.25.25 0 01.244.304l-.459 2.066A1.75 1.75 0 0010.747 15H11a.75.75 0 000-1.5h-.253a.25.25 0 01-.244-.304l.459-2.066A1.75 1.75 0 009.253 9H9z"
-					clip-rule="evenodd"
-				/>
-			</svg>
-			<p class="text-sm font-medium">This site is optimized for desktop viewing</p>
-		</div>
-	</div>
+	<!-- Removed desktop optimization notice to properly support mobile views -->
 
 	<!-- Hero Section -->
-	<section class="py-20">
+	<section class="py-12 md:py-20">
 		<div class="container mx-auto px-4">
 			<div class="flex flex-col items-center text-center">
 				<h1
-					class="mb-6 text-4xl font-bold leading-tight text-gray-900 dark:text-white md:text-5xl lg:text-6xl"
+					class="mb-4 text-3xl font-bold leading-tight text-gray-900 dark:text-white md:mb-6 md:text-5xl lg:text-6xl"
 				>
 					Requirements Management System
 				</h1>
-				<p class="mb-8 max-w-3xl text-xl text-gray-600 dark:text-gray-300">
+				<p class="mb-6 max-w-3xl text-lg text-gray-600 dark:text-gray-300 md:mb-8 md:text-xl">
 					Manage your project requirements with an intuitive interface. Track user stories, epics,
 					and acceptance criteria with ease.
 				</p>
@@ -425,18 +451,20 @@ Requirements Management System Team
 	</section>
 
 	<!-- Problem & Solution Section -->
-	<section class="bg-gray-50 py-20 dark:bg-gray-800">
+	<section class="bg-gray-50 py-12 dark:bg-gray-800 md:py-20">
 		<div class="container mx-auto px-4">
 			<div class="mx-auto max-w-4xl text-center">
-				<h2 class="mb-6 text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
+				<h2
+					class="mb-4 text-2xl font-bold text-gray-900 dark:text-white md:mb-6 md:text-3xl lg:text-4xl"
+				>
 					The Pain of Requirements Management
 				</h2>
-				<p class="mb-10 text-xl text-gray-600 dark:text-gray-300">
+				<p class="mb-8 text-base text-gray-600 dark:text-gray-300 md:mb-10 md:text-xl">
 					Managing software requirements is often time-consuming, error-prone, and frustrating.
 				</p>
 			</div>
 
-			<div class="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+			<div class="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-10 lg:grid-cols-4">
 				<Card>
 					<CardHeader>
 						<div class="mb-2 flex items-center justify-center">
@@ -568,13 +596,13 @@ Requirements Management System Team
 
 	<!-- User Stories Sheet Example -->
 	<section id="services" class="mx-auto mb-16 max-w-6xl px-4">
-		<h2 class="mb-8 text-center text-3xl font-bold text-gray-900 dark:text-white">
+		<h2 class="mb-8 text-center text-2xl font-bold text-gray-900 dark:text-white md:text-3xl">
 			Organize Your Requirements
 		</h2>
 		<div class="mx-auto max-w-6xl overflow-hidden">
-			<Card class="p-4">
+			<Card class="p-2 md:p-4">
 				<CardHeader>
-					<div class="flex items-center justify-between">
+					<div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
 						<div>
 							<CardTitle>Project Requirements</CardTitle>
 							<CardDescription class="mt-1">
@@ -612,14 +640,11 @@ Requirements Management System Team
 					</div>
 				</CardHeader>
 				<CardContent>
-					<div class="mb-4 flex items-center justify-between">
-						<div class="flex items-center gap-2">
+					<div class="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+						<div class="flex flex-wrap items-center gap-2">
 							<Badge variant="secondary" class="text-xs">6 Active</Badge>
 							<Badge variant="outline" class="text-xs">4 Completed</Badge>
 							<Badge variant="outline" class="text-xs">2 Blocked</Badge>
-						</div>
-						<div class="text-sm text-gray-500 dark:text-gray-400">
-							<span class="font-medium text-gray-900 dark:text-white">Sprint Progress:</span> 65% Complete
 						</div>
 					</div>
 
@@ -666,11 +691,11 @@ Requirements Management System Team
 											</div>
 										</td>
 										<td class="p-2">
-											<div class="flex items-center">
-												<span class="text-yellow-600 dark:text-yellow-400">Oct 15, 2023</span>
+											<div class="mb-1 flex items-center">
+												<span class="mr-1 text-green-600 dark:text-green-400">Oct 15</span>
 												<span
-													class="ml-2 rounded-full bg-yellow-100 px-1.5 py-0.5 text-xs text-yellow-800 dark:bg-yellow-900 dark:text-yellow-300"
-													>2 days left</span
+													class="rounded-full bg-green-100 px-1.5 py-0.5 text-xs text-green-800 dark:bg-green-900 dark:text-green-300"
+													>in 2 days</span
 												>
 											</div>
 										</td>
@@ -698,11 +723,11 @@ Requirements Management System Team
 											</div>
 										</td>
 										<td class="p-2">
-											<div class="flex items-center">
-												<span class="text-green-600 dark:text-green-400">Oct 30, 2023</span>
+											<div class="mb-1 flex items-center">
+												<span class="mr-1 text-green-600 dark:text-green-400">Oct 30</span>
 												<span
-													class="ml-2 rounded-full bg-green-100 px-1.5 py-0.5 text-xs text-green-800 dark:bg-green-900 dark:text-green-300"
-													>17 days left</span
+													class="rounded-full bg-green-100 px-1.5 py-0.5 text-xs text-green-800 dark:bg-green-900 dark:text-green-300"
+													>in 17 days</span
 												>
 											</div>
 										</td>
@@ -730,11 +755,11 @@ Requirements Management System Team
 											</div>
 										</td>
 										<td class="p-2">
-											<div class="flex items-center">
-												<span class="text-gray-600 dark:text-gray-400">Nov 12, 2023</span>
+											<div class="mb-1 flex items-center">
+												<span class="mr-1 text-gray-600 dark:text-gray-400">Nov 12</span>
 												<span
-													class="ml-2 rounded-full bg-gray-100 px-1.5 py-0.5 text-xs text-gray-800 dark:bg-gray-700 dark:text-gray-300"
-													>30 days left</span
+													class="rounded-full bg-gray-100 px-1.5 py-0.5 text-xs text-gray-800 dark:bg-gray-700 dark:text-gray-300"
+													>in 30 days</span
 												>
 											</div>
 										</td>
@@ -931,7 +956,7 @@ Requirements Management System Team
 											{criteria.id}: {criteria.title}
 										</h4>
 									</div>
-									<div class="prose prose-sm dark:prose-invert max-w-none">
+									<div class="prose prose-sm max-w-none dark:prose-invert">
 										{#each criteria.content.split('\n') as line}
 											<div class="flex items-baseline">
 												{#if line.startsWith('-')}
@@ -982,21 +1007,21 @@ Requirements Management System Team
 						</div>
 
 						<h3 class="mb-2 text-xl font-bold text-gray-900 dark:text-white">
-							Payment Processing Integration
+							User Authentication System
 						</h3>
 						<div class="mb-4 flex items-center text-sm text-gray-500 dark:text-gray-400">
 							<Hash size={16} class="mr-1" />
-							<span>PAY-031</span>
+							<span>USR-042</span>
 						</div>
 
 						<div
 							class="mb-6 rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-900"
 						>
 							<p class="text-gray-800 dark:text-gray-200">
-								<span class="font-medium">As a</span> financial analyst,
+								<span class="font-medium">As a</span> user,
 								<span class="font-medium">I want to</span>
-								integrate with multiple payment processors <span class="font-medium">so that</span> I
-								can provide flexible payment options to customers.
+								sign up and log in easily <span class="font-medium">so that</span> I can access the platform
+								securely.
 							</p>
 						</div>
 
@@ -1008,10 +1033,10 @@ Requirements Management System Team
 							</div>
 							<div class="flex items-center">
 								<Avatar class="mr-2 h-6 w-6">
-									<AvatarImage src="https://ui.shadcn.com/avatars/02.png" alt="Michael Johnson" />
-									<AvatarFallback>MJ</AvatarFallback>
+									<AvatarImage src="https://ui.shadcn.com/avatars/01.png" alt="Jane Smith" />
+									<AvatarFallback>JS</AvatarFallback>
 								</Avatar>
-								<span class="text-gray-800 dark:text-gray-200">Michael Johnson</span>
+								<span class="text-gray-800 dark:text-gray-200">Jane Smith</span>
 							</div>
 						</div>
 
@@ -1023,10 +1048,10 @@ Requirements Management System Team
 							<div
 								class="flex items-center rounded-full bg-green-100 px-3 py-1 text-sm text-green-800 dark:bg-green-900 dark:text-green-300"
 							>
-								<span>October 30, 2023</span>
+								<span>October 15, 2023</span>
 								<span
 									class="ml-2 rounded-full bg-white px-1.5 py-0.5 text-xs font-medium text-green-800 dark:bg-gray-800"
-									>17 days left</span
+									>in 2 days</span
 								>
 							</div>
 						</div>
@@ -1055,26 +1080,20 @@ Requirements Management System Team
 								<div class="mb-2 flex items-start justify-between">
 									<div class="flex items-center">
 										<Avatar class="mr-2 h-8 w-8">
-											<AvatarImage
-												src="https://ui.shadcn.com/avatars/02.png"
-												alt="Michael Johnson"
-											/>
-											<AvatarFallback>MJ</AvatarFallback>
+											<AvatarImage src="https://ui.shadcn.com/avatars/01.png" alt="Jane Smith" />
+											<AvatarFallback>JS</AvatarFallback>
 										</Avatar>
 										<div>
-											<div class="font-medium text-gray-900 dark:text-white">Michael Johnson</div>
-											<div class="text-xs text-gray-500 dark:text-gray-400">
-												Financial Analyst • 2 days ago
-											</div>
+											<div class="font-medium text-gray-900 dark:text-white">Jane Smith</div>
+											<div class="text-xs text-gray-500 dark:text-gray-400">2 days ago</div>
 										</div>
 									</div>
 									<Badge variant="outline" class="text-xs">Author</Badge>
 								</div>
 								<div class="pl-10 text-sm text-gray-700 dark:text-gray-300">
 									<p>
-										I've drafted acceptance criteria for the Stripe integration. Can stakeholders
-										review the security requirements section? We need to ensure PCI DSS Level 1
-										compliance for all transactions.
+										I've drafted the basic auth requirements. Focusing on email/password
+										authentication with secure password rules for now.
 									</p>
 								</div>
 							</div>
@@ -1089,17 +1108,15 @@ Requirements Management System Team
 										</Avatar>
 										<div>
 											<div class="font-medium text-gray-900 dark:text-white">Sarah Chen</div>
-											<div class="text-xs text-gray-500 dark:text-gray-400">
-												Security Engineer • Yesterday
-											</div>
+											<div class="text-xs text-gray-500 dark:text-gray-400">Yesterday</div>
 										</div>
 									</div>
 								</div>
 								<div class="pl-10 text-sm text-gray-700 dark:text-gray-300">
 									<p>
-										The security requirements look good, but we need to add AVS (Address
-										Verification System) as an acceptance criterion. Also, 3D Secure 2.0 should be
-										mandatory for all eligible transactions to meet regulatory requirements.
+										Hey Jane! The client just emailed - they want social login options too. They
+										specifically mentioned Google, but said we should add Apple and Microsoft as
+										well. Can we fit this into the sprint?
 									</p>
 									<div class="mt-2 flex items-center gap-2">
 										<Button
@@ -1125,56 +1142,52 @@ Requirements Management System Team
 								<div class="mb-2 flex items-start justify-between">
 									<div class="flex items-center">
 										<Avatar class="mr-2 h-8 w-8">
-											<AvatarImage src="https://ui.shadcn.com/avatars/05.png" alt="Taylor Kim" />
-											<AvatarFallback>TK</AvatarFallback>
+											<AvatarImage src="https://ui.shadcn.com/avatars/01.png" alt="Jane Smith" />
+											<AvatarFallback>JS</AvatarFallback>
 										</Avatar>
 										<div>
-											<div class="font-medium text-gray-900 dark:text-white">Taylor Kim</div>
-											<div class="text-xs text-gray-500 dark:text-gray-400">
-												Product Manager • 2 hours ago
-											</div>
+											<div class="font-medium text-gray-900 dark:text-white">Jane Smith</div>
+											<div class="text-xs text-gray-500 dark:text-gray-400">2 hours ago</div>
 										</div>
 									</div>
 								</div>
 								<div class="pl-10 text-sm text-gray-700 dark:text-gray-300">
 									<p>
-										I've updated the acceptance criteria to include both AVS and 3D Secure 2.0. We
-										also need to clarify the requirement for international payment support - our
-										survey showed customers need support for these currencies: USD, EUR, GBP, JPY,
-										CAD.
+										I'll update the requirements to include social login options. We should estimate
+										development effort for each one to help prioritize for the first release.
 									</p>
 									<div class="mt-3 rounded-md bg-gray-50 p-3 dark:bg-gray-800">
 										<div class="mb-1 text-xs font-medium text-gray-500 dark:text-gray-400">
-											Updated Acceptance Criteria
+											Updated Auth Requirements
 										</div>
 										<div class="text-xs text-gray-700 dark:text-gray-300">
-											<p class="mb-1 font-medium">AC-2: Security & Compliance</p>
-											<p class="mb-0.5">• PCI DSS Level 1 compliance for all transactions</p>
-											<p class="mb-0.5">• Card data must never be stored on our servers</p>
+											<p class="mb-0.5">• Email/password authentication</p>
 											<p class="mb-0.5 font-semibold text-blue-600 dark:text-blue-400">
-												• 3D Secure 2.0 support for all eligible transactions
+												• Google OAuth integration (high priority)
 											</p>
 											<p class="mb-0.5 font-semibold text-blue-600 dark:text-blue-400">
-												• Address Verification System (AVS) for fraud prevention
+												• Apple ID integration (medium priority)
 											</p>
-											<p>• Transaction data must be encrypted in transit and at rest</p>
+											<p>• Microsoft account integration (low priority)</p>
 										</div>
 									</div>
 									<div class="mt-2 flex items-center gap-2">
 										<Button
-											variant="ghost"
+											variant="outline"
 											size="sm"
-											class="h-7 text-xs"
-											onclick={() => demoClick('Like button')}
+											class="text-xs"
+											onclick={() => demoClick('Refine button')}
 										>
-											<ThumbsUp size={14} class="mr-1" /> 5
+											Refine
 										</Button>
 										<Button
-											variant="ghost"
+											variant="outline"
 											size="sm"
-											class="h-7 text-xs"
-											onclick={() => demoClick('Reply button')}>Reply</Button
+											class="text-xs"
+											onclick={() => demoClick('Break Down button')}
 										>
+											Break Down
+										</Button>
 									</div>
 								</div>
 							</div>
@@ -1259,975 +1272,546 @@ Requirements Management System Team
 	</section>
 
 	<!-- AI Assistant Section -->
-	<section class="mx-auto mb-16 max-w-6xl px-4">
-		<h2 class="mb-8 text-center text-3xl font-bold text-gray-900 dark:text-white">
-			Your AI Requirements Assistant
-		</h2>
-
-		<div class="grid gap-8 md:grid-cols-2">
-			<!-- Left side - AI Assistant UI -->
-			<Card class="overflow-hidden">
-				<div class="bg-gradient-to-r from-blue-600 to-indigo-600 p-4">
-					<div class="flex items-center justify-between">
-						<div class="flex items-center">
-							<div class="flex h-10 w-10 items-center justify-center rounded-full bg-white/90">
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									class="h-6 w-6 text-blue-600"
-								>
-									<path d="M12 2c5.5 0 10 4.5 10 10s-4.5 10-10 10S2 17.5 2 12 6.5 2 12 2Z"></path>
-									<path d="M12 8v8"></path>
-									<path d="M8 12h8"></path>
-								</svg>
-							</div>
-							<h3 class="ml-2 text-lg font-bold text-white">ReqsAI Assistant</h3>
-						</div>
-						<Badge variant="outline" class="border-white/30 bg-white/10 text-white">Beta</Badge>
-					</div>
-				</div>
-
-				<CardContent class="p-0">
-					<div class="space-y-4 p-4">
-						<div class="flex items-start space-x-3">
-							<div
-								class="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-blue-600"
-							>
-								<span class="font-semibold">AI</span>
-							</div>
-							<div class="flex-1 rounded-lg bg-gray-100 p-3 dark:bg-gray-800">
-								<p class="text-sm text-gray-700 dark:text-gray-300">
-									What kind of requirement can I help you with today?
-								</p>
-							</div>
-						</div>
-
-						<div class="flex items-start justify-end space-x-3">
-							<div class="flex-1 rounded-lg bg-blue-600 p-3 text-right">
-								<p class="text-sm text-white">
-									We need a user authentication feature for our SaaS platform.
-								</p>
-							</div>
-							<div
-								class="flex h-8 w-8 items-center justify-center rounded-full bg-gray-200 text-gray-800"
-							>
-								<span class="font-semibold">U</span>
-							</div>
-						</div>
-
-						<div class="flex items-start space-x-3">
-							<div
-								class="flex h-8 w-8 items-center justify-center rounded-full bg-blue-100 text-blue-600"
-							>
-								<span class="font-semibold">AI</span>
-							</div>
-							<div class="flex-1 space-y-3 rounded-lg bg-gray-100 p-3 dark:bg-gray-800">
-								<p class="text-sm text-gray-700 dark:text-gray-300">
-									I've created 5 user stories for authentication:
-								</p>
-								<ol class="ml-5 list-decimal text-xs text-gray-700 dark:text-gray-300">
-									<li class="mb-1.5">
-										<strong>As a user</strong>, I want to create an account so I can access the
-										platform.
-									</li>
-									<li class="mb-1.5">
-										<strong>As a user</strong>, I want to login securely with MFA so I can protect
-										my account.
-									</li>
-									<li class="mb-1.5">
-										<strong>As a user</strong>, I want to reset my password so I can regain access
-										if I forget it.
-									</li>
-									<li class="mb-1.5">
-										<strong>As an admin</strong>, I want to manage user access and permissions.
-									</li>
-									<li>
-										<strong>As a security engineer</strong>, I want to implement OAuth SSO so users
-										can login with existing accounts.
-									</li>
-								</ol>
-								<p class="text-sm text-gray-700 dark:text-gray-300">
-									Would you like me to add acceptance criteria for any of these?
-								</p>
-							</div>
-						</div>
-					</div>
-
-					<div class="border-t border-gray-200 p-4 dark:border-gray-700">
-						<div class="flex items-center space-x-2">
-							<Input type="text" placeholder="Tell the AI what you need..." class="flex-1" />
-							<Button size="sm" onclick={() => demoClick('AI Assistant')}>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									class="h-5 w-5"
-								>
-									<path d="m22 2-7 20-4-9-9-4 20-7Z"></path>
-									<path d="M22 2 11 13"></path>
-								</svg>
-							</Button>
-						</div>
-					</div>
-				</CardContent>
-			</Card>
-
-			<!-- Right side - Feature highlights -->
-			<div class="flex flex-col justify-center space-y-6">
-				<div>
-					<h3 class="mb-6 text-2xl font-bold text-gray-900 dark:text-white">
-						Let AI Do the Heavy Lifting
-					</h3>
-					<p class="mb-6 text-gray-600 dark:text-gray-300">
-						Our AI assistant helps you create professional requirements in seconds, not hours. Boost
-						your productivity with intelligent automation.
-					</p>
-				</div>
-
-				<div class="grid gap-4 sm:grid-cols-2">
-					<div
-						class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800"
-					>
-						<div
-							class="mb-2 flex h-8 w-8 items-center justify-center rounded-md bg-blue-100 text-blue-600 dark:bg-blue-900 dark:text-blue-300"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								class="h-5 w-5"
-							>
-								<path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
-								></path>
-								<path d="m9 12 2 2 4-4"></path>
-							</svg>
-						</div>
-						<h4 class="text-sm font-semibold text-gray-900 dark:text-white">
-							Auto-Generate Stories
-						</h4>
-						<p class="text-xs text-gray-600 dark:text-gray-300">
-							Create complete professional user stories from simple keywords or descriptions
-						</p>
-					</div>
-
-					<div
-						class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800"
-					>
-						<div
-							class="mb-2 flex h-8 w-8 items-center justify-center rounded-md bg-purple-100 text-purple-600 dark:bg-purple-900 dark:text-purple-300"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								class="h-5 w-5"
-							>
-								<path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"
-								></path>
-								<path d="M12 9v4"></path>
-								<path d="M12 17h.01"></path>
-							</svg>
-						</div>
-						<h4 class="text-sm font-semibold text-gray-900 dark:text-white">Gap Analysis</h4>
-						<p class="text-xs text-gray-600 dark:text-gray-300">
-							Identify missing or redundant requirements across your project
-						</p>
-					</div>
-
-					<div
-						class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800"
-					>
-						<div
-							class="mb-2 flex h-8 w-8 items-center justify-center rounded-md bg-green-100 text-green-600 dark:bg-green-900 dark:text-green-300"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								class="h-5 w-5"
-							>
-								<path d="M9 11l3 3L22 4"></path>
-								<path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path>
-							</svg>
-						</div>
-						<h4 class="text-sm font-semibold text-gray-900 dark:text-white">Smart Criteria</h4>
-						<p class="text-xs text-gray-600 dark:text-gray-300">
-							Auto-generate detailed acceptance criteria based on industry best practices
-						</p>
-					</div>
-
-					<div
-						class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800"
-					>
-						<div
-							class="mb-2 flex h-8 w-8 items-center justify-center rounded-md bg-orange-100 text-orange-600 dark:bg-orange-900 dark:text-orange-300"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								class="h-5 w-5"
-							>
-								<path
-									d="M16 16v1a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2m5.66 0H14a2 2 0 0 1 2 2v3.34"
-								></path>
-								<path d="M14 3v4a2 2 0 0 0 2 2h4"></path>
-								<path d="M8 12h8"></path>
-								<path d="M8 16h8"></path>
-							</svg>
-						</div>
-						<h4 class="text-sm font-semibold text-gray-900 dark:text-white">Domain Templates</h4>
-						<p class="text-xs text-gray-600 dark:text-gray-300">
-							Domain-specific templates for ecommerce, SaaS, auth, RBAC, and more
-						</p>
-					</div>
-				</div>
-
-				<div class="grid gap-4 sm:grid-cols-2">
-					<div
-						class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800"
-					>
-						<div
-							class="mb-2 flex h-8 w-8 items-center justify-center rounded-md bg-red-100 text-red-600 dark:bg-red-900 dark:text-red-300"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								class="h-5 w-5"
-							>
-								<path d="M8 2h8"></path>
-								<path d="M9 2v2.5L12 7l3-2.5V2"></path>
-								<path d="M12 17V7"></path>
-								<path d="M9 22 6 19l3-3"></path>
-								<path d="m15 22 3-3-3-3"></path>
-							</svg>
-						</div>
-						<h4 class="text-sm font-semibold text-gray-900 dark:text-white">Auto-Prioritize</h4>
-						<p class="text-xs text-gray-600 dark:text-gray-300">
-							Get AI-suggested priority levels based on business impact and dependencies
-						</p>
-					</div>
-
-					<div
-						class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800"
-					>
-						<div
-							class="mb-2 flex h-8 w-8 items-center justify-center rounded-md bg-pink-100 text-pink-600 dark:bg-pink-900 dark:text-pink-300"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								class="h-5 w-5"
-							>
-								<path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
-							</svg>
-						</div>
-						<h4 class="text-sm font-semibold text-gray-900 dark:text-white">Auto-Fix</h4>
-						<p class="text-xs text-gray-600 dark:text-gray-300">
-							Fix typos, improve clarity, and refine user story formatting
-						</p>
-					</div>
-
-					<div
-						class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800"
-					>
-						<div
-							class="mb-2 flex h-8 w-8 items-center justify-center rounded-md bg-teal-100 text-teal-600 dark:bg-teal-900 dark:text-teal-300"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								class="h-5 w-5"
-							>
-								<path d="M3 3h7v7H3z"></path>
-								<path d="M14 3h7v7h-7z"></path>
-								<path d="M14 14h7v7h-7z"></path>
-								<path d="M3 14h7v7H3z"></path>
-							</svg>
-						</div>
-						<h4 class="text-sm font-semibold text-gray-900 dark:text-white">Story Refinement</h4>
-						<p class="text-xs text-gray-600 dark:text-gray-300">
-							Intelligently combine or break down user stories for optimal organization
-						</p>
-					</div>
-
-					<div
-						class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800"
-					>
-						<div
-							class="mb-2 flex h-8 w-8 items-center justify-center rounded-md bg-indigo-100 text-indigo-600 dark:bg-indigo-900 dark:text-indigo-300"
-						>
-							<svg
-								xmlns="http://www.w3.org/2000/svg"
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								class="h-5 w-5"
-							>
-								<path d="M7 22h10"></path>
-								<path d="M12 17v5"></path>
-								<path d="M22 8.5V12A10 10 0 1 1 2 12V8.5a3 3 0 1 1 0-6H22a3 3 0 1 1 0 6Z"></path>
-								<path d="M19 8.5v9a3 3 0 1 1-6 0v-9"></path>
-								<path d="M5 8.5v1a7 7 0 1 0 14 0v-1"></path>
-							</svg>
-						</div>
-						<h4 class="text-sm font-semibold text-gray-900 dark:text-white">Team-Ready Content</h4>
-						<p class="text-xs text-gray-600 dark:text-gray-300">
-							Generate comprehensive documentation that's immediately actionable
-						</p>
-					</div>
-				</div>
-
-				<div class="mt-4 rounded-lg bg-blue-50 p-4 dark:bg-blue-900/30">
-					<p class="mb-2 text-sm font-medium text-blue-900 dark:text-blue-300">
-						Popular Domain Templates
-					</p>
-					<div class="flex flex-wrap gap-2">
-						<Badge
-							variant="outline"
-							class="border-blue-300 bg-blue-100 text-blue-700 dark:border-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
-							>User Authentication</Badge
-						>
-						<Badge
-							variant="outline"
-							class="border-blue-300 bg-blue-100 text-blue-700 dark:border-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
-							>E-commerce</Badge
-						>
-						<Badge
-							variant="outline"
-							class="border-blue-300 bg-blue-100 text-blue-700 dark:border-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
-							>SaaS Platform</Badge
-						>
-						<Badge
-							variant="outline"
-							class="border-blue-300 bg-blue-100 text-blue-700 dark:border-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
-							>Multi-tenant</Badge
-						>
-						<Badge
-							variant="outline"
-							class="border-blue-300 bg-blue-100 text-blue-700 dark:border-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
-							>RBAC</Badge
-						>
-						<Badge
-							variant="outline"
-							class="border-blue-300 bg-blue-100 text-blue-700 dark:border-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
-							>API Gateway</Badge
-						>
-						<Badge
-							variant="outline"
-							class="border-blue-300 bg-blue-100 text-blue-700 dark:border-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
-							>Payment Processing</Badge
-						>
-						<Badge
-							variant="outline"
-							class="border-blue-300 bg-blue-100 text-blue-700 dark:border-blue-700 dark:bg-blue-900/50 dark:text-blue-300"
-							>Analytics Dashboard</Badge
-						>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- Testimonials Section -->
-	<section class="bg-white py-16 dark:bg-gray-900">
-		<div class="container mx-auto px-4">
-			<h2 class="mb-10 text-center text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
-				What Our Clients Say
-			</h2>
-
-			<TestimonialCarousel {testimonials} />
-		</div>
-	</section>
+	<AIAssistantSection />
 
 	<!-- Pricing Section -->
-	<section class="bg-gray-50 py-20 dark:bg-gray-800" id="pricing">
+	<section id="pricing" class="bg-gray-50 py-12 dark:bg-gray-800 md:py-20">
 		<div class="container mx-auto px-4">
-			<div class="mx-auto max-w-3xl text-center">
-				<h2 class="mb-4 text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
+			<div class="mx-auto max-w-4xl text-center">
+				<h2
+					class="mb-4 text-2xl font-bold text-gray-900 dark:text-white md:mb-6 md:text-3xl lg:text-4xl"
+				>
 					Simple, Transparent Pricing
 				</h2>
-				<p class="mb-12 text-xl text-gray-600 dark:text-gray-300">
-					Choose the plan that's right for your team. All plans include a 4-week free trial.
+				<p class="mb-8 text-lg text-gray-600 dark:text-gray-300">
+					Choose the plan that works best for your requirements management needs
 				</p>
+			</div>
 
-				<!-- Currency Toggle -->
-				<div
-					class="mb-8 inline-flex items-center rounded-lg border bg-white p-1 dark:border-gray-700 dark:bg-gray-900"
-				>
-					<button
-						type="button"
-						class="currency-btn {currency === 'usd'
-							? 'active bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white'
-							: 'text-gray-600 dark:text-gray-400'} rounded-md px-6 py-2 font-medium transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
-						onclick={() => toggleCurrency('usd')}
+			<!-- Free Trial Banner -->
+			<div class="mx-auto mb-12 max-w-3xl rounded-lg bg-blue-50 p-6 dark:bg-blue-900/30">
+				<div class="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
+					<div>
+						<h3 class="text-lg font-semibold text-blue-800 dark:text-blue-300">
+							Try All Features Free for 4 Weeks
+						</h3>
+						<p class="text-blue-700 dark:text-blue-200">
+							Get full access to all features with no credit card required
+						</p>
+					</div>
+					<Button
+						href="#contact"
+						variant="default"
+						class="whitespace-nowrap"
+						onclick={() =>
+							document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
 					>
-						USD $
-					</button>
-					<button
-						type="button"
-						class="currency-btn {currency === 'eur'
-							? 'active bg-gray-100 text-gray-900 dark:bg-gray-800 dark:text-white'
-							: 'text-gray-600 dark:text-gray-400'} rounded-md px-6 py-2 font-medium transition-colors hover:bg-gray-100 dark:hover:bg-gray-800"
-						onclick={() => toggleCurrency('eur')}
-					>
-						EUR €
-					</button>
+						Start Free Trial
+					</Button>
 				</div>
 			</div>
 
-			<div class="mt-8 grid gap-8 lg:grid-cols-3">
-				<!-- Basic Plan -->
-				<div
-					class="flex flex-col rounded-lg border bg-white shadow-sm transition-all hover:shadow-md dark:border-gray-700 dark:bg-gray-900"
-				>
-					<div class="p-6">
-						<h3 class="mb-2 text-2xl font-bold text-gray-900 dark:text-white">Basic</h3>
-						<p class="mb-4 text-gray-600 dark:text-gray-400">
-							Perfect for small teams getting started
-						</p>
-						<div class="mb-4 flex items-baseline">
-							<span class="text-4xl font-extrabold text-gray-900 dark:text-white"
-								>{currency === 'usd' ? '$49' : '€45'}</span
-							>
-							<span class="ml-1 text-gray-600 dark:text-gray-400">/month starter</span>
+			<div class="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+				<!-- Free Plan -->
+				<Card class="flex flex-col overflow-hidden">
+					<CardHeader>
+						<CardTitle class="text-center text-xl font-bold">Free</CardTitle>
+						<div class="mt-4 text-center">
+							<span class="text-4xl font-bold">{currency === 'usd' ? '$0' : '€0'}</span>
+							<span class="text-gray-500 dark:text-gray-400">/ month</span>
 						</div>
-						<p class="text-gray-600 dark:text-gray-400">
-							<span>{currency === 'usd' ? '$25' : '€23'}</span> per additional user
-						</p>
-						<ul class="mb-6 mt-6 space-y-4 text-left">
-							<li class="flex items-center">
-								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
-								<span>1 project</span>
+						<CardDescription class="mt-2 text-center">
+							For individuals and small teams
+						</CardDescription>
+					</CardHeader>
+					<CardContent class="flex-grow">
+						<ul class="space-y-3">
+							<li class="flex items-start">
+								<CheckIcon
+									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+								/>
+								<span class="text-gray-700 dark:text-gray-300">
+									<strong>1</strong> project
+								</span>
 							</li>
-							<li class="flex items-center">
-								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
-								<span>Up to 3 collaborators</span>
+							<li class="flex items-start">
+								<CheckIcon
+									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+								/>
+								<span class="text-gray-700 dark:text-gray-300">
+									<strong>3</strong> team members
+								</span>
 							</li>
-							<li class="flex items-center">
-								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
-								<span>Up to 50 user stories per project</span>
+							<li class="flex items-start">
+								<CheckIcon
+									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+								/>
+								<span class="text-gray-700 dark:text-gray-300">User story management</span>
 							</li>
-							<li class="flex items-center">
-								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
-								<span>Basic AI assistance</span>
+							<li class="flex items-start">
+								<CheckIcon
+									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+								/>
+								<span class="text-gray-700 dark:text-gray-300">
+									Basic requirements documentation
+								</span>
 							</li>
-							<li class="flex items-center">
-								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
-								<span>Email support</span>
+							<li class="flex items-start">
+								<CheckIcon
+									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+								/>
+								<span class="text-gray-700 dark:text-gray-300">1GB storage</span>
+							</li>
+							<li class="flex items-start">
+								<CheckIcon
+									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+								/>
+								<span class="text-gray-700 dark:text-gray-300">Community support</span>
 							</li>
 						</ul>
-					</div>
-					<div class="mt-auto border-t p-6 dark:border-gray-700">
-						<Button href="#contact" variant="default" class="w-full">Get Started</Button>
-					</div>
-				</div>
+					</CardContent>
+					<CardFooter class="pt-4">
+						<Button
+							href="#contact"
+							variant="outline"
+							size="lg"
+							class="w-full font-medium"
+							onclick={() =>
+								document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
+						>
+							Start Free
+						</Button>
+					</CardFooter>
+				</Card>
 
-				<!-- Pro Plan -->
-				<div
-					class="relative flex flex-col rounded-lg border-2 border-primary bg-white shadow-md transition-all hover:shadow-lg dark:bg-gray-900"
+				<!-- Basic Plan -->
+				<Card
+					class="flex flex-col overflow-hidden border-blue-200 bg-white dark:border-blue-800 dark:bg-gray-900"
 				>
 					<div
-						class="absolute -top-4 left-0 right-0 mx-auto w-32 rounded-full bg-primary px-3 py-1 text-center text-sm font-semibold text-white"
+						class="bg-blue-100 py-2 text-center text-sm font-medium text-blue-800 dark:bg-blue-900/50 dark:text-blue-300"
 					>
 						Most Popular
 					</div>
-					<div class="p-6">
-						<h3 class="mb-2 text-2xl font-bold text-gray-900 dark:text-white">Pro</h3>
-						<p class="mb-4 text-gray-600 dark:text-gray-400">Best for growing teams</p>
-						<div class="mb-4 flex items-baseline">
-							<span class="text-4xl font-extrabold text-gray-900 dark:text-white"
-								>{currency === 'usd' ? '$99' : '€90'}</span
-							>
-							<span class="ml-1 text-gray-600 dark:text-gray-400">/month starter</span>
+					<CardHeader>
+						<CardTitle class="text-center text-xl font-bold">Basic</CardTitle>
+						<div class="mt-4 text-center">
+							<span class="text-4xl font-bold">{currency === 'usd' ? '$29' : '€26'}</span>
+							<span class="text-gray-500 dark:text-gray-400">/ month</span>
 						</div>
-						<p class="text-gray-600 dark:text-gray-400">
-							<span>{currency === 'usd' ? '$25' : '€23'}</span> per additional user
-						</p>
-						<ul class="mb-6 mt-6 space-y-4 text-left">
-							<li class="flex items-center">
-								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
-								<span>Up to 5 projects</span>
+						<CardDescription class="mt-2 text-center">For growing teams</CardDescription>
+					</CardHeader>
+					<CardContent class="flex-grow">
+						<ul class="space-y-3">
+							<li class="flex items-start">
+								<CheckIcon
+									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+								/>
+								<span class="text-gray-700 dark:text-gray-300">
+									<strong>10</strong> projects
+								</span>
 							</li>
-							<li class="flex items-center">
-								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
-								<span>Up to 10 collaborators</span>
+							<li class="flex items-start">
+								<CheckIcon
+									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+								/>
+								<span class="text-gray-700 dark:text-gray-300">
+									<strong>15</strong> team members
+								</span>
 							</li>
-							<li class="flex items-center">
-								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
-								<span>Unlimited user stories per project</span>
+							<li class="flex items-start">
+								<CheckIcon
+									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+								/>
+								<span class="text-gray-700 dark:text-gray-300">
+									Advanced user story management
+								</span>
 							</li>
-							<li class="flex items-center">
-								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
-								<span>Advanced AI assistance</span>
+							<li class="flex items-start">
+								<CheckIcon
+									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+								/>
+								<span class="text-gray-700 dark:text-gray-300">
+									Comprehensive requirements documentation
+								</span>
 							</li>
-							<li class="flex items-center">
-								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
-								<span>Priority email support</span>
+							<li class="flex items-start">
+								<CheckIcon
+									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+								/>
+								<span class="text-gray-700 dark:text-gray-300"> 10GB storage </span>
 							</li>
-							<li class="flex items-center">
-								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
-								<span>Custom templates</span>
+							<li class="flex items-start">
+								<CheckIcon
+									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+								/>
+								<span class="text-gray-700 dark:text-gray-300"> Traceability matrix </span>
+							</li>
+							<li class="flex items-start">
+								<CheckIcon
+									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+								/>
+								<span class="text-gray-700 dark:text-gray-300"> Basic AI assistance </span>
+							</li>
+							<li class="flex items-start">
+								<CheckIcon
+									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+								/>
+								<span class="text-gray-700 dark:text-gray-300"> Email & chat support </span>
 							</li>
 						</ul>
-					</div>
-					<div class="mt-auto border-t p-6 dark:border-gray-700">
-						<Button href="#contact" variant="default" class="w-full">Get Started</Button>
-					</div>
-				</div>
-
-				<!-- Enterprise Plan -->
-				<div
-					class="flex flex-col rounded-lg border bg-white shadow-sm transition-all hover:shadow-md dark:border-gray-700 dark:bg-gray-900"
-				>
-					<div class="p-6">
-						<h3 class="mb-2 text-2xl font-bold text-gray-900 dark:text-white">Enterprise</h3>
-						<p class="mb-4 text-gray-600 dark:text-gray-400">Custom solutions for large teams</p>
-						<div class="mb-4 flex items-baseline">
-							<span class="text-4xl font-extrabold text-gray-900 dark:text-white">Custom</span>
-						</div>
-						<p class="text-gray-600 dark:text-gray-400">Tailored to your organization</p>
-						<ul class="mb-6 mt-6 space-y-4 text-left">
-							<li class="flex items-center">
-								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
-								<span>Unlimited projects</span>
-							</li>
-							<li class="flex items-center">
-								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
-								<span>Unlimited collaborators</span>
-							</li>
-							<li class="flex items-center">
-								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
-								<span>Custom integrations</span>
-							</li>
-							<li class="flex items-center">
-								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
-								<span>Enterprise-grade security</span>
-							</li>
-							<li class="flex items-center">
-								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
-								<span>Dedicated account manager</span>
-							</li>
-							<li class="flex items-center">
-								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
-								<span>24/7 phone & email support</span>
-							</li>
-							<li class="flex items-center">
-								<CheckIcon class="mr-2 h-5 w-5 flex-shrink-0 text-green-500" />
-								<span>Custom onboarding</span>
-							</li>
-						</ul>
-					</div>
-					<div class="mt-auto border-t p-6 dark:border-gray-700">
-						<Button href="#contact" variant="outline" class="w-full">Contact Sales</Button>
-					</div>
-				</div>
-			</div>
-
-			<!-- Consulting Services Card -->
-			<div
-				class="mt-16 rounded-lg border bg-white p-8 shadow-sm dark:border-gray-700 dark:bg-gray-900"
-			>
-				<div class="grid gap-8 md:grid-cols-2">
-					<div>
-						<h3 class="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
-							Professional Requirements Consulting
-						</h3>
-						<p class="mb-4 text-lg text-gray-600 dark:text-gray-300">
-							Don't have time to write requirements? Let our experts handle it for you.
-						</p>
-						<ul class="mb-6 space-y-4">
-							<li class="flex items-start">
-								<CheckIcon class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500" />
-								<span>Our experts write comprehensive requirements for your project</span>
-							</li>
-							<li class="flex items-start">
-								<CheckIcon class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500" />
-								<span>Fully documented user stories with detailed acceptance criteria</span>
-							</li>
-							<li class="flex items-start">
-								<CheckIcon class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500" />
-								<span>Professional outcome ready for immediate development</span>
-							</li>
-							<li class="flex items-start">
-								<CheckIcon class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500" />
-								<span>2-week turnaround for most projects</span>
-							</li>
-						</ul>
-					</div>
-					<div
-						class="flex flex-col items-center justify-center rounded-lg bg-gray-50 p-6 dark:bg-gray-800"
-					>
-						<div class="mb-4 text-center">
-							<span class="text-3xl font-extrabold text-gray-900 dark:text-white"
-								>{currency === 'usd' ? '$4,999' : '€4,550'}</span
-							>
-							<span class="ml-1 text-gray-600 dark:text-gray-400">per 2-week project</span>
-						</div>
-						<p class="mb-6 text-center text-gray-600 dark:text-gray-400">
-							Skip the learning curve and get professional requirements from day one.
-						</p>
-						<Button href="#contact" variant="default" class="w-full md:w-auto">
-							Schedule Consultation
+					</CardContent>
+					<CardFooter class="pt-4">
+						<Button
+							href="#contact"
+							variant="default"
+							size="lg"
+							class="w-full font-medium"
+							onclick={() =>
+								document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
+						>
+							Start Free Trial
 						</Button>
-					</div>
-				</div>
+					</CardFooter>
+				</Card>
+
+				<!-- Professional Plan -->
+				<Card class="flex flex-col overflow-hidden">
+					<CardHeader>
+						<CardTitle class="text-center text-xl font-bold">Professional</CardTitle>
+						<div class="mt-4 text-center">
+							<span class="text-4xl font-bold">Contact Us</span>
+							<span class="text-gray-500 dark:text-gray-400">for pricing</span>
+						</div>
+						<CardDescription class="mt-2 text-center"
+							>For large organizations & unlimited needs</CardDescription
+						>
+					</CardHeader>
+					<CardContent class="flex-grow">
+						<ul class="space-y-3">
+							<li class="flex items-start">
+								<CheckIcon
+									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+								/>
+								<span class="text-gray-700 dark:text-gray-300">
+									<strong>Unlimited</strong> projects
+								</span>
+							</li>
+							<li class="flex items-start">
+								<CheckIcon
+									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+								/>
+								<span class="text-gray-700 dark:text-gray-300">
+									<strong>Unlimited</strong> team members
+								</span>
+							</li>
+							<li class="flex items-start">
+								<CheckIcon
+									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+								/>
+								<span class="text-gray-700 dark:text-gray-300">Enterprise-grade security</span>
+							</li>
+							<li class="flex items-start">
+								<CheckIcon
+									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+								/>
+								<span class="text-gray-700 dark:text-gray-300">Advanced AI-powered analysis</span>
+							</li>
+							<li class="flex items-start">
+								<CheckIcon
+									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+								/>
+								<span class="text-gray-700 dark:text-gray-300">MECE redundancy analysis</span>
+							</li>
+							<li class="flex items-start">
+								<CheckIcon
+									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+								/>
+								<span class="text-gray-700 dark:text-gray-300">Custom integrations</span>
+							</li>
+							<li class="flex items-start">
+								<CheckIcon
+									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+								/>
+								<span class="text-gray-700 dark:text-gray-300">Dedicated support manager</span>
+							</li>
+							<li class="flex items-start">
+								<CheckIcon
+									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+								/>
+								<span class="text-gray-700 dark:text-gray-300">Priority 24/7 support</span>
+							</li>
+							<li class="flex items-start">
+								<CheckIcon
+									class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+								/>
+								<span class="font-semibold text-gray-700 dark:text-gray-300"
+									>All current & future features included</span
+								>
+							</li>
+						</ul>
+					</CardContent>
+					<CardFooter class="pt-4">
+						<Button
+							href="#contact"
+							variant="outline"
+							size="lg"
+							class="w-full font-medium"
+							onclick={() =>
+								document.getElementById('contact-form')?.scrollIntoView({ behavior: 'smooth' })}
+						>
+							Contact Us
+						</Button>
+					</CardFooter>
+				</Card>
 			</div>
 
-			<div class="mx-auto mt-10 max-w-2xl text-center">
-				<p class="text-gray-600 dark:text-gray-300">
-					All plans include a 4-week free trial with full features. No credit card required to
-					start.
+			<div class="mx-auto mt-12 max-w-xl rounded-lg bg-blue-50 p-6 dark:bg-blue-900/30">
+				<div class="mb-4 flex items-center justify-center">
+					<div class="flex items-center space-x-2">
+						<button
+							class={`rounded-l-md px-4 py-2 text-sm font-medium ${
+								currency === 'usd'
+									? 'bg-blue-600 text-white'
+									: 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+							}`}
+							onclick={() => toggleCurrency('usd')}
+						>
+							USD
+						</button>
+						<button
+							class={`rounded-r-md px-4 py-2 text-sm font-medium ${
+								currency === 'eur'
+									? 'bg-blue-600 text-white'
+									: 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+							}`}
+							onclick={() => toggleCurrency('eur')}
+						>
+							EUR
+						</button>
+					</div>
+				</div>
+				<p class="text-center text-sm text-blue-800 dark:text-blue-200">
+					All plans include a <strong>4-week free trial</strong> with full access to all features.
+					No credit card required to start.
+					<a href="#contact" class="font-semibold underline">Contact us</a> for custom enterprise solutions.
 				</p>
 			</div>
 		</div>
 	</section>
 
-	<!-- Contact Us Section -->
-	<section class="bg-white py-20 dark:bg-gray-900" id="contact">
+	<!-- Contact Form Section -->
+	<section id="contact" class="py-16 md:py-20">
 		<div class="container mx-auto px-4">
 			<div class="mx-auto max-w-4xl">
-				<div class="text-center">
+				<div class="mb-12 text-center">
 					<h2 class="mb-4 text-3xl font-bold text-gray-900 dark:text-white md:text-4xl">
-						Get in Touch
+						Get Your Custom Requirements Document
 					</h2>
-					<p class="mb-12 text-xl text-gray-600 dark:text-gray-300">
-						Have questions or ready to get started? Our team is here to help.
+					<p class="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-300">
+						Tell us about your project and we'll help you create comprehensive requirements that
+						ensure successful development.
 					</p>
 				</div>
 
-				<div class="grid gap-8 md:grid-cols-2">
-					<div class="rounded-lg bg-gray-50 p-8 dark:bg-gray-800">
-						<h3 class="mb-6 text-xl font-bold text-gray-900 dark:text-white">
-							Contact Information
-						</h3>
-
-						<div class="mb-6">
-							<div class="mb-4 flex items-start">
-								<div
-									class="mr-3 flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary"
-								>
-									<svg
-										xmlns="http://www.w3.org/2000/svg"
-										width="20"
-										height="20"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-									>
-										<path
-											d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
-										></path>
-										<polyline points="22,6 12,13 2,6"></polyline>
-									</svg>
-								</div>
-								<div>
-									<h4 class="text-sm font-medium text-gray-900 dark:text-white">Email</h4>
-									<p class="mt-1 text-gray-600 dark:text-gray-400">johnnykoo@kooslab.net</p>
+				<div class="rounded-xl bg-white p-8 shadow-lg dark:bg-gray-900 md:p-10">
+					<div id="contact-form">
+						{#if submitSuccess}
+							<div class="rounded-md bg-green-50 p-4 dark:bg-green-900/30">
+								<div class="flex">
+									<div class="flex-shrink-0">
+										<svg
+											class="h-5 w-5 text-green-400 dark:text-green-500"
+											viewBox="0 0 20 20"
+											fill="currentColor"
+											aria-hidden="true"
+										>
+											<path
+												fill-rule="evenodd"
+												d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z"
+												clip-rule="evenodd"
+											/>
+										</svg>
+									</div>
+									<div class="ml-3">
+										<h3 class="text-sm font-medium text-green-800 dark:text-green-400">
+											Thank you for your inquiry!
+										</h3>
+										<div class="mt-2 text-sm text-green-700 dark:text-green-300">
+											<p>
+												We've received your message and will get back to you shortly. Check your
+												email for a confirmation.
+											</p>
+										</div>
+									</div>
 								</div>
 							</div>
-						</div>
+						{:else}
+							<form
+								onsubmit={(e) => {
+									e.preventDefault();
+									handleSubmit();
+								}}
+								class="space-y-6"
+							>
+								<div class="grid gap-6 md:grid-cols-2">
+									<div>
+										<label
+											for="name"
+											class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+										>
+											Your Name
+										</label>
+										<Input
+											type="text"
+											id="name"
+											placeholder="John Doe"
+											bind:value={formData.name}
+											required
+											class="w-full"
+										/>
+									</div>
+									<div>
+										<label
+											for="email"
+											class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+										>
+											Your Email
+										</label>
+										<Input
+											type="email"
+											id="email"
+											placeholder="john@example.com"
+											bind:value={formData.email}
+											required
+											class="w-full"
+										/>
+									</div>
+								</div>
 
-						<div>
-							<h4 class="mb-3 text-sm font-medium text-gray-900 dark:text-white">Follow Us</h4>
-							<div class="flex space-x-4">
-								<a
-									href="#"
-									onclick={(e) => {
-										e.preventDefault();
-									}}
-									class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-								>
-									<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-										<path
-											d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-										/>
-									</svg>
-								</a>
-								<a
-									href="#"
-									onclick={(e) => {
-										e.preventDefault();
-									}}
-									class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-								>
-									<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-										<path
-											d="M12.315 2c2.43 0 2.784.013 3.808.06 1.064.049 1.791.218 2.427.465a4.902 4.902 0 011.772 1.153 4.902 4.902 0 011.153 1.772c.247.636.416 1.363.465 2.427.048 1.067.06 1.407.06 4.123v.08c0 2.643-.012 2.987-.06 4.043-.049 1.064-.218 1.791-.465 2.427a4.902 4.902 0 01-1.153 1.772 4.902 4.902 0 01-1.772 1.153c-.636.247-1.363.416-2.427.465-1.067.048-1.407.06-4.123.06h-.08c-2.643 0-2.987-.012-4.043-.06-1.064-.049-1.791-.218-2.427-.465a4.902 4.902 0 01-1.772-1.153 4.902 4.902 0 01-1.153-1.772c-.247-.636-.416-1.363-.465-2.427-.047-1.024-.06-1.379-.06-3.808v-.63c0-2.43.013-2.784.06-3.808.049-1.064.218-1.791.465-2.427a4.902 4.902 0 011.153-1.772A4.902 4.902 0 015.45 2.525c.636-.247 1.363-.416 2.427-.465C8.901 2.013 9.256 2 11.685 2h.63zm-.081 1.802h-.468c-2.456 0-2.784.011-3.807.058-.975.045-1.504.207-1.857.344-.467.182-.8.398-1.15.748-.35.35-.566.683-.748 1.15-.137.353-.3.882-.344 1.857-.047 1.023-.058 1.351-.058 3.807v.468c0 2.456.011 2.784.058 3.807.045.975.207 1.504.344 1.857.182.466.399.8.748 1.15.35.35.683.566 1.15.748.353.137.882.3 1.857.344 1.054.048 1.37.058 4.041.058h.08c2.597 0 2.917-.01 3.96-.058.976-.045 1.505-.207 1.858-.344.466-.182.8-.398 1.15-.748.35-.35.566-.683.748-1.15.137-.353.3-.882.344-1.857.048-1.055.058-1.37.058-4.041v-.08c0-2.597-.01-2.917-.058-3.96-.045-.976-.207-1.505-.344-1.858a3.097 3.097 0 00-.748-1.15 3.098 3.098 0 00-1.15-.748c-.353-.137-.882-.3-1.857-.344-1.023-.047-1.351-.058-3.807-.058zM12 6.865a5.135 5.135 0 110 10.27 5.135 5.135 0 010-10.27zm0 1.802a3.333 3.333 0 100 6.666 3.333 3.333 0 000-6.666zm5.338-3.205a1.2 1.2 0 110 2.4 1.2 1.2 0 010-2.4z"
-										/>
-									</svg>
-								</a>
-								<a
-									href="#"
-									onclick={(e) => {
-										e.preventDefault();
-									}}
-									class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-								>
-									<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-										<path
-											d="M8.29 20.251c7.547 0 11.675-6.253 11.675-11.675 0-.178 0-.355-.012-.53A8.348 8.348 0 0022 5.92a8.19 8.19 0 01-2.357.646 4.118 4.118 0 001.804-2.27 8.224 8.224 0 01-2.605.996 4.107 4.107 0 00-6.993 3.743 11.65 11.65 0 01-8.457-4.287 4.106 4.106 0 001.27 5.477A4.072 4.072 0 012.8 9.713v.052a4.105 4.105 0 003.292 4.022 4.095 4.095 0 01-1.853.07 4.108 4.108 0 003.834 2.85A8.233 8.233 0 012 18.407a11.616 11.616 0 006.29 1.84"
-										/>
-									</svg>
-								</a>
-								<a
-									href="#"
-									onclick={(e) => {
-										e.preventDefault();
-									}}
-									class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-								>
-									<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-										<path
-											fill-rule="evenodd"
-											d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-											clip-rule="evenodd"
-										/>
-									</svg>
-								</a>
-								<a
-									href="#"
-									onclick={(e) => {
-										e.preventDefault();
-										demoClick('Facebook');
-									}}
-									class="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
-								>
-									<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-										<path
-											d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-										/>
-									</svg>
-								</a>
-							</div>
-						</div>
-
-						<div class="mt-8 rounded-lg bg-primary/10 p-6 dark:bg-primary/5">
-							<blockquote class="border-l-4 border-primary pl-4">
-								<p class="italic text-gray-800 dark:text-gray-200">
-									"Never delay your development project because of missing requirements or
-									documentation. Start quickly — time is gold."
-								</p>
-							</blockquote>
-							<p class="mt-4 text-sm text-gray-700 dark:text-gray-400">
-								Our requirements management system helps you document and organize requirements
-								efficiently, so you can focus on building great software.
-							</p>
-						</div>
-					</div>
-
-					<div
-						class="rounded-lg border bg-white p-8 shadow-sm dark:border-gray-700 dark:bg-gray-900"
-					>
-						<h3 class="mb-6 text-xl font-bold text-gray-900 dark:text-white">Send Us a Message</h3>
-
-						<form
-							class="space-y-4"
-							onsubmit={(e) => {
-								e.preventDefault();
-								handleSubmit();
-							}}
-						>
-							<div class="grid gap-4 md:grid-cols-2">
 								<div>
 									<label
-										for="name"
+										for="phone"
 										class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-										>Your Name</label
 									>
+										Phone Number (Optional)
+									</label>
 									<Input
-										type="text"
-										id="name"
-										placeholder="John Doe"
-										bind:value={formData.name}
+										type="tel"
+										id="phone"
+										placeholder="+1 (555) 123-4567"
+										bind:value={formData.phone}
+										class="w-full"
+									/>
+								</div>
+
+								<div>
+									<label
+										for="project-outline"
+										class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
+									>
+										Project Outline
+									</label>
+									<Textarea
+										id="project-outline"
+										placeholder="Tell us about your project's requirements, goals, and timeline..."
+										class="min-h-[150px]"
+										bind:value={formData.projectOutline}
 										required
 									/>
 								</div>
-								<div>
-									<label
-										for="email"
-										class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-										>Your Email</label
-									>
-									<Input
-										type="email"
-										id="email"
-										placeholder="john@example.com"
-										bind:value={formData.email}
-										required
-									/>
+
+								<!-- Honeypot field to catch bots -->
+								<div class="hidden">
+									<label for="website">Website</label>
+									<Input id="website" bind:value={formData.website} />
 								</div>
-							</div>
 
-							<div>
-								<label
-									for="phone"
-									class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-									>Your Phone (optional)</label
-								>
-								<Input
-									type="tel"
-									id="phone"
-									placeholder="+1 (123) 456-7890"
-									bind:value={formData.phone}
-								/>
-							</div>
-
-							<div>
-								<label
-									for="subject"
-									class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-									>Subject</label
-								>
-								<Input type="text" id="subject" placeholder="How can we help you?" required />
-							</div>
-
-							<div>
-								<label
-									for="message"
-									class="mb-2 block text-sm font-medium text-gray-900 dark:text-white"
-									>Your Message</label
-								>
-								<Textarea
-									id="message"
-									rows={4}
-									placeholder="Tell us about your requirements or questions..."
-									bind:value={formData.projectOutline}
-									required
-								></Textarea>
-							</div>
-
-							{#if submitError}
-								<div
-									class="rounded-md bg-red-50 p-4 text-sm text-red-600 dark:bg-red-900/20 dark:text-red-400"
-								>
-									{submitError}
+								<div class="flex items-start">
+									<div class="flex h-5 items-center">
+										<input
+											id="privacy"
+											type="checkbox"
+											bind:checked={formData.privacyConsent}
+											required
+											class="h-4 w-4 rounded border-gray-300 bg-gray-100 text-blue-600 focus:ring-2 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-blue-600"
+										/>
+									</div>
+									<div class="ml-3 text-sm">
+										<label for="privacy" class="font-medium text-gray-900 dark:text-white">
+											I agree to the
+											<a href="/privacy" class="text-blue-600 hover:underline dark:text-blue-500"
+												>privacy policy</a
+											>
+										</label>
+									</div>
 								</div>
-							{/if}
 
-							{#if submitSuccess}
-								<div
-									class="rounded-md bg-green-50 p-4 text-sm text-green-600 dark:bg-green-900/20 dark:text-green-400"
-								>
-									Thank you for your message! We will get back to you soon.
-									<span class="mt-1 block text-xs"
-										>A notification email has been sent to our team.</span
-									>
-								</div>
-							{/if}
-
-							<!-- Honeypot field to catch bots -->
-							<div class="hidden">
-								<Input type="text" id="website" name="website" bind:value={formData.website} />
-							</div>
-
-							<Button type="submit" variant="default" class="w-full" disabled={isSubmitting}>
-								{#if isSubmitting}
-									Sending...
-								{:else}
-									Send Message
+								{#if submitError}
+									<div class="rounded-md bg-red-50 p-4 dark:bg-red-900/30">
+										<div class="flex">
+											<div class="flex-shrink-0">
+												<svg
+													class="h-5 w-5 text-red-400 dark:text-red-500"
+													viewBox="0 0 20 20"
+													fill="currentColor"
+													aria-hidden="true"
+												>
+													<path
+														fill-rule="evenodd"
+														d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.28 7.22a.75.75 0 00-1.06 1.06L8.94 10l-1.72 1.72a.75.75 0 101.06 1.06L10 11.06l1.72 1.72a.75.75 0 101.06-1.06L11.06 10l1.72-1.72a.75.75 0 00-1.06-1.06L10 8.94 8.28 7.22z"
+														clip-rule="evenodd"
+													/>
+												</svg>
+											</div>
+											<div class="ml-3">
+												<h3 class="text-sm font-medium text-red-800 dark:text-red-400">
+													Form submission error
+												</h3>
+												<div class="mt-2 text-sm text-red-700 dark:text-red-300">
+													<p>{submitError}</p>
+												</div>
+											</div>
+										</div>
+									</div>
 								{/if}
-							</Button>
-						</form>
+
+								<Button
+									type="submit"
+									disabled={isSubmitting}
+									class="w-full bg-blue-600 font-medium text-white hover:bg-blue-700 dark:bg-blue-600 dark:hover:bg-blue-700"
+								>
+									{#if isSubmitting}
+										<svg
+											class="-ml-1 mr-3 h-5 w-5 animate-spin text-white"
+											xmlns="http://www.w3.org/2000/svg"
+											fill="none"
+											viewBox="0 0 24 24"
+										>
+											<circle
+												class="opacity-25"
+												cx="12"
+												cy="12"
+												r="10"
+												stroke="currentColor"
+												stroke-width="4"
+											></circle>
+											<path
+												class="opacity-75"
+												fill="currentColor"
+												d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+											></path>
+										</svg>
+										Submitting...
+									{:else}
+										Get Your Requirements Document
+									{/if}
+								</Button>
+							</form>
+						{/if}
 					</div>
 				</div>
 			</div>
 		</div>
 	</section>
-
-	<!-- Footer -->
-	<footer class="bg-white py-12 text-gray-800 dark:bg-gray-900 dark:text-white">
-		<div class="container mx-auto px-4">
-			<div class="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-				<div>
-					<h3 class="mb-4 text-lg font-bold">Requirements Management System</h3>
-					<p class="mb-4 text-gray-600 dark:text-gray-400">
-						Advanced tools for teams who build great software.
-					</p>
-					<ThemeToggle />
-				</div>
-
-				<div>
-					<h4 class="mb-4 text-base font-medium">Product</h4>
-					<ul class="space-y-2">
-						<li>
-							<a href="#" onclick={() => demoClick('Features')} class="hover:text-primary"
-								>Features</a
-							>
-						</li>
-						<li><a href="#pricing" class="hover:text-primary">Pricing</a></li>
-					</ul>
-				</div>
-
-				<div>
-					<h4 class="mb-4 text-base font-medium">Resources</h4>
-					<ul class="space-y-2">
-						<li>
-							<a href="#" onclick={() => demoClick('Documentation')} class="hover:text-primary"
-								>Documentation</a
-							>
-						</li>
-						<li>
-							<a
-								href="#"
-								onclick={(e) => {
-									e.preventDefault();
-								}}
-								class="hover:text-primary">Blog</a
-							>
-						</li>
-					</ul>
-				</div>
-
-				<div>
-					<h4 class="mb-4 text-base font-medium">Company</h4>
-					<ul class="space-y-2">
-						<li>
-							<a
-								href="#"
-								onclick={(e) => {
-									e.preventDefault();
-								}}
-								class="hover:text-primary">About Us</a
-							>
-						</li>
-						<li><a href="#contact" class="hover:text-primary">Contact</a></li>
-						<li>
-							<a
-								href="#"
-								onclick={(e) => {
-									e.preventDefault();
-								}}
-								class="hover:text-primary">Privacy Policy</a
-							>
-						</li>
-					</ul>
-				</div>
-			</div>
-
-			<div
-				class="mt-12 border-t border-gray-200 pt-8 text-center text-sm text-gray-600 dark:border-gray-800 dark:text-gray-400"
-			>
-				<p>
-					Kooslab © {new Date().getFullYear()} Requirements Management System. All rights reserved.
-				</p>
-			</div>
-		</div>
-	</footer>
 </main>
