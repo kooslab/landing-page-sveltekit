@@ -44,6 +44,7 @@
 	import { testimonials } from '$lib/data/testimonials';
 	import AIAssistantSection from './components/AIAssistantSection.svelte';
 	import PricingSection from './components/PricingSection.svelte';
+	import FAQSection from './components/FAQSection.svelte';
 
 	// Add CSS for custom toast animation
 	const toastAnimationCSS = `
@@ -440,13 +441,16 @@ Requirements Management System Team
 				<h1
 					class="mb-4 text-3xl font-bold leading-tight text-gray-900 dark:text-white md:mb-6 md:text-5xl lg:text-6xl"
 				>
-					Requirements Management System
+					Revolutionize Your Requirements Management
 				</h1>
 				<p class="mb-6 max-w-3xl text-lg text-gray-600 dark:text-gray-300 md:mb-8 md:text-xl">
-					Manage your project requirements with an intuitive interface. Track user stories, epics,
-					and acceptance criteria with ease.
+					Say goodbye to chaos and inefficiency. Our intuitive platform is designed specifically for
+					software requirements, helping you save time and reduce errors.
+					<strong>Start your free trial today and see the difference!</strong>
 				</p>
-				<Button href="/reqs" variant="default" size="lg" class="font-semibold">Try Demo Now</Button>
+				<Button href="/reqs" variant="default" size="lg" class="font-semibold"
+					>Start Your Free Trial Now</Button
+				>
 			</div>
 		</div>
 	</section>
@@ -1277,6 +1281,9 @@ Requirements Management System Team
 
 	<!-- Pricing Section -->
 	<PricingSection />
+
+	<!-- FAQ Section -->
+	<FAQSection />
 
 	<!-- Contact Form Section -->
 	<section id="contact" class="py-16 md:py-20">

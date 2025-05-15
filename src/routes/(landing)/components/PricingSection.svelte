@@ -81,6 +81,11 @@
 						class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
 					/><span class="text-gray-700 dark:text-gray-300">Community support</span>
 				</li>
+				<li class="flex items-start">
+					<CheckIcon
+						class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+					/><span class="text-gray-700 dark:text-gray-300">5 AI uses / day</span>
+				</li>
 			</ul>
 		</CardContent>
 		<CardFooter class="pt-4">
@@ -158,6 +163,11 @@
 						class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
 					/><span class="text-gray-700 dark:text-gray-300">Email & chat support</span>
 				</li>
+				<li class="flex items-start">
+					<CheckIcon
+						class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+					/><span class="text-gray-700 dark:text-gray-300">100 AI Credits / day</span>
+				</li>
 			</ul>
 		</CardContent>
 		<CardFooter class="pt-4">
@@ -228,6 +238,11 @@
 					<CheckIcon
 						class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
 					/><span class="text-gray-700 dark:text-gray-300">Priority 24/7 support</span>
+				</li>
+				<li class="flex items-start">
+					<CheckIcon
+						class="mr-2 mt-1 h-5 w-5 flex-shrink-0 text-green-500 dark:text-green-400"
+					/><span class="text-gray-700 dark:text-gray-300">Unlimited AI Usage</span>
 				</li>
 			</ul>
 		</CardContent>
