@@ -13,7 +13,6 @@
 	import { ModeWatcher } from 'mode-watcher';
 	import { Toaster } from 'svelte-sonner';
 	import { MetaTags, deepMerge } from 'svelte-meta-tags';
-	import Navbar from './(landing)/components/navbar.svelte';
 
 	interface Props {
 		data: LayoutData;
@@ -23,9 +22,18 @@
 	let { data, children }: Props = $props();
 	let { session, supabase } = $derived(data);
 
+	// Ensure locale is properly initialized from URL
 	$effect(() => {
 		if (browser) {
-			locale.set($page.url.searchParams.get('lang') || window.navigator.language);
+			const path = window.location.pathname;
+			const segments = path.split('/').filter(Boolean);
+			if (segments.length > 0 && (segments[0] === 'en' || segments[0] === 'ko')) {
+				const urlLocale = segments[0];
+				if ($locale !== urlLocale) {
+					console.log('[Root Layout] Updating locale to match URL:', urlLocale);
+					locale.set(urlLocale);
+				}
+			}
 		}
 	});
 
@@ -39,13 +47,12 @@
 		return () => data.subscription.unsubscribe();
 	});
 
-	let metaTags = $derived(deepMerge(data.baseMetaTags, $page.data.pageMetaTags || {}));
+	let metaTags = $derived(deepMerge(data?.baseMetaTags || {}, $page.data?.pageMetaTags || {}));
 </script>
 
 <ModeWatcher defaultMode="system" />
 <Toaster position="top-center" />
 <MetaTags {...metaTags} />
-<Navbar />
 
 {#await waitLocale() then}
 	{@render children()}

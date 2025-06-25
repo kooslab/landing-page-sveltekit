@@ -3,6 +3,7 @@
 	import NavButtons from './nav-buttons.svelte';
 	import MobileMenu from './mobile-menu.svelte';
 	import { ThemeToggle } from '@/components/theme-controller';
+	import LanguageSwitcher from '@/components/language-switcher.svelte';
 
 	let scrollY: number = $state(0);
 </script>
@@ -19,6 +20,7 @@
 		</div>
 
 		<div class="flex items-center space-x-2 md:space-x-4">
+			<LanguageSwitcher />
 			<ThemeToggle />
 			<MobileMenu />
 		</div>

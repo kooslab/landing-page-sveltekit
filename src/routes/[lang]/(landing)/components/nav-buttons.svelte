@@ -8,22 +8,29 @@
 	import * as Dropdown from '@/components/ui/dropdown-menu';
 
 	let { session } = $derived($page.data);
+	let lang = $derived($page.params?.lang || 'en');
 </script>
 
 <div class="hidden items-center md:ml-6 md:flex">
 	<a
-		href="/#services"
+		href="/{lang}#vision"
 		class="mr-4 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
 	>
-		Services
+		Vision
 	</a>
 	<a
-		href="/#pricing"
+		href="/{lang}#mission"
 		class="mr-4 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
 	>
-		Pricing
+		Mission
 	</a>
-	<Button size="sm" variant="ghost" class="rounded-full text-foreground/60" href="/blog"
+	<a
+		href="/{lang}#portfolio"
+		class="mr-4 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+	>
+		Portfolio
+	</a>
+	<Button size="sm" variant="ghost" class="rounded-full text-foreground/60" href="/{lang}/blog"
 		>Blog</Button
 	>
 </div>

@@ -41,7 +41,7 @@ export const load: LayoutLoad = async ({ data, url, depends, fetch }) => {
 	} = await supabase.auth.getUser();
 
 	const title = `Kooslab`;
-	const description = `Transform your software vision into reality with expert requirements analysis and wireframing. We help SMBs build the right solution, the first time.`;
+	const description = `Enterprise-grade tools at freelancer prices. Help your small business save time, work efficiently, and boost productivity without breaking the bank. Try free for 14 days.`;
 	const canonicalUrl = new URL(url.pathname, url.origin).href;
 	const OGImage = 'https://media.fromkian.com/acme.jpg';
 

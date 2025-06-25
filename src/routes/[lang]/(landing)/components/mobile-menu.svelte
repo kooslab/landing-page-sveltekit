@@ -3,15 +3,7 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 
-	import {
-		Menu,
-		Home,
-		CircleDollarSign,
-		Briefcase,
-		BookOpen,
-		ChevronDown,
-		LogOut
-	} from 'lucide-svelte';
+	import { Menu, Home, Eye, Target, Briefcase, BookOpen, ChevronDown, LogOut } from 'lucide-svelte';
 
 	import { buttonVariants } from '$lib/components/ui/button';
 	import { Button } from '$lib/components/ui/button';
@@ -74,21 +66,31 @@
 			<button
 				class="flex items-center gap-3 rounded-md px-3 py-2 text-left text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
 				onclick={() => {
-					scrollToSection('services');
+					scrollToSection('vision');
 				}}
 			>
-				<Briefcase class="h-5 w-5" />
-				Services
+				<Eye class="h-5 w-5" />
+				Vision
 			</button>
 
 			<button
 				class="flex items-center gap-3 rounded-md px-3 py-2 text-left text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
 				onclick={() => {
-					scrollToSection('pricing');
+					scrollToSection('mission');
 				}}
 			>
-				<CircleDollarSign class="h-5 w-5" />
-				Pricing
+				<Target class="h-5 w-5" />
+				Mission
+			</button>
+
+			<button
+				class="flex items-center gap-3 rounded-md px-3 py-2 text-left text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
+				onclick={() => {
+					scrollToSection('portfolio');
+				}}
+			>
+				<Briefcase class="h-5 w-5" />
+				Portfolio
 			</button>
 
 			<a
@@ -108,17 +110,14 @@
 
 			<div class="mt-6 border-t border-border pt-6">
 				<a
-					href="/reqs"
+					href="/#portfolio"
 					class={buttonVariants({ variant: 'default', size: 'sm', class: 'w-full' })}
 					onclick={(e) => {
 						e.preventDefault();
-						sheetOpen = false;
-						setTimeout(() => {
-							goto('/reqs');
-						}, 300);
+						scrollToSection('portfolio');
 					}}
 				>
-					Try Demo Now
+					View Our Portfolio
 				</a>
 			</div>
 		</nav>

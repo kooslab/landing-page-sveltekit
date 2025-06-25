@@ -129,6 +129,9 @@ importers:
       mdsvex:
         specifier: ^0.12.3
         version: 0.12.3(svelte@5.10.0)
+      merge-json-cli:
+        specifier: ^1.0.4
+        version: 1.0.4
       prettier:
         specifier: ^3.4.2
         version: 3.4.2
@@ -2135,6 +2138,11 @@ packages:
     resolution: {integrity: sha512-DGqD7Hjpi/1or4F/aYAspXKNm5Yili0QDAFAY4QYvpqpgiY6+1jOfqpmByzjxbWd/T9mChbCArXAbDAsTm5oXA==}
     engines: {node: '>=0.12'}
 
+  merge-json-cli@1.0.4:
+    resolution: {integrity: sha512-LUHbIFh/aPh0MebiVEAcWRaqR6a5e+HjTp2LyDxwSAaNnPruAq+AWZukeieSi3HKHdrX1Wy6tUEZdSLS0KjwJA==}
+    engines: {node: '>=18.3.0'}
+    hasBin: true
+
   merge-stream@2.0.0:
     resolution: {integrity: sha512-abv/qOcuPfk3URPfDzmZU1LKmuw8kT+0nIHvKrKgFrwifol/doWcdA4ZqsWQ8ENrFKkd67Mfpo/LovbIUsbt3w==}
 
@@ -3072,6 +3080,10 @@ packages:
     resolution: {integrity: sha512-7r0XPzioN/Q9kXBro/XPnA6kznR73DHq+GXh5ON7ZozRO6aMjbmiBuKste2wslTFkC5d1dw0GooOCepZXJ2SAg==}
     engines: {node: '>= 14'}
     hasBin: true
+
+  yargs-parser@21.1.1:
+    resolution: {integrity: sha512-tVpsJW7DdjecAiFpbIB1e3qxIQsE6NoPc5/eTdrbbIC4h0LVsWhnoa3g+m2HclBIujHzsxZ4VJVA+GUuc2/LBw==}
+    engines: {node: '>=12'}
 
   yocto-queue@0.1.0:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
@@ -5005,6 +5017,11 @@ snapshots:
       next-tick: 1.1.0
       timers-ext: 0.1.8
 
+  merge-json-cli@1.0.4:
+    dependencies:
+      fast-glob: 3.3.2
+      yargs-parser: 21.1.1
+
   merge-stream@2.0.0: {}
 
   merge2@1.4.1: {}
@@ -5897,6 +5914,8 @@ snapshots:
   yaml@1.10.2: {}
 
   yaml@2.6.1: {}
+
+  yargs-parser@21.1.1: {}
 
   yocto-queue@0.1.0: {}
 

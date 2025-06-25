@@ -33,6 +33,7 @@
 		"husky": "^9.1.7",
 		"lucide-svelte": "^0.453.0",
 		"mdsvex": "^0.12.3",
+		"merge-json-cli": "^1.0.4",
 		"prettier": "^3.4.2",
 		"prettier-plugin-svelte": "^3.3.2",
 		"prettier-plugin-tailwindcss": "^0.6.9",
