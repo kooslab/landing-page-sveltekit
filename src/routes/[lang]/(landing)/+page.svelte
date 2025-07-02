@@ -82,9 +82,7 @@
 <main class="w-full">
 	<!-- Hero Section -->
 	<section class="relative flex min-h-[70vh] items-center justify-center overflow-hidden">
-		<div
-			class="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-secondary/10"
-		></div>
+		<div class="absolute inset-0"></div>
 		<div class="bg-grid-pattern absolute inset-0 opacity-5"></div>
 
 		<div class="container relative z-10 mx-auto px-4 py-20 text-center">
@@ -96,9 +94,7 @@
 					<span class="text-sm font-medium">{$_('hero.tagline')}</span>
 				</div>
 
-				<h1
-					class="bg-gradient-to-r from-primary to-secondary bg-clip-text text-5xl font-bold text-transparent md:text-7xl"
-				>
+				<h1 class="text-5xl font-bold md:text-7xl">
 					{$_('hero.title')}
 				</h1>
 
@@ -237,12 +233,6 @@
 								{/each}
 							</div>
 
-							<div class="border-t pt-4">
-								<p class="text-lg font-semibold text-primary">
-									{$_(`portfolio.apps.${app.id}.pricing`)}
-								</p>
-							</div>
-
 							{#if app.status === 'live'}
 								<Button
 									variant="outline"
@@ -267,7 +257,7 @@
 	</section>
 
 	<!-- CTA Section -->
-	<section class="bg-gradient-to-r from-primary/10 to-secondary/10 px-4 py-20">
+	<section class="bg-muted/50 px-4 py-20">
 		<div class="container mx-auto text-center">
 			<h2 class="mb-6 text-4xl font-bold md:text-5xl">
 				{$_('cta.title')}
@@ -275,13 +265,10 @@
 			<p class="mx-auto mb-8 max-w-2xl text-xl text-muted-foreground">
 				{$_('cta.description')}
 			</p>
-			<div class="flex flex-col justify-center gap-4 sm:flex-row">
+			<div class="flex justify-center">
 				<Button size="lg" class="group">
 					{$_('cta.buttons.trial')}
 					<ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-				</Button>
-				<Button size="lg" variant="outline">
-					{$_('cta.buttons.pricing')}
 				</Button>
 			</div>
 		</div>

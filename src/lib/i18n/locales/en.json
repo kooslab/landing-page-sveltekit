@@ -1,112 +1,113 @@
 {
 	"hero": {
-		"tagline": "Enterprise Tools at Freelancer Prices",
-		"title": "Welcome to Kooslab",
-		"description": "Empowering SMBs and freelancers with lightweight, powerful digital tools for efficient work and digital transformation - without breaking the bank.",
+		"tagline": "The Right Tech Partner for Your Company",
+		"title": "Custom Digital Solutions for Small Businesses",
+		"description": "Struggling with Excel management, repetitive tasks, or data analysis? Skip the complex systems and discover custom technology you can use right away. Experience big changes with a small investment.",
 		"cta": {
-			"explore": "Explore Our Solutions",
-			"portfolio": "View Portfolio"
+			"explore": "Explore Solutions",
+			"portfolio": "View Products"
 		}
 	},
 	"vision": {
-		"badge": "Our Vision",
-		"title": "Digital Tools for Every Business",
-		"description": "We believe every SMB and freelancer should have access to lightweight but powerful digital tools that solve real problems and enable digital transformation without requiring enterprise budgets.",
+		"badge": "Vision",
+		"title": "A World Where Every Business Grows Digitally",
+		"description": "From solopreneurs to SMBs, achieve business innovation with digital tools anyone can use. No expensive consulting needed.",
 		"points": {
 			"affordable": {
-				"title": "Affordable Digital Transformation",
-				"description": "Every SMB and freelancer deserves access to powerful digital tools without enterprise pricing."
+				"title": "Right Price, Real Results",
+				"description": "Invest only in features you need and connect them to real outcomes. We provide solutions that fit your business perfectly instead of excessive features or complex systems."
 			},
 			"lightweight": {
-				"title": "Lightweight Yet Powerful",
-				"description": "Simple to use, quick to implement, but robust enough to handle real business challenges."
+				"title": "Small but Effective Solutions",
+				"description": "You don't need massive systems. Solve core problems effectively with lightweight tools that fit your organization perfectly."
 			},
 			"timeSaving": {
-				"title": "Time-Saving Automation",
-				"description": "Automate repetitive tasks and focus on what matters - growing your business."
+				"title": "Boost Performance, Reduce Labor Costs",
+				"description": "Automate repetitive tasks and focus on what truly matters. Invest in growth instead of overtime."
 			}
 		}
 	},
 	"mission": {
-		"badge": "Our Mission",
-		"title": "Making Enterprise Tools Accessible",
-		"description": "Our mission is to help SMBs and freelancers save time, work efficiently, and enhance productivity through affordable, lightweight digital tools that deliver enterprise-grade results.",
+		"badge": "Mission",
+		"title": "Empowering Small Teams to Make Big Leaps",
+		"description": "We understand the challenges freelancers and startups face. We create tools that streamline your work so you can focus on your core business.",
 		"values": {
 			"saveTime": {
-				"title": "Save Time & Money",
-				"description": "Help SMBs and freelancers work efficiently with tools that automate repetitive tasks."
+				"title": "Time is Money",
+				"description": "Automate those daily repetitive tasks. Use the saved time to meet more customers."
 			},
 			"workRight": {
-				"title": "Work the Right Way",
-				"description": "Guide users to industry best practices without complex implementation."
+				"title": "Do It Right from the Start",
+				"description": "Follow industry standards without complexity. Even beginners can work like professionals."
 			},
 			"boost": {
-				"title": "Boost Productivity",
-				"description": "Enable small teams to achieve big results with smart, focused tools."
+				"title": "Small Team, Big Results",
+				"description": "Whether working solo or in a small team, produce results that rival large enterprises."
 			}
 		}
 	},
 	"portfolio": {
-		"badge": "Our Portfolio",
-		"title": "Tools Built for Small Teams",
-		"description": "No complex setups. No enterprise pricing. Just powerful tools that help SMBs and freelancers work smarter and grow faster.",
+		"badge": "Our Products",
+		"title": "The Choice of High Performers",
+		"description": "Worried about installation? Concerned about usability? No need. Sign up and start immediately. We've prepared everything you need.",
 		"apps": {
 			"requirements": {
-				"name": "Requirements Management",
-				"description": "Stop wasting hours on documentation. Manage requirements efficiently with AI assistance - perfect for freelancers and small teams.",
+				"name": "Requirements Management Tool",
+				"description": "From organizing client requirements to project documentation - all in one place. With AI assistance, reduce documentation time by 80%.",
 				"features": [
-					"Quick User Stories",
-					"AI-Generated Criteria",
-					"Simple Collaboration",
-					"Export to Any Format"
-				],
-				"pricing": "From $9/month"
+					"Organize requirements in 5 minutes",
+					"AI-generated detailed criteria",
+					"Real-time team collaboration",
+					"Export to Word, Excel"
+				]
 			},
 			"analytics": {
-				"name": "Analytics Dashboard",
-				"description": "Business insights without the complexity. Get actionable data visualization that even non-technical users can understand.",
+				"name": "Business Analytics Dashboard",
+				"description": "It's okay if you're not good with numbers. From at-a-glance sales analysis to customer trends, make smarter decisions with data.",
 				"features": [
-					"One-Click Reports",
-					"Mobile-Friendly",
-					"No Setup Required",
-					"Real-time Updates"
-				],
-				"pricing": "From $15/month"
+					"One-click report generation",
+					"Perfect mobile compatibility",
+					"No installation required",
+					"Real-time data updates"
+				]
 			},
 			"project": {
-				"name": "Project Management Lite",
-				"description": "Project management stripped down to what actually matters. Perfect for freelancers managing multiple clients.",
-				"features": ["Simple Task Boards", "Client Portal", "Invoice Integration", "Time Tracking"],
-				"pricing": "From $7/month"
+				"name": "Simple Project Management",
+				"description": "Optimal project management for freelancers. Manage multiple clients systematically without confusion.",
+				"features": [
+					"Intuitive Kanban boards",
+					"Dedicated client pages",
+					"Quote & contract integration",
+					"Automatic time tracking"
+				]
 			}
 		},
 		"status": {
-			"live": "Live",
+			"live": "Available Now",
 			"comingSoon": "Coming Soon"
 		},
 		"cta": {
-			"trial": "Start Free Trial",
-			"comingSoon": "Coming Soon"
+			"trial": "14-Day Free Trial",
+			"comingSoon": "Get Launch Updates"
 		}
 	},
 	"cta": {
-		"title": "Stop Overpaying for Simple Tools",
-		"description": "Join thousands of SMBs and freelancers who've ditched expensive enterprise software for our affordable, powerful alternatives.",
+		"title": "Still Spending Money on Expensive Tools?",
+		"description": "Thousands of freelancers and startups have already switched to Kooslab. Start now and try all features free for 14 days.",
 		"buttons": {
-			"trial": "Try Free for 14 Days",
-			"pricing": "See Pricing"
+			"trial": "Start Free"
 		}
 	},
 	"contact": {
-		"title": "Get in Touch",
-		"description": "Have questions? We'd love to hear from you.",
+		"title": "Have Questions?",
+		"description": "From implementation consulting to usage guidance, ask us anything.",
 		"form": {
 			"name": "Name",
-			"namePlaceholder": "Your name",
+			"namePlaceholder": "John Doe",
 			"email": "Email",
-			"emailPlaceholder": "your@email.com",
+			"emailPlaceholder": "example@email.com",
 			"message": "Message",
-			"messagePlaceholder": "Tell us about your project...",
+			"messagePlaceholder": "How can we help you?",
 			"submit": "Send Message",
 			"sending": "Sending..."
 		}
@@ -114,7 +115,7 @@
 	"nav": {
 		"vision": "Vision",
 		"mission": "Mission",
-		"portfolio": "Portfolio",
+		"portfolio": "Products",
 		"blog": "Blog"
 	}
 }
