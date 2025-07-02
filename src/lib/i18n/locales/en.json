@@ -62,13 +62,13 @@
 				]
 			},
 			"analytics": {
-				"name": "Business Analytics Dashboard",
-				"description": "It's okay if you're not good with numbers. From at-a-glance sales analysis to customer trends, make smarter decisions with data.",
+				"name": "Quote Management Tool",
+				"description": "Create professional quotes quickly and easily. Start with templates, complete in minutes, and send directly to clients.",
 				"features": [
-					"One-click report generation",
-					"Perfect mobile compatibility",
-					"No installation required",
-					"Real-time data updates"
+					"Professional quote templates",
+					"Real-time client approval tracking",
+					"AI-powered pricing assistant",
+					"Automatic contract generation"
 				]
 			},
 			"project": {

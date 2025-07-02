@@ -40,14 +40,14 @@
 		{
 			id: 'requirements',
 			icon: CheckCircle,
-			link: 'https://requirements.kooslab.com',
+			link: 'https://docs.kooslab.net',
 			status: 'live'
 		},
 		{
 			id: 'analytics',
 			icon: BarChart,
-			link: '#',
-			status: 'coming-soon'
+			link: 'https://quote.kooslab.net',
+			status: 'live'
 		},
 		{
 			id: 'project',
