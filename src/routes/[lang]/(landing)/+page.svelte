@@ -95,7 +95,19 @@
 				</div>
 
 				<h1 class="text-5xl font-bold md:text-7xl">
-					{$_('hero.title')}
+					{#if isKorean}
+						<span class="md:hidden">
+							<span class="block">소규모 기업을</span>
+							<span class="block">위한 맞춤형</span>
+							<span class="block">디지털 솔루션</span>
+						</span>
+						<span class="hidden md:block">
+							<span class="block">소규모 기업을 위한</span>
+							<span class="block">맞춤형 디지털 솔루션</span>
+						</span>
+					{:else}
+						{$_('hero.title')}
+					{/if}
 				</h1>
 
 				<p class="mx-auto max-w-2xl text-xl text-muted-foreground md:text-2xl">
