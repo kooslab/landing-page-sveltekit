@@ -249,7 +249,9 @@
 								<Button
 									variant="outline"
 									class="group/btn w-full"
-									on:click={() => window.open(app.link, '_blank')}
+									href={app.link}
+									target="_blank"
+									rel="noopener noreferrer"
 								>
 									{$_('portfolio.cta.trial')}
 									<ExternalLink
