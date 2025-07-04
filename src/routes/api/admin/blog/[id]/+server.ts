@@ -35,6 +35,39 @@ export const PUT: RequestHandler = async ({ params, request, locals }) => {
 	}
 };
 
+export const PATCH: RequestHandler = async ({ params, request, locals }) => {
+	if (!locals.user) {
+		return json({ success: false, error: 'Unauthorized' }, { status: 401 });
+	}
+
+	try {
+		const body = await request.json();
+		const updateData: Partial<typeof blogPosts.$inferInsert> = {};
+
+		// Only update fields that are provided
+		if (typeof body.published !== 'undefined') {
+			updateData.published = body.published;
+		}
+
+		updateData.updatedAt = new Date();
+
+		const [updatedPost] = await db
+			.update(blogPosts)
+			.set(updateData)
+			.where(eq(blogPosts.id, params.id))
+			.returning();
+
+		if (!updatedPost) {
+			return json({ success: false, error: 'Post not found' }, { status: 404 });
+		}
+
+		return json({ success: true, post: updatedPost });
+	} catch (error) {
+		console.error('Error updating blog post:', error);
+		return json({ success: false, error: 'Failed to update blog post' }, { status: 500 });
+	}
+};
+
 export const DELETE: RequestHandler = async ({ params, locals }) => {
 	if (!locals.user) {
 		return json({ success: false, error: 'Unauthorized' }, { status: 401 });

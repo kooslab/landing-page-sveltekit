@@ -7,7 +7,7 @@ import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals, url }) => {
 	if (locals.user) {
-		const redirectTo = url.searchParams.get('redirect') || '/admin/cms';
+		const redirectTo = url.searchParams.get('redirect') || '/admin';
 		throw redirect(302, redirectTo);
 	}
 	return {};
@@ -65,7 +65,7 @@ export const actions = {
 			});
 
 			// Redirect to admin or requested page
-			const redirectTo = url.searchParams.get('redirect') || '/admin/cms';
+			const redirectTo = url.searchParams.get('redirect') || '/admin';
 			throw redirect(302, redirectTo);
 		} catch (error) {
 			// Re-throw redirects

@@ -3,14 +3,26 @@
 	import { Editor } from '@tiptap/core';
 	import StarterKit from '@tiptap/starter-kit';
 	import Placeholder from '@tiptap/extension-placeholder';
+	import Table from '@tiptap/extension-table';
+	import TableRow from '@tiptap/extension-table-row';
+	import TableCell from '@tiptap/extension-table-cell';
+	import TableHeader from '@tiptap/extension-table-header';
 	import { Button } from '$lib/components/ui/button';
+	import { marked } from 'marked';
 
-	export let content = '';
+	let { content = $bindable('') } = $props();
 
 	let element: HTMLDivElement;
 	let editor: Editor;
-	let showMarkdown = false;
-	let markdownContent = content;
+	let showMarkdown = $state(true);
+	let markdownContent = $state(content);
+
+	// Configure marked for consistency
+	marked.setOptions({
+		gfm: true,
+		breaks: true,
+		tables: true
+	});
 
 	onMount(() => {
 		editor = new Editor({
@@ -19,20 +31,29 @@
 				StarterKit,
 				Placeholder.configure({
 					placeholder: 'Start writing your article...'
-				})
+				}),
+				Table.configure({
+					resizable: true
+				}),
+				TableRow,
+				TableHeader,
+				TableCell
 			],
-			content: `<p>${content}</p>`,
+			content: content ? marked(content) : '',
 			onTransaction: () => {
 				editor = editor;
 			},
 			onUpdate: ({ editor }) => {
 				const html = editor.getHTML();
-				content = htmlToMarkdown(html);
-				markdownContent = content;
+				const markdown = htmlToMarkdown(html);
+				markdownContent = markdown;
+				// Update parent component
+				content = markdown;
 			},
 			editorProps: {
 				attributes: {
-					class: 'prose prose-lg dark:prose-invert max-w-none focus:outline-none min-h-[400px] p-4'
+					class:
+						'prose prose-lg dark:prose-invert max-w-none focus:outline-none min-h-[400px] p-4 [&_table]:border-collapse [&_table]:w-full [&_td]:border [&_td]:border-gray-300 [&_td]:p-2 [&_th]:border [&_th]:border-gray-300 [&_th]:p-2 [&_th]:bg-gray-100 [&_th]:font-bold dark:[&_th]:bg-gray-800 dark:[&_td]:border-gray-600 dark:[&_th]:border-gray-600'
 				}
 			}
 		});
@@ -45,8 +66,47 @@
 	});
 
 	function htmlToMarkdown(html: string): string {
-		// Simple HTML to Markdown conversion
-		return html
+		// Convert tables first (more complex regex)
+		let markdown = html;
+
+		// Handle tables
+		markdown = markdown.replace(
+			/<table[^>]*>([\s\S]*?)<\/table>/gi,
+			(_match, tableContent: string) => {
+				let rows = tableContent.match(/<tr[^>]*>([\s\S]*?)<\/tr>/gi) || [];
+				let tableMarkdown = '';
+
+				rows.forEach((row: string, index: number) => {
+					let cells = row.match(/<t[hd][^>]*>([\s\S]*?)<\/t[hd]>/gi) || [];
+					let rowContent = '|';
+
+					cells.forEach((cell: string) => {
+						let cellContent = cell
+							.replace(/<t[hd][^>]*>/gi, '')
+							.replace(/<\/t[hd]>/gi, '')
+							.replace(/<[^>]+>/g, '')
+							.trim();
+						rowContent += ' ' + cellContent + ' |';
+					});
+
+					tableMarkdown += rowContent + '\n';
+
+					// Add separator after header row
+					if (index === 0) {
+						let separatorRow = '|';
+						cells.forEach(() => {
+							separatorRow += ' --- |';
+						});
+						tableMarkdown += separatorRow + '\n';
+					}
+				});
+
+				return '\n' + tableMarkdown + '\n';
+			}
+		);
+
+		// Then do simple replacements
+		return markdown
 			.replace(/<h1>(.*?)<\/h1>/g, '# $1\n')
 			.replace(/<h2>(.*?)<\/h2>/g, '## $1\n')
 			.replace(/<h3>(.*?)<\/h3>/g, '### $1\n')
@@ -64,34 +124,38 @@
 			.trim();
 	}
 
-	function markdownToHtml(markdown: string): string {
-		// Simple Markdown to HTML conversion for editor
-		return markdown
-			.replace(/^### (.*$)/gim, '<h3>$1</h3>')
-			.replace(/^## (.*$)/gim, '<h2>$1</h2>')
-			.replace(/^# (.*$)/gim, '<h1>$1</h1>')
-			.replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-			.replace(/\*(.+?)\*/g, '<em>$1</em>')
-			.replace(/`(.+?)`/g, '<code>$1</code>')
-			.replace(/\n\n/g, '</p><p>')
-			.replace(/^/, '<p>')
-			.replace(/$/, '</p>');
-	}
-
 	function toggleMarkdown() {
 		showMarkdown = !showMarkdown;
 		if (!showMarkdown && editor) {
-			editor.commands.setContent(markdownToHtml(markdownContent));
+			editor.commands.setContent(marked(markdownContent));
 			content = markdownContent;
 		}
 	}
 
+	function preprocessMarkdown(markdown: string): string {
+		// Fix tables that have extra line breaks between rows
+		return markdown.replace(/(\|.*\|)\n\n+(\|)/g, '$1\n$2');
+	}
+
 	function updateMarkdown() {
-		content = markdownContent;
+		const cleaned = preprocessMarkdown(markdownContent);
+		content = cleaned;
+		markdownContent = cleaned;
 		if (editor) {
-			editor.commands.setContent(markdownToHtml(markdownContent));
+			editor.commands.setContent(marked(cleaned));
 		}
 	}
+
+	// Keep markdown content in sync
+	$effect(() => {
+		if (!showMarkdown && editor) {
+			// Only update if content has changed externally
+			if (content !== markdownContent) {
+				markdownContent = content;
+				editor.commands.setContent(marked(content));
+			}
+		}
+	});
 </script>
 
 <div class="overflow-hidden rounded-lg border">
@@ -104,7 +168,7 @@
 			<Button
 				variant="ghost"
 				size="sm"
-				on:click={() => editor.chain().focus().toggleBold().run()}
+				onclick={() => editor.chain().focus().toggleBold().run()}
 				class={editor.isActive('bold') ? 'bg-muted' : ''}
 			>
 				B
@@ -112,7 +176,7 @@
 			<Button
 				variant="ghost"
 				size="sm"
-				on:click={() => editor.chain().focus().toggleItalic().run()}
+				onclick={() => editor.chain().focus().toggleItalic().run()}
 				class={editor.isActive('italic') ? 'bg-muted' : ''}
 			>
 				I
@@ -120,7 +184,7 @@
 			<Button
 				variant="ghost"
 				size="sm"
-				on:click={() => editor.chain().focus().toggleCode().run()}
+				onclick={() => editor.chain().focus().toggleCode().run()}
 				class={editor.isActive('code') ? 'bg-muted' : ''}
 			>
 				Code
@@ -129,7 +193,7 @@
 			<Button
 				variant="ghost"
 				size="sm"
-				on:click={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+				onclick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
 				class={editor.isActive('heading', { level: 1 }) ? 'bg-muted' : ''}
 			>
 				H1
@@ -137,7 +201,7 @@
 			<Button
 				variant="ghost"
 				size="sm"
-				on:click={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+				onclick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
 				class={editor.isActive('heading', { level: 2 }) ? 'bg-muted' : ''}
 			>
 				H2
@@ -145,7 +209,7 @@
 			<Button
 				variant="ghost"
 				size="sm"
-				on:click={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+				onclick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
 				class={editor.isActive('heading', { level: 3 }) ? 'bg-muted' : ''}
 			>
 				H3
@@ -154,14 +218,65 @@
 			<Button
 				variant="ghost"
 				size="sm"
-				on:click={() => editor.chain().focus().toggleBulletList().run()}
+				onclick={() => editor.chain().focus().toggleBulletList().run()}
 				class={editor.isActive('bulletList') ? 'bg-muted' : ''}
 			>
 				List
 			</Button>
+			<div class="mx-1 h-6 w-px bg-border" />
+			<Button
+				variant="ghost"
+				size="sm"
+				onclick={() =>
+					editor.chain().focus().insertTable({ rows: 3, cols: 3, withHeaderRow: true }).run()}
+			>
+				Table
+			</Button>
+			{#if editor.isActive('table')}
+				<Button
+					variant="ghost"
+					size="sm"
+					onclick={() => editor.chain().focus().addColumnAfter().run()}
+					title="Add column"
+				>
+					+Col
+				</Button>
+				<Button
+					variant="ghost"
+					size="sm"
+					onclick={() => editor.chain().focus().addRowAfter().run()}
+					title="Add row"
+				>
+					+Row
+				</Button>
+				<Button
+					variant="ghost"
+					size="sm"
+					onclick={() => editor.chain().focus().deleteColumn().run()}
+					title="Delete column"
+				>
+					-Col
+				</Button>
+				<Button
+					variant="ghost"
+					size="sm"
+					onclick={() => editor.chain().focus().deleteRow().run()}
+					title="Delete row"
+				>
+					-Row
+				</Button>
+				<Button
+					variant="ghost"
+					size="sm"
+					onclick={() => editor.chain().focus().deleteTable().run()}
+					title="Delete table"
+				>
+					Del
+				</Button>
+			{/if}
 		{/if}
 		<div class="ml-auto">
-			<Button variant="ghost" size="sm" on:click={toggleMarkdown}>
+			<Button variant="ghost" size="sm" onclick={toggleMarkdown}>
 				{showMarkdown ? 'Rich Text' : 'Markdown'}
 			</Button>
 		</div>
@@ -170,7 +285,7 @@
 	{#if showMarkdown}
 		<textarea
 			bind:value={markdownContent}
-			on:input={updateMarkdown}
+			oninput={updateMarkdown}
 			class="min-h-[400px] w-full resize-none bg-background p-4 font-mono text-sm focus:outline-none"
 			placeholder="Write your article in Markdown..."
 		/>

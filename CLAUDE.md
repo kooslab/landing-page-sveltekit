@@ -10,16 +10,16 @@ This is a SvelteKit landing page for KoosLab with internationalization support (
 
 ```bash
 # Development
-npm run dev          # Start dev server on http://localhost:5173
+bun run dev          # Start dev server on http://localhost:5173
 
 # Build & Preview
-npm run build        # Build for production
-npm run preview      # Preview production build
+bun run build        # Build for production
+bun run preview      # Preview production build
 
 # Code Quality
-npm run check        # Type check with svelte-check
-npm run lint         # Run ESLint and Prettier checks
-npm run format       # Auto-format code with Prettier
+bun run check        # Type check with svelte-check
+bun run lint         # Run ESLint and Prettier checks
+bun run format       # Auto-format code with Prettier
 ```
 
 ## Architecture Overview
@@ -69,3 +69,12 @@ npm run format       # Auto-format code with Prettier
 - Git hooks via Husky run linting on pre-commit
 - Deployed on Vercel (see `vercel.json`)
 - Form validation uses Superforms with Zod schemas
+
+# programming language and framework rules
+
+- use svelte 5 syntax all the time
+- never use on:click this is old svelte way, use onclick instead
+- In Svelte 5, we should use $derived instead of $:
+- Cannot use `export let` in runes mode — use `$props()` instead
+- use Drizzle for ORM
+- use sveltekit best practice for navigation and asynchronous data handling

@@ -8,7 +8,7 @@ import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ locals }) => {
 	if (locals.user) {
-		throw redirect(302, '/admin/cms');
+		throw redirect(302, '/admin');
 	}
 	return {};
 };
@@ -80,7 +80,7 @@ export const actions = {
 				...sessionCookie.attributes
 			});
 
-			throw redirect(302, '/admin/cms');
+			throw redirect(302, '/admin');
 		} catch (error) {
 			// Re-throw redirects
 			if (error && typeof error === 'object' && 'status' in error && 'location' in error) {
