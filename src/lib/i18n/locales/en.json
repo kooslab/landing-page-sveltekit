@@ -1,29 +1,29 @@
 {
 	"hero": {
-		"tagline": "The Right Tech Partner for Your Company",
+		"tagline": "Tailored Software Solutions for Your Business",
 		"title": "Custom Digital Solutions for Small Businesses",
-		"description": "Struggling with Excel management, repetitive tasks, or data analysis? Skip the complex systems and discover custom technology you can use right away. Experience big changes with a small investment.",
+		"description": "Transform your unique business challenges into competitive advantages. We build custom software specifically designed for your workflows, team, and growth goals. No one-size-fits-all solutions—just tools that work exactly how you need them to.",
 		"cta": {
-			"explore": "Explore Solutions",
-			"portfolio": "View Products"
+			"explore": "Discover Your Solution",
+			"portfolio": "See Our Work"
 		}
 	},
 	"vision": {
-		"badge": "Vision",
-		"title": "A World Where Every Business Grows Digitally",
-		"description": "From solopreneurs to SMBs, achieve business innovation with digital tools anyone can use. No expensive consulting needed.",
+		"badge": "Our Approach",
+		"title": "Software Built Around Your Business",
+		"description": "Every small business is unique. That's why we create custom digital solutions that align perfectly with your specific processes, challenges, and objectives.",
 		"points": {
 			"affordable": {
-				"title": "Right Price, Real Results",
-				"description": "Invest only in features you need and connect them to real outcomes. We provide solutions that fit your business perfectly instead of excessive features or complex systems."
+				"title": "Precision-Built for Your Needs",
+				"description": "Unlike generic software that forces you to adapt, our custom solutions are designed around your existing workflows. Get exactly what you need—nothing more, nothing less."
 			},
 			"lightweight": {
-				"title": "Small but Effective Solutions",
-				"description": "You don't need massive systems. Solve core problems effectively with lightweight tools that fit your organization perfectly."
+				"title": "Optimized for Small Teams",
+				"description": "We specialize in creating efficient, focused tools for small businesses. Our solutions are powerful yet simple, designed to enhance your team's productivity without overwhelming them."
 			},
 			"timeSaving": {
-				"title": "Boost Performance, Reduce Labor Costs",
-				"description": "Automate repetitive tasks and focus on what truly matters. Invest in growth instead of overtime."
+				"title": "Automation That Understands You",
+				"description": "We analyze your repetitive tasks and create intelligent automation tailored to your business logic. Free your team to focus on growth and innovation."
 			}
 		}
 	},
@@ -92,10 +92,199 @@
 		}
 	},
 	"cta": {
-		"title": "Still Spending Money on Expensive Tools?",
-		"description": "Thousands of freelancers and startups have already switched to Kooslab. Start now and try all features free for 14 days.",
+		"title": "Ready for Software That Works Your Way?",
+		"description": "Join thousands of small businesses using custom-built solutions that perfectly match their needs. Let's discuss how we can transform your unique challenges into streamlined workflows.",
 		"buttons": {
-			"trial": "Start Free"
+			"trial": "Schedule a Consultation"
+		}
+	},
+	"testimonials": {
+		"badge": "Client Success Stories",
+		"title": "Trusted by Growing Businesses",
+		"description": "See how our custom solutions have transformed workflows and accelerated growth for small businesses like yours.",
+		"clients": {
+			"manufacturer": {
+				"quote": "Our inventory tracking was a nightmare with Excel. Kooslab built us a custom system that talks to our equipment and updates in real-time. We've cut inventory errors by 90% and saved 15 hours per week.",
+				"author": "Sarah Chen",
+				"role": "Operations Director",
+				"company": "Precision Parts Co.",
+				"industry": "Manufacturing"
+			},
+			"consultant": {
+				"quote": "As a solo consultant, I was drowning in proposal creation. The custom quote tool Kooslab built understands my pricing model and generates professional proposals in minutes, not hours. I've doubled my client capacity.",
+				"author": "Michael Rodriguez",
+				"role": "Independent Consultant",
+				"company": "Rodriguez Advisory",
+				"industry": "Business Consulting"
+			},
+			"agency": {
+				"quote": "We needed a way to track creative projects across multiple clients without the complexity of enterprise tools. Kooslab delivered exactly what we needed—simple, visual, and perfectly matched to our creative process.",
+				"author": "Emma Thompson",
+				"role": "Creative Director",
+				"company": "Spark Design Studio",
+				"industry": "Creative Agency"
+			}
+		}
+	},
+	"useCases": {
+		"badge": "Real-World Solutions",
+		"title": "Custom Software That Solves Real Problems",
+		"description": "Every business has unique challenges. Here's how we've helped companies like yours streamline operations with tailored solutions.",
+		"cases": {
+			"inventory": {
+				"title": "Smart Inventory Management",
+				"problem": "Manual Excel tracking causing stock-outs and overordering",
+				"solution": "Custom dashboard with automated reorder alerts and supplier integration",
+				"results": [
+					"90% reduction in stock-out incidents",
+					"$50K saved annually on excess inventory",
+					"3 hours saved daily on manual counts"
+				],
+				"industry": "Retail & Distribution"
+			},
+			"scheduling": {
+				"title": "Automated Service Scheduling",
+				"problem": "Double-bookings and missed appointments hurting customer satisfaction",
+				"solution": "Custom booking system with SMS reminders and route optimization",
+				"results": [
+					"Zero double-bookings since implementation",
+					"85% reduction in no-shows",
+					"20% more appointments per day"
+				],
+				"industry": "Service Business"
+			},
+			"reporting": {
+				"title": "Instant Business Intelligence",
+				"problem": "Hours spent creating weekly reports from multiple data sources",
+				"solution": "Automated dashboard pulling data from all systems with one-click reports",
+				"results": [
+					"Weekly reports now take 5 minutes",
+					"Real-time visibility into KPIs",
+					"Data-driven decisions increased revenue 15%"
+				],
+				"industry": "Professional Services"
+			},
+			"contract": {
+				"title": "Contract Management System",
+				"problem": "Lost contracts, missed renewal dates, and manual tracking across departments",
+				"solution": "Centralized contract repository with automated alerts and approval workflows",
+				"results": [
+					"100% on-time contract renewals",
+					"60% faster contract approval process",
+					"Zero lost contracts since implementation"
+				],
+				"industry": "Legal & Compliance"
+			},
+			"delivery": {
+				"title": "Delivery Management Kiosk",
+				"problem": "Inefficient package handling and customer wait times at pickup locations",
+				"solution": "Self-service kiosk with barcode scanning and automated notification system",
+				"results": [
+					"75% reduction in customer wait time",
+					"3x more packages processed per hour",
+					"95% customer satisfaction rate"
+				],
+				"industry": "Logistics & Delivery"
+			},
+			"parking": {
+				"title": "AI Parking Management",
+				"problem": "Manual parking monitoring leading to revenue loss and poor space utilization",
+				"solution": "Computer vision system with real-time occupancy tracking and dynamic pricing",
+				"results": [
+					"40% increase in parking revenue",
+					"Real-time space availability updates",
+					"90% reduction in parking violations"
+				],
+				"industry": "Property Management"
+			},
+			"billsplit": {
+				"title": "Smart Bill Splitting App",
+				"problem": "Complex group expense calculations causing disputes and delayed payments",
+				"solution": "Automated bill splitting with receipt scanning and integrated payment links",
+				"results": [
+					"Instant accurate splits for any group size",
+					"80% faster payment collection",
+					"Zero calculation disputes"
+				],
+				"industry": "Hospitality & Events"
+			},
+			"ordermap": {
+				"title": "Global Order Display Map",
+				"problem": "No visual representation of worldwide customer distribution and order patterns",
+				"solution": "Real-time world map showing live orders with analytics and trend visualization",
+				"results": [
+					"Instant global business insights",
+					"Optimized regional marketing strategies",
+					"30% improvement in inventory planning"
+				],
+				"industry": "E-commerce"
+			},
+			"travel": {
+				"title": "Reverse Auction Travel Platform",
+				"problem": "Travelers overpaying and hotels with empty rooms during off-peak times",
+				"solution": "Platform where hotels bid for travelers with transparent reverse auction system",
+				"results": [
+					"Average 35% savings for travelers",
+					"70% occupancy increase for partner hotels",
+					"Win-win pricing for both sides"
+				],
+				"industry": "Travel & Tourism"
+			},
+			"indoor": {
+				"title": "Indoor Map & Navigation Editor",
+				"problem": "Visitors getting lost in large buildings and inefficient space planning",
+				"solution": "Visual map editor with pathfinding algorithm for indoor navigation",
+				"results": [
+					"90% reduction in visitor inquiries",
+					"Optimized traffic flow patterns",
+					"Emergency evacuation routes mapped"
+				],
+				"industry": "Facility Management"
+			},
+			"payment": {
+				"title": "Monthly Card Payment System",
+				"problem": "Manual recurring payment processing causing delays and missed payments",
+				"solution": "Automated monthly billing with card-on-file and smart retry logic",
+				"results": [
+					"98% successful payment rate",
+					"Zero manual processing needed",
+					"60% reduction in payment delays"
+				],
+				"industry": "Subscription Services"
+			},
+			"survey": {
+				"title": "Survey PDF OCR Analyzer",
+				"problem": "Thousands of paper surveys requiring manual data entry and analysis",
+				"solution": "AI-powered OCR system converting PDF surveys into analyzable data",
+				"results": [
+					"99.5% accuracy in data extraction",
+					"Processing time reduced from days to minutes",
+					"Instant insights from survey data"
+				],
+				"industry": "Market Research"
+			},
+			"quote": {
+				"title": "Dynamic Quote Management",
+				"problem": "Inconsistent pricing and slow quote generation losing deals",
+				"solution": "Intelligent quoting system with pricing rules and instant PDF generation",
+				"results": [
+					"Quote creation time reduced by 85%",
+					"Consistent pricing across sales team",
+					"25% increase in close rate"
+				],
+				"industry": "B2B Sales"
+			},
+			"requirements": {
+				"title": "Software Requirements Platform",
+				"problem": "Requirements scattered across emails, docs, and meetings causing project delays",
+				"solution": "Centralized platform with version control and stakeholder collaboration",
+				"results": [
+					"50% reduction in project delays",
+					"Clear traceability for all changes",
+					"Zero missed requirements"
+				],
+				"industry": "Software Development"
+			}
 		}
 	},
 	"contact": {
