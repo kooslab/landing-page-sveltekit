@@ -1,8 +1,6 @@
-import { createServerClient } from '@supabase/ssr';
 import { type Handle } from '@sveltejs/kit';
 import { sequence } from '@sveltejs/kit/hooks';
-
-import { PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY } from '$env/static/public';
+import { lucia } from '$lib/server/auth';
 
 // Handle to filter out Chrome DevTools requests
 const filterDevToolsRequests: Handle = async ({ event, resolve }) => {
@@ -14,79 +12,47 @@ const filterDevToolsRequests: Handle = async ({ event, resolve }) => {
 	return await resolve(event);
 };
 
-const supabase: Handle = async ({ event, resolve }) => {
-	/**
-	 * Creates a Supabase client specific to this server request.
-	 *
-	 * The Supabase client gets the Auth token from the request cookies.
-	 */
-	event.locals.supabase = createServerClient(PUBLIC_SUPABASE_URL, PUBLIC_SUPABASE_ANON_KEY, {
-		cookies: {
-			getAll: () => event.cookies.getAll(),
-			/**
-			 * SvelteKit's cookies API requires `path` to be explicitly set in
-			 * the cookie options. Setting `path` to `/` replicates previous/
-			 * standard behavior.
-			 */
-			setAll: (cookiesToSet) => {
-				cookiesToSet.forEach(({ name, value, options }) => {
-					event.cookies.set(name, value, { ...options, path: '/' });
-				});
-			}
+// Lucia auth handle
+const auth: Handle = async ({ event, resolve }) => {
+	const sessionId = event.cookies.get(lucia.sessionCookieName);
+	if (!sessionId) {
+		event.locals.user = null;
+		event.locals.session = null;
+	} else {
+		const { session, user } = await lucia.validateSession(sessionId);
+		if (session && session.fresh) {
+			const sessionCookie = lucia.createSessionCookie(session.id);
+			event.cookies.set(sessionCookie.name, sessionCookie.value, {
+				path: '.',
+				...sessionCookie.attributes
+			});
 		}
-	});
-
-	/**
-	 * Unlike `supabase.auth.getSession()`, which returns the session _without_
-	 * validating the JWT, this function also calls `getUser()` to validate the
-	 * JWT before returning the session.
-	 */
-	event.locals.safeGetSession = async () => {
-		const {
-			data: { session }
-		} = await event.locals.supabase.auth.getSession();
 		if (!session) {
-			return { session: null, user: null };
+			const sessionCookie = lucia.createBlankSessionCookie();
+			event.cookies.set(sessionCookie.name, sessionCookie.value, {
+				path: '.',
+				...sessionCookie.attributes
+			});
 		}
+		event.locals.user = user;
+		event.locals.session = session;
+	}
 
-		const {
-			data: { user },
-			error
-		} = await event.locals.supabase.auth.getUser();
-		if (error) {
-			// JWT validation has failed
-			return { session: null, user: null };
+	// Protect admin routes
+	if (event.url.pathname.startsWith('/admin')) {
+		if (!event.locals.user) {
+			// Redirect to login page
+			return new Response(null, {
+				status: 302,
+				headers: {
+					location: '/login?redirect=' + encodeURIComponent(event.url.pathname)
+				}
+			});
 		}
+	}
 
-		return { session, user };
-	};
-
-	return resolve(event, {
-		filterSerializedResponseHeaders(name) {
-			/**
-			 * Supabase libraries use the `content-range` and `x-supabase-api-version`
-			 * headers, so we need to tell SvelteKit to pass it through.
-			 */
-			return name === 'content-range' || name === 'x-supabase-api-version';
-		}
-	});
+	return resolve(event);
 };
 
-// const authGuard: Handle = async ({ event, resolve }) => {
-// 	const { session, user } = await event.locals.safeGetSession();
-// 	event.locals.session = session;
-// 	event.locals.user = user;
-
-// 	if (!event.locals.session && event.url.pathname.startsWith('/app')) {
-// 		redirect(303, '/login');
-// 	}
-
-// 	if (event.locals.session && event.url.pathname === '/login') {
-// 		redirect(303, '/app');
-// 	}
-
-// 	return resolve(event);
-// };
-
-// Apply the handlers in sequence - filter DevTools requests first, then handle Supabase
-export const handle: Handle = sequence(filterDevToolsRequests, supabase);
+// Apply the handlers in sequence
+export const handle: Handle = sequence(filterDevToolsRequests, auth);

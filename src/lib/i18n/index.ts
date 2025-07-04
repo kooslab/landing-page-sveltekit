@@ -10,14 +10,15 @@ function getInitialLocale() {
 	if (browser) {
 		const path = window.location.pathname;
 		const segments = path.split('/').filter(Boolean);
-		if (segments.length > 0 && (segments[0] === 'en' || segments[0] === 'ko')) {
-			return segments[0];
-		}
-		// Check browser language as fallback
-		const browserLang = window.navigator.language.toLowerCase();
-		if (browserLang.startsWith('ko')) {
+
+		// Check if the first segment is a language code
+		if (segments.length > 0 && segments[0] === 'ko') {
 			return 'ko';
 		}
+
+		// If no language segment or root path, default to English
+		// since English is now served at root
+		return 'en';
 	}
 	return 'en';
 }

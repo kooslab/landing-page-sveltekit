@@ -39,8 +39,14 @@
 			pathSegments.shift();
 		}
 
-		// Build the new path with the new language
-		const newPath = `/${langCode}${pathSegments.length > 0 ? '/' + pathSegments.join('/') : ''}`;
+		// Build the new path
+		// For English, use root path. For other languages, include the language code
+		let newPath: string;
+		if (langCode === 'en') {
+			newPath = pathSegments.length > 0 ? '/' + pathSegments.join('/') : '/';
+		} else {
+			newPath = `/${langCode}${pathSegments.length > 0 ? '/' + pathSegments.join('/') : ''}`;
+		}
 
 		// Update locale immediately for better UX
 		await updateLocale(langCode);

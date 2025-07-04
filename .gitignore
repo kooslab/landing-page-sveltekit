@@ -25,3 +25,7 @@ vite.config.ts.timestamp-*
 
 # Blog Data
 static/blogData.json
+
+# claude monitor
+uploads
+usage_tracking*.json

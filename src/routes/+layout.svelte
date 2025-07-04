@@ -20,31 +20,28 @@
 	}
 
 	let { data, children }: Props = $props();
-	let { session, supabase } = $derived(data);
+	let { user } = $derived(data);
 
 	// Ensure locale is properly initialized from URL
 	$effect(() => {
 		if (browser) {
 			const path = window.location.pathname;
 			const segments = path.split('/').filter(Boolean);
-			if (segments.length > 0 && (segments[0] === 'en' || segments[0] === 'ko')) {
-				const urlLocale = segments[0];
-				if ($locale !== urlLocale) {
-					console.log('[Root Layout] Updating locale to match URL:', urlLocale);
-					locale.set(urlLocale);
+
+			// Check if first segment is 'ko' (Korean)
+			if (segments.length > 0 && segments[0] === 'ko') {
+				if ($locale !== 'ko') {
+					console.log('[Root Layout] Updating locale to Korean');
+					locale.set('ko');
+				}
+			} else {
+				// Default to English for root or any other path
+				if ($locale !== 'en') {
+					console.log('[Root Layout] Updating locale to English');
+					locale.set('en');
 				}
 			}
 		}
-	});
-
-	onMount(() => {
-		const { data } = supabase.auth.onAuthStateChange((_, newSession) => {
-			if (newSession?.expires_at !== session?.expires_at) {
-				invalidate('supabase:auth');
-			}
-		});
-
-		return () => data.subscription.unsubscribe();
 	});
 
 	let metaTags = $derived(deepMerge(data?.baseMetaTags || {}, $page.data?.pageMetaTags || {}));
