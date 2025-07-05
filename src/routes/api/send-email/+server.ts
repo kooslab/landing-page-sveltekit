@@ -20,9 +20,13 @@ export const POST: RequestHandler = async ({ request }) => {
 		});
 
 		if (error) {
-			console.error('Resend API error:', error);
+			console.error('Resend API error:', JSON.stringify(error, null, 2));
 			return json(
-				{ success: false, message: 'Failed to send email notification' },
+				{
+					success: false,
+					message: error.message || 'Failed to send email notification',
+					details: process.env.NODE_ENV === 'development' ? error : undefined
+				},
 				{ status: 500 }
 			);
 		}
@@ -34,6 +38,15 @@ export const POST: RequestHandler = async ({ request }) => {
 		});
 	} catch (error) {
 		console.error('Error sending email:', error);
-		return json({ success: false, message: 'Failed to send email notification' }, { status: 500 });
+		const errorMessage =
+			error instanceof Error ? error.message : 'Failed to send email notification';
+		return json(
+			{
+				success: false,
+				message: errorMessage,
+				details: process.env.NODE_ENV === 'development' ? String(error) : undefined
+			},
+			{ status: 500 }
+		);
 	}
 };
