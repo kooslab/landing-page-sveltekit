@@ -18,17 +18,42 @@
 		isSubmitting = true;
 
 		try {
-			// For now, just show a success message
-			// You can implement actual form submission logic here
-			toast.success("Thank you for your message! We'll get back to you soon.");
+			// Send email via API
+			const response = await fetch('/api/send-email', {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({
+					to: 'johnnykoo@kooslab.net', // Direct email to avoid Google Groups bounce
+					subject: `New Contact Form Submission from ${formData.name}`,
+					text: `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`,
+					html: `
+						<h2>New Contact Form Submission</h2>
+						<p><strong>Name:</strong> ${formData.name}</p>
+						<p><strong>Email:</strong> ${formData.email}</p>
+						<p><strong>Message:</strong></p>
+						<p>${formData.message.replace(/\n/g, '<br>')}</p>
+					`
+				})
+			});
 
-			// Reset form
-			formData = {
-				name: '',
-				email: '',
-				message: ''
-			};
+			const result = await response.json();
+
+			if (result.success) {
+				toast.success("Thank you for your message! We'll get back to you soon.");
+
+				// Reset form
+				formData = {
+					name: '',
+					email: '',
+					message: ''
+				};
+			} else {
+				toast.error(result.message || 'Failed to send message. Please try again.');
+			}
 		} catch (error) {
+			console.error('Error sending email:', error);
 			toast.error('Something went wrong. Please try again.');
 		} finally {
 			isSubmitting = false;

@@ -27,6 +27,13 @@ export const POST: RequestHandler = async ({ request }) => {
 			);
 		}
 
+		console.log('Email sent successfully:', {
+			id: emailData?.id,
+			to: data.to,
+			subject: data.subject,
+			timestamp: new Date().toISOString()
+		});
+
 		return json({
 			success: true,
 			message: 'Email notification sent successfully',
