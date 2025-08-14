@@ -47,10 +47,171 @@
 		}
 	},
 	"portfolio": {
+		"badge": "Client Portfolio",
+		"title": "Solutions We've Built",
+		"description": "Custom software solutions deployed for real businesses. Each project tailored to solve specific challenges and deliver measurable results.",
+		"prev": "Previous",
+		"next": "Next",
+		"industry": "Industry",
+		"problem": "Problem",
+		"solution": "Solution",
+		"results": "Results",
+		"status": {
+			"deployed": "Deployed"
+		},
+		"cases": {
+			"inventory": {
+				"name": "Smart Inventory Tracker",
+				"description": "Real-time inventory management system preventing stockouts and reducing waste.",
+				"features": [
+					"15-minute daily inventory",
+					"30% reduction in waste",
+					"Predictive stock ordering"
+				],
+				"industry": "Retail & Distribution",
+				"title": "Smart Inventory Management",
+				"problem": "Manual Excel tracking causing stock-outs and overordering",
+				"solution": "Custom dashboard with automated reorder alerts and supplier integration",
+				"results": [
+					"90% reduction in stock-out incidents",
+					"$50k annual savings from excess inventory",
+					"3 hours daily saved on manual inventory checks"
+				]
+			},
+			"scheduling": {
+				"name": "Automated Scheduler",
+				"description": "Smart scheduling system eliminating double-bookings and no-shows.",
+				"features": [
+					"Zero double-bookings",
+					"85% reduction in no-shows",
+					"20% more appointments daily"
+				],
+				"industry": "Service Business",
+				"title": "Automated Service Booking",
+				"problem": "Double bookings and customer frustration with 15% no-show rate",
+				"solution": "Custom booking system with SMS reminders and route optimization",
+				"results": [
+					"Zero double-bookings since implementation",
+					"85% reduction in no-shows",
+					"20% more appointments per day"
+				]
+			},
+			"reporting": {
+				"name": "Business Intelligence Dashboard",
+				"description": "Automated reporting with real-time KPI tracking from multiple data sources.",
+				"features": ["5-minute weekly reports", "Real-time KPI visibility", "15% revenue increase"],
+				"industry": "Professional Services",
+				"title": "Instant Business Intelligence",
+				"problem": "Hours spent creating weekly reports from multiple data sources",
+				"solution": "Automated dashboard pulling data from all systems with one-click reports",
+				"results": [
+					"Weekly reports now take 5 minutes",
+					"Real-time visibility into KPIs",
+					"Data-driven decisions increased revenue 15%"
+				]
+			},
+			"contract": {
+				"name": "Contract Management System",
+				"description": "Centralized contract repository with automated alerts and workflows.",
+				"features": ["100% on-time renewals", "60% faster approvals", "Zero lost contracts"],
+				"industry": "Legal & Compliance",
+				"title": "Contract Management System",
+				"problem": "Lost contracts, missed renewal dates, and manual tracking across departments",
+				"solution": "Centralized contract repository with automated alerts and approval workflows",
+				"results": [
+					"100% on-time contract renewals",
+					"60% faster contract approval process",
+					"Zero lost contracts since implementation"
+				]
+			},
+			"delivery": {
+				"name": "Delivery Management Kiosk",
+				"description": "Self-service kiosk system with barcode scanning and automated notifications.",
+				"features": ["75% reduced wait time", "3x package processing", "95% satisfaction rate"],
+				"industry": "Logistics & Delivery"
+			},
+			"parking": {
+				"name": "AI Parking Management",
+				"description": "Computer vision system with real-time occupancy tracking and dynamic pricing.",
+				"features": ["40% revenue increase", "Real-time availability", "90% fewer violations"],
+				"industry": "Property Management"
+			},
+			"ordermap": {
+				"name": "Global Order Display Map",
+				"description": "Real-time world map visualizing live orders with analytics and trends.",
+				"features": ["Global business insights", "Optimized marketing", "30% better planning"],
+				"industry": "E-commerce"
+			},
+			"travel": {
+				"name": "Reverse Auction Travel Platform",
+				"description": "Platform where hotels bid for travelers with transparent pricing system.",
+				"features": ["35% traveler savings", "70% occupancy increase", "Win-win pricing"],
+				"industry": "Travel & Tourism"
+			},
+			"indoor": {
+				"name": "Indoor Map & Navigation Editor",
+				"description": "Visual map editor with pathfinding algorithm for indoor navigation.",
+				"features": ["90% fewer inquiries", "Optimized traffic flow", "Emergency routes mapped"],
+				"industry": "Facility Management"
+			},
+			"payment": {
+				"name": "Monthly Card Payment System",
+				"description": "Automated recurring billing with card-on-file and smart retry logic.",
+				"features": ["98% payment success", "Reduced churn by 50%", "Zero payment friction"],
+				"industry": "Subscription Services"
+			},
+			"survey": {
+				"name": "Survey & Analytics Platform",
+				"description": "Survey creation and analysis with real-time insights and automated reporting.",
+				"features": ["5-minute survey creation", "Real-time analytics", "Automated insights"],
+				"industry": "Market Research"
+			},
+			"quote": {
+				"name": "Professional Quote Generator",
+				"description": "Automated quote creation with templates and client approval tracking.",
+				"features": [
+					"Instant quote generation",
+					"Client approval tracking",
+					"Automated follow-ups"
+				],
+				"industry": "Professional Services",
+				"title": "Professional Quote Generator",
+				"problem": "Manual quote creation taking hours with inconsistent pricing",
+				"solution": "Automated quote generation with templates and client approval tracking",
+				"results": ["Instant quote generation", "Client approval tracking", "Automated follow-ups"]
+			},
+			"requirements": {
+				"name": "Requirements Management Platform",
+				"description": "Centralized platform for software requirements with version control.",
+				"features": [
+					"50% reduction in delays",
+					"Clear change traceability",
+					"Zero missed requirements"
+				],
+				"industry": "Software Development",
+				"title": "Software Requirements Platform",
+				"problem": "Requirements scattered across emails, docs, and meetings causing project delays",
+				"solution": "Centralized platform with version control and stakeholder collaboration",
+				"results": [
+					"50% reduction in project delays",
+					"Clear traceability for all changes",
+					"Zero missed requirements"
+				]
+			}
+		}
+	},
+	"products": {
 		"badge": "Our Products",
-		"title": "The Choice of High Performers",
-		"description": "Worried about installation? Concerned about usability? No need. Sign up and start immediately. We've prepared everything you need.",
-		"apps": {
+		"title": "Tools We've Built for You",
+		"description": "Ready-to-use SaaS products designed for small businesses and freelancers. Sign up and start using immediately.",
+		"status": {
+			"live": "Available Now"
+		},
+		"cta": {
+			"trial": "Try Free for 14 Days",
+			"free": "Use for Free"
+		},
+		"items": {
 			"requirements": {
 				"name": "Requirements Management Tool",
 				"description": "From organizing client requirements to project documentation - all in one place. With AI assistance, reduce documentation time by 80%.",
@@ -61,8 +222,8 @@
 					"Export to Word, Excel"
 				]
 			},
-			"analytics": {
-				"name": "Quote Management Tool",
+			"quotation": {
+				"name": "Quotation Management Tool",
 				"description": "Create professional quotes quickly and easily. Start with templates, complete in minutes, and send directly to clients.",
 				"features": [
 					"Professional quote templates",
@@ -71,24 +232,16 @@
 					"Automatic contract generation"
 				]
 			},
-			"project": {
-				"name": "Simple Project Management",
-				"description": "Optimal project management for freelancers. Manage multiple clients systematically without confusion.",
+			"billsplit": {
+				"name": "Bill Split (Mobile)",
+				"description": "Free mobile app for splitting bills with friends. Scan receipts, split instantly, and send payment requests.",
 				"features": [
-					"Intuitive Kanban boards",
-					"Dedicated client pages",
-					"Quote & contract integration",
-					"Automatic time tracking"
+					"Instant receipt scanning",
+					"Fair split calculations",
+					"Payment link generation",
+					"100% free to use"
 				]
 			}
-		},
-		"status": {
-			"live": "Available Now",
-			"comingSoon": "Coming Soon"
-		},
-		"cta": {
-			"trial": "Try Now",
-			"comingSoon": "Get Launch Updates"
 		}
 	},
 	"cta": {
@@ -126,11 +279,11 @@
 			}
 		}
 	},
-	"useCases": {
+	"portfolio_old": {
 		"badge": "Real-World Solutions",
 		"title": "Custom Software That Solves Real Problems",
 		"description": "Every business has unique challenges. Here's how we've helped companies like yours streamline operations with tailored solutions.",
-		"cases": {
+		"cases_old": {
 			"inventory": {
 				"title": "Smart Inventory Management",
 				"problem": "Manual Excel tracking causing stock-outs and overordering",
