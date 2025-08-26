@@ -25,7 +25,9 @@
 		Quote,
 		Lightbulb,
 		TrendingUp,
-		Clock
+		Clock,
+		ChevronLeft,
+		ChevronRight
 	} from 'lucide-svelte';
 	import ContactForm from '@/components/contact-form.svelte';
 
@@ -39,25 +41,95 @@
 		console.log('Is Korean:', isKorean);
 	});
 
-	// Portfolio apps data with icons
-	const portfolioApps = [
+	// Portfolio items (completed client projects)
+	const portfolioItems = [
+		{
+			id: 'inventory',
+			emoji: '📦',
+			status: 'deployed'
+		},
+		{
+			id: 'scheduling',
+			emoji: '📅',
+			status: 'deployed'
+		},
+		{
+			id: 'reporting',
+			emoji: '📊',
+			status: 'deployed'
+		},
+		{
+			id: 'contract',
+			emoji: '📝',
+			status: 'deployed'
+		},
+		{
+			id: 'delivery',
+			emoji: '🚚',
+			status: 'deployed'
+		},
+		{
+			id: 'parking',
+			emoji: '🚗',
+			status: 'deployed'
+		},
+		{
+			id: 'ordermap',
+			emoji: '🗺️',
+			status: 'deployed'
+		},
+		{
+			id: 'travel',
+			emoji: '✈️',
+			status: 'deployed'
+		},
+		{
+			id: 'indoor',
+			emoji: '🏢',
+			status: 'deployed'
+		},
+		{
+			id: 'payment',
+			emoji: '💳',
+			status: 'deployed'
+		},
+		{
+			id: 'survey',
+			emoji: '📋',
+			status: 'deployed'
+		},
+		{
+			id: 'quote',
+			emoji: '💼',
+			status: 'deployed'
+		}
+	];
+
+	// Our products (SaaS tools)
+	const ourProducts = [
 		{
 			id: 'requirements',
 			icon: CheckCircle,
 			link: 'https://docs.kooslab.net',
-			status: 'live'
+			status: 'live',
+			name: 'Requirements Management',
+			description: 'AI-powered requirements documentation tool'
 		},
 		{
-			id: 'analytics',
+			id: 'quotation',
 			icon: BarChart,
 			link: 'https://quote.kooslab.net',
-			status: 'live'
+			status: 'live',
+			name: 'Quotation Management',
+			description: 'Professional quote generation and tracking'
 		},
 		{
-			id: 'project',
-			icon: Calendar,
-			link: '#',
-			status: 'coming-soon'
+			id: 'billsplit',
+			icon: Users,
+			link: 'https://n.kooslab.net',
+			status: 'live',
+			name: 'Bill Split (Mobile)',
+			description: 'Free bill splitting app for groups'
 		}
 	];
 
@@ -68,7 +140,7 @@
 		boost: Users
 	};
 
-	// All use case keys for carousel
+	// All use case keys for carousel with emojis
 	const useCaseKeys = [
 		'inventory',
 		'scheduling',
@@ -86,8 +158,36 @@
 		'requirements'
 	];
 
+	// Map case keys to emojis
+	const caseEmojis: Record<string, string> = {
+		inventory: '📦',
+		scheduling: '📅',
+		reporting: '📊',
+		contract: '📝',
+		delivery: '🚚',
+		parking: '🚗',
+		billsplit: '💰',
+		ordermap: '🗺️',
+		travel: '✈️',
+		indoor: '🏢',
+		payment: '💳',
+		survey: '📋',
+		quote: '💼',
+		requirements: '📄'
+	};
+
 	// Testimonial keys
 	const testimonialKeys = ['manufacturer', 'consultant', 'agency'];
+
+	// Portfolio pagination state
+	let portfolioPage = $state(0);
+	let portfolioItemsPerPage = $state(4);
+	let portfolioTotalPages = $derived(Math.ceil(portfolioItems.length / portfolioItemsPerPage));
+	let portfolioVisibleItems = $derived(() => {
+		const start = portfolioPage * portfolioItemsPerPage;
+		const end = start + portfolioItemsPerPage;
+		return portfolioItems.slice(start, end);
+	});
 
 	// Carousel state
 	let carouselContainer: HTMLDivElement;
@@ -199,11 +299,21 @@
 				</p>
 
 				<div class="flex flex-col justify-center gap-4 pt-8 sm:flex-row">
-					<Button size="lg" class="group">
+					<Button
+						size="lg"
+						class="group"
+						onclick={() =>
+							document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' })}
+					>
 						{$_('hero.cta.explore')}
 						<ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 					</Button>
-					<Button size="lg" variant="outline">
+					<Button
+						size="lg"
+						variant="outline"
+						onclick={() =>
+							document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' })}
+					>
 						<Briefcase class="mr-2 h-4 w-4" />
 						{$_('hero.cta.portfolio')}
 					</Button>
@@ -279,49 +389,44 @@
 		</div>
 	</section>
 
-	<!-- Portfolio Section -->
-	<section id="portfolio" class="px-4 py-20">
+	<!-- Products Section (Our SaaS Tools) -->
+	<section id="products" class="bg-secondary/5 px-4 py-20">
 		<div class="container mx-auto">
 			<div class="mb-12 text-center">
 				<div
 					class="mb-6 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-primary"
 				>
-					<Briefcase class="h-4 w-4" />
-					<span class="text-sm font-medium">{$_('portfolio.badge')}</span>
+					<Rocket class="h-4 w-4" />
+					<span class="text-sm font-medium">{$_('products.badge')}</span>
 				</div>
 				<h2 class="mb-6 text-4xl font-bold md:text-5xl">
-					{$_('portfolio.title')}
+					{$_('products.title')}
 				</h2>
 				<p class="mx-auto max-w-3xl text-xl text-muted-foreground">
-					{$_('portfolio.description')}
+					{$_('products.description')}
 				</p>
 			</div>
 
 			<div class="mt-16 grid gap-8 md:grid-cols-3">
-				{#each portfolioApps as app}
+				{#each ourProducts as product}
 					<Card class="group overflow-hidden transition-all duration-300 hover:shadow-xl">
 						<CardHeader class="pb-4">
 							<div class="mb-4 flex items-start justify-between">
 								<div
 									class="rounded-lg bg-primary/10 p-3 transition-colors group-hover:bg-primary/20"
 								>
-									<svelte:component this={app.icon} class="h-6 w-6 text-primary" />
+									<svelte:component this={product.icon} class="h-6 w-6 text-primary" />
 								</div>
-								{#if app.status === 'live'}
-									<Badge variant="default" class="bg-green-500">{$_('portfolio.status.live')}</Badge
-									>
-								{:else}
-									<Badge variant="secondary">{$_('portfolio.status.comingSoon')}</Badge>
-								{/if}
+								<Badge variant="default" class="bg-green-500">{$_('products.status.live')}</Badge>
 							</div>
-							<CardTitle class="mb-2 text-2xl">{$_(`portfolio.apps.${app.id}.name`)}</CardTitle>
+							<CardTitle class="mb-2 text-2xl">{$_(`products.items.${product.id}.name`)}</CardTitle>
 							<CardDescription class="text-base">
-								{$_(`portfolio.apps.${app.id}.description`)}
+								{$_(`products.items.${product.id}.description`)}
 							</CardDescription>
 						</CardHeader>
 						<CardContent class="space-y-4">
 							<div class="space-y-2">
-								{#each $_(`portfolio.apps.${app.id}.features`) as feature}
+								{#each $_(`products.items.${product.id}.features`) as feature}
 									<div class="flex items-center gap-2 text-sm text-muted-foreground">
 										<CheckCircle class="h-4 w-4 flex-shrink-0 text-primary" />
 										<span>{feature}</span>
@@ -329,24 +434,22 @@
 								{/each}
 							</div>
 
-							{#if app.status === 'live'}
-								<Button
-									variant="outline"
-									class="group/btn w-full"
-									href={app.link}
-									target="_blank"
-									rel="noopener noreferrer"
-								>
-									{$_('portfolio.cta.trial')}
-									<ExternalLink
-										class="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1"
-									/>
-								</Button>
-							{:else}
-								<Button variant="outline" class="w-full" disabled>
-									{$_('portfolio.cta.comingSoon')}
-								</Button>
-							{/if}
+							<Button
+								variant="outline"
+								class="group/btn w-full"
+								href={product.link}
+								target="_blank"
+								rel="noopener noreferrer"
+							>
+								{#if product.id === 'billsplit'}
+									{$_('products.cta.free')}
+								{:else}
+									{$_('products.cta.trial')}
+								{/if}
+								<ExternalLink
+									class="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1"
+								/>
+							</Button>
 						</CardContent>
 					</Card>
 				{/each}
@@ -364,7 +467,11 @@
 				{$_('cta.description')}
 			</p>
 			<div class="flex justify-center">
-				<Button size="lg" class="group">
+				<Button
+					size="lg"
+					class="group"
+					onclick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+				>
 					{$_('cta.buttons.trial')}
 					<ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 				</Button>
@@ -427,17 +534,39 @@
 					</div>
 				</div>
 
-				<!-- Mobile Navigation Dots -->
-				<div class="mt-6 flex justify-center gap-2">
-					{#each testimonialKeys as _, index}
-						<button
-							class="h-2 w-2 rounded-full transition-all duration-300 {testimonialIndex === index
-								? 'w-8 bg-primary'
-								: 'bg-primary/30'}"
-							onclick={() => (testimonialIndex = index)}
-							aria-label="Go to testimonial {index + 1}"
-						/>
-					{/each}
+				<!-- Mobile Navigation Controls -->
+				<div class="mt-6 flex items-center justify-center gap-4">
+					<Button
+						variant="outline"
+						size="icon"
+						onclick={() =>
+							(testimonialIndex =
+								testimonialIndex === 0 ? testimonialKeys.length - 1 : testimonialIndex - 1)}
+						class="h-8 w-8 rounded-full"
+					>
+						<ChevronLeft class="h-4 w-4" />
+					</Button>
+
+					<div class="flex gap-2">
+						{#each testimonialKeys as _, index}
+							<button
+								class="h-2 w-2 rounded-full transition-all duration-300 {testimonialIndex === index
+									? 'w-8 bg-primary'
+									: 'bg-primary/30'}"
+								onclick={() => (testimonialIndex = index)}
+								aria-label="Go to testimonial {index + 1}"
+							/>
+						{/each}
+					</div>
+
+					<Button
+						variant="outline"
+						size="icon"
+						onclick={() => (testimonialIndex = (testimonialIndex + 1) % testimonialKeys.length)}
+						class="h-8 w-8 rounded-full"
+					>
+						<ChevronRight class="h-4 w-4" />
+					</Button>
 				</div>
 			</div>
 
@@ -472,21 +601,21 @@
 		</div>
 	</section>
 
-	<!-- Use Cases Section -->
-	<section id="use-cases" class="overflow-hidden bg-secondary/5 py-20">
+	<!-- Client Portfolio Section -->
+	<section id="portfolio" class="bg-secondary/5 py-20">
 		<div class="container mx-auto px-4">
 			<div class="mb-12 text-center">
 				<div
 					class="mb-6 inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-2 text-primary"
 				>
-					<Lightbulb class="h-4 w-4" />
-					<span class="text-sm font-medium">{$_('useCases.badge')}</span>
+					<Briefcase class="h-4 w-4" />
+					<span class="text-sm font-medium">{$_('portfolio.badge')}</span>
 				</div>
 				<h2 class="mb-6 text-4xl font-bold md:text-5xl">
-					{$_('useCases.title')}
+					{$_('portfolio.title')}
 				</h2>
 				<p class="mx-auto max-w-3xl text-xl text-muted-foreground">
-					{$_('useCases.description')}
+					{$_('portfolio.description')}
 				</p>
 			</div>
 		</div>
@@ -508,43 +637,35 @@
 							<div class="w-full flex-shrink-0 px-2">
 								<Card class="h-full transition-all duration-300 hover:shadow-xl">
 									<CardHeader>
-										<div class="mb-4 flex items-center justify-between">
-											<h3 class="line-clamp-2 text-lg font-bold">
-												{$_(`useCases.cases.${caseKey}.title`)}
+										<div class="mb-4 flex items-start justify-between gap-2">
+											<h3 class="flex-1 text-lg font-bold">
+												{$_(`portfolio.cases.${caseKey}.title`)}
 											</h3>
-											{#if caseKey === 'inventory' || caseKey === 'reporting'}
-												<BarChart class="h-6 w-6 flex-shrink-0 text-primary" />
-											{:else if caseKey === 'scheduling' || caseKey === 'payment'}
-												<Calendar class="h-6 w-6 flex-shrink-0 text-primary" />
-											{:else if caseKey === 'delivery' || caseKey === 'travel'}
-												<Rocket class="h-6 w-6 flex-shrink-0 text-primary" />
-											{:else if caseKey === 'parking' || caseKey === 'indoor'}
-												<Target class="h-6 w-6 flex-shrink-0 text-primary" />
-											{:else}
-												<TrendingUp class="h-6 w-6 flex-shrink-0 text-primary" />
-											{/if}
+											<span class="flex-shrink-0 text-3xl" role="img" aria-label="{caseKey} icon">
+												{caseEmojis[caseKey]}
+											</span>
 										</div>
 										<Badge variant="outline" class="mb-4 w-fit text-xs">
-											{$_(`useCases.cases.${caseKey}.industry`)}
+											{$_(`portfolio.cases.${caseKey}.industry`)}
 										</Badge>
 									</CardHeader>
 									<CardContent class="space-y-4">
 										<div>
 											<p class="mb-2 font-semibold text-destructive">Problem:</p>
 											<p class="text-sm text-muted-foreground">
-												{$_(`useCases.cases.${caseKey}.problem`)}
+												{$_(`portfolio.cases.${caseKey}.problem`)}
 											</p>
 										</div>
 										<div>
 											<p class="mb-2 font-semibold text-primary">Solution:</p>
 											<p class="text-sm text-muted-foreground">
-												{$_(`useCases.cases.${caseKey}.solution`)}
+												{$_(`portfolio.cases.${caseKey}.solution`)}
 											</p>
 										</div>
 										<div class="border-t pt-4">
 											<p class="mb-3 font-semibold">Results:</p>
 											<ul class="space-y-2">
-												{#each $_(`useCases.cases.${caseKey}.results`) as result}
+												{#each $_(`portfolio.cases.${caseKey}.results`) as result}
 													<li class="flex items-start gap-2 text-sm">
 														<CheckCircle class="mt-0.5 h-4 w-4 flex-shrink-0 text-green-500" />
 														<span>{result}</span>
@@ -560,85 +681,99 @@
 				</div>
 
 				<!-- Desktop: 3 cards view -->
-				<div class="mx-auto hidden max-w-7xl px-4 md:block">
-					<div
-						class="flex gap-6 transition-transform duration-500 ease-in-out"
-						style="transform: translateX(-{currentIndex * 424}px)"
-					>
-						<!-- Cards with infinite loop setup -->
-						{#each [...useCaseKeys, ...useCaseKeys.slice(0, 3)] as caseKey}
-							<div class="w-[400px] flex-shrink-0">
-								<Card class="h-full transition-all duration-300 hover:shadow-xl">
-									<CardHeader>
-										<div class="mb-4 flex items-center justify-between">
-											<h3 class="line-clamp-2 text-xl font-bold">
-												{$_(`useCases.cases.${caseKey}.title`)}
-											</h3>
-											{#if caseKey === 'inventory' || caseKey === 'reporting'}
-												<BarChart class="h-8 w-8 flex-shrink-0 text-primary" />
-											{:else if caseKey === 'scheduling' || caseKey === 'payment'}
-												<Calendar class="h-8 w-8 flex-shrink-0 text-primary" />
-											{:else if caseKey === 'delivery' || caseKey === 'travel'}
-												<Rocket class="h-8 w-8 flex-shrink-0 text-primary" />
-											{:else if caseKey === 'parking' || caseKey === 'indoor'}
-												<Target class="h-8 w-8 flex-shrink-0 text-primary" />
-											{:else}
-												<TrendingUp class="h-8 w-8 flex-shrink-0 text-primary" />
-											{/if}
-										</div>
-										<Badge variant="outline" class="mb-4 w-fit">
-											{$_(`useCases.cases.${caseKey}.industry`)}
-										</Badge>
-									</CardHeader>
-									<CardContent class="space-y-4">
-										<div>
-											<p class="mb-2 font-semibold text-destructive">Problem:</p>
-											<p class="line-clamp-2 text-sm text-muted-foreground">
-												{$_(`useCases.cases.${caseKey}.problem`)}
-											</p>
-										</div>
-										<div>
-											<p class="mb-2 font-semibold text-primary">Solution:</p>
-											<p class="line-clamp-2 text-sm text-muted-foreground">
-												{$_(`useCases.cases.${caseKey}.solution`)}
-											</p>
-										</div>
-										<div class="border-t pt-4">
-											<p class="mb-3 font-semibold">Results:</p>
-											<ul class="space-y-2">
-												{#each $_(`useCases.cases.${caseKey}.results`).slice(0, 3) as result}
-													<li class="flex items-start gap-2 text-sm">
-														<CheckCircle class="mt-0.5 h-4 w-4 flex-shrink-0 text-green-500" />
-														<span class="line-clamp-1">{result}</span>
-													</li>
-												{/each}
-											</ul>
-										</div>
-									</CardContent>
-								</Card>
-							</div>
-						{/each}
+				<div class="hidden md:block">
+					<div class="mx-auto" style="width: 1272px; overflow: visible;">
+						<div
+							class="flex gap-2 transition-transform duration-500 ease-in-out"
+							style="transform: translateX(-{currentIndex * 388}px)"
+						>
+							<!-- Cards with infinite loop setup -->
+							{#each [...useCaseKeys, ...useCaseKeys.slice(0, 3)] as caseKey}
+								<div class="flex-shrink-0" style="width: 380px;">
+									<Card class="h-full transition-all duration-300 hover:shadow-xl">
+										<CardHeader>
+											<div class="mb-4 flex items-start justify-between gap-3">
+												<h3 class="flex-1 text-xl font-bold">
+													{$_(`portfolio.cases.${caseKey}.title`)}
+												</h3>
+												<span class="flex-shrink-0 text-4xl" role="img" aria-label="{caseKey} icon">
+													{caseEmojis[caseKey]}
+												</span>
+											</div>
+											<Badge variant="outline" class="mb-4 w-fit">
+												{$_(`portfolio.cases.${caseKey}.industry`)}
+											</Badge>
+										</CardHeader>
+										<CardContent class="space-y-4">
+											<div>
+												<p class="mb-2 font-semibold text-destructive">Problem:</p>
+												<p class="text-sm text-muted-foreground">
+													{$_(`portfolio.cases.${caseKey}.problem`)}
+												</p>
+											</div>
+											<div>
+												<p class="mb-2 font-semibold text-primary">Solution:</p>
+												<p class="text-sm text-muted-foreground">
+													{$_(`portfolio.cases.${caseKey}.solution`)}
+												</p>
+											</div>
+											<div class="border-t pt-4">
+												<p class="mb-3 font-semibold">Results:</p>
+												<ul class="space-y-2">
+													{#each $_(`portfolio.cases.${caseKey}.results`).slice(0, 3) as result}
+														<li class="flex items-start gap-2 text-sm">
+															<CheckCircle class="mt-0.5 h-4 w-4 flex-shrink-0 text-green-500" />
+															<span>{result}</span>
+														</li>
+													{/each}
+												</ul>
+											</div>
+										</CardContent>
+									</Card>
+								</div>
+							{/each}
+						</div>
 					</div>
 				</div>
 			</div>
 
-			<!-- Navigation Dots -->
-			<div class="mt-8 flex justify-center gap-2">
-				{#each useCaseKeys as _, index}
-					<button
-						class="h-2 w-2 rounded-full transition-all duration-300 {currentIndex === index
-							? 'w-8 bg-primary'
-							: 'bg-primary/30 hover:bg-primary/50'}"
-						onclick={() => goToSlide(index)}
-						aria-label="Go to slide {index + 1}"
-					/>
-				{/each}
+			<!-- Navigation Controls -->
+			<div class="mt-8 flex items-center justify-center gap-4">
+				<Button
+					variant="outline"
+					size="icon"
+					onclick={() => goToSlide(currentIndex === 0 ? useCaseKeys.length - 1 : currentIndex - 1)}
+					class="rounded-full"
+				>
+					<ChevronLeft class="h-5 w-5" />
+				</Button>
+
+				<div class="flex gap-2">
+					{#each useCaseKeys as _, index}
+						<button
+							class="h-2 w-2 rounded-full transition-all duration-300 {currentIndex === index
+								? 'w-8 bg-primary'
+								: 'bg-primary/30 hover:bg-primary/50'}"
+							onclick={() => goToSlide(index)}
+							aria-label="Go to slide {index + 1}"
+						/>
+					{/each}
+				</div>
+
+				<Button
+					variant="outline"
+					size="icon"
+					onclick={() => goToSlide((currentIndex + 1) % useCaseKeys.length)}
+					class="rounded-full"
+				>
+					<ChevronRight class="h-5 w-5" />
+				</Button>
 			</div>
 		</div>
 	</section>
 
 	<!-- Contact Section -->
-	<section class="px-4 py-20">
+	<section id="contact" class="px-4 py-20">
 		<div class="container mx-auto max-w-2xl">
 			<div class="mb-12 text-center">
 				<h2 class="mb-4 text-4xl font-bold">{$_('contact.title')}</h2>
