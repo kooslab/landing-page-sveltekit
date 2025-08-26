@@ -2,6 +2,7 @@
 	import type { PageData } from './$types';
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
+	import { invalidateAll } from '$app/navigation';
 
 	let { data }: { data: PageData } = $props();
 	let loading = $state<string | null>(null);
@@ -23,8 +24,8 @@
 				throw new Error('Failed to update post');
 			}
 
-			// Refresh the page to show updated status
-			window.location.reload();
+			// Refresh the data to show updated status
+			await invalidateAll();
 		} catch (error) {
 			console.error('Error updating post:', error);
 			alert('Failed to update post');
@@ -184,7 +185,7 @@
 											<Button
 												variant="secondary"
 												size="sm"
-												onclick={() => togglePublish(post.id, post.published)}
+												onclick={() => togglePublish(post.id, post.published ?? false)}
 												disabled={loading === post.id}
 											>
 												{loading === post.id ? 'Updating...' : 'Unpublish'}
@@ -193,7 +194,7 @@
 											<Button
 												variant="default"
 												size="sm"
-												onclick={() => togglePublish(post.id, post.published)}
+												onclick={() => togglePublish(post.id, post.published ?? false)}
 												disabled={loading === post.id}
 											>
 												{loading === post.id ? 'Updating...' : 'Publish'}

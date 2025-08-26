@@ -2,6 +2,7 @@
 	import { _, locale } from 'svelte-i18n';
 	import { page } from '$app/stores';
 	import { Button } from '$lib/components/ui/button';
+	import SEO from '$lib/components/SEO.svelte';
 	import {
 		Card,
 		CardContent,
@@ -249,19 +250,43 @@
 	});
 </script>
 
-<svelte:head>
-	<title
-		>Kooslab - {isKorean
-			? '중소기업과 프리랜서를 위한 저렴한 디지털 도구'
-			: 'Affordable Digital Tools for SMBs & Freelancers'}</title
-	>
-	<meta
-		name="description"
-		content={isKorean
-			? '프리랜서 가격의 엔터프라이즈급 도구. 귀하의 소규모 비즈니스가 시간을 절약하고 효율적으로 작업하며 부담스러운 비용 없이 생산성을 높일 수 있도록 도와드립니다. 14일 무료 체험.'
-			: 'Enterprise-grade tools at freelancer prices. Help your small business save time, work efficiently, and boost productivity without breaking the bank. Try free for 14 days.'}
-	/>
-</svelte:head>
+<SEO
+	title={isKorean
+		? 'KoosLab - 베를린 기반 중소기업 소프트웨어 개발'
+		: 'KoosLab - Berlin-Based Custom Software Development for SMBs'}
+	description={isKorean
+		? '베를린에 위치한 소프트웨어 개발 에이전시. 독일과 유럽 전역의 중소기업을 위한 맞춤형 솔루션. 100% 만족 보장.'
+		: 'Berlin-based software development agency serving SMBs across Germany and Europe. We solve real business problems with practical solutions. Custom development tailored for your business. 100% satisfaction guaranteed.'}
+	keywords={isKorean
+		? '소프트웨어 개발 베를린, 맞춤형 소프트웨어, 중소기업, 독일, 유럽, 비즈니스 솔루션, 웹 개발, 앱 개발'
+		: 'software development Berlin, custom software Germany, Berlin tech agency, SMB solutions Europe, web development Berlin, app development Germany, business automation Berlin, IT outsourcing Germany'}
+	ogImage="/og-image-landing.png"
+	jsonLd={{
+		'@context': 'https://schema.org',
+		'@type': 'WebSite',
+		name: 'KoosLab',
+		url: 'https://kooslab.net',
+		description: isKorean
+			? '중소기업을 위한 맞춤형 소프트웨어 개발 전문 기업'
+			: 'Custom software development agency for small and medium businesses',
+		potentialAction: {
+			'@type': 'SearchAction',
+			target: {
+				'@type': 'EntryPoint',
+				urlTemplate: 'https://kooslab.net/search?q={search_term_string}'
+			},
+			'query-input': 'required name=search_term_string'
+		},
+		publisher: {
+			'@type': 'Organization',
+			name: 'KoosLab',
+			logo: {
+				'@type': 'ImageObject',
+				url: 'https://kooslab.net/logo.png'
+			}
+		}
+	}}
+/>
 
 <main class="w-full">
 	<!-- Hero Section -->

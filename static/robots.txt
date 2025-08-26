@@ -1,0 +1,76 @@
+# KoosLab Robots.txt
+# https://kooslab.net
+
+User-agent: *
+Allow: /
+
+# Crawl-delay for considerate crawling
+Crawl-delay: 1
+
+# Disallow admin and API routes
+Disallow: /admin/
+Disallow: /api/
+Disallow: /login
+Disallow: /register
+Disallow: /logout
+Disallow: /app/
+Disallow: /reqs/
+
+# Allow search engines to index blog
+Allow: /blog/
+Allow: /en/
+Allow: /ko/
+
+# Sitemap location
+Sitemap: https://kooslab.net/sitemap.xml
+
+# Popular search engine bots - explicit allow
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 1
+
+User-agent: DuckDuckBot
+Allow: /
+Crawl-delay: 1
+
+# German/European search engines
+User-agent: Seekport
+Allow: /
+Crawl-delay: 1
+
+User-agent: Qwantbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: SeznamBot
+Allow: /
+Crawl-delay: 1
+
+# AI/LLM crawlers - you can adjust these based on preference
+User-agent: GPTBot
+Allow: /
+Crawl-delay: 10
+
+User-agent: ChatGPT-User
+Allow: /
+Crawl-delay: 10
+
+User-agent: CCBot
+Allow: /
+Crawl-delay: 10
+
+User-agent: anthropic-ai
+Allow: /
+Crawl-delay: 10
+
+User-agent: Claude-Web
+Allow: /
+Crawl-delay: 10

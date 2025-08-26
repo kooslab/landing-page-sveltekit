@@ -5,7 +5,7 @@
 	import { Textarea } from '$lib/components/ui/textarea';
 	import { Switch } from '$lib/components/ui/switch';
 	import Editor from '$lib/components/Editor.svelte';
-	import { goto } from '$app/navigation';
+	import { goto, invalidateAll } from '$app/navigation';
 
 	let title = $state('');
 	let slug = $state('');
@@ -46,6 +46,8 @@
 				throw new Error('Failed to create post');
 			}
 
+			// Invalidate all data to force reload
+			await invalidateAll();
 			await goto('/admin/blogs');
 		} catch (error) {
 			console.error('Error creating post:', error);

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { marked } from 'marked';
+	import SEO from '$lib/components/SEO.svelte';
 
 	let { data }: { data: PageData } = $props();
 
@@ -21,7 +22,50 @@
 	);
 
 	const htmlContent = $derived(marked(cleanContent));
+
+	// Extract first 160 characters for meta description
+	const metaDescription = $derived(
+		data.post.excerpt ||
+			cleanContent
+				.replace(/[#*`\[\]]/g, '')
+				.substring(0, 160)
+				.trim() + '...'
+	);
 </script>
+
+<SEO
+	title={data.post.title}
+	description={metaDescription}
+	ogType="article"
+	ogImage="/og-image-blog.png"
+	publishedTime={data.post.createdAt.toISOString()}
+	modifiedTime={data.post.updatedAt.toISOString()}
+	author={data.post.authorEmail.split('@')[0]}
+	jsonLd={{
+		'@context': 'https://schema.org',
+		'@type': 'BlogPosting',
+		headline: data.post.title,
+		description: metaDescription,
+		author: {
+			'@type': 'Person',
+			name: data.post.authorEmail.split('@')[0]
+		},
+		datePublished: data.post.createdAt.toISOString(),
+		dateModified: data.post.updatedAt.toISOString(),
+		publisher: {
+			'@type': 'Organization',
+			name: 'KoosLab',
+			logo: {
+				'@type': 'ImageObject',
+				url: 'https://kooslab.net/logo.png'
+			}
+		},
+		mainEntityOfPage: {
+			'@type': 'WebPage',
+			'@id': `https://kooslab.net/blog/${data.post.slug}`
+		}
+	}}
+/>
 
 <article class="container mx-auto max-w-3xl px-4 py-16">
 	<header class="mb-8">
