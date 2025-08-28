@@ -36,10 +36,10 @@
 	}: SEOProps = $props();
 
 	// Generate full title with site name
-	$: fullTitle = title.includes('KoosLab') ? title : `${title} | KoosLab`;
+	const fullTitle = $derived(title.includes('KoosLab') ? title : `${title} | KoosLab`);
 
 	// Use current URL if canonical not provided
-	$: canonicalUrl = canonical || $page.url.href;
+	const canonicalUrl = $derived(canonical || $page.url.href);
 
 	// Default JSON-LD for organization with Berlin location
 	const defaultJsonLd = {
@@ -82,7 +82,7 @@
 	};
 
 	// Merge default and custom JSON-LD
-	$: structuredData = jsonLd || defaultJsonLd;
+	const structuredData = $derived(jsonLd || defaultJsonLd);
 </script>
 
 <svelte:head>

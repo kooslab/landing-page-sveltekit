@@ -177,8 +177,23 @@
 		requirements: '📄'
 	};
 
-	// Testimonial keys
-	const testimonialKeys = ['manufacturer', 'consultant', 'agency'];
+	// Testimonial keys - using real customer testimonials (shuffled to avoid consecutive duplicates)
+	const testimonialKeys = [
+		'workspace',
+		'safety1',
+		'bunnyrate',
+		'association1',
+		'healthcare1',
+		'aicompany1',
+		'logistics1',
+		'safety3',
+		'healthcare2',
+		'safety2',
+		'aicompany2',
+		'association2',
+		'safety4',
+		'logistics2'
+	];
 
 	// Portfolio pagination state
 	let portfolioPage = $state(0);
@@ -595,33 +610,79 @@
 				</div>
 			</div>
 
-			<!-- Desktop: Grid view -->
-			<div class="mt-16 hidden gap-8 md:grid md:grid-cols-3">
-				{#each testimonialKeys as clientKey}
-					<Card class="relative overflow-hidden">
-						<div
-							class="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-primary/50 to-primary"
-						></div>
-						<CardContent class="pt-8">
-							<Quote class="mb-4 h-8 w-8 text-primary/20" />
-							<p class="mb-6 text-lg italic text-muted-foreground">
-								"{$_(`testimonials.clients.${clientKey}.quote`)}"
-							</p>
-							<div class="border-t pt-4">
-								<p class="font-semibold">{$_(`testimonials.clients.${clientKey}.author`)}</p>
-								<p class="text-sm text-muted-foreground">
-									{$_(`testimonials.clients.${clientKey}.role`)}
-								</p>
-								<p class="text-sm font-medium">
-									{$_(`testimonials.clients.${clientKey}.company`)}
-								</p>
-								<Badge variant="secondary" class="mt-2">
-									{$_(`testimonials.clients.${clientKey}.industry`)}
-								</Badge>
+			<!-- Desktop: 4-card carousel view -->
+			<div class="mt-16 hidden md:block">
+				<div class="relative overflow-hidden">
+					<div
+						class="flex gap-4 transition-transform duration-500 ease-in-out"
+						style="transform: translateX(-{testimonialIndex * 25}%)"
+					>
+						{#each [...testimonialKeys, ...testimonialKeys.slice(0, 4)] as clientKey}
+							<div class="w-1/4 flex-shrink-0 px-2">
+								<Card class="relative h-full overflow-hidden">
+									<div
+										class="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-primary/50 to-primary"
+									></div>
+									<CardContent class="pt-8">
+										<Quote class="mb-4 h-8 w-8 text-primary/20" />
+										<p class="mb-6 line-clamp-4 text-base italic text-muted-foreground">
+											"{$_(`testimonials.clients.${clientKey}.quote`)}"
+										</p>
+										<div class="border-t pt-4">
+											<p class="font-semibold">{$_(`testimonials.clients.${clientKey}.author`)}</p>
+											<p class="text-sm text-muted-foreground">
+												{$_(`testimonials.clients.${clientKey}.role`)}
+											</p>
+											<p class="text-sm font-medium">
+												{$_(`testimonials.clients.${clientKey}.company`)}
+											</p>
+											<Badge variant="secondary" class="mt-2">
+												{$_(`testimonials.clients.${clientKey}.industry`)}
+											</Badge>
+										</div>
+									</CardContent>
+								</Card>
 							</div>
-						</CardContent>
-					</Card>
-				{/each}
+						{/each}
+					</div>
+				</div>
+
+				<!-- Desktop Navigation Controls -->
+				<div class="mt-8 flex items-center justify-center gap-4">
+					<Button
+						variant="outline"
+						size="icon"
+						onclick={() =>
+							(testimonialIndex =
+								testimonialIndex === 0 ? testimonialKeys.length - 1 : testimonialIndex - 1)}
+						class="rounded-full"
+					>
+						<ChevronLeft class="h-5 w-5" />
+					</Button>
+
+					<div class="flex gap-2">
+						{#each Array(Math.ceil(testimonialKeys.length / 4)) as _, index}
+							<button
+								class="h-2 w-2 rounded-full transition-all duration-300 {Math.floor(
+									testimonialIndex / 4
+								) === index
+									? 'w-8 bg-primary'
+									: 'bg-primary/30 hover:bg-primary/50'}"
+								onclick={() => (testimonialIndex = index * 4)}
+								aria-label="Go to testimonial page {index + 1}"
+							/>
+						{/each}
+					</div>
+
+					<Button
+						variant="outline"
+						size="icon"
+						onclick={() => (testimonialIndex = (testimonialIndex + 1) % testimonialKeys.length)}
+						class="rounded-full"
+					>
+						<ChevronRight class="h-5 w-5" />
+					</Button>
+				</div>
 			</div>
 		</div>
 	</section>

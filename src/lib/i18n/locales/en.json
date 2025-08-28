@@ -254,28 +254,105 @@
 	"testimonials": {
 		"badge": "Client Success Stories",
 		"title": "Trusted by Growing Businesses",
-		"description": "See how our custom solutions have transformed workflows and accelerated growth for small businesses like yours.",
+		"description": "See what our real customers say about working with KoosLab.",
 		"clients": {
-			"manufacturer": {
-				"quote": "Our inventory tracking was a nightmare with Excel. Kooslab built us a custom system that talks to our equipment and updates in real-time. We've cut inventory errors by 90% and saved 15 hours per week.",
-				"author": "Sarah Chen",
-				"role": "Operations Director",
-				"company": "Precision Parts Co.",
-				"industry": "Manufacturing"
+			"workspace": {
+				"quote": "Excellent manual work! Very satisfied with communication style! Great work efficiency! They paid attention to even the smallest details.",
+				"author": "Ronald Yang",
+				"role": "CEO",
+				"company": "MY WORKSPACE",
+				"industry": "Workspace Management"
 			},
-			"consultant": {
-				"quote": "As a solo consultant, I was drowning in proposal creation. The custom quote tool Kooslab built understands my pricing model and generates professional proposals in minutes, not hours. I've doubled my client capacity.",
-				"author": "Michael Rodriguez",
-				"role": "Independent Consultant",
-				"company": "Rodriguez Advisory",
-				"industry": "Business Consulting"
+			"bunnyrate": {
+				"quote": "They clearly understand customer requirements and focus on solving fundamental problems. No complaints whatsoever.",
+				"author": "Nicholas Yang",
+				"role": "CEO",
+				"company": "BunnyRate Inc.",
+				"industry": "Logistics Service"
 			},
-			"agency": {
-				"quote": "We needed a way to track creative projects across multiple clients without the complexity of enterprise tools. Kooslab delivered exactly what we needed—simple, visual, and perfectly matched to our creative process.",
-				"author": "Emma Thompson",
-				"role": "Creative Director",
-				"company": "Spark Design Studio",
-				"industry": "Creative Agency"
+			"healthcare1": {
+				"quote": "We've significantly reduced resources needed for daily repetitive tasks. No longer need to worry about human error in repetitive work.",
+				"author": "Ember Noh",
+				"role": "Manager",
+				"company": "Welaid",
+				"industry": "Healthcare"
+			},
+			"healthcare2": {
+				"quote": "This will greatly help improve work quality. Thank you for the immediate and accurate responses to feedback during collaboration.",
+				"author": "Ember Noh",
+				"role": "Manager",
+				"company": "Welaid",
+				"industry": "Healthcare"
+			},
+			"aicompany1": {
+				"quote": "They worked hard to understand our requirements specifically and accurately. They even checked things we hadn't thought of.",
+				"author": "Mihyun Park",
+				"role": "HR Team Lead",
+				"company": "MindLogic",
+				"industry": "AI Solutions"
+			},
+			"aicompany2": {
+				"quote": "Quick solution review and response. They penetrated deep into the solutions we were investigating.",
+				"author": "Mihyun Park",
+				"role": "HR Team Lead",
+				"company": "MindLogic",
+				"industry": "AI Solutions"
+			},
+			"safety1": {
+				"quote": "We gained a systematic understanding of IT and SW product development processes. Especially realized the importance of User Stories and wireframes in early stages.",
+				"author": "Hyejoung Lee",
+				"role": "Executive Director",
+				"company": "SafetyOn Solutions",
+				"industry": "Safety Solutions"
+			},
+			"safety2": {
+				"quote": "Very fast progress, responses, and feedback with clear professionalism. Made the project enjoyable to work on together.",
+				"author": "Hyejoung Lee",
+				"role": "Executive Director",
+				"company": "SafetyOn Solutions",
+				"industry": "Safety Solutions"
+			},
+			"safety3": {
+				"quote": "Fast and clear communication made everything smooth from workshop preparation to completion. Discovered pages and features we hadn't thought of.",
+				"author": "Jenny Wang",
+				"role": "Senior Researcher",
+				"company": "SafetyOn Solutions",
+				"industry": "Safety Solutions"
+			},
+			"safety4": {
+				"quote": "The prioritization work was especially beneficial. We could quickly organize high-priority development requirements.",
+				"author": "Jenny Wang",
+				"role": "Senior Researcher",
+				"company": "SafetyOn Solutions",
+				"industry": "Safety Solutions"
+			},
+			"logistics1": {
+				"quote": "Very satisfied with proactive communication between IT development and field staff, providing advanced solutions and catching errors we hadn't considered.",
+				"author": "James",
+				"role": "Director",
+				"company": "Logistics IT Company",
+				"industry": "Logistics IT"
+			},
+			"logistics2": {
+				"quote": "Both customers and employees are satisfied, greatly increasing trust in KoosLab. If you maintain this dedication, you'll achieve great success.",
+				"author": "James",
+				"role": "Director",
+				"company": "Logistics IT Company",
+				"industry": "Logistics IT"
+			},
+			"association1": {
+				"quote": "Despite having no technical knowledge or background in website creation, the User Story templates provided were extremely helpful.",
+				"author": "Jinkyung Kim",
+				"role": "Secretary General",
+				"company": "Korea Leadership Coaching Association",
+				"industry": "Education Association"
+			},
+			"association2": {
+				"quote": "Thank you so much for the detailed explanations through multiple online meetings, which were incredibly helpful.",
+				"author": "Jinkyung Kim",
+				"role": "Secretary General",
+				"company": "Korea Leadership Coaching Association",
+				"industry": "Education Association"
 			}
 		}
 	},

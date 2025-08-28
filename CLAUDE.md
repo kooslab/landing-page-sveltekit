@@ -74,6 +74,7 @@ bun run format       # Auto-format code with Prettier
 
 - use svelte 5 syntax all the time
 - never use on:click this is old svelte way, use onclick instead
+- IMPORTANT: Never use `$:` reactive statements - this is legacy Svelte syntax. Always use `$derived` for reactive values and `$effect` for reactive side effects in Svelte 5 runes mode
 - In Svelte 5, we should use $derived instead of $:
 - Cannot use `export let` in runes mode — use `$props()` instead
 - use Drizzle for ORM
