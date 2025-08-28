@@ -93,6 +93,6 @@
 		"svelte-tiptap": "^2.1.0"
 	},
 	"engines": {
-		"node": "18.x"
+		"node": "20.x"
 	}
 }
