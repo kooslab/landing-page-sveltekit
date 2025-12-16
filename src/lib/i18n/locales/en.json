@@ -128,43 +128,113 @@
 				"name": "Delivery Management Kiosk",
 				"description": "Self-service kiosk system with barcode scanning and automated notifications.",
 				"features": ["75% reduced wait time", "3x package processing", "95% satisfaction rate"],
-				"industry": "Logistics & Delivery"
+				"industry": "Logistics & Delivery",
+				"title": "Delivery Management Kiosk",
+				"problem": "Inefficient package handling and customer wait times at pickup locations",
+				"solution": "Self-service kiosk with barcode scanning and automated notification system",
+				"results": [
+					"75% reduction in customer wait time",
+					"3x more packages processed per hour",
+					"95% customer satisfaction rate"
+				]
 			},
 			"parking": {
 				"name": "AI Parking Management",
 				"description": "Computer vision system with real-time occupancy tracking and dynamic pricing.",
 				"features": ["40% revenue increase", "Real-time availability", "90% fewer violations"],
-				"industry": "Property Management"
+				"industry": "Property Management",
+				"title": "AI Parking Management",
+				"problem": "Manual parking monitoring leading to revenue loss and poor space utilization",
+				"solution": "Computer vision system with real-time occupancy tracking and dynamic pricing",
+				"results": [
+					"40% increase in parking revenue",
+					"Real-time space availability updates",
+					"90% reduction in parking violations"
+				]
 			},
 			"ordermap": {
 				"name": "Global Order Display Map",
 				"description": "Real-time world map visualizing live orders with analytics and trends.",
 				"features": ["Global business insights", "Optimized marketing", "30% better planning"],
-				"industry": "E-commerce"
+				"industry": "E-commerce",
+				"title": "Global Order Display Map",
+				"problem": "No visual representation of worldwide customer distribution and order patterns",
+				"solution": "Real-time world map showing live orders with analytics and trend visualization",
+				"results": [
+					"Instant global business insights",
+					"Optimized regional marketing strategies",
+					"30% improvement in inventory planning"
+				]
 			},
 			"travel": {
 				"name": "Reverse Auction Travel Platform",
 				"description": "Platform where hotels bid for travelers with transparent pricing system.",
 				"features": ["35% traveler savings", "70% occupancy increase", "Win-win pricing"],
-				"industry": "Travel & Tourism"
+				"industry": "Travel & Tourism",
+				"title": "Reverse Auction Travel Platform",
+				"problem": "Travelers overpaying and hotels with empty rooms during off-peak times",
+				"solution": "Platform where hotels bid for travelers with transparent reverse auction system",
+				"results": [
+					"Average 35% savings for travelers",
+					"70% occupancy increase for partner hotels",
+					"Win-win pricing for both sides"
+				]
 			},
 			"indoor": {
 				"name": "Indoor Map & Navigation Editor",
 				"description": "Visual map editor with pathfinding algorithm for indoor navigation.",
 				"features": ["90% fewer inquiries", "Optimized traffic flow", "Emergency routes mapped"],
-				"industry": "Facility Management"
+				"industry": "Facility Management",
+				"title": "Indoor Map & Navigation Editor",
+				"problem": "Visitors getting lost in large buildings and inefficient space planning",
+				"solution": "Visual map editor with pathfinding algorithm for indoor navigation",
+				"results": [
+					"90% reduction in visitor inquiries",
+					"Optimized traffic flow patterns",
+					"Emergency evacuation routes mapped"
+				]
 			},
 			"payment": {
 				"name": "Monthly Card Payment System",
 				"description": "Automated recurring billing with card-on-file and smart retry logic.",
 				"features": ["98% payment success", "Reduced churn by 50%", "Zero payment friction"],
-				"industry": "Subscription Services"
+				"industry": "Subscription Services",
+				"title": "Monthly Card Payment System",
+				"problem": "Manual recurring payment processing causing delays and missed payments",
+				"solution": "Automated monthly billing with card-on-file and smart retry logic",
+				"results": [
+					"98% successful payment rate",
+					"Zero manual processing needed",
+					"60% reduction in payment delays"
+				]
 			},
 			"survey": {
 				"name": "Survey & Analytics Platform",
 				"description": "Survey creation and analysis with real-time insights and automated reporting.",
 				"features": ["5-minute survey creation", "Real-time analytics", "Automated insights"],
-				"industry": "Market Research"
+				"industry": "Market Research",
+				"title": "Survey PDF OCR Analyzer",
+				"problem": "Thousands of paper surveys requiring manual data entry and analysis",
+				"solution": "AI-powered OCR system converting PDF surveys into analyzable data",
+				"results": [
+					"99.5% accuracy in data extraction",
+					"Processing time reduced from days to minutes",
+					"Instant insights from survey data"
+				]
+			},
+			"billsplit": {
+				"name": "Smart Bill Splitting App",
+				"description": "Automated bill splitting with receipt scanning and payment links.",
+				"features": ["Instant accurate splits", "80% faster payments", "Zero disputes"],
+				"industry": "Hospitality & Events",
+				"title": "Smart Bill Splitting App",
+				"problem": "Complex group expense calculations causing disputes and delayed payments",
+				"solution": "Automated bill splitting with receipt scanning and integrated payment links",
+				"results": [
+					"Instant accurate splits for any group size",
+					"80% faster payment collection",
+					"Zero calculation disputes"
+				]
 			},
 			"quote": {
 				"name": "Professional Quote Generator",
