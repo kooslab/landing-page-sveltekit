@@ -60,6 +60,25 @@
 			"deployed": "Deployed"
 		},
 		"cases": {
+			"equest": {
+				"name": "eQuest",
+				"description": "Client onboarding questionnaire platform replacing scattered emails with organized data collection.",
+				"features": [
+					"Drag-and-drop builder",
+					"AES-256 encryption",
+					"Team collaboration",
+					"Reusable templates"
+				],
+				"industry": "Professional Services",
+				"title": "Client Onboarding Platform",
+				"problem": "2-3 week project delays from chasing client info through scattered emails",
+				"solution": "Structured questionnaire platform with templates, encryption, and approval workflows",
+				"results": [
+					"Project kickoff time reduced from weeks to days",
+					"100% organized client data collection",
+					"Zero lost credentials with encrypted storage"
+				]
+			},
 			"inventory": {
 				"name": "Smart Inventory Tracker",
 				"description": "Real-time inventory management system preventing stockouts and reducing waste.",
@@ -272,7 +291,7 @@
 	},
 	"products": {
 		"badge": "Our Products",
-		"title": "Tools We've Built for You",
+		"title": "Our SaaS Products",
 		"description": "Ready-to-use SaaS products designed for small businesses and freelancers. Sign up and start using immediately.",
 		"status": {
 			"live": "Available Now"
@@ -282,6 +301,16 @@
 			"free": "Use for Free"
 		},
 		"items": {
+			"equest": {
+				"name": "eQuest",
+				"description": "Client onboarding questionnaire platform for freelancers, consultants, and agencies. Replace scattered emails with structured, organized data collection.",
+				"features": [
+					"Drag-and-drop questionnaire builder",
+					"Reusable templates",
+					"AES-256 encrypted data collection",
+					"Team collaboration tools"
+				]
+			},
 			"requirements": {
 				"name": "Requirements Management Tool",
 				"description": "From organizing client requirements to project documentation - all in one place. With AI assistance, reduce documentation time by 80%.",

@@ -109,6 +109,14 @@
 	// Our products (SaaS tools)
 	const ourProducts = [
 		{
+			id: 'equest',
+			icon: Calendar,
+			link: 'https://equest.kooslab.net',
+			status: 'live',
+			name: 'eQuest',
+			description: 'Client onboarding questionnaire platform'
+		},
+		{
 			id: 'requirements',
 			icon: CheckCircle,
 			link: 'https://docs.kooslab.net',
@@ -143,6 +151,7 @@
 
 	// All use case keys for carousel with emojis
 	const useCaseKeys = [
+		'equest',
 		'inventory',
 		'scheduling',
 		'reporting',
@@ -161,6 +170,7 @@
 
 	// Map case keys to emojis
 	const caseEmojis: Record<string, string> = {
+		equest: '📋',
 		inventory: '📦',
 		scheduling: '📅',
 		reporting: '📊',
@@ -447,7 +457,7 @@
 				</p>
 			</div>
 
-			<div class="mt-16 grid gap-8 md:grid-cols-3">
+			<div class="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-4">
 				{#each ourProducts as product}
 					<Card class="group overflow-hidden transition-all duration-300 hover:shadow-xl">
 						<CardHeader class="pb-4">
