@@ -1,0 +1,639 @@
+{
+	"hero": {
+		"tagline": "Maßgeschneiderte Softwarelösungen für Ihr Unternehmen",
+		"title": "Individuelle digitale Lösungen für kleine Unternehmen",
+		"description": "Verwandeln Sie Ihre einzigartigen geschäftlichen Herausforderungen in Wettbewerbsvorteile. Wir entwickeln maßgeschneiderte Software, die speziell für Ihre Arbeitsabläufe, Ihr Team und Ihre Wachstumsziele konzipiert ist. Keine Einheitslösungen – nur Tools, die genau so funktionieren, wie Sie es brauchen.",
+		"cta": {
+			"explore": "Ihre Lösung entdecken",
+			"portfolio": "Unsere Arbeit ansehen"
+		}
+	},
+	"vision": {
+		"badge": "Unser Ansatz",
+		"title": "Software, die um Ihr Unternehmen herum gebaut wird",
+		"description": "Jedes kleine Unternehmen ist einzigartig. Deshalb erstellen wir individuelle digitale Lösungen, die perfekt auf Ihre spezifischen Prozesse, Herausforderungen und Ziele abgestimmt sind.",
+		"points": {
+			"affordable": {
+				"title": "Präzise auf Ihre Bedürfnisse zugeschnitten",
+				"description": "Im Gegensatz zu generischer Software, die Sie zur Anpassung zwingt, werden unsere individuellen Lösungen um Ihre bestehenden Arbeitsabläufe herum entwickelt. Bekommen Sie genau das, was Sie brauchen – nicht mehr und nicht weniger."
+			},
+			"lightweight": {
+				"title": "Optimiert für kleine Teams",
+				"description": "Wir sind spezialisiert auf die Erstellung effizienter, fokussierter Tools für kleine Unternehmen. Unsere Lösungen sind leistungsstark und dennoch einfach, um die Produktivität Ihres Teams zu steigern, ohne es zu überfordern."
+			},
+			"timeSaving": {
+				"title": "Automatisierung, die Sie versteht",
+				"description": "Wir analysieren Ihre wiederkehrenden Aufgaben und erstellen intelligente Automatisierung, die auf Ihre Geschäftslogik zugeschnitten ist. Geben Sie Ihrem Team die Freiheit, sich auf Wachstum und Innovation zu konzentrieren."
+			}
+		}
+	},
+	"mission": {
+		"badge": "Mission",
+		"title": "Kleine Teams zu großen Sprüngen befähigen",
+		"description": "Wir verstehen die Herausforderungen, vor denen Freiberufler und Startups stehen. Wir entwickeln Tools, die Ihre Arbeit optimieren, damit Sie sich auf Ihr Kerngeschäft konzentrieren können.",
+		"values": {
+			"saveTime": {
+				"title": "Zeit ist Geld",
+				"description": "Automatisieren Sie tägliche wiederkehrende Aufgaben. Nutzen Sie die gesparte Zeit, um mehr Kunden zu treffen."
+			},
+			"workRight": {
+				"title": "Von Anfang an richtig machen",
+				"description": "Folgen Sie Industriestandards ohne Komplexität. Selbst Anfänger können wie Profis arbeiten."
+			},
+			"boost": {
+				"title": "Kleines Team, große Ergebnisse",
+				"description": "Ob allein oder im kleinen Team – erzielen Sie Ergebnisse, die mit großen Unternehmen konkurrieren können."
+			}
+		}
+	},
+	"portfolio": {
+		"badge": "Kundenportfolio",
+		"title": "Lösungen, die wir entwickelt haben",
+		"description": "Maßgeschneiderte Softwarelösungen für echte Unternehmen. Jedes Projekt wurde entwickelt, um spezifische Herausforderungen zu lösen und messbare Ergebnisse zu liefern.",
+		"prev": "Zurück",
+		"next": "Weiter",
+		"industry": "Branche",
+		"problem": "Problem",
+		"solution": "Lösung",
+		"results": "Ergebnisse",
+		"status": {
+			"deployed": "Implementiert"
+		},
+		"cases": {
+			"equest": {
+				"name": "eQuest",
+				"description": "Kunden-Onboarding-Fragebogenplattform, die verstreute E-Mails durch organisierte Datenerfassung ersetzt.",
+				"features": [
+					"Drag-and-Drop-Builder",
+					"AES-256-Verschlüsselung",
+					"Team-Zusammenarbeit",
+					"Wiederverwendbare Vorlagen"
+				],
+				"industry": "Professionelle Dienstleistungen",
+				"title": "Kunden-Onboarding-Plattform",
+				"problem": "2-3 Wochen Projektverzögerung durch das Sammeln von Kundeninformationen aus verstreuten E-Mails",
+				"solution": "Strukturierte Fragebogenplattform mit Vorlagen, Verschlüsselung und Genehmigungsworkflows",
+				"results": [
+					"Projektstart von Wochen auf Tage reduziert",
+					"100% organisierte Kundendatenerfassung",
+					"Keine verlorenen Zugangsdaten dank verschlüsselter Speicherung"
+				]
+			},
+			"inventory": {
+				"name": "Intelligente Bestandsverfolgung",
+				"description": "Echtzeit-Bestandsverwaltungssystem zur Vermeidung von Engpässen und Reduzierung von Verschwendung.",
+				"features": [
+					"15-Minuten tägliche Inventur",
+					"30% weniger Verschwendung",
+					"Vorausschauende Bestellungen"
+				],
+				"industry": "Einzelhandel & Distribution",
+				"title": "Intelligentes Bestandsmanagement",
+				"problem": "Manuelle Excel-Verfolgung verursacht Engpässe und Überbestellungen",
+				"solution": "Individuelles Dashboard mit automatischen Nachbestellungsbenachrichtigungen und Lieferantenintegration",
+				"results": [
+					"90% weniger Lieferengpässe",
+					"50.000€ jährliche Einsparungen bei Überbeständen",
+					"3 Stunden täglich bei manuellen Inventurprüfungen gespart"
+				]
+			},
+			"scheduling": {
+				"name": "Automatisierte Terminplanung",
+				"description": "Intelligentes Planungssystem zur Vermeidung von Doppelbuchungen und Nichterscheinen.",
+				"features": [
+					"Keine Doppelbuchungen",
+					"85% weniger Nichterscheinen",
+					"20% mehr Termine täglich"
+				],
+				"industry": "Dienstleistungsunternehmen",
+				"title": "Automatisierte Service-Buchung",
+				"problem": "Doppelbuchungen und Kundenfrustration mit 15% Nichterscheinungsrate",
+				"solution": "Individuelles Buchungssystem mit SMS-Erinnerungen und Routenoptimierung",
+				"results": [
+					"Keine Doppelbuchungen seit der Implementierung",
+					"85% weniger Nichterscheinen",
+					"20% mehr Termine pro Tag"
+				]
+			},
+			"reporting": {
+				"name": "Business Intelligence Dashboard",
+				"description": "Automatisierte Berichterstattung mit Echtzeit-KPI-Tracking aus mehreren Datenquellen.",
+				"features": ["5-Minuten-Wochenberichte", "Echtzeit-KPI-Sichtbarkeit", "15% Umsatzsteigerung"],
+				"industry": "Professionelle Dienstleistungen",
+				"title": "Sofortige Business Intelligence",
+				"problem": "Stunden für wöchentliche Berichte aus mehreren Datenquellen",
+				"solution": "Automatisiertes Dashboard, das Daten aus allen Systemen mit Ein-Klick-Berichten abruft",
+				"results": [
+					"Wöchentliche Berichte dauern jetzt 5 Minuten",
+					"Echtzeit-Einblick in KPIs",
+					"Datengesteuerte Entscheidungen steigerten den Umsatz um 15%"
+				]
+			},
+			"contract": {
+				"name": "Vertragsmanagementsystem",
+				"description": "Zentralisiertes Vertragsarchiv mit automatisierten Benachrichtigungen und Workflows.",
+				"features": ["100% pünktliche Verlängerungen", "60% schnellere Genehmigungen", "Keine verlorenen Verträge"],
+				"industry": "Recht & Compliance",
+				"title": "Vertragsmanagementsystem",
+				"problem": "Verlorene Verträge, verpasste Verlängerungstermine und manuelle Verfolgung über Abteilungen hinweg",
+				"solution": "Zentralisiertes Vertragsarchiv mit automatisierten Benachrichtigungen und Genehmigungsworkflows",
+				"results": [
+					"100% pünktliche Vertragsverlängerungen",
+					"60% schnellerer Vertragsgenehmigungsprozess",
+					"Keine verlorenen Verträge seit der Implementierung"
+				]
+			},
+			"delivery": {
+				"name": "Liefermanagement-Kiosk",
+				"description": "Self-Service-Kiosksystem mit Barcode-Scanning und automatischen Benachrichtigungen.",
+				"features": ["75% kürzere Wartezeit", "3x Paketverarbeitung", "95% Zufriedenheitsrate"],
+				"industry": "Logistik & Lieferung",
+				"title": "Liefermanagement-Kiosk",
+				"problem": "Ineffiziente Paketabwicklung und Kundenwartezeiten an Abholstellen",
+				"solution": "Self-Service-Kiosk mit Barcode-Scanning und automatisiertem Benachrichtigungssystem",
+				"results": [
+					"75% Reduzierung der Kundenwartezeit",
+					"3x mehr Pakete pro Stunde verarbeitet",
+					"95% Kundenzufriedenheitsrate"
+				]
+			},
+			"parking": {
+				"name": "KI-Parkplatzmanagement",
+				"description": "Computer-Vision-System mit Echtzeit-Belegungsverfolgung und dynamischer Preisgestaltung.",
+				"features": ["40% Umsatzsteigerung", "Echtzeit-Verfügbarkeit", "90% weniger Verstöße"],
+				"industry": "Immobilienverwaltung",
+				"title": "KI-Parkplatzmanagement",
+				"problem": "Manuelle Parkplatzüberwachung führt zu Umsatzverlusten und schlechter Platznutzung",
+				"solution": "Computer-Vision-System mit Echtzeit-Belegungsverfolgung und dynamischer Preisgestaltung",
+				"results": [
+					"40% Steigerung der Parkeinnahmen",
+					"Echtzeit-Verfügbarkeitsupdates",
+					"90% weniger Parkverstöße"
+				]
+			},
+			"ordermap": {
+				"name": "Globale Bestellungsanzeige",
+				"description": "Echtzeit-Weltkarte zur Visualisierung von Live-Bestellungen mit Analysen und Trends.",
+				"features": ["Globale Geschäftseinblicke", "Optimiertes Marketing", "30% bessere Planung"],
+				"industry": "E-Commerce",
+				"title": "Globale Bestellungsanzeige",
+				"problem": "Keine visuelle Darstellung der weltweiten Kundenverteilung und Bestellmuster",
+				"solution": "Echtzeit-Weltkarte mit Live-Bestellungen, Analysen und Trendvisualisierung",
+				"results": [
+					"Sofortige globale Geschäftseinblicke",
+					"Optimierte regionale Marketingstrategien",
+					"30% Verbesserung der Bestandsplanung"
+				]
+			},
+			"travel": {
+				"name": "Reverse-Auction-Reiseplattform",
+				"description": "Plattform, auf der Hotels um Reisende bieten, mit transparentem Preissystem.",
+				"features": ["35% Reisender-Ersparnis", "70% Belegungssteigerung", "Win-Win-Preise"],
+				"industry": "Reisen & Tourismus",
+				"title": "Reverse-Auction-Reiseplattform",
+				"problem": "Reisende zahlen zu viel und Hotels haben leere Zimmer in Nebenzeiten",
+				"solution": "Plattform, auf der Hotels um Reisende mit transparentem Reverse-Auction-System bieten",
+				"results": [
+					"Durchschnittlich 35% Ersparnis für Reisende",
+					"70% Belegungssteigerung für Partnerhotels",
+					"Win-Win-Preisgestaltung für beide Seiten"
+				]
+			},
+			"indoor": {
+				"name": "Indoor-Karten- & Navigationseditor",
+				"description": "Visueller Karteneditor mit Pfadfindungsalgorithmus für Indoor-Navigation.",
+				"features": ["90% weniger Anfragen", "Optimierter Verkehrsfluss", "Notfallrouten kartiert"],
+				"industry": "Gebäudemanagement",
+				"title": "Indoor-Karten- & Navigationseditor",
+				"problem": "Besucher verirren sich in großen Gebäuden und ineffiziente Raumplanung",
+				"solution": "Visueller Karteneditor mit Pfadfindungsalgorithmus für Indoor-Navigation",
+				"results": [
+					"90% weniger Besucheranfragen",
+					"Optimierte Verkehrsflussmuster",
+					"Notfall-Evakuierungsrouten kartiert"
+				]
+			},
+			"payment": {
+				"name": "Monatliches Kartenzahlungssystem",
+				"description": "Automatisierte wiederkehrende Abrechnung mit Karte hinterlegt und intelligenter Wiederholungslogik.",
+				"features": ["98% Zahlungserfolg", "50% weniger Abwanderung", "Keine Zahlungsreibung"],
+				"industry": "Abonnementdienste",
+				"title": "Monatliches Kartenzahlungssystem",
+				"problem": "Manuelle wiederkehrende Zahlungsabwicklung verursacht Verzögerungen und verpasste Zahlungen",
+				"solution": "Automatisierte monatliche Abrechnung mit hinterlegter Karte und intelligenter Wiederholungslogik",
+				"results": [
+					"98% erfolgreiche Zahlungsrate",
+					"Keine manuelle Verarbeitung erforderlich",
+					"60% weniger Zahlungsverzögerungen"
+				]
+			},
+			"survey": {
+				"name": "Umfrage- & Analyseplattform",
+				"description": "Umfrageerstellung und -analyse mit Echtzeit-Einblicken und automatisierter Berichterstattung.",
+				"features": ["5-Minuten-Umfrageerstellung", "Echtzeit-Analysen", "Automatisierte Einblicke"],
+				"industry": "Marktforschung",
+				"title": "Umfrage-PDF-OCR-Analysator",
+				"problem": "Tausende von Papierumfragen erfordern manuelle Dateneingabe und Analyse",
+				"solution": "KI-gestütztes OCR-System zur Umwandlung von PDF-Umfragen in analysierbare Daten",
+				"results": [
+					"99,5% Genauigkeit bei der Datenextraktion",
+					"Verarbeitungszeit von Tagen auf Minuten reduziert",
+					"Sofortige Einblicke aus Umfragedaten"
+				]
+			},
+			"billsplit": {
+				"name": "Intelligente Rechnungsteilungs-App",
+				"description": "Automatisierte Rechnungsteilung mit Quittungs-Scanning und Zahlungslinks.",
+				"features": ["Sofortige genaue Aufteilung", "80% schnellere Zahlungen", "Keine Streitigkeiten"],
+				"industry": "Gastgewerbe & Events",
+				"title": "Intelligente Rechnungsteilungs-App",
+				"problem": "Komplexe Gruppenausgabenberechnungen verursachen Streitigkeiten und verzögerte Zahlungen",
+				"solution": "Automatisierte Rechnungsteilung mit Quittungs-Scanning und integrierten Zahlungslinks",
+				"results": [
+					"Sofortige genaue Aufteilung für jede Gruppengröße",
+					"80% schnellerer Zahlungseingang",
+					"Keine Berechnungsstreitigkeiten"
+				]
+			},
+			"quote": {
+				"name": "Professioneller Angebotsgenerator",
+				"description": "Automatisierte Angebotserstellung mit Vorlagen und Kundengenehmigungsverfolgung.",
+				"features": [
+					"Sofortige Angebotserstellung",
+					"Kundengenehmigungsverfolgung",
+					"Automatisierte Nachverfolgung"
+				],
+				"industry": "Professionelle Dienstleistungen",
+				"title": "Professioneller Angebotsgenerator",
+				"problem": "Manuelle Angebotserstellung dauert Stunden mit inkonsistenter Preisgestaltung",
+				"solution": "Automatisierte Angebotserstellung mit Vorlagen und Kundengenehmigungsverfolgung",
+				"results": ["Sofortige Angebotserstellung", "Kundengenehmigungsverfolgung", "Automatisierte Nachverfolgung"]
+			},
+			"requirements": {
+				"name": "Anforderungsmanagement-Plattform",
+				"description": "Zentralisierte Plattform für Softwareanforderungen mit Versionskontrolle.",
+				"features": [
+					"50% weniger Verzögerungen",
+					"Klare Änderungsnachverfolgung",
+					"Keine verpassten Anforderungen"
+				],
+				"industry": "Softwareentwicklung",
+				"title": "Software-Anforderungsplattform",
+				"problem": "Anforderungen verstreut über E-Mails, Dokumente und Meetings verursachen Projektverzögerungen",
+				"solution": "Zentralisierte Plattform mit Versionskontrolle und Stakeholder-Zusammenarbeit",
+				"results": [
+					"50% weniger Projektverzögerungen",
+					"Klare Nachverfolgbarkeit für alle Änderungen",
+					"Keine verpassten Anforderungen"
+				]
+			}
+		}
+	},
+	"products": {
+		"badge": "Unsere Produkte",
+		"title": "Unsere SaaS-Produkte",
+		"description": "Sofort einsatzbereite SaaS-Produkte für kleine Unternehmen und Freiberufler. Registrieren Sie sich und starten Sie sofort.",
+		"status": {
+			"live": "Jetzt verfügbar"
+		},
+		"cta": {
+			"trial": "14 Tage kostenlos testen",
+			"free": "Kostenlos nutzen"
+		},
+		"items": {
+			"equest": {
+				"name": "eQuest",
+				"description": "Kunden-Onboarding-Fragebogenplattform für Freiberufler, Berater und Agenturen. Ersetzen Sie verstreute E-Mails durch strukturierte, organisierte Datenerfassung.",
+				"features": [
+					"Drag-and-Drop-Fragebogen-Builder",
+					"Wiederverwendbare Vorlagen",
+					"AES-256 verschlüsselte Datenerfassung",
+					"Team-Zusammenarbeitstools"
+				]
+			},
+			"requirements": {
+				"name": "Anforderungs-Tool",
+				"description": "Von der Organisation von Kundenanforderungen bis zur Projektdokumentation - alles an einem Ort. Mit KI-Unterstützung reduzieren Sie die Dokumentationszeit um 80%.",
+				"features": [
+					"Anforderungen in 5 Minuten organisieren",
+					"KI-generierte detaillierte Kriterien",
+					"Echtzeit-Team-Zusammenarbeit",
+					"Export nach Word, Excel"
+				]
+			},
+			"quotation": {
+				"name": "Angebots-Tool",
+				"description": "Erstellen Sie schnell und einfach professionelle Angebote. Starten Sie mit Vorlagen, erstellen Sie in Minuten und senden Sie direkt an Kunden.",
+				"features": [
+					"Professionelle Vorlagen",
+					"Echtzeit-Genehmigungsstatus",
+					"KI-Preisassistent",
+					"Automatische Verträge"
+				]
+			},
+			"billsplit": {
+				"name": "Bill Split (Mobile)",
+				"description": "Kostenlose mobile App zum Aufteilen von Rechnungen mit Freunden. Quittungen scannen, sofort aufteilen und Zahlungsanfragen senden.",
+				"features": [
+					"Sofortiges Quittungs-Scanning",
+					"Faire Aufteilungsberechnungen",
+					"Zahlungslink-Erstellung",
+					"100% kostenlos nutzbar"
+				]
+			}
+		}
+	},
+	"cta": {
+		"title": "Bereit für Software, die so arbeitet wie Sie?",
+		"description": "Schließen Sie sich Tausenden von kleinen Unternehmen an, die maßgeschneiderte Lösungen nutzen, die perfekt auf ihre Bedürfnisse abgestimmt sind. Lassen Sie uns besprechen, wie wir Ihre einzigartigen Herausforderungen in optimierte Arbeitsabläufe verwandeln können.",
+		"buttons": {
+			"trial": "Beratung vereinbaren"
+		}
+	},
+	"testimonials": {
+		"badge": "Kundenerfolgsgeschichten",
+		"title": "Von wachsenden Unternehmen vertraut",
+		"description": "Sehen Sie, was unsere echten Kunden über die Zusammenarbeit mit KooStory sagen.",
+		"clients": {
+			"workspace": {
+				"quote": "Ausgezeichnete manuelle Arbeit! Sehr zufrieden mit dem Kommunikationsstil! Großartige Arbeitseffizienz! Sie haben auf die kleinsten Details geachtet.",
+				"author": "Ronald Yang",
+				"role": "CEO",
+				"company": "MY WORKSPACE",
+				"industry": "Workspace-Management"
+			},
+			"bunnyrate": {
+				"quote": "Sie verstehen Kundenanforderungen klar und konzentrieren sich auf die Lösung grundlegender Probleme. Absolut keine Beschwerden.",
+				"author": "Nicholas Yang",
+				"role": "CEO",
+				"company": "BunnyRate Inc.",
+				"industry": "Logistikdienstleistung"
+			},
+			"healthcare1": {
+				"quote": "Wir haben die Ressourcen für tägliche wiederkehrende Aufgaben erheblich reduziert. Keine Sorgen mehr über menschliche Fehler bei wiederkehrender Arbeit.",
+				"author": "Ember Noh",
+				"role": "Manager",
+				"company": "Welaid",
+				"industry": "Gesundheitswesen"
+			},
+			"healthcare2": {
+				"quote": "Das wird die Arbeitsqualität erheblich verbessern. Vielen Dank für die sofortigen und genauen Antworten auf Feedback während der Zusammenarbeit.",
+				"author": "Ember Noh",
+				"role": "Manager",
+				"company": "Welaid",
+				"industry": "Gesundheitswesen"
+			},
+			"aicompany1": {
+				"quote": "Sie haben sich bemüht, unsere Anforderungen spezifisch und genau zu verstehen. Sie haben sogar Dinge überprüft, an die wir nicht gedacht hatten.",
+				"author": "Mihyun Park",
+				"role": "HR-Teamleiterin",
+				"company": "MindLogic",
+				"industry": "KI-Lösungen"
+			},
+			"aicompany2": {
+				"quote": "Schnelle Lösungsprüfung und Reaktion. Sie sind tief in die Lösungen eingedrungen, die wir untersuchten.",
+				"author": "Mihyun Park",
+				"role": "HR-Teamleiterin",
+				"company": "MindLogic",
+				"industry": "KI-Lösungen"
+			},
+			"safety1": {
+				"quote": "Wir haben ein systematisches Verständnis der IT- und SW-Produktentwicklungsprozesse gewonnen. Besonders die Wichtigkeit von User Stories und Wireframes in frühen Phasen erkannt.",
+				"author": "Hyejoung Lee",
+				"role": "Geschäftsführerin",
+				"company": "SafetyOn Solutions",
+				"industry": "Sicherheitslösungen"
+			},
+			"safety2": {
+				"quote": "Sehr schneller Fortschritt, Antworten und Feedback mit klarer Professionalität. Hat die Zusammenarbeit am Projekt angenehm gemacht.",
+				"author": "Hyejoung Lee",
+				"role": "Geschäftsführerin",
+				"company": "SafetyOn Solutions",
+				"industry": "Sicherheitslösungen"
+			},
+			"safety3": {
+				"quote": "Schnelle und klare Kommunikation machte alles reibungslos von der Workshop-Vorbereitung bis zum Abschluss. Seiten und Funktionen entdeckt, an die wir nicht gedacht hatten.",
+				"author": "Jenny Wang",
+				"role": "Senior Researcher",
+				"company": "SafetyOn Solutions",
+				"industry": "Sicherheitslösungen"
+			},
+			"safety4": {
+				"quote": "Die Priorisierungsarbeit war besonders vorteilhaft. Wir konnten schnell hochprioritäre Entwicklungsanforderungen organisieren.",
+				"author": "Jenny Wang",
+				"role": "Senior Researcher",
+				"company": "SafetyOn Solutions",
+				"industry": "Sicherheitslösungen"
+			},
+			"logistics1": {
+				"quote": "Sehr zufrieden mit der proaktiven Kommunikation zwischen IT-Entwicklung und Feldpersonal, fortschrittliche Lösungen und Fehlererkennung, die wir nicht bedacht hatten.",
+				"author": "James",
+				"role": "Direktor",
+				"company": "Logistics IT Company",
+				"industry": "Logistik-IT"
+			},
+			"logistics2": {
+				"quote": "Sowohl Kunden als auch Mitarbeiter sind zufrieden, was das Vertrauen in KooStory stark erhöht. Wenn Sie dieses Engagement beibehalten, werden Sie großen Erfolg erzielen.",
+				"author": "James",
+				"role": "Direktor",
+				"company": "Logistics IT Company",
+				"industry": "Logistik-IT"
+			},
+			"association1": {
+				"quote": "Trotz fehlender technischer Kenntnisse oder Erfahrung in der Website-Erstellung waren die bereitgestellten User-Story-Vorlagen äußerst hilfreich.",
+				"author": "Jinkyung Kim",
+				"role": "Generalsekretärin",
+				"company": "Korea Leadership Coaching Association",
+				"industry": "Bildungsverband"
+			},
+			"association2": {
+				"quote": "Vielen Dank für die detaillierten Erklärungen in mehreren Online-Meetings, die unglaublich hilfreich waren.",
+				"author": "Jinkyung Kim",
+				"role": "Generalsekretärin",
+				"company": "Korea Leadership Coaching Association",
+				"industry": "Bildungsverband"
+			}
+		}
+	},
+	"portfolio_old": {
+		"badge": "Praxislösungen",
+		"title": "Maßgeschneiderte Software, die echte Probleme löst",
+		"description": "Jedes Unternehmen hat einzigartige Herausforderungen. So haben wir Unternehmen wie Ihres geholfen, Abläufe mit maßgeschneiderten Lösungen zu optimieren.",
+		"cases_old": {
+			"inventory": {
+				"title": "Intelligentes Bestandsmanagement",
+				"problem": "Manuelle Excel-Verfolgung verursacht Engpässe und Überbestellungen",
+				"solution": "Individuelles Dashboard mit automatischen Nachbestellungsbenachrichtigungen und Lieferantenintegration",
+				"results": [
+					"90% weniger Lieferengpässe",
+					"50.000€ jährlich bei Überbeständen gespart",
+					"3 Stunden täglich bei manuellen Zählungen gespart"
+				],
+				"industry": "Einzelhandel & Distribution"
+			},
+			"scheduling": {
+				"title": "Automatisierte Serviceplanung",
+				"problem": "Doppelbuchungen und verpasste Termine beeinträchtigen die Kundenzufriedenheit",
+				"solution": "Individuelles Buchungssystem mit SMS-Erinnerungen und Routenoptimierung",
+				"results": [
+					"Keine Doppelbuchungen seit der Implementierung",
+					"85% weniger Nichterscheinen",
+					"20% mehr Termine pro Tag"
+				],
+				"industry": "Dienstleistungsunternehmen"
+			},
+			"reporting": {
+				"title": "Sofortige Business Intelligence",
+				"problem": "Stunden für wöchentliche Berichte aus mehreren Datenquellen",
+				"solution": "Automatisiertes Dashboard, das Daten aus allen Systemen mit Ein-Klick-Berichten abruft",
+				"results": [
+					"Wöchentliche Berichte dauern jetzt 5 Minuten",
+					"Echtzeit-Einblick in KPIs",
+					"Datengesteuerte Entscheidungen steigerten den Umsatz um 15%"
+				],
+				"industry": "Professionelle Dienstleistungen"
+			},
+			"contract": {
+				"title": "Vertragsmanagementsystem",
+				"problem": "Verlorene Verträge, verpasste Verlängerungstermine und manuelle Verfolgung über Abteilungen hinweg",
+				"solution": "Zentralisiertes Vertragsarchiv mit automatisierten Benachrichtigungen und Genehmigungsworkflows",
+				"results": [
+					"100% pünktliche Vertragsverlängerungen",
+					"60% schnellerer Vertragsgenehmigungsprozess",
+					"Keine verlorenen Verträge seit der Implementierung"
+				],
+				"industry": "Recht & Compliance"
+			},
+			"delivery": {
+				"title": "Liefermanagement-Kiosk",
+				"problem": "Ineffiziente Paketabwicklung und Kundenwartezeiten an Abholstellen",
+				"solution": "Self-Service-Kiosk mit Barcode-Scanning und automatisiertem Benachrichtigungssystem",
+				"results": [
+					"75% Reduzierung der Kundenwartezeit",
+					"3x mehr Pakete pro Stunde verarbeitet",
+					"95% Kundenzufriedenheitsrate"
+				],
+				"industry": "Logistik & Lieferung"
+			},
+			"parking": {
+				"title": "KI-Parkplatzmanagement",
+				"problem": "Manuelle Parkplatzüberwachung führt zu Umsatzverlusten und schlechter Platznutzung",
+				"solution": "Computer-Vision-System mit Echtzeit-Belegungsverfolgung und dynamischer Preisgestaltung",
+				"results": [
+					"40% Steigerung der Parkeinnahmen",
+					"Echtzeit-Verfügbarkeitsupdates",
+					"90% weniger Parkverstöße"
+				],
+				"industry": "Immobilienverwaltung"
+			},
+			"billsplit": {
+				"title": "Intelligente Rechnungsteilungs-App",
+				"problem": "Komplexe Gruppenausgabenberechnungen verursachen Streitigkeiten und verzögerte Zahlungen",
+				"solution": "Automatisierte Rechnungsteilung mit Quittungs-Scanning und integrierten Zahlungslinks",
+				"results": [
+					"Sofortige genaue Aufteilung für jede Gruppengröße",
+					"80% schnellerer Zahlungseingang",
+					"Keine Berechnungsstreitigkeiten"
+				],
+				"industry": "Gastgewerbe & Events"
+			},
+			"ordermap": {
+				"title": "Globale Bestellungsanzeige",
+				"problem": "Keine visuelle Darstellung der weltweiten Kundenverteilung und Bestellmuster",
+				"solution": "Echtzeit-Weltkarte mit Live-Bestellungen, Analysen und Trendvisualisierung",
+				"results": [
+					"Sofortige globale Geschäftseinblicke",
+					"Optimierte regionale Marketingstrategien",
+					"30% Verbesserung der Bestandsplanung"
+				],
+				"industry": "E-Commerce"
+			},
+			"travel": {
+				"title": "Reverse-Auction-Reiseplattform",
+				"problem": "Reisende zahlen zu viel und Hotels haben leere Zimmer in Nebenzeiten",
+				"solution": "Plattform, auf der Hotels um Reisende mit transparentem Reverse-Auction-System bieten",
+				"results": [
+					"Durchschnittlich 35% Ersparnis für Reisende",
+					"70% Belegungssteigerung für Partnerhotels",
+					"Win-Win-Preisgestaltung für beide Seiten"
+				],
+				"industry": "Reisen & Tourismus"
+			},
+			"indoor": {
+				"title": "Indoor-Karten- & Navigationseditor",
+				"problem": "Besucher verirren sich in großen Gebäuden und ineffiziente Raumplanung",
+				"solution": "Visueller Karteneditor mit Pfadfindungsalgorithmus für Indoor-Navigation",
+				"results": [
+					"90% weniger Besucheranfragen",
+					"Optimierte Verkehrsflussmuster",
+					"Notfall-Evakuierungsrouten kartiert"
+				],
+				"industry": "Gebäudemanagement"
+			},
+			"payment": {
+				"title": "Monatliches Kartenzahlungssystem",
+				"problem": "Manuelle wiederkehrende Zahlungsabwicklung verursacht Verzögerungen und verpasste Zahlungen",
+				"solution": "Automatisierte monatliche Abrechnung mit hinterlegter Karte und intelligenter Wiederholungslogik",
+				"results": [
+					"98% erfolgreiche Zahlungsrate",
+					"Keine manuelle Verarbeitung erforderlich",
+					"60% weniger Zahlungsverzögerungen"
+				],
+				"industry": "Abonnementdienste"
+			},
+			"survey": {
+				"title": "Umfrage-PDF-OCR-Analysator",
+				"problem": "Tausende von Papierumfragen erfordern manuelle Dateneingabe und Analyse",
+				"solution": "KI-gestütztes OCR-System zur Umwandlung von PDF-Umfragen in analysierbare Daten",
+				"results": [
+					"99,5% Genauigkeit bei der Datenextraktion",
+					"Verarbeitungszeit von Tagen auf Minuten reduziert",
+					"Sofortige Einblicke aus Umfragedaten"
+				],
+				"industry": "Marktforschung"
+			},
+			"quote": {
+				"title": "Dynamisches Angebotsmanagement",
+				"problem": "Inkonsistente Preisgestaltung und langsame Angebotserstellung verlieren Geschäfte",
+				"solution": "Intelligentes Angebotssystem mit Preisregeln und sofortiger PDF-Erstellung",
+				"results": [
+					"Angebotserstellungszeit um 85% reduziert",
+					"Konsistente Preisgestaltung im gesamten Vertriebsteam",
+					"25% höhere Abschlussquote"
+				],
+				"industry": "B2B-Vertrieb"
+			},
+			"requirements": {
+				"title": "Software-Anforderungsplattform",
+				"problem": "Anforderungen verstreut über E-Mails, Dokumente und Meetings verursachen Projektverzögerungen",
+				"solution": "Zentralisierte Plattform mit Versionskontrolle und Stakeholder-Zusammenarbeit",
+				"results": [
+					"50% weniger Projektverzögerungen",
+					"Klare Nachverfolgbarkeit für alle Änderungen",
+					"Keine verpassten Anforderungen"
+				],
+				"industry": "Softwareentwicklung"
+			}
+		}
+	},
+	"contact": {
+		"title": "Haben Sie Fragen?",
+		"description": "Von Implementierungsberatung bis zur Nutzungsanleitung – fragen Sie uns alles.",
+		"form": {
+			"name": "Name",
+			"namePlaceholder": "Max Mustermann",
+			"email": "E-Mail",
+			"emailPlaceholder": "beispiel@email.de",
+			"message": "Nachricht",
+			"messagePlaceholder": "Wie können wir Ihnen helfen?",
+			"submit": "Nachricht senden",
+			"sending": "Wird gesendet..."
+		}
+	},
+	"nav": {
+		"vision": "Vision",
+		"mission": "Mission",
+		"portfolio": "Produkte",
+		"blog": "Blog"
+	}
+}

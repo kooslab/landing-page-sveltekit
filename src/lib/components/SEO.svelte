@@ -149,7 +149,8 @@
 
 	<!-- Language and regional targeting -->
 	<link rel="alternate" hreflang="en" href={canonicalUrl} />
-	<link rel="alternate" hreflang="en-DE" href={canonicalUrl} />
+	<link rel="alternate" hreflang="ko" href={canonicalUrl.replace(/\/$/, '') + '/ko'} />
+	<link rel="alternate" hreflang="de" href={canonicalUrl.replace(/\/$/, '') + '/de'} />
 	<link rel="alternate" hreflang="x-default" href={canonicalUrl} />
 
 	<!-- Structured Data / JSON-LD -->

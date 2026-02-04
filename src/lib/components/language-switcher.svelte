@@ -6,7 +6,8 @@
 
 	const languages = [
 		{ code: 'en', name: 'English' },
-		{ code: 'ko', name: '한국어' }
+		{ code: 'ko', name: '한국어' },
+		{ code: 'de', name: 'Deutsch' }
 	];
 
 	let showDropdown = $state(false);
@@ -35,7 +36,7 @@
 		const pathSegments = currentPath.split('/').filter(Boolean);
 
 		// Remove the current language code if it exists as the first segment
-		if (pathSegments.length > 0 && (pathSegments[0] === 'en' || pathSegments[0] === 'ko')) {
+		if (pathSegments.length > 0 && (pathSegments[0] === 'en' || pathSegments[0] === 'ko' || pathSegments[0] === 'de')) {
 			pathSegments.shift();
 		}
 

@@ -27,12 +27,14 @@
 		if (browser) {
 			const path = window.location.pathname;
 			const segments = path.split('/').filter(Boolean);
+			const supportedLangs = ['en', 'ko', 'de'];
 
-			// Check if first segment is 'ko' (Korean)
-			if (segments.length > 0 && segments[0] === 'ko') {
-				if ($locale !== 'ko') {
-					console.log('[Root Layout] Updating locale to Korean');
-					locale.set('ko');
+			// Check if first segment is a supported language
+			if (segments.length > 0 && supportedLangs.includes(segments[0])) {
+				const urlLang = segments[0];
+				if ($locale !== urlLang) {
+					console.log(`[Root Layout] Updating locale to ${urlLang}`);
+					locale.set(urlLang);
 				}
 			} else {
 				// Default to English for root or any other path

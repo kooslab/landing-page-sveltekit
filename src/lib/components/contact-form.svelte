@@ -4,6 +4,7 @@
 	import { Textarea } from '$lib/components/ui/textarea';
 	import { Label } from '$lib/components/ui/label';
 	import { toast } from 'svelte-sonner';
+	import { _ } from 'svelte-i18n';
 
 	let formData = $state({
 		name: '',
@@ -62,35 +63,35 @@
 
 <form onsubmit={handleSubmit} class="space-y-6">
 	<div class="space-y-2">
-		<Label for="name">Name</Label>
+		<Label for="name">{$_('contact.form.name')}</Label>
 		<Input
 			id="name"
 			type="text"
 			bind:value={formData.name}
-			placeholder="Your name"
+			placeholder={$_('contact.form.namePlaceholder')}
 			required
 			disabled={isSubmitting}
 		/>
 	</div>
 
 	<div class="space-y-2">
-		<Label for="email">Email</Label>
+		<Label for="email">{$_('contact.form.email')}</Label>
 		<Input
 			id="email"
 			type="email"
 			bind:value={formData.email}
-			placeholder="your@email.com"
+			placeholder={$_('contact.form.emailPlaceholder')}
 			required
 			disabled={isSubmitting}
 		/>
 	</div>
 
 	<div class="space-y-2">
-		<Label for="message">Message</Label>
+		<Label for="message">{$_('contact.form.message')}</Label>
 		<Textarea
 			id="message"
 			bind:value={formData.message}
-			placeholder="Tell us about your project..."
+			placeholder={$_('contact.form.messagePlaceholder')}
 			rows={5}
 			required
 			disabled={isSubmitting}
@@ -98,6 +99,6 @@
 	</div>
 
 	<Button type="submit" class="w-full" disabled={isSubmitting}>
-		{isSubmitting ? 'Sending...' : 'Send Message'}
+		{isSubmitting ? $_('contact.form.sending') : $_('contact.form.submit')}
 	</Button>
 </form>

@@ -2,7 +2,7 @@ import { error } from '@sveltejs/kit';
 import type { LayoutLoad } from './$types';
 import { updateLocale } from '$lib/i18n';
 
-const supportedLanguages = ['en', 'ko'];
+const supportedLanguages = ['en', 'ko', 'de'];
 
 export const load: LayoutLoad = async ({ params }) => {
 	// Default to 'en' if no language parameter is provided
