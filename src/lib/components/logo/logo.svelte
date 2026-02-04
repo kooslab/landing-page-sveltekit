@@ -28,4 +28,4 @@
 </script>
 
 <!-- <Logo class={cn(variants({ size }), className)} /> -->
-<img src="/favicon.png" alt="Kooslab" class="h-8 w-8" />
+<img src="/favicon.png" alt="Koostory" class="h-8 w-8" />

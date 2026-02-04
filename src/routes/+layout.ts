@@ -2,7 +2,7 @@ import { type MetaTagsProps } from 'svelte-meta-tags';
 import type { LayoutLoad } from './$types';
 
 export const load: LayoutLoad = async ({ data, url }) => {
-	const title = `Kooslab`;
+	const title = `Koostory`;
 	const description = `Enterprise-grade tools at freelancer prices. Help your small business save time, work efficiently, and boost productivity without breaking the bank. Try free for 14 days.`;
 	const canonicalUrl = new URL(url.pathname, url.origin).href;
 	const OGImage = 'https://media.fromkian.com/acme.jpg';

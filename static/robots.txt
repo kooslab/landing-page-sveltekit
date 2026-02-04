@@ -1,5 +1,5 @@
-# KoosLab Robots.txt
-# https://kooslab.net
+# KooStory Robots.txt
+# https://koostory.net
 
 User-agent: *
 Allow: /
@@ -22,7 +22,7 @@ Allow: /en/
 Allow: /ko/
 
 # Sitemap location
-Sitemap: https://kooslab.net/sitemap.xml
+Sitemap: https://koostory.net/sitemap.xml
 
 # Popular search engine bots - explicit allow
 User-agent: Googlebot

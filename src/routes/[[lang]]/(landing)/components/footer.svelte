@@ -5,7 +5,7 @@
 <footer class="min-h-16 w-full border-t">
 	<div class="container max-w-[1024px] py-8 text-foreground/70">
 		<div class="flex w-full items-center justify-between">
-			<div class="flex items-center space-x-1">Kooslab © {new Date().getFullYear()}</div>
+			<div class="flex items-center space-x-1">Koostory © {new Date().getFullYear()}</div>
 			<!-- <ThemeController /> -->
 		</div>
 	</div>

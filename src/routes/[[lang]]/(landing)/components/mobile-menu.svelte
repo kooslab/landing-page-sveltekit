@@ -50,7 +50,7 @@
 	</Sheet.Trigger>
 	<Sheet.Content side="left" class="w-[85vw] max-w-[300px]">
 		<Sheet.Header>
-			<Sheet.Title class="text-left text-xl">Kooslab Menu</Sheet.Title>
+			<Sheet.Title class="text-left text-xl">Koostory Menu</Sheet.Title>
 		</Sheet.Header>
 		<nav class="flex flex-col gap-4 px-2 py-6">
 			<a

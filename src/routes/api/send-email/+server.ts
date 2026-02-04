@@ -12,7 +12,7 @@ export const POST: RequestHandler = async ({ request }) => {
 
 		// Send email using Resend
 		const { data: emailData, error } = await resend.emails.send({
-			from: 'Kooslab SW requirements <no-reply@mail.kooslab.net>', // Using your verified domain
+			from: 'Koostory SW requirements <no-reply@mail.koostory.net>', // Using your verified domain
 			to: data.to,
 			subject: data.subject,
 			text: data.text,

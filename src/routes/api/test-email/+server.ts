@@ -9,9 +9,9 @@ export const GET: RequestHandler = async () => {
 	try {
 		// Test email
 		const { data, error } = await resend.emails.send({
-			from: 'Kooslab SW requirements <no-reply@mail.kooslab.net>',
-			to: 'johnnykoo@kooslab.net', // Test recipient
-			subject: 'Test Email from KoosLab',
+			from: 'Koostory SW requirements <no-reply@mail.koostory.net>',
+			to: 'johnnykoo@koostory.net', // Test recipient
+			subject: 'Test Email from KooStory',
 			text: 'This is a test email to verify Resend is working correctly.',
 			html: '<h1>Test Email</h1><p>This is a test email to verify Resend is working correctly.</p>'
 		});

@@ -1,4 +1,4 @@
-# Kooslab Landing Page SvelteKit Project Rules
+# Koostory Landing Page SvelteKit Project Rules
 
 ## Package Management
 
@@ -15,4 +15,4 @@
 
 ## Email Services
 
-- The project uses Resend email service with a verified domain (mail.kooslab.net).
+- The project uses Resend email service with a verified domain (mail.koostory.net).

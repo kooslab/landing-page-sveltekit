@@ -25,7 +25,7 @@
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify({
-					to: 'johnnykoo@kooslab.net', // Direct email to avoid Google Groups bounce
+					to: 'johnnykoo@koostory.net', // Direct email to avoid Google Groups bounce
 					subject: `New Contact Form Submission from ${formData.name}`,
 					text: `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`,
 					html: `

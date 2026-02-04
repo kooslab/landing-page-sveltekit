@@ -6,22 +6,22 @@
 </script>
 
 <SEO
-	title="Blog - KoosLab"
+	title="Blog - KooStory"
 	description="Insights and articles about software development, business solutions, and technology for small and medium businesses. Learn how to solve real business problems with practical solutions."
 	keywords="software development blog, business technology, SMB solutions, automation, digital transformation, tech insights"
 	ogType="website"
 	jsonLd={{
 		'@context': 'https://schema.org',
 		'@type': 'Blog',
-		name: 'KoosLab Blog',
-		url: 'https://kooslab.net/blog',
+		name: 'KooStory Blog',
+		url: 'https://koostory.net/blog',
 		description: 'Insights about software development and business solutions for SMBs',
 		publisher: {
 			'@type': 'Organization',
-			name: 'KoosLab',
+			name: 'KooStory',
 			logo: {
 				'@type': 'ImageObject',
-				url: 'https://kooslab.net/logo.png'
+				url: 'https://koostory.net/logo.png'
 			}
 		}
 	}}

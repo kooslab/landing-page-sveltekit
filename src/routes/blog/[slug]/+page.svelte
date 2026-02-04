@@ -54,15 +54,15 @@
 		dateModified: data.post.updatedAt.toISOString(),
 		publisher: {
 			'@type': 'Organization',
-			name: 'KoosLab',
+			name: 'KooStory',
 			logo: {
 				'@type': 'ImageObject',
-				url: 'https://kooslab.net/logo.png'
+				url: 'https://koostory.net/logo.png'
 			}
 		},
 		mainEntityOfPage: {
 			'@type': 'WebPage',
-			'@id': `https://kooslab.net/blog/${data.post.slug}`
+			'@id': `https://koostory.net/blog/${data.post.slug}`
 		}
 	}}
 />

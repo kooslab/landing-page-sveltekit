@@ -19,15 +19,15 @@
 	}
 
 	let {
-		title = 'KoosLab - Your Trusted Software Development Partner',
-		description = 'KoosLab specializes in custom software development for small and medium businesses. We solve real business problems with practical, scalable solutions.',
+		title = 'KooStory - Your Trusted Software Development Partner',
+		description = 'KooStory specializes in custom software development for small and medium businesses. We solve real business problems with practical, scalable solutions.',
 		keywords = 'software development, custom software, business solutions, web development, app development, automation, small business, SMB, outsourcing',
 		canonical,
 		ogType = 'website',
 		ogImage = '/og-image.png',
-		ogImageAlt = 'KoosLab - Software Development Agency',
+		ogImageAlt = 'KooStory - Software Development Agency',
 		twitterCard = 'summary_large_image',
-		author = 'KoosLab',
+		author = 'KooStory',
 		publishedTime,
 		modifiedTime,
 		noindex = false,
@@ -36,7 +36,7 @@
 	}: SEOProps = $props();
 
 	// Generate full title with site name
-	const fullTitle = $derived(title.includes('KoosLab') ? title : `${title} | KoosLab`);
+	const fullTitle = $derived(title.includes('KooStory') ? title : `${title} | KooStory`);
 
 	// Use current URL if canonical not provided
 	const canonicalUrl = $derived(canonical || $page.url.href);
@@ -45,11 +45,11 @@
 	const defaultJsonLd = {
 		'@context': 'https://schema.org',
 		'@type': 'Organization',
-		name: 'KoosLab',
-		url: 'https://kooslab.net',
-		logo: 'https://kooslab.net/logo.png',
+		name: 'KooStory',
+		url: 'https://koostory.net',
+		logo: 'https://koostory.net/logo.png',
 		description:
-			'KoosLab is a software development agency specializing in custom solutions for small and medium businesses.',
+			'KooStory is a software development agency specializing in custom solutions for small and medium businesses.',
 		address: {
 			'@type': 'PostalAddress',
 			addressLocality: 'Berlin',
@@ -73,12 +73,12 @@
 		],
 		contactPoint: {
 			'@type': 'ContactPoint',
-			email: 'contact@kooslab.net',
+			email: 'contact@koostory.net',
 			contactType: 'customer service',
 			availableLanguage: ['English', 'Korean', 'German'],
 			areaServed: ['DE', 'EU', 'US', 'KR']
 		},
-		sameAs: ['https://github.com/kooslab', 'https://www.linkedin.com/company/kooslab']
+		sameAs: ['https://github.com/koostory', 'https://www.linkedin.com/company/koostory']
 	};
 
 	// Merge default and custom JSON-LD
@@ -111,10 +111,10 @@
 	<meta property="og:description" content={description} />
 	<meta
 		property="og:image"
-		content={ogImage.startsWith('http') ? ogImage : `https://kooslab.net${ogImage}`}
+		content={ogImage.startsWith('http') ? ogImage : `https://koostory.net${ogImage}`}
 	/>
 	<meta property="og:image:alt" content={ogImageAlt} />
-	<meta property="og:site_name" content="KoosLab" />
+	<meta property="og:site_name" content="KooStory" />
 	<meta property="og:locale" content="en_US" />
 
 	<!-- Article specific Open Graph tags -->
@@ -131,7 +131,7 @@
 	<meta name="twitter:description" content={description} />
 	<meta
 		name="twitter:image"
-		content={ogImage.startsWith('http') ? ogImage : `https://kooslab.net${ogImage}`}
+		content={ogImage.startsWith('http') ? ogImage : `https://koostory.net${ogImage}`}
 	/>
 	<meta name="twitter:image:alt" content={ogImageAlt} />
 

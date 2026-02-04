@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a SvelteKit landing page for KoosLab with internationalization support (English and Korean). The project uses TypeScript, Tailwind CSS, and Supabase for backend services.
+This is a SvelteKit landing page for KooStory with internationalization support (English and Korean). The project uses TypeScript, Tailwind CSS, and Supabase for backend services.
 
 ## Essential Commands
 

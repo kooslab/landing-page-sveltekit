@@ -3,9 +3,9 @@ description:
 globs: 
 alwaysApply: true
 ---
-# General Rules for Kooslab Landing Page
+# General Rules for Koostory Landing Page
 
-- This is a SvelteKit project for the Kooslab landing page
+- This is a SvelteKit project for the Koostory landing page
 - Follow consistent code formatting and style
 - Write clean, maintainable, and well-documented code
 - Ensure the site is responsive and accessible

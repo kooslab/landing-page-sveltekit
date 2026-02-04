@@ -111,7 +111,7 @@
 		{
 			id: 'equest',
 			icon: Calendar,
-			link: 'https://equest.kooslab.net',
+			link: 'https://equest.koostory.net',
 			status: 'live',
 			name: 'eQuest',
 			description: 'Client onboarding questionnaire platform'
@@ -119,7 +119,7 @@
 		{
 			id: 'requirements',
 			icon: CheckCircle,
-			link: 'https://docs.kooslab.net',
+			link: 'https://docs.koostory.net',
 			status: 'live',
 			name: 'Requirements Management',
 			description: 'AI-powered requirements documentation tool'
@@ -127,7 +127,7 @@
 		{
 			id: 'quotation',
 			icon: BarChart,
-			link: 'https://quote.kooslab.net',
+			link: 'https://quote.koostory.net',
 			status: 'live',
 			name: 'Quotation Management',
 			description: 'Professional quote generation and tracking'
@@ -135,7 +135,7 @@
 		{
 			id: 'billsplit',
 			icon: Users,
-			link: 'https://n.kooslab.net',
+			link: 'https://n.koostory.net',
 			status: 'live',
 			name: 'Bill Split (Mobile)',
 			description: 'Free bill splitting app for groups'
@@ -277,8 +277,8 @@
 
 <SEO
 	title={isKorean
-		? 'KoosLab - 베를린 기반 중소기업 소프트웨어 개발'
-		: 'KoosLab - Berlin-Based Custom Software Development for SMBs'}
+		? 'KooStory - 베를린 기반 중소기업 소프트웨어 개발'
+		: 'KooStory - Berlin-Based Custom Software Development for SMBs'}
 	description={isKorean
 		? '베를린에 위치한 소프트웨어 개발 에이전시. 독일과 유럽 전역의 중소기업을 위한 맞춤형 솔루션. 100% 만족 보장.'
 		: 'Berlin-based software development agency serving SMBs across Germany and Europe. We solve real business problems with practical solutions. Custom development tailored for your business. 100% satisfaction guaranteed.'}
@@ -289,8 +289,8 @@
 	jsonLd={{
 		'@context': 'https://schema.org',
 		'@type': 'WebSite',
-		name: 'KoosLab',
-		url: 'https://kooslab.net',
+		name: 'KooStory',
+		url: 'https://koostory.net',
 		description: isKorean
 			? '중소기업을 위한 맞춤형 소프트웨어 개발 전문 기업'
 			: 'Custom software development agency for small and medium businesses',
@@ -298,16 +298,16 @@
 			'@type': 'SearchAction',
 			target: {
 				'@type': 'EntryPoint',
-				urlTemplate: 'https://kooslab.net/search?q={search_term_string}'
+				urlTemplate: 'https://koostory.net/search?q={search_term_string}'
 			},
 			'query-input': 'required name=search_term_string'
 		},
 		publisher: {
 			'@type': 'Organization',
-			name: 'KoosLab',
+			name: 'KooStory',
 			logo: {
 				'@type': 'ImageObject',
-				url: 'https://kooslab.net/logo.png'
+				url: 'https://koostory.net/logo.png'
 			}
 		}
 	}}
