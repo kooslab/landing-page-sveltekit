@@ -25,7 +25,7 @@ export const GET: RequestHandler = async ({ url }) => {
 			'.*/reqs/.*'
 		],
 		paramValues: {
-			'/[[lang]]': ['', 'en', 'ko']
+			'/[[lang]]': ['', 'en', 'ko', 'de']
 		},
 		additionalPaths: [
 			'/',

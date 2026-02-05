@@ -16,10 +16,11 @@ Disallow: /logout
 Disallow: /app/
 Disallow: /reqs/
 
-# Allow search engines to index blog
+# Allow search engines to index blog and language versions
 Allow: /blog/
 Allow: /en/
 Allow: /ko/
+Allow: /de/
 
 # Sitemap location
 Sitemap: https://koostory.net/sitemap.xml
