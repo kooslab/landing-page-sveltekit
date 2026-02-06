@@ -2,31 +2,49 @@
 	import type { PageData } from './$types';
 	import { marked } from 'marked';
 	import SEO from '$lib/components/SEO.svelte';
+	import TranslateButton from '$lib/components/blog/translate-button.svelte';
 
 	let { data }: { data: PageData } = $props();
 
-	// Configure marked to support GFM tables
+	// Configure marked to support GFM tables (tables is enabled via gfm: true)
 	marked.setOptions({
 		gfm: true,
-		breaks: true,
-		tables: true
+		breaks: true
 	});
 
 	// Clean up the content to ensure tables are parsed correctly
-	const cleanContent = $derived(
-		data.post.content
+	function cleanMarkdownContent(content: string): string {
+		return content
 			.replace(/^\s*<p>\s*/gm, '') // Remove opening <p> tags
 			.replace(/\s*<\/p>\s*$/gm, '') // Remove closing </p> tags
 			.replace(/(\|.*\|)\n\n+(\|)/g, '$1\n$2') // Fix tables with extra line breaks
-			.trim()
-	);
+			.trim();
+	}
 
-	const htmlContent = $derived(marked(cleanContent));
+	const originalCleanContent = $derived(cleanMarkdownContent(data.post.content));
+
+	// Translation state
+	let translatedTitle = $state<string | null>(null);
+	let translatedContent = $state<string | null>(null);
+
+	const displayTitle = $derived(translatedTitle ?? data.post.title);
+	const displayContent = $derived(translatedContent ?? originalCleanContent);
+	const htmlContent = $derived(marked(displayContent));
+
+	function handleTranslate(title: string, content: string): void {
+		translatedTitle = title;
+		translatedContent = content;
+	}
+
+	function handleShowOriginal(): void {
+		translatedTitle = null;
+		translatedContent = null;
+	}
 
 	// Extract first 160 characters for meta description
 	const metaDescription = $derived(
 		data.post.excerpt ||
-			cleanContent
+			originalCleanContent
 				.replace(/[#*`\[\]]/g, '')
 				.substring(0, 160)
 				.trim() + '...'
@@ -69,8 +87,8 @@
 
 <article class="container mx-auto max-w-3xl px-4 py-16">
 	<header class="mb-8">
-		<h1 class="mb-4 text-4xl font-bold">{data.post.title}</h1>
-		<div class="text-muted-foreground">
+		<h1 class="mb-4 text-4xl font-bold">{displayTitle}</h1>
+		<div class="flex flex-wrap items-center gap-4 text-muted-foreground">
 			<time datetime={data.post.createdAt.toISOString()}>
 				{new Date(data.post.createdAt).toLocaleDateString('en-US', {
 					year: 'numeric',
@@ -78,6 +96,13 @@
 					day: 'numeric'
 				})}
 			</time>
+			<TranslateButton
+				slug={data.post.slug}
+				originalTitle={data.post.title}
+				originalContent={originalCleanContent}
+				onTranslate={handleTranslate}
+				onShowOriginal={handleShowOriginal}
+			/>
 		</div>
 	</header>
 
