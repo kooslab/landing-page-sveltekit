@@ -6,12 +6,12 @@
 	interface Props {
 		slug: string;
 		originalTitle: string;
-		originalContent: string;
-		onTranslate: (translatedTitle: string, translatedContent: string, lang: SupportedLang) => void;
+		originalHtmlContent: string;
+		onTranslate: (translatedTitle: string, translatedHtmlContent: string, lang: SupportedLang) => void;
 		onShowOriginal: () => void;
 	}
 
-	let { slug, originalTitle, originalContent, onTranslate, onShowOriginal }: Props = $props();
+	let { slug, originalTitle, originalHtmlContent, onTranslate, onShowOriginal }: Props = $props();
 
 	let isLoading = $state(false);
 	let currentLang = $state<SupportedLang | null>(null);
@@ -66,11 +66,11 @@
 		localStorage.setItem(getCacheKey(lang), JSON.stringify({ title, content }));
 	}
 
-	async function translateText(text: string, targetLang: SupportedLang): Promise<string> {
+	async function translateText(text: string, targetLang: SupportedLang, isHtml = false): Promise<string> {
 		const response = await fetch('/api/translate', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({ text, targetLang })
+			body: JSON.stringify({ text, targetLang, isHtml })
 		});
 
 		if (!response.ok) {
@@ -100,17 +100,17 @@
 		isLoading = true;
 
 		try {
-			// Translate title and content in parallel
-			const [translatedTitle, translatedContent] = await Promise.all([
-				translateText(originalTitle, lang),
-				translateText(originalContent, lang)
+			// Translate title (plain text) and content (HTML) in parallel
+			const [translatedTitle, translatedHtmlContent] = await Promise.all([
+				translateText(originalTitle, lang, false),
+				translateText(originalHtmlContent, lang, true)
 			]);
 
 			// Cache the result
-			saveToCache(lang, translatedTitle, translatedContent);
+			saveToCache(lang, translatedTitle, translatedHtmlContent);
 
 			currentLang = lang;
-			onTranslate(translatedTitle, translatedContent, lang);
+			onTranslate(translatedTitle, translatedHtmlContent, lang);
 		} catch (err) {
 			error = err instanceof Error ? err.message : 'Translation failed';
 		} finally {

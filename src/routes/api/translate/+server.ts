@@ -8,6 +8,7 @@ interface TranslateRequest {
 	text: string;
 	targetLang: TargetLang;
 	sourceLang?: string;
+	isHtml?: boolean;
 }
 
 interface DeepLTranslation {
@@ -33,7 +34,7 @@ export const POST: RequestHandler = async ({ request }) => {
 		return json({ error: 'Invalid JSON body' }, { status: 400 });
 	}
 
-	const { text, targetLang, sourceLang } = body;
+	const { text, targetLang, sourceLang, isHtml } = body;
 
 	if (!text || typeof text !== 'string') {
 		return json({ error: 'Missing or invalid text field' }, { status: 400 });
@@ -51,6 +52,11 @@ export const POST: RequestHandler = async ({ request }) => {
 
 		if (sourceLang) {
 			params.append('source_lang', sourceLang);
+		}
+
+		// Preserve HTML tags during translation
+		if (isHtml) {
+			params.append('tag_handling', 'html');
 		}
 
 		const response = await fetch('https://api-free.deepl.com/v2/translate', {

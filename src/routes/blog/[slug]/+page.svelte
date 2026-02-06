@@ -22,18 +22,18 @@
 	}
 
 	const originalCleanContent = $derived(cleanMarkdownContent(data.post.content));
+	const originalHtmlContent = $derived(marked(originalCleanContent) as string);
 
 	// Translation state
 	let translatedTitle = $state<string | null>(null);
-	let translatedContent = $state<string | null>(null);
+	let translatedHtmlContent = $state<string | null>(null);
 
 	const displayTitle = $derived(translatedTitle ?? data.post.title);
-	const displayContent = $derived(translatedContent ?? originalCleanContent);
-	const htmlContent = $derived(marked(displayContent));
+	const htmlContent = $derived(translatedHtmlContent ?? originalHtmlContent);
 
 	function handleTranslate(title: string, content: string): void {
 		translatedTitle = title;
-		translatedContent = content;
+		translatedHtmlContent = content;
 	}
 
 	function handleShowOriginal(): void {
@@ -99,7 +99,7 @@
 			<TranslateButton
 				slug={data.post.slug}
 				originalTitle={data.post.title}
-				originalContent={originalCleanContent}
+				originalHtmlContent={originalHtmlContent}
 				onTranslate={handleTranslate}
 				onShowOriginal={handleShowOriginal}
 			/>
