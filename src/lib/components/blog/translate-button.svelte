@@ -1,6 +1,5 @@
 <script lang="ts">
-	import { Button } from '$lib/components/ui/button';
-	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
+	import { onMount } from 'svelte';
 
 	type SupportedLang = 'EN' | 'KO' | 'DE';
 
@@ -17,12 +16,33 @@
 	let isLoading = $state(false);
 	let currentLang = $state<SupportedLang | null>(null);
 	let error = $state<string | null>(null);
+	let showDropdown = $state(false);
 
 	const languages: { code: SupportedLang; label: string; flag: string }[] = [
 		{ code: 'EN', label: 'English', flag: '🇬🇧' },
 		{ code: 'KO', label: '한국어', flag: '🇰🇷' },
 		{ code: 'DE', label: 'Deutsch', flag: '🇩🇪' }
 	];
+
+	// Detect user's preferred language from browser
+	function detectUserLanguage(): SupportedLang | null {
+		if (typeof window === 'undefined') return null;
+
+		const browserLang = navigator.language || navigator.languages?.[0] || '';
+		const langCode = browserLang.toLowerCase().split('-')[0];
+
+		if (langCode === 'de') return 'DE';
+		if (langCode === 'ko') return 'KO';
+		return null; // English is the default/original, no translation needed
+	}
+
+	// Auto-translate on mount if user's browser language differs from English
+	onMount(() => {
+		const detectedLang = detectUserLanguage();
+		if (detectedLang) {
+			handleTranslate(detectedLang);
+		}
+	});
 
 	function getCacheKey(lang: SupportedLang): string {
 		return `translate_${slug}_${lang}`;
@@ -63,6 +83,8 @@
 	}
 
 	async function handleTranslate(lang: SupportedLang): Promise<void> {
+		showDropdown = false;
+
 		if (lang === currentLang) return;
 
 		error = null;
@@ -102,6 +124,20 @@
 		onShowOriginal();
 	}
 
+	function toggleDropdown(event: MouseEvent): void {
+		event.stopPropagation();
+		if (!isLoading) {
+			showDropdown = !showDropdown;
+		}
+	}
+
+	function handleClickOutside(event: MouseEvent): void {
+		const target = event.target as HTMLElement;
+		if (!target.closest('.translate-dropdown')) {
+			showDropdown = false;
+		}
+	}
+
 	const buttonLabel = $derived(
 		isLoading
 			? 'Translating...'
@@ -111,9 +147,15 @@
 	);
 </script>
 
+<svelte:window onclick={handleClickOutside} />
+
 <div class="flex items-center gap-2">
 	{#if currentLang}
-		<Button variant="ghost" size="sm" onclick={handleShowOriginal} class="text-muted-foreground">
+		<button
+			type="button"
+			onclick={handleShowOriginal}
+			class="flex items-center rounded-md px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
 				width="16"
@@ -130,52 +172,38 @@
 				<path d="M3 3v5h5" />
 			</svg>
 			Show Original
-		</Button>
+		</button>
 	{/if}
 
-	<DropdownMenu.Root>
-		<DropdownMenu.Trigger asChild let:builder>
-			<Button builders={[builder]} variant="outline" size="sm" disabled={isLoading}>
-				{#if isLoading}
-					<svg
-						class="mr-1 h-4 w-4 animate-spin"
-						xmlns="http://www.w3.org/2000/svg"
-						fill="none"
-						viewBox="0 0 24 24"
-					>
-						<circle
-							class="opacity-25"
-							cx="12"
-							cy="12"
-							r="10"
-							stroke="currentColor"
-							stroke-width="4"
-						></circle>
-						<path
-							class="opacity-75"
-							fill="currentColor"
-							d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-						></path>
-					</svg>
-				{:else}
-					<svg
-						xmlns="http://www.w3.org/2000/svg"
-						width="16"
-						height="16"
-						viewBox="0 0 24 24"
-						fill="none"
+	<div class="translate-dropdown relative">
+		<button
+			type="button"
+			onclick={toggleDropdown}
+			disabled={isLoading}
+			class="flex items-center gap-1 rounded-md border bg-background px-3 py-1.5 text-sm font-medium shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground disabled:pointer-events-none disabled:opacity-50"
+		>
+			{#if isLoading}
+				<svg
+					class="h-4 w-4 animate-spin"
+					xmlns="http://www.w3.org/2000/svg"
+					fill="none"
+					viewBox="0 0 24 24"
+				>
+					<circle
+						class="opacity-25"
+						cx="12"
+						cy="12"
+						r="10"
 						stroke="currentColor"
-						stroke-width="2"
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						class="mr-1"
-					>
-						<circle cx="12" cy="12" r="10" />
-						<path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
-						<path d="M2 12h20" />
-					</svg>
-				{/if}
-				{buttonLabel}
+						stroke-width="4"
+					></circle>
+					<path
+						class="opacity-75"
+						fill="currentColor"
+						d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+					></path>
+				</svg>
+			{:else}
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					width="16"
@@ -186,40 +214,64 @@
 					stroke-width="2"
 					stroke-linecap="round"
 					stroke-linejoin="round"
-					class="ml-1"
 				>
-					<path d="m6 9 6 6 6-6" />
+					<circle cx="12" cy="12" r="10" />
+					<path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20" />
+					<path d="M2 12h20" />
 				</svg>
-			</Button>
-		</DropdownMenu.Trigger>
-		<DropdownMenu.Content align="start">
-			{#each languages as lang}
-				<DropdownMenu.Item
-					onclick={() => handleTranslate(lang.code)}
-					class={currentLang === lang.code ? 'bg-accent' : ''}
-				>
-					<span class="mr-2">{lang.flag}</span>
-					{lang.label}
-					{#if currentLang === lang.code}
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							width="16"
-							height="16"
-							viewBox="0 0 24 24"
-							fill="none"
-							stroke="currentColor"
-							stroke-width="2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-							class="ml-auto"
-						>
-							<path d="M20 6 9 17l-5-5" />
-						</svg>
-					{/if}
-				</DropdownMenu.Item>
-			{/each}
-		</DropdownMenu.Content>
-	</DropdownMenu.Root>
+			{/if}
+			<span>{buttonLabel}</span>
+			<svg
+				xmlns="http://www.w3.org/2000/svg"
+				width="16"
+				height="16"
+				viewBox="0 0 24 24"
+				fill="none"
+				stroke="currentColor"
+				stroke-width="2"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+			>
+				<path d="m6 9 6 6 6-6" />
+			</svg>
+		</button>
+
+		{#if showDropdown}
+			<div
+				class="absolute left-0 z-50 mt-2 w-36 rounded-md border bg-popover p-1 shadow-md"
+			>
+				{#each languages as lang}
+					<button
+						type="button"
+						onclick={() => handleTranslate(lang.code)}
+						class="flex w-full items-center rounded-sm px-2 py-1.5 text-sm outline-none transition-colors hover:bg-accent hover:text-accent-foreground {currentLang ===
+						lang.code
+							? 'bg-accent'
+							: ''}"
+					>
+						<span class="mr-2">{lang.flag}</span>
+						<span>{lang.label}</span>
+						{#if currentLang === lang.code}
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="16"
+								height="16"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								class="ml-auto"
+							>
+								<path d="M20 6 9 17l-5-5" />
+							</svg>
+						{/if}
+					</button>
+				{/each}
+			</div>
+		{/if}
+	</div>
 </div>
 
 {#if error}
