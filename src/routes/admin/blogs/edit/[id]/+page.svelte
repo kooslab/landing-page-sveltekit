@@ -14,7 +14,7 @@
 	let slug = $state(data.post.slug);
 	let excerpt = $state(data.post.excerpt || '');
 	let content = $state(data.post.content);
-	let published = $state(data.post.published);
+	let published = $state(data.post.published ?? false);
 	let loading = $state(false);
 
 	async function handleSubmit(e?: Event) {

@@ -2,15 +2,18 @@
 	import { Avatar as AvatarPrimitive } from 'bits-ui';
 	import { cn } from '@/utils.js';
 
-	type $$Props = AvatarPrimitive.FallbackProps;
-
-	let className: $$Props['class'] = undefined;
-	export { className as class };
+	let {
+		ref = $bindable(null),
+		class: className,
+		children,
+		...restProps
+	}: AvatarPrimitive.FallbackProps = $props();
 </script>
 
 <AvatarPrimitive.Fallback
+	bind:ref
 	class={cn('flex h-full w-full items-center justify-center rounded-full bg-muted', className)}
-	{...$$restProps}
+	{...restProps}
 >
-	<slot />
+	{@render children?.()}
 </AvatarPrimitive.Fallback>

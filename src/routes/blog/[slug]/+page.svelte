@@ -38,7 +38,7 @@
 
 	function handleShowOriginal(): void {
 		translatedTitle = null;
-		translatedContent = null;
+		translatedHtmlContent = null;
 	}
 
 	// Extract first 160 characters for meta description
@@ -99,7 +99,7 @@
 			<TranslateButton
 				slug={data.post.slug}
 				originalTitle={data.post.title}
-				originalHtmlContent={originalHtmlContent}
+				{originalHtmlContent}
 				onTranslate={handleTranslate}
 				onShowOriginal={handleShowOriginal}
 			/>

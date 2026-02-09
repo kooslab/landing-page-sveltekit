@@ -2,8 +2,18 @@
 	import { enhance } from '$app/forms';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
+	import { _ } from 'svelte-i18n';
 
-	import { Menu, Home, Eye, Target, Briefcase, BookOpen, ChevronDown, LogOut } from 'lucide-svelte';
+	import {
+		Menu,
+		Home,
+		User,
+		Hammer,
+		Briefcase,
+		BookOpen,
+		ChevronDown,
+		LogOut
+	} from 'lucide-svelte';
 
 	import { buttonVariants } from '$lib/components/ui/button';
 	import { Button } from '$lib/components/ui/button';
@@ -20,11 +30,9 @@
 	}
 
 	const scrollToSection = (sectionId: string) => {
-		sheetOpen = false; // Close the sheet first
+		sheetOpen = false;
 
-		// Use setTimeout to wait for sheet animation to finish
 		setTimeout(() => {
-			// Check if we're on the landing page
 			const currentPath = window.location.pathname;
 			const isLandingPage = currentPath === '/' || currentPath === `/${lang}`;
 
@@ -42,15 +50,23 @@
 </script>
 
 <Sheet.Root bind:open={sheetOpen}>
-	<Sheet.Trigger asChild>
-		<Button variant="ghost" size="icon" class="md:hidden" onclick={() => (sheetOpen = !sheetOpen)}>
-			<Menu class="h-5 w-5" />
-			<span class="sr-only">Toggle menu</span>
-		</Button>
+	<Sheet.Trigger>
+		{#snippet child({ props })}
+			<Button
+				{...props}
+				variant="ghost"
+				size="icon"
+				class="md:hidden"
+				onclick={() => (sheetOpen = !sheetOpen)}
+			>
+				<Menu class="h-5 w-5" />
+				<span class="sr-only">Toggle menu</span>
+			</Button>
+		{/snippet}
 	</Sheet.Trigger>
 	<Sheet.Content side="left" class="w-[85vw] max-w-[300px]">
 		<Sheet.Header>
-			<Sheet.Title class="text-left text-xl">Koostory Menu</Sheet.Title>
+			<Sheet.Title class="text-left text-xl">KooStory</Sheet.Title>
 		</Sheet.Header>
 		<nav class="flex flex-col gap-4 px-2 py-6">
 			<a
@@ -71,21 +87,21 @@
 			<button
 				class="flex items-center gap-3 rounded-md px-3 py-2 text-left text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
 				onclick={() => {
-					scrollToSection('vision');
+					scrollToSection('about');
 				}}
 			>
-				<Eye class="h-5 w-5" />
-				Vision
+				<User class="h-5 w-5" />
+				{$_('nav.about')}
 			</button>
 
 			<button
 				class="flex items-center gap-3 rounded-md px-3 py-2 text-left text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
 				onclick={() => {
-					scrollToSection('mission');
+					scrollToSection('process');
 				}}
 			>
-				<Target class="h-5 w-5" />
-				Mission
+				<Hammer class="h-5 w-5" />
+				{$_('nav.process')}
 			</button>
 
 			<button
@@ -95,7 +111,7 @@
 				}}
 			>
 				<Briefcase class="h-5 w-5" />
-				Portfolio
+				{$_('nav.portfolio')}
 			</button>
 
 			<a
@@ -110,19 +126,19 @@
 				}}
 			>
 				<BookOpen class="h-5 w-5" />
-				Blog
+				{$_('nav.blog')}
 			</a>
 
 			<div class="mt-6 border-t border-border pt-6">
 				<a
-					href="{langPrefix}/#portfolio"
+					href="{langPrefix}/#workshop"
 					class={buttonVariants({ variant: 'default', size: 'sm', class: 'w-full' })}
 					onclick={(e) => {
 						e.preventDefault();
-						scrollToSection('portfolio');
+						scrollToSection('workshop');
 					}}
 				>
-					View Our Portfolio
+					{$_('workshop.cta')}
 				</a>
 			</div>
 		</nav>

@@ -6,17 +6,18 @@
 
 <script lang="ts" generics="T extends Record<string, unknown>, U extends _FormPath<T>">
 	import * as FormPrimitive from 'formsnap';
-	import type { WithoutChildren } from 'bits-ui';
-	import { type PrimitiveDivAttributes, cn } from '@/utils';
+	import type { WithoutChildren, BitsPrimitiveDivAttributes } from 'bits-ui';
+	import { cn } from '@/utils';
 
 	let {
-		ref = $bindable(null),
 		class: className,
 		form,
 		name,
 		children: childrenProp,
 		...restProps
-	}: FormPrimitive.FieldProps<T, U> & WithoutChildren<PrimitiveDivAttributes> = $props();
+	}: FormPrimitive.FieldProps<T, U> & WithoutChildren<BitsPrimitiveDivAttributes> = $props();
+
+	let ref = $state<HTMLDivElement | null>(null);
 </script>
 
 <FormPrimitive.Field {form} {name}>

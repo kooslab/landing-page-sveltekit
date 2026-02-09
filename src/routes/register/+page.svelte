@@ -11,7 +11,7 @@
 		CardTitle
 	} from '$lib/components/ui/card';
 
-	export let form;
+	let { form }: { form: any } = $props();
 </script>
 
 <div class="container mx-auto max-w-md px-4 py-16">
@@ -51,7 +51,7 @@
 							name="password"
 							type="password"
 							required
-							minlength="8"
+							minlength={8}
 							placeholder="••••••••"
 						/>
 						<p class="mt-1 text-sm text-muted-foreground">Minimum 8 characters</p>
@@ -64,7 +64,7 @@
 							name="confirmPassword"
 							type="password"
 							required
-							minlength="8"
+							minlength={8}
 							placeholder="••••••••"
 						/>
 						<p class="mt-1 text-sm text-muted-foreground">Re-enter your password</p>

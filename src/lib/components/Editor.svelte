@@ -20,8 +20,7 @@
 	// Configure marked for consistency
 	marked.setOptions({
 		gfm: true,
-		breaks: true,
-		tables: true
+		breaks: true
 	});
 
 	onMount(() => {
