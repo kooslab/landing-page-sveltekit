@@ -115,6 +115,21 @@
 			</button>
 
 			<a
+				href="{langPrefix}/profile"
+				class="flex items-center gap-3 rounded-md px-3 py-2 text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
+				onclick={(e) => {
+					e.preventDefault();
+					sheetOpen = false;
+					setTimeout(() => {
+						goto(`${langPrefix}/profile`);
+					}, 300);
+				}}
+			>
+				<User class="h-5 w-5" />
+				{$_('nav.profile')}
+			</a>
+
+			<a
 				href="/blog"
 				class="flex items-center gap-3 rounded-md px-3 py-2 text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
 				onclick={(e) => {

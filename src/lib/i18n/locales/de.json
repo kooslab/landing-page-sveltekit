@@ -1,50 +1,164 @@
 {
 	"hero": {
-		"tagline": "Maßgeschneiderte Softwarelösungen für Ihr Unternehmen",
-		"title": "Individuelle digitale Lösungen für kleine Unternehmen",
-		"description": "Verwandeln Sie Ihre einzigartigen geschäftlichen Herausforderungen in Wettbewerbsvorteile. Wir entwickeln maßgeschneiderte Software, die speziell für Ihre Arbeitsabläufe, Ihr Team und Ihre Wachstumsziele konzipiert ist. Keine Einheitslösungen – nur Tools, die genau so funktionieren, wie Sie es brauchen.",
+		"tagline": "Individuelle Software für den Mittelstand",
+		"title": "Läuft Ihr Unternehmen noch mit Excel und E-Mail?",
+		"description": "Wir entwickeln Software, die zu Ihren Abläufen passt — nicht umgekehrt.",
 		"cta": {
-			"explore": "Ihre Lösung entdecken",
-			"portfolio": "Unsere Arbeit ansehen"
+			"workshop": "Kostenlosen Anforderungs-Workshop buchen",
+			"portfolio": "Unsere Projekte ansehen"
 		}
 	},
-	"vision": {
-		"badge": "Unser Ansatz",
-		"title": "Software, die um Ihr Unternehmen herum gebaut wird",
-		"description": "Jedes kleine Unternehmen ist einzigartig. Deshalb erstellen wir individuelle digitale Lösungen, die perfekt auf Ihre spezifischen Prozesse, Herausforderungen und Ziele abgestimmt sind.",
+	"pain": {
+		"badge": "Kommt Ihnen das bekannt vor?",
+		"title": "Diese Probleme lösen sich nicht von allein",
+		"items": {
+			"excel": {
+				"icon": "table",
+				"title": "Excel ist Ihr ERP",
+				"description": "Ihre wichtigsten Geschäftsdaten stecken in Tabellen, die nur eine Person versteht."
+			},
+			"knowledge": {
+				"icon": "brain",
+				"title": "Wissen steckt in Köpfen",
+				"description": "Wenn ein Schlüsselmitarbeiter krank ist, stehen ganze Prozesse still."
+			},
+			"offtheshelf": {
+				"icon": "package",
+				"title": "Standardsoftware passt nicht",
+				"description": "Sie haben Salesforce oder SAP probiert — zu komplex, zu teuer oder passt einfach nicht zu Ihren Abläufen."
+			},
+			"start": {
+				"icon": "compass",
+				"title": "Wissen nicht, wo anfangen",
+				"description": "Sie wissen, dass Sie digitalisieren müssen — aber nicht, was Sie brauchen oder wem Sie vertrauen können."
+			}
+		}
+	},
+	"founder": {
+		"badge": "Über den Gründer",
+		"title": "Ich kenne Ihre Situation",
+		"intro": "Ich bin Johnny Koo, Gründer von KooStory. Ich weiß, wie es ist, ein Unternehmen aufzubauen und an den Punkt zu kommen, wo Tabellen nicht mehr reichen.",
 		"points": {
-			"affordable": {
-				"title": "Präzise auf Ihre Bedürfnisse zugeschnitten",
-				"description": "Im Gegensatz zu generischer Software, die Sie zur Anpassung zwingt, werden unsere individuellen Lösungen um Ihre bestehenden Arbeitsabläufe herum entwickelt. Bekommen Sie genau das, was Sie brauchen – nicht mehr und nicht weniger."
+			"startup": {
+				"title": "Startup von 0 auf 270 Mitarbeiter skaliert",
+				"description": "Ein koreanisches Tech-Unternehmen auf ~25 Mio. € Umsatz aufgebaut — ich kenne die Wachstumsschmerzen aus erster Hand."
 			},
-			"lightweight": {
-				"title": "Optimiert für kleine Teams",
-				"description": "Wir sind spezialisiert auf die Erstellung effizienter, fokussierter Tools für kleine Unternehmen. Unsere Lösungen sind leistungsstark und dennoch einfach, um die Produktivität Ihres Teams zu steigern, ohne es zu überfordern."
+			"bootcamp": {
+				"title": "1.000+ Entwickler ausgebildet",
+				"description": "Ein Coding-Bootcamp gegründet — ich kann Technik in einfachen Worten erklären, ohne Fachchinesisch."
 			},
-			"timeSaving": {
-				"title": "Automatisierung, die Sie versteht",
-				"description": "Wir analysieren Ihre wiederkehrenden Aufgaben und erstellen intelligente Automatisierung, die auf Ihre Geschäftslogik zugeschnitten ist. Geben Sie Ihrem Team die Freiheit, sich auf Wachstum und Innovation zu konzentrieren."
+			"requirements": {
+				"title": "Ich schreibe die Anforderungen für Sie",
+				"description": "Meine Spezialität: mit Kunden arbeiten, die nicht wissen, was sie brauchen. Ich übersetze Ihren Arbeitsalltag in klare Software-Spezifikationen."
+			},
+			"berlin": {
+				"title": "Jetzt in Berlin, für deutsche Unternehmen",
+				"description": "Koreas weltweit führende Digitalisierungskompetenz für den deutschen Mittelstand."
 			}
 		}
 	},
-	"mission": {
-		"badge": "Mission",
-		"title": "Kleine Teams zu großen Sprüngen befähigen",
-		"description": "Wir verstehen die Herausforderungen, vor denen Freiberufler und Startups stehen. Wir entwickeln Tools, die Ihre Arbeit optimieren, damit Sie sich auf Ihr Kerngeschäft konzentrieren können.",
-		"values": {
-			"saveTime": {
-				"title": "Zeit ist Geld",
-				"description": "Automatisieren Sie tägliche wiederkehrende Aufgaben. Nutzen Sie die gesparte Zeit, um mehr Kunden zu treffen."
+	"process": {
+		"badge": "So arbeiten wir",
+		"title": "Vom Gespräch zur fertigen Software",
+		"steps": {
+			"workshop": {
+				"step": "1",
+				"title": "Kostenloser Workshop (60 Min.)",
+				"description": "Sie beschreiben Ihren Arbeitsalltag. Kein Fachchinesisch. Wir hören zu."
 			},
-			"workRight": {
-				"title": "Von Anfang an richtig machen",
-				"description": "Folgen Sie Industriestandards ohne Komplexität. Selbst Anfänger können wie Profis arbeiten."
+			"document": {
+				"step": "2",
+				"title": "Anforderungsdokument",
+				"description": "Sie erhalten ein klares User-Story-Dokument in verständlicher Sprache — was genau gebaut werden soll."
 			},
-			"boost": {
-				"title": "Kleines Team, große Ergebnisse",
-				"description": "Ob allein oder im kleinen Team – erzielen Sie Ergebnisse, die mit großen Unternehmen konkurrieren können."
+			"build": {
+				"step": "3",
+				"title": "Wir bauen es",
+				"description": "Kleine Schritte, wöchentliche Demos. Sie sehen jede Woche Fortschritt."
+			},
+			"own": {
+				"step": "4",
+				"title": "Es gehört Ihnen",
+				"description": "Ihre Software. Ihre Daten. Vollständige Übergabe, Schulung und Support."
 			}
 		}
+	},
+	"ai": {
+		"badge": "KI-gestützte Entwicklung",
+		"title": "KI macht es schnell. Wir machen es richtig.",
+		"description": "Ja, jeder kann mit KI an einem Nachmittag eine App generieren. Für ein Wochenendprojekt ist das super. Aber wenn Ihr ganzes Team täglich auf Software angewiesen ist — echte Kundendaten, echte Verträge, echtes Geld — brauchen Sie mehr als einen cleveren Prompt.",
+		"items": {
+			"architecture": {
+				"title": "Architektur, nicht nur Code",
+				"description": "KI generiert Funktionen. Wir entwerfen Systeme, die mit Ihrem Unternehmen skalieren, sich in Ihre Tools integrieren und sich mit wechselnden Anforderungen weiterentwickeln."
+			},
+			"tested": {
+				"title": "Getestet, nicht nur generiert",
+				"description": "Jede Funktion durchläuft automatisierte Tests, Sicherheitsprüfungen und echte Nutzervalidierung, bevor sie Ihre Produktionsumgebung berührt."
+			},
+			"owned": {
+				"title": "Ihr Eigentum, nicht gemietet",
+				"description": "Ihr Code ist sauber, dokumentiert und wartbar. Keine Black Boxes. Ihr nächster Entwickler kann ihn lesen, verstehen und erweitern."
+			},
+			"compliant": {
+				"title": "Konform, nicht nachlässig",
+				"description": "DSGVO, Datenresidenz, Zugriffskontrollen, Audit-Trails — die unspektakuläre Technik, die Ihr Unternehmen rechtssicher und die Daten Ihrer Kunden geschützt hält."
+			}
+		}
+	},
+	"korea": {
+		"badge": "Warum Korea",
+		"title": "Koreanische Ingenieurskunst. Gemacht für deutsche Unternehmen.",
+		"description": "Südkorea ist das am stärksten digitalisierte Land der Welt. Wir bringen diese Geschwindigkeit und digitale Denkweise in Ihr Mittelstandsunternehmen.",
+		"stats": {
+			"government": {
+				"value": "#1",
+				"label": "Digital-Government-Index",
+				"source": "OECD 2023"
+			},
+			"internet": {
+				"value": "#1",
+				"label": "Internetgeschwindigkeit weltweit",
+				"source": "Speedtest Global Index"
+			},
+			"innovation": {
+				"value": "Top 5",
+				"label": "Globaler Innovationsindex",
+				"source": "Bloomberg 2024"
+			}
+		}
+	},
+	"checklist": {
+		"badge": "Bevor Sie investieren",
+		"title": "Brauchen Sie wirklich individuelle Software?",
+		"intro": "Bevor Sie Tausende ausgeben, gehen Sie das ehrlich durch. Die Antwort ist meistens nicht das, was Sie denken.",
+		"step1": {
+			"title": "Sie brauchen wahrscheinlich gar keine Software.",
+			"description": "Die meisten Geschaftsprobleme lassen sich mit einer gut strukturierten Tabelle, einer besseren Vorlage oder einem klareren Prozess losen. Wenn Ihr Workflow chaotisch ist, automatisiert Software nur das Chaos. Bringen Sie zuerst den Prozess in Ordnung."
+		},
+		"step2": {
+			"title": "Wenn Sie das Problem kennen, konnen Sie selbst bauen.",
+			"description": "Wenn Sie mit einem Computer umgehen konnen, konnen Sie heute mit KI-Tools Ihr eigenes MVP oder Ihren Prototyp bauen. Suchen Sie auf YouTube nach 'Vibe Coding' — nicht-technische Menschen bauen jeden Tag ihre eigene Software. Geben Sie nicht 20-30.000 EUR aus, bevor Sie das versucht haben. Wirklich, Sie konnen das.",
+			"workshop_before_link": "Wenn Sie praktische Hilfe wollen: Ich biete einen 1-Tages-1:1-Workshop (300 EUR) an. In Berlin sitze ich direkt neben Ihnen, sonst online. Sie gehen mit Ihrem eigenen funktionierenden Programm nach Hause. ",
+			"workshop_link_text": "Jetzt buchen",
+			"workshop_after_link": "."
+		},
+		"step3": {
+			"title": "Wenn nichts davon passt — dann bauen wir es zusammen.",
+			"description": "Sie haben Tabellen ausprobiert, selbst bauen versucht, und das Problem ist wirklich komplex genug fur individuelle Software. Dann kommen wir ins Spiel."
+		}
+	},
+	"workshop": {
+		"badge": "Kostenloser Workshop",
+		"title": "Lassen Sie uns herausfinden, was Sie wirklich brauchen",
+		"description": "Buchen Sie einen kostenlosen 60-Minuten-Anforderungsworkshop. Sie gehen mit einem Entwurf Ihres Anforderungsdokuments nach Hause — ob Sie mit uns arbeiten oder nicht.",
+		"deliverables": {
+			"userstory": "Entwurf eines User-Story-Dokuments",
+			"processmap": "Prozesslandkarte Ihrer aktuellen Abläufe",
+			"roadmap": "Priorisierte Digitalisierungs-Roadmap"
+		},
+		"cta": "Kostenlosen Workshop buchen",
+		"trust": "Keine Verpflichtung. Kein Fachchinesisch. Einfach ein Gespräch über Ihr Unternehmen."
 	},
 	"portfolio": {
 		"badge": "Kundenportfolio",
@@ -118,7 +232,11 @@
 			"reporting": {
 				"name": "Business Intelligence Dashboard",
 				"description": "Automatisierte Berichterstattung mit Echtzeit-KPI-Tracking aus mehreren Datenquellen.",
-				"features": ["5-Minuten-Wochenberichte", "Echtzeit-KPI-Sichtbarkeit", "15% Umsatzsteigerung"],
+				"features": [
+					"5-Minuten-Wochenberichte",
+					"Echtzeit-KPI-Sichtbarkeit",
+					"15% Umsatzsteigerung"
+				],
 				"industry": "Professionelle Dienstleistungen",
 				"title": "Sofortige Business Intelligence",
 				"problem": "Stunden für wöchentliche Berichte aus mehreren Datenquellen",
@@ -132,7 +250,11 @@
 			"contract": {
 				"name": "Vertragsmanagementsystem",
 				"description": "Zentralisiertes Vertragsarchiv mit automatisierten Benachrichtigungen und Workflows.",
-				"features": ["100% pünktliche Verlängerungen", "60% schnellere Genehmigungen", "Keine verlorenen Verträge"],
+				"features": [
+					"100% pünktliche Verlängerungen",
+					"60% schnellere Genehmigungen",
+					"Keine verlorenen Verträge"
+				],
 				"industry": "Recht & Compliance",
 				"title": "Vertragsmanagementsystem",
 				"problem": "Verlorene Verträge, verpasste Verlängerungstermine und manuelle Verfolgung über Abteilungen hinweg",
@@ -230,7 +352,11 @@
 			"survey": {
 				"name": "Umfrage- & Analyseplattform",
 				"description": "Umfrageerstellung und -analyse mit Echtzeit-Einblicken und automatisierter Berichterstattung.",
-				"features": ["5-Minuten-Umfrageerstellung", "Echtzeit-Analysen", "Automatisierte Einblicke"],
+				"features": [
+					"5-Minuten-Umfrageerstellung",
+					"Echtzeit-Analysen",
+					"Automatisierte Einblicke"
+				],
 				"industry": "Marktforschung",
 				"title": "Umfrage-PDF-OCR-Analysator",
 				"problem": "Tausende von Papierumfragen erfordern manuelle Dateneingabe und Analyse",
@@ -244,7 +370,11 @@
 			"billsplit": {
 				"name": "Intelligente Rechnungsteilungs-App",
 				"description": "Automatisierte Rechnungsteilung mit Quittungs-Scanning und Zahlungslinks.",
-				"features": ["Sofortige genaue Aufteilung", "80% schnellere Zahlungen", "Keine Streitigkeiten"],
+				"features": [
+					"Sofortige genaue Aufteilung",
+					"80% schnellere Zahlungen",
+					"Keine Streitigkeiten"
+				],
 				"industry": "Gastgewerbe & Events",
 				"title": "Intelligente Rechnungsteilungs-App",
 				"problem": "Komplexe Gruppenausgabenberechnungen verursachen Streitigkeiten und verzögerte Zahlungen",
@@ -267,7 +397,11 @@
 				"title": "Professioneller Angebotsgenerator",
 				"problem": "Manuelle Angebotserstellung dauert Stunden mit inkonsistenter Preisgestaltung",
 				"solution": "Automatisierte Angebotserstellung mit Vorlagen und Kundengenehmigungsverfolgung",
-				"results": ["Sofortige Angebotserstellung", "Kundengenehmigungsverfolgung", "Automatisierte Nachverfolgung"]
+				"results": [
+					"Sofortige Angebotserstellung",
+					"Kundengenehmigungsverfolgung",
+					"Automatisierte Nachverfolgung"
+				]
 			},
 			"requirements": {
 				"name": "Anforderungsmanagement-Plattform",
@@ -289,71 +423,11 @@
 			}
 		}
 	},
-	"products": {
-		"badge": "Unsere Produkte",
-		"title": "Unsere SaaS-Produkte",
-		"description": "Sofort einsatzbereite SaaS-Produkte für kleine Unternehmen und Freiberufler. Registrieren Sie sich und starten Sie sofort.",
-		"status": {
-			"live": "Jetzt verfügbar"
-		},
-		"cta": {
-			"trial": "14 Tage kostenlos testen",
-			"free": "Kostenlos nutzen"
-		},
-		"items": {
-			"equest": {
-				"name": "eQuest",
-				"description": "Kunden-Onboarding-Fragebogenplattform für Freiberufler, Berater und Agenturen. Ersetzen Sie verstreute E-Mails durch strukturierte, organisierte Datenerfassung.",
-				"features": [
-					"Drag-and-Drop-Fragebogen-Builder",
-					"Wiederverwendbare Vorlagen",
-					"AES-256 verschlüsselte Datenerfassung",
-					"Team-Zusammenarbeitstools"
-				]
-			},
-			"requirements": {
-				"name": "Anforderungs-Tool",
-				"description": "Von der Organisation von Kundenanforderungen bis zur Projektdokumentation - alles an einem Ort. Mit KI-Unterstützung reduzieren Sie die Dokumentationszeit um 80%.",
-				"features": [
-					"Anforderungen in 5 Minuten organisieren",
-					"KI-generierte detaillierte Kriterien",
-					"Echtzeit-Team-Zusammenarbeit",
-					"Export nach Word, Excel"
-				]
-			},
-			"quotation": {
-				"name": "Angebots-Tool",
-				"description": "Erstellen Sie schnell und einfach professionelle Angebote. Starten Sie mit Vorlagen, erstellen Sie in Minuten und senden Sie direkt an Kunden.",
-				"features": [
-					"Professionelle Vorlagen",
-					"Echtzeit-Genehmigungsstatus",
-					"KI-Preisassistent",
-					"Automatische Verträge"
-				]
-			},
-			"billsplit": {
-				"name": "Bill Split (Mobile)",
-				"description": "Kostenlose mobile App zum Aufteilen von Rechnungen mit Freunden. Quittungen scannen, sofort aufteilen und Zahlungsanfragen senden.",
-				"features": [
-					"Sofortiges Quittungs-Scanning",
-					"Faire Aufteilungsberechnungen",
-					"Zahlungslink-Erstellung",
-					"100% kostenlos nutzbar"
-				]
-			}
-		}
-	},
-	"cta": {
-		"title": "Bereit für Software, die so arbeitet wie Sie?",
-		"description": "Schließen Sie sich Tausenden von kleinen Unternehmen an, die maßgeschneiderte Lösungen nutzen, die perfekt auf ihre Bedürfnisse abgestimmt sind. Lassen Sie uns besprechen, wie wir Ihre einzigartigen Herausforderungen in optimierte Arbeitsabläufe verwandeln können.",
-		"buttons": {
-			"trial": "Beratung vereinbaren"
-		}
-	},
 	"testimonials": {
 		"badge": "Kundenerfolgsgeschichten",
 		"title": "Von wachsenden Unternehmen vertraut",
 		"description": "Sehen Sie, was unsere echten Kunden über die Zusammenarbeit mit KooStory sagen.",
+		"showAll": "Alle Bewertungen anzeigen",
 		"clients": {
 			"workspace": {
 				"quote": "Ausgezeichnete manuelle Arbeit! Sehr zufrieden mit dem Kommunikationsstil! Großartige Arbeitseffizienz! Sie haben auf die kleinsten Details geachtet.",
@@ -455,185 +529,331 @@
 			}
 		}
 	},
-	"portfolio_old": {
-		"badge": "Praxislösungen",
-		"title": "Maßgeschneiderte Software, die echte Probleme löst",
-		"description": "Jedes Unternehmen hat einzigartige Herausforderungen. So haben wir Unternehmen wie Ihres geholfen, Abläufe mit maßgeschneiderten Lösungen zu optimieren.",
-		"cases_old": {
-			"inventory": {
-				"title": "Intelligentes Bestandsmanagement",
-				"problem": "Manuelle Excel-Verfolgung verursacht Engpässe und Überbestellungen",
-				"solution": "Individuelles Dashboard mit automatischen Nachbestellungsbenachrichtigungen und Lieferantenintegration",
-				"results": [
-					"90% weniger Lieferengpässe",
-					"50.000€ jährlich bei Überbeständen gespart",
-					"3 Stunden täglich bei manuellen Zählungen gespart"
-				],
-				"industry": "Einzelhandel & Distribution"
-			},
-			"scheduling": {
-				"title": "Automatisierte Serviceplanung",
-				"problem": "Doppelbuchungen und verpasste Termine beeinträchtigen die Kundenzufriedenheit",
-				"solution": "Individuelles Buchungssystem mit SMS-Erinnerungen und Routenoptimierung",
-				"results": [
-					"Keine Doppelbuchungen seit der Implementierung",
-					"85% weniger Nichterscheinen",
-					"20% mehr Termine pro Tag"
-				],
-				"industry": "Dienstleistungsunternehmen"
-			},
-			"reporting": {
-				"title": "Sofortige Business Intelligence",
-				"problem": "Stunden für wöchentliche Berichte aus mehreren Datenquellen",
-				"solution": "Automatisiertes Dashboard, das Daten aus allen Systemen mit Ein-Klick-Berichten abruft",
-				"results": [
-					"Wöchentliche Berichte dauern jetzt 5 Minuten",
-					"Echtzeit-Einblick in KPIs",
-					"Datengesteuerte Entscheidungen steigerten den Umsatz um 15%"
-				],
-				"industry": "Professionelle Dienstleistungen"
-			},
-			"contract": {
-				"title": "Vertragsmanagementsystem",
-				"problem": "Verlorene Verträge, verpasste Verlängerungstermine und manuelle Verfolgung über Abteilungen hinweg",
-				"solution": "Zentralisiertes Vertragsarchiv mit automatisierten Benachrichtigungen und Genehmigungsworkflows",
-				"results": [
-					"100% pünktliche Vertragsverlängerungen",
-					"60% schnellerer Vertragsgenehmigungsprozess",
-					"Keine verlorenen Verträge seit der Implementierung"
-				],
-				"industry": "Recht & Compliance"
-			},
-			"delivery": {
-				"title": "Liefermanagement-Kiosk",
-				"problem": "Ineffiziente Paketabwicklung und Kundenwartezeiten an Abholstellen",
-				"solution": "Self-Service-Kiosk mit Barcode-Scanning und automatisiertem Benachrichtigungssystem",
-				"results": [
-					"75% Reduzierung der Kundenwartezeit",
-					"3x mehr Pakete pro Stunde verarbeitet",
-					"95% Kundenzufriedenheitsrate"
-				],
-				"industry": "Logistik & Lieferung"
-			},
-			"parking": {
-				"title": "KI-Parkplatzmanagement",
-				"problem": "Manuelle Parkplatzüberwachung führt zu Umsatzverlusten und schlechter Platznutzung",
-				"solution": "Computer-Vision-System mit Echtzeit-Belegungsverfolgung und dynamischer Preisgestaltung",
-				"results": [
-					"40% Steigerung der Parkeinnahmen",
-					"Echtzeit-Verfügbarkeitsupdates",
-					"90% weniger Parkverstöße"
-				],
-				"industry": "Immobilienverwaltung"
-			},
-			"billsplit": {
-				"title": "Intelligente Rechnungsteilungs-App",
-				"problem": "Komplexe Gruppenausgabenberechnungen verursachen Streitigkeiten und verzögerte Zahlungen",
-				"solution": "Automatisierte Rechnungsteilung mit Quittungs-Scanning und integrierten Zahlungslinks",
-				"results": [
-					"Sofortige genaue Aufteilung für jede Gruppengröße",
-					"80% schnellerer Zahlungseingang",
-					"Keine Berechnungsstreitigkeiten"
-				],
-				"industry": "Gastgewerbe & Events"
-			},
-			"ordermap": {
-				"title": "Globale Bestellungsanzeige",
-				"problem": "Keine visuelle Darstellung der weltweiten Kundenverteilung und Bestellmuster",
-				"solution": "Echtzeit-Weltkarte mit Live-Bestellungen, Analysen und Trendvisualisierung",
-				"results": [
-					"Sofortige globale Geschäftseinblicke",
-					"Optimierte regionale Marketingstrategien",
-					"30% Verbesserung der Bestandsplanung"
-				],
-				"industry": "E-Commerce"
-			},
-			"travel": {
-				"title": "Reverse-Auction-Reiseplattform",
-				"problem": "Reisende zahlen zu viel und Hotels haben leere Zimmer in Nebenzeiten",
-				"solution": "Plattform, auf der Hotels um Reisende mit transparentem Reverse-Auction-System bieten",
-				"results": [
-					"Durchschnittlich 35% Ersparnis für Reisende",
-					"70% Belegungssteigerung für Partnerhotels",
-					"Win-Win-Preisgestaltung für beide Seiten"
-				],
-				"industry": "Reisen & Tourismus"
-			},
-			"indoor": {
-				"title": "Indoor-Karten- & Navigationseditor",
-				"problem": "Besucher verirren sich in großen Gebäuden und ineffiziente Raumplanung",
-				"solution": "Visueller Karteneditor mit Pfadfindungsalgorithmus für Indoor-Navigation",
-				"results": [
-					"90% weniger Besucheranfragen",
-					"Optimierte Verkehrsflussmuster",
-					"Notfall-Evakuierungsrouten kartiert"
-				],
-				"industry": "Gebäudemanagement"
-			},
-			"payment": {
-				"title": "Monatliches Kartenzahlungssystem",
-				"problem": "Manuelle wiederkehrende Zahlungsabwicklung verursacht Verzögerungen und verpasste Zahlungen",
-				"solution": "Automatisierte monatliche Abrechnung mit hinterlegter Karte und intelligenter Wiederholungslogik",
-				"results": [
-					"98% erfolgreiche Zahlungsrate",
-					"Keine manuelle Verarbeitung erforderlich",
-					"60% weniger Zahlungsverzögerungen"
-				],
-				"industry": "Abonnementdienste"
-			},
-			"survey": {
-				"title": "Umfrage-PDF-OCR-Analysator",
-				"problem": "Tausende von Papierumfragen erfordern manuelle Dateneingabe und Analyse",
-				"solution": "KI-gestütztes OCR-System zur Umwandlung von PDF-Umfragen in analysierbare Daten",
-				"results": [
-					"99,5% Genauigkeit bei der Datenextraktion",
-					"Verarbeitungszeit von Tagen auf Minuten reduziert",
-					"Sofortige Einblicke aus Umfragedaten"
-				],
-				"industry": "Marktforschung"
-			},
-			"quote": {
-				"title": "Dynamisches Angebotsmanagement",
-				"problem": "Inkonsistente Preisgestaltung und langsame Angebotserstellung verlieren Geschäfte",
-				"solution": "Intelligentes Angebotssystem mit Preisregeln und sofortiger PDF-Erstellung",
-				"results": [
-					"Angebotserstellungszeit um 85% reduziert",
-					"Konsistente Preisgestaltung im gesamten Vertriebsteam",
-					"25% höhere Abschlussquote"
-				],
-				"industry": "B2B-Vertrieb"
-			},
-			"requirements": {
-				"title": "Software-Anforderungsplattform",
-				"problem": "Anforderungen verstreut über E-Mails, Dokumente und Meetings verursachen Projektverzögerungen",
-				"solution": "Zentralisierte Plattform mit Versionskontrolle und Stakeholder-Zusammenarbeit",
-				"results": [
-					"50% weniger Projektverzögerungen",
-					"Klare Nachverfolgbarkeit für alle Änderungen",
-					"Keine verpassten Anforderungen"
-				],
-				"industry": "Softwareentwicklung"
-			}
-		}
-	},
 	"contact": {
-		"title": "Haben Sie Fragen?",
-		"description": "Von Implementierungsberatung bis zur Nutzungsanleitung – fragen Sie uns alles.",
+		"title": "Kontakt aufnehmen",
+		"description": "Fragen? Projekt besprechen? Schreiben Sie uns.",
 		"form": {
 			"name": "Name",
 			"namePlaceholder": "Max Mustermann",
 			"email": "E-Mail",
 			"emailPlaceholder": "beispiel@email.de",
 			"message": "Nachricht",
-			"messagePlaceholder": "Wie können wir Ihnen helfen?",
+			"messagePlaceholder": "Erzählen Sie uns von Ihrer geschäftlichen Herausforderung...",
 			"submit": "Nachricht senden",
 			"sending": "Wird gesendet..."
 		}
 	},
 	"nav": {
-		"vision": "Vision",
-		"mission": "Mission",
-		"portfolio": "Produkte",
+		"about": "Über uns",
+		"process": "Ablauf",
+		"portfolio": "Portfolio",
+		"profile": "Profil",
+		"workshops": "Workshops",
 		"blog": "Blog"
+	},
+	"profile": {
+		"seo": {
+			"title": "Ilmo Koo — Was ich mache",
+			"description": "Echte Beispiele geloster Geschaftsprobleme. Anforderungsworkshops, Prozessautomatisierung, individuelle Software. Grunder von Kooslab (Seoul) und KooStory (Berlin)."
+		},
+		"badge": "Profil",
+		"hero": {
+			"title": "Das mache ich — mit echten Beispielen.",
+			"subtitle": "Ich bin Ilmo Koo, Grunder von <strong>Kooslab</strong> (Seoul) und <strong>KooStory</strong> (Berlin). Wenn ein Partner fragt \"Was konnen Sie konkret?\", zeige ich es lieber, als daruber zu reden."
+		},
+		"cases": {
+			"title": "Echte Probleme, die ich gelost habe",
+			"intro": "Jedes Projekt unten begann mit einem Geschaftsproblem, nicht mit einer Feature-Anfrage. Hier sehen Sie, womit der Kunde kampfte, was ich getan habe und was sich verandert hat.",
+			"groupA": {
+				"title": "Ich habe es definiert — damit jemand anderes es richtig bauen konnte",
+				"intro": "Anforderungsberatungsprojekte, bei denen ich das Anforderungsdokument erstellt habe und der Kunde es erfolgreich an eine Entwicklungsagentur weitergegeben hat."
+			},
+			"groupB": {
+				"title": "Ich habe es gebaut",
+				"intro": "End-to-End-Projekte, bei denen ich die Losung definiert UND gebaut habe."
+			},
+			"safety": {
+				"industry": "Sicherheits-Compliance",
+				"client": "SafetyOn Solutions",
+				"label": "Software-Anforderungen",
+				"pain": "Tiefe Fachkompetenz im Bereich Sicherheitslosungen, aber keine Ahnung, wie man daraus ein Softwareprodukt macht. Wusste nicht, was man von Entwicklern verlangen soll oder wie man sie briefen soll.",
+				"did": "Anforderungsworkshops durchgefuhrt, detaillierte User Stories geschrieben, Wireframes und Prozesskarten erstellt. Features und Seiten entdeckt, an die der Kunde nicht gedacht hatte.",
+				"result": "<strong>Ergebnis:</strong> Der Kunde erhielt eine klare Entwicklungs-Roadmap und ein Anforderungsdokument. Entwicklung erfolgreich und ohne Verwirrung an eine Agentur ausgelagert."
+			},
+			"onui": {
+				"industry": "Kundenbeziehungsmanagement",
+				"client": "Onui",
+				"label": "CRM-Software-Anforderungen",
+				"pain": "Ein individuelles CRM war notig, aber die Anforderungen konnten nicht klar formuliert werden. Fruhere Versuche mit Agenturen scheiterten an unklaren Anforderungen.",
+				"did": "Beratung zu den vollstandigen CRM-Anforderungen — Workflows, Datenmodelle, User Stories. Ein umfassendes Anforderungsdokument erstellt.",
+				"result": "<strong>Ergebnis:</strong> Erfolgreich mit einem klaren Briefing an eine Agentur ausgelagert. Kein Hin und Her, kein Scope Creep."
+			},
+			"mindlogic": {
+				"industry": "KI / EdTech",
+				"client": "MindLogic",
+				"label": "SSO-Integrations-Anforderungen",
+				"pain": "Ihr KI-Produkt (FactChat, ahnlich wie ChatGPT) musste in das eigene Authentifizierungssystem (SSO) jeder Universitat integriert werden. Jede Universitat hatte ein anderes Login-System.",
+				"did": "Einen verbesserten Kunden-Anforderungsfragebogen erstellt, der die Informationserfassung uber alle Universitaten hinweg standardisierte.",
+				"result": "<strong>Ergebnis:</strong> Das SSO-Integrationsprojekt wurde <strong>50% schneller</strong> durch Eliminierung der Ruckkommunikation. Ein Fragebogen, klare Antworten, direkt zur Umsetzung."
+			},
+			"finnest": {
+				"industry": "Finanz-Outsourcing",
+				"client": "Finnest.ai",
+				"label": "Finanzautomatisierung",
+				"pain": "100% der Finanzdaten steckten in Excel-Tabellen mit komplizierten Formeln. Mitarbeiter bearbeiteten und zerstorten Formeln. Schwer zu betreiben, schwer zu skalieren. Daten von Banken und Kartenunternehmen wurden manuell abgerufen.",
+				"did": "Automatisierte Datenextraktion/Scraping gebaut, die alle 24 Stunden lauft und Daten von Banken und Kartensystemen abruft. Die extrahierten Daten in operative Tabellen mit bestehenden komplexen Formeln integriert. n8n fur Workflow-Automatisierung eingesetzt.",
+				"result": "<strong>Ergebnis:</strong> Tagliche manuelle Dateneingabe eliminiert. Finanzoperationen laufen automatisch mit zuverlassigen Daten."
+			},
+			"workspace": {
+				"industry": "Shared Office / Co-Working",
+				"client": "MY WORKSPACE",
+				"label": "Shared-Office-Betrieb",
+				"pain": "Shared Office in Seoul verwaltete alle Vertrage und Zahlungen auf traditionelle Weise — manuelle Tabellenarbeit fur alles.",
+				"did": "Individuelle Abo-Zahlungs- und Vertragsverwaltungssoftware mit E-Signatur fur die Online-Vertragsunterzeichnung gebaut.",
+				"result": "<strong>Ergebnis:</strong> <strong>90% der manuellen Ablaufe eliminiert.</strong> Vertrage, Abrechnung und Zahlungen jetzt automatisiert."
+			},
+			"grocery": {
+				"industry": "Einzelhandel / Logistik",
+				"client": "Lebensmittel-Lieferkiosk",
+				"label": "Lieferkiosk",
+				"pain": "In einer grossen Lebensmittelabteilung in Seoul schrieben Kunden ihre Lieferadressen von Hand. Langsamer Prozess (60–100 Sekunden pro Bestellung), ein eigener Mitarbeiter war notig.",
+				"did": "Einen Touch-basierten Kiosk gebaut, der mit einer Logistik-API verbunden ist und eine Favoritenadressen-Funktion hat. Kunden geben ihre Handynummer ein, laden ihre gespeicherte Adresse und schliessen die Bestellung ab.",
+				"result": "<strong>Ergebnis:</strong> Bestellzeit von 60–100 Sekunden auf <strong>10 Sekunden</strong> gesunken. Eine Vollzeitstelle eingespart — Kunden bedienen sich jetzt selbst."
+			},
+			"tour": {
+				"industry": "Reisen / Tourismus",
+				"client": "Private Tour-Plattform",
+				"label": "Tour-Buchungsplattform",
+				"pain": "Reisefuhrer in Berlin und ganz Europa verwalteten private Touren komplett von Hand — Buchungen, Zahlungen, Kommunikation, alles manuell.",
+				"did": "Eine Plattform gebaut, auf der Reisefuhrer ihre Tourprodukte online hochladen. Reisende konnen online stobern, bezahlen und reservieren, mit automatischen Messenger-Benachrichtigungen.",
+				"result": "<strong>Ergebnis:</strong> Reisefuhrer wechselten von manuellen Ablaufen zu einem automatisierten Buchungs- und Zahlungssystem."
+			},
+			"parking": {
+				"industry": "Immobilienverwaltung",
+				"client": "KI-Parkplatzmanagement",
+				"label": "Kennzeichenerkennung-Integration",
+				"pain": "Der Kunde wollte ein CCTV-basiertes KI-Parkplatzmanagementsystem, benotigte aber die Integration der Kennzeichenerkennung in seine bestehende Cloud-Parkplatzsoftware.",
+				"did": "Ein Kennzeichenerkennungsmodul (LPR) in die Cloud-basierte Parkplatzverwaltungssoftware integriert.",
+				"result": "<strong>Ergebnis:</strong> Automatisierte Fahrzeugidentifikation und Parkplatzverwaltung durch CCTV."
+			}
+		},
+		"products": {
+			"title": "Produkte, die wir selbst gebaut haben und betreiben",
+			"intro": "Wir bauen nicht nur fur Kunden — wir bauen und betreiben eigene Produkte. Alle sind live und werden taglich von echten Nutzern verwendet.",
+			"billsplit": {
+				"title": "N — Kostenteiler",
+				"description": "App zum Aufteilen von Gruppenausgaben. Belege scannen, nach Posten aufteilen, Zahlungslinks versenden.",
+				"stat": "Uber 70.000 EUR uber die Plattform abgerechnet"
+			},
+			"blitzdoc": {
+				"title": "Blitzdoc",
+				"description": "Software-Anforderungsmanagement-Tool. User-Story-basiert mit KI-Generierung. Anforderungen definieren, organisieren und verfolgen."
+			},
+			"quote": {
+				"title": "Quote",
+				"description": "Angebots-, Rechnungs- und Zeiterfassungstool fur Freelancer und Agenturen."
+			},
+			"equest": {
+				"title": "eQuest",
+				"description": "Interaktives Fragebogen- und Kommunikationstool fur Freelancer, Berater, Vertriebler und Agenturen. E-Mail-Pingpong durch strukturierte Datenerfassung ersetzen."
+			}
+		},
+		"alsoHelp": {
+			"title": "Wobei wir noch helfen konnen",
+			"intro": "Neben individuellen Projekten sind dies gangige Losungstypen, die wir bauen.",
+			"items": {
+				"order": {
+					"title": "Restaurant-/Cafe-Bestellsystem",
+					"example": "F&B-Digitalbestellung, Kuchenanzeige, Tischverwaltung"
+				},
+				"reservation": {
+					"title": "Reservierungssystem",
+					"example": "Autowerkstatt, Salon, Klinik — jedes terminbasierte Geschaft"
+				},
+				"payment": {
+					"title": "Zahlungssystem",
+					"example": "Abo-Abrechnung, Einmalzahlungen, Rechnungsstellung"
+				},
+				"cms": {
+					"title": "Content-Management-System",
+					"example": "Blog, Produktkatalog, interne Wissensdatenbank"
+				},
+				"website": {
+					"title": "Website / Landing Page",
+					"example": "Unternehmensseite, Produktlaunchseite, Portfolio"
+				},
+				"automation": {
+					"title": "Arbeitsautomatisierung",
+					"example": "Datenextraktion, Berichtserstellung, Workflow-Trigger"
+				},
+				"internal": {
+					"title": "Internes Verwaltungstool",
+					"example": "Mitarbeiter-Onboarding, Bestandsverfolgung, Genehmigungsworkflows"
+				},
+				"webapp": {
+					"title": "Responsive Webanwendung",
+					"example": "Voll funktionsfahige Web-App fur Desktop und Mobil"
+				},
+				"mobile": {
+					"title": "Mobile App",
+					"example": "iOS- und Android-Apps oder Progressive Web Apps"
+				},
+				"ai": {
+					"title": "KI / LLM-Integration",
+					"example": "ChatGPT-artige Features, Dokumentenanalyse, smarte Automatisierung"
+				}
+			}
+		},
+		"howIWork": {
+			"title": "So arbeite ich",
+			"p1": "<strong>Partner, nicht Dienstleister.</strong> Ich bleibe, bis es fur Ihr Unternehmen funktioniert. Wenn nach der Lieferung etwas geandert werden muss, andern wir es.",
+			"p2": "<strong>Flexibel und schlank.</strong> Ich agiere als Ihr Tech-Team. Kein Agentur-Overhead, kein monatelanges Onboarding.",
+			"p3": "<strong>Lieber eine Sache, die Sie taglich nutzen, als zehn Features, die verstauben.</strong> Wenn sich ein Feature als nutzlos herausstellt, streichen wir es. Ihr Erfolg ist mein Massstab."
+		},
+		"about": {
+			"title": "Uber mich",
+			"p1": "Ingenieur von Haus aus — Luft- und Raumfahrttechnik an der University of Maryland. Anforderungen und Spezifikationen vom ersten Tag an: Korean Air (Flugsteuerungssysteme), Vector Korea (Automotive Embedded Software). Code States als CPO auf 200+ Mitarbeiter, 27 Mio. $ Umsatz skaliert — alles automatisiert, weil das Wachstum es verlangte.",
+			"p2_before_link": "3 eigene Produkte gebaut: ",
+			"p2_between_links": " (KI-Fragebogen), ",
+			"p2_between_links2": " (Anforderungsmanagement), ",
+			"p2_after_link": " (Rechnungen und Zeiterfassung).",
+			"p3": "Seoul + Berlin. Koreanisch Muttersprache, Englisch Business-Level, Deutsch in Arbeit."
+		},
+		"wontDo": {
+			"title": "Was ich nicht mache",
+			"p1": "Ich lehne es hoflich ab, Software zu bauen, die niemand nutzen wird.",
+			"p2": "Wenn Ihre Idee kein echtes tagliches Problem lost, sage ich es Ihnen ehrlich.",
+			"p3": "<strong>Hubscher Code, der keinen Geschaftswert schafft, ist Verschwendung.</strong>",
+			"p4": "Manchmal ist der beste Rat: \"Bauen Sie das nicht.\""
+		},
+		"workshops": {
+			"title": "Workshops",
+			"intro": "Ob Sie Klarheit brauchen, was gebaut werden soll, oder es selbst lernen wollen.",
+			"free": {
+				"price": "Kostenlos",
+				"title": "Anforderungsberatungs-Workshop",
+				"description": "120 Min., online oder offline. Wir gehen Ihr Geschaftsproblem durch und Sie gehen mit einem klaren Bild davon, was zu bauen ist. Keine Verpflichtung.",
+				"cta": "Kostenlosen Workshop buchen"
+			},
+			"requirements": {
+				"title": "1-Tages-Anforderungsworkshop",
+				"description": "Ganzer Tag, tiefgehend. Sie erhalten ein vollstandiges Anforderungsdokument — User Stories, Prozesskarten, Prioritaten. Ubergeben Sie es jedem Entwicklerteam.",
+				"cta": "Workshop buchen"
+			},
+			"vibe": {
+				"title": "1-Tages-Vibe-Coding-Workshop",
+				"description": "Praktisch 1:1. Ich sitze neben Ihnen (Berlin offline, sonst online) und Sie bauen bis Ende des Tages Ihr eigenes MVP oder Ihren Prototyp.",
+				"cta": "Workshop buchen"
+			},
+			"paidLink": {
+				"title": "Bezahlte Workshops — Early-Bird-Preise verfugbar",
+				"description": "Anforderungsworkshop (200 EUR) und Vibe-Coding-Workshop (100 EUR). 50% Rabatt bis 30. April 2026."
+			},
+			"priceNote": "Die Preise werden bald steigen. Jetzt buchen, um den aktuellen Preis zu sichern."
+		}
+	},
+	"workshops": {
+		"seo": {
+			"title": "Workshops — KooStory",
+			"description": "1-Tages-Workshops fur Unternehmer. Anforderungsworkshop oder Vibe-Coding-Workshop. Early-Bird-Preise bis 30. April 2026."
+		},
+		"earlyBird": "Early Bird bis 30.04.2026",
+		"hero": {
+			"title": "Workshops fur Unternehmer",
+			"subtitle": "Ob Sie jemanden brauchen, der definiert, was gebaut werden soll, oder ob Sie es selbst lernen wollen. Ein Tag, klare Ergebnisse."
+		},
+		"whatsIncluded": "Das ist enthalten",
+		"requirements": {
+			"title": "Anforderungsworkshop",
+			"description": "Ein ganzer Tag fur Ihr Geschaftsproblem. Sie gehen mit einem vollstandigen Anforderungsdokument, das jedes Entwicklerteam nutzen kann.",
+			"includes": [
+				"Ganztags-1:1-Sitzung (8 Stunden)",
+				"Geschaftsprozessanalyse",
+				"User Stories und Akzeptanzkriterien",
+				"Prozesskarten und Workflow-Diagramme",
+				"Priorisierte Feature-Roadmap",
+				"Ubergabefertiges Anforderungsdokument"
+			],
+			"format": "Berlin (vor Ort) oder online — Ihre Wahl",
+			"cta": "Anforderungsworkshop buchen"
+		},
+		"vibe": {
+			"title": "Vibe-Coding-Workshop",
+			"description": "Sie bauen bis Ende des Tages Ihr eigenes MVP oder Ihren Prototyp. Keine Programmiererfahrung notig — wenn Sie einen Computer bedienen konnen, schaffen Sie das.",
+			"includes": [
+				"Ganztags-1:1 praktische Sitzung",
+				"KI-Coding-Umgebung einrichten",
+				"Gemeinsam einen funktionierenden Prototyp bauen",
+				"Lernen, selbststandig zu iterieren und zu verbessern",
+				"Ihre eigene bereitgestellte Anwendung am Ende des Tages",
+				"1 Woche Nachbetreuung nach dem Workshop"
+			],
+			"format": "Berlin (ich sitze direkt neben Ihnen) oder online",
+			"cta": "Vibe-Coding-Workshop buchen"
+		},
+		"free": {
+			"badge": "Ebenfalls verfugbar",
+			"title": "Kostenlose Anforderungsberatung",
+			"description": "120-Minuten-Sitzung, online oder offline. Wir gehen Ihr Geschaftsproblem durch und Sie bekommen ein klares Bild davon, was zu bauen ist. Ohne Verpflichtung.",
+			"cta": "Kostenlose Sitzung buchen"
+		},
+		"priceNote": "Early-Bird-Preise gelten bis 30. April 2026. Danach gelten die regularen Preise (400 EUR / 200 EUR).",
+		"faq": {
+			"title": "Fragen",
+			"items": [
+				{
+					"q": "Brauche ich technisches Wissen?",
+					"a": "Nein. Der Anforderungsworkshop ist fur Unternehmer, die ihr Problem kennen, aber nicht die technische Losung. Der Vibe-Coding-Workshop lehrt Sie von Null — wenn Sie E-Mails schreiben konnen, konnen Sie das."
+				},
+				{
+					"q": "Was, wenn ich nicht in Berlin bin?",
+					"a": "Beide Workshops funktionieren perfekt online. Beim Vibe-Coding-Workshop teile ich meinen Bildschirm und fuhre Sie Schritt fur Schritt."
+				},
+				{
+					"q": "Was bekomme ich am Ende?",
+					"a": "Anforderungsworkshop: ein vollstandiges Dokument, das Sie jedem Entwickler ubergeben konnen. Vibe-Coding-Workshop: eine funktionierende Anwendung, die Sie selbst gebaut haben, bereitgestellt und zuganglich."
+				},
+				{
+					"q": "Kann ich beide buchen?",
+					"a": "Ja — eine grossartige Kombination. Erst definieren, was gebaut werden soll, dann selbst das MVP bauen. Kontaktieren Sie mich fur einen Kombinationspreis."
+				}
+			]
+		}
+	},
+	"reservation": {
+		"title": "Workshop reservieren",
+		"workshopLabel": "Workshop-Typ",
+		"types": {
+			"requirements": "Anforderungsworkshop (200 EUR)",
+			"vibe": "Vibe-Coding-Workshop (100 EUR)",
+			"free": "Kostenlose Anforderungsberatung"
+		},
+		"datesLabel": "Wunschtermine (bis zu 3)",
+		"nameLabel": "Name",
+		"namePlaceholder": "Ihr Name",
+		"emailLabel": "E-Mail",
+		"emailPlaceholder": "sie@beispiel.de",
+		"messageLabel": "Nachricht (optional)",
+		"messagePlaceholder": "Details zu Ihrem Projekt oder Ihren Wunschen...",
+		"submit": "Workshop reservieren",
+		"submitting": "Wird gesendet...",
+		"success": "Reservierung eingegangen! Wir bestatigen Ihren Termin innerhalb von 1-2 Werktagen. Prufen Sie Ihre E-Mail.",
+		"error": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
+		"close": "Schliessen",
+		"calendar": {
+			"sun": "So",
+			"mon": "Mo",
+			"tue": "Di",
+			"wed": "Mi",
+			"thu": "Do",
+			"fri": "Fr",
+			"sat": "Sa",
+			"hint": "{selected} von {max} Terminen ausgewahlt"
+		},
+		"errors": {
+			"nameRequired": "Name ist erforderlich",
+			"emailInvalid": "Bitte geben Sie eine gultige E-Mail ein",
+			"datesRequired": "Bitte wahlen Sie mindestens einen Wunschtermin"
+		}
 	}
 }

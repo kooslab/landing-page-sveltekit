@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
 	import { page } from '$app/stores';
+	import { _ } from 'svelte-i18n';
 
 	import CircleUserIcon from 'lucide-svelte/icons/circle-user';
 
@@ -14,51 +15,36 @@
 
 <div class="hidden items-center md:ml-6 md:flex">
 	<a
-		href="{langPrefix}/#vision"
+		href="{langPrefix}/#about"
 		class="mr-4 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
 	>
-		Vision
+		{$_('nav.about')}
 	</a>
 	<a
-		href="{langPrefix}/#mission"
+		href="{langPrefix}/#process"
 		class="mr-4 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
 	>
-		Mission
+		{$_('nav.process')}
 	</a>
 	<a
 		href="{langPrefix}/#portfolio"
 		class="mr-4 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
 	>
-		Portfolio
+		{$_('nav.portfolio')}
+	</a>
+	<a
+		href="{langPrefix}/profile"
+		class="mr-4 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+	>
+		{$_('nav.profile')}
+	</a>
+	<a
+		href="{langPrefix}/workshops"
+		class="mr-4 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+	>
+		{$_('nav.workshops')}
 	</a>
 	<Button size="sm" variant="ghost" class="rounded-full text-foreground/60" href="/blog"
-		>Blog</Button
+		>{$_('nav.blog')}</Button
 	>
 </div>
-
-<!-- Commented out user account section for future use -->
-<!-- 
-<div class="flex items-center">
-	{#if session}
-		<Dropdown.Root>
-			<Dropdown.Trigger class={buttonVariants({ variant: 'ghost', size: 'sm' })}>
-				<CircleUserIcon />
-			</Dropdown.Trigger>
-			<Dropdown.Content>
-				<Dropdown.Group>
-					<form method="POST" action="/auth?/logout" class="contents" use:enhance>
-						<button type="submit" class="contents">
-							<Dropdown.Item>Log out</Dropdown.Item>
-						</button>
-					</form>
-				</Dropdown.Group>
-			</Dropdown.Content>
-		</Dropdown.Root>
-	{:else}
-		<div>
-			<Button size="sm" variant="outline" href="/login">Log in</Button>
-			<Button size="sm" href="/signup">Sign up</Button>
-		</div>
-	{/if}
-</div>
--->

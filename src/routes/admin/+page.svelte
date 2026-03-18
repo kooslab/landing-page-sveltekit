@@ -52,6 +52,28 @@
 				Blog Posts
 			</a>
 			<a
+				href="/admin/reservations"
+				class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+			>
+				<svg
+					xmlns="http://www.w3.org/2000/svg"
+					width="20"
+					height="20"
+					viewBox="0 0 24 24"
+					fill="none"
+					stroke="currentColor"
+					stroke-width="2"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				>
+					<rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+					<line x1="16" y1="2" x2="16" y2="6"></line>
+					<line x1="8" y1="2" x2="8" y2="6"></line>
+					<line x1="3" y1="10" x2="21" y2="10"></line>
+				</svg>
+				Reservations
+			</a>
+			<a
 				href="/admin/blogs/new"
 				class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
 			>
@@ -155,8 +177,8 @@
 				<Button href="/admin/blogs/new" variant="secondary" class="w-full">New Article</Button>
 			</div>
 
-			<!-- Site Settings Card (placeholder) -->
-			<div class="rounded-lg border bg-card p-6 opacity-50 shadow-sm">
+			<!-- Reservations Card -->
+			<div class="rounded-lg border bg-card p-6 shadow-sm">
 				<div class="mb-4">
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -168,16 +190,19 @@
 						stroke-width="2"
 						stroke-linecap="round"
 						stroke-linejoin="round"
-						class="text-muted-foreground"
+						class="text-primary"
 					>
-						<circle cx="12" cy="12" r="3"></circle>
-						<path d="M12 1v6m0 6v6m11-11h-6m-6 0H1"></path>
-						<path d="m20.5 7.5-3 3L15 8m-9 4-3 3L5 16m14 0-3 3-2.5-2.5M5 8l3 3 2.5-2.5"></path>
+						<rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+						<line x1="16" y1="2" x2="16" y2="6"></line>
+						<line x1="8" y1="2" x2="8" y2="6"></line>
+						<line x1="3" y1="10" x2="21" y2="10"></line>
 					</svg>
 				</div>
-				<h3 class="mb-2 text-lg font-semibold text-muted-foreground">Settings</h3>
-				<p class="mb-4 text-sm text-muted-foreground">Coming soon...</p>
-				<Button disabled class="w-full">Configure</Button>
+				<h3 class="mb-2 text-lg font-semibold">Workshop Reservations</h3>
+				<p class="mb-4 text-sm text-muted-foreground">View and manage workshop bookings</p>
+				<Button href="/admin/reservations" variant="secondary" class="w-full"
+					>Manage Reservations</Button
+				>
 			</div>
 		</div>
 

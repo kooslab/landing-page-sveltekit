@@ -33,7 +33,22 @@ export const blogPosts = pgTable('blog_posts', {
 	updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull()
 });
 
+// Workshop reservations table
+export const workshopReservations = pgTable('workshop_reservations', {
+	id: uuid('id').defaultRandom().primaryKey(),
+	workshopType: text('workshop_type').notNull(), // 'requirements' | 'vibe' | 'free'
+	name: text('name').notNull(),
+	email: text('email').notNull(),
+	message: text('message'),
+	preferredDates: text('preferred_dates').array().notNull(), // up to 3 ISO date strings
+	status: text('status').notNull().default('pending'), // pending | confirmed | completed | cancelled
+	createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+	updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull()
+});
+
 export type User = typeof users.$inferSelect;
 export type Session = typeof sessions.$inferSelect;
 export type BlogPost = typeof blogPosts.$inferSelect;
 export type NewBlogPost = typeof blogPosts.$inferInsert;
+export type WorkshopReservation = typeof workshopReservations.$inferSelect;
+export type NewWorkshopReservation = typeof workshopReservations.$inferInsert;

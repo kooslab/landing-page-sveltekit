@@ -7,31 +7,49 @@
 	let { data }: { data: PageData } = $props();
 	let loading = $state<string | null>(null);
 
-	async function togglePublish(postId: string, currentStatus: boolean) {
-		loading = postId;
+	const statusColors: Record<string, 'default' | 'secondary' | 'destructive' | 'outline'> = {
+		pending: 'outline',
+		confirmed: 'default',
+		completed: 'secondary',
+		cancelled: 'destructive'
+	};
+
+	const workshopLabels: Record<string, string> = {
+		requirements: 'Requirements',
+		vibe: 'Vibe Coding',
+		free: 'Free Consulting'
+	};
+
+	async function updateStatus(id: string, status: string) {
+		loading = id;
 		try {
-			const response = await fetch(`/api/admin/blog/${postId}`, {
+			const response = await fetch(`/api/admin/reservations/${id}`, {
 				method: 'PATCH',
-				headers: {
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({
-					published: !currentStatus
-				})
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ status })
 			});
 
-			if (!response.ok) {
-				throw new Error('Failed to update post');
-			}
-
-			// Refresh the data to show updated status
+			if (!response.ok) throw new Error('Failed to update');
 			await invalidateAll();
 		} catch (error) {
-			console.error('Error updating post:', error);
-			alert('Failed to update post');
+			console.error('Error updating reservation:', error);
+			alert('Failed to update reservation');
 		} finally {
 			loading = null;
 		}
+	}
+
+	function formatDates(dates: string[] | null): string {
+		if (!dates) return '-';
+		return dates
+			.map((d) =>
+				new Date(d + 'T00:00:00').toLocaleDateString('en-US', {
+					month: 'short',
+					day: 'numeric',
+					weekday: 'short'
+				})
+			)
+			.join(', ');
 	}
 </script>
 
@@ -66,7 +84,7 @@
 			</a>
 			<a
 				href="/admin/blogs"
-				class="flex items-center gap-3 rounded-lg bg-accent px-3 py-2 text-sm font-medium text-accent-foreground"
+				class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -86,7 +104,7 @@
 			</a>
 			<a
 				href="/admin/reservations"
-				class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+				class="flex items-center gap-3 rounded-lg bg-accent px-3 py-2 text-sm font-medium text-accent-foreground"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
@@ -105,26 +123,6 @@
 					<line x1="3" y1="10" x2="21" y2="10"></line>
 				</svg>
 				Reservations
-			</a>
-			<a
-				href="/admin/blogs/new"
-				class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
-			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="20"
-					height="20"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<line x1="12" y1="5" x2="12" y2="19"></line>
-					<line x1="5" y1="12" x2="19" y2="12"></line>
-				</svg>
-				Create Article
 			</a>
 			<div class="my-4 border-t"></div>
 			<a
@@ -154,72 +152,87 @@
 	<!-- Main Content -->
 	<div class="flex-1 px-8 py-8">
 		<div class="mb-8 flex items-center justify-between">
-			<h1 class="text-3xl font-bold">Blog Management</h1>
-			<div class="flex gap-2">
-				<Button href="/admin/blogs/new">New Article</Button>
-				<form method="POST" action="/logout">
-					<Button type="submit" variant="outline">Logout</Button>
-				</form>
-			</div>
+			<h1 class="text-3xl font-bold">Workshop Reservations</h1>
+			<form method="POST" action="/logout">
+				<Button type="submit" variant="outline">Logout</Button>
+			</form>
 		</div>
 
-		{#if data.posts.length === 0}
-			<p class="text-muted-foreground">No blog posts yet. Create your first one!</p>
+		{#if data.reservations.length === 0}
+			<p class="text-muted-foreground">No reservations yet.</p>
 		{:else}
 			<div class="overflow-x-auto">
 				<table class="w-full border-collapse">
 					<thead>
 						<tr class="border-b">
-							<th class="p-4 text-left">Title</th>
+							<th class="p-4 text-left">Name</th>
+							<th class="p-4 text-left">Email</th>
+							<th class="p-4 text-left">Workshop</th>
+							<th class="p-4 text-left">Preferred Dates</th>
 							<th class="p-4 text-left">Status</th>
 							<th class="p-4 text-left">Created</th>
 							<th class="p-4 text-left">Actions</th>
 						</tr>
 					</thead>
 					<tbody>
-						{#each data.posts as post}
+						{#each data.reservations as reservation}
 							<tr class="border-b hover:bg-muted/50">
 								<td class="p-4">
-									<div>
-										<div class="font-medium">{post.title}</div>
-										<div class="text-sm text-muted-foreground">{post.slug}</div>
-									</div>
-								</td>
-								<td class="p-4">
-									{#if post.published}
-										<Badge variant="default">Published</Badge>
-									{:else}
-										<Badge variant="secondary">Draft</Badge>
+									<div class="font-medium">{reservation.name}</div>
+									{#if reservation.message}
+										<div
+											class="mt-1 max-w-xs truncate text-xs text-muted-foreground"
+											title={reservation.message}
+										>
+											{reservation.message}
+										</div>
 									{/if}
 								</td>
+								<td class="p-4 text-sm">{reservation.email}</td>
+								<td class="p-4">
+									<Badge variant="secondary">
+										{workshopLabels[reservation.workshopType] || reservation.workshopType}
+									</Badge>
+								</td>
+								<td class="p-4 text-sm">{formatDates(reservation.preferredDates)}</td>
+								<td class="p-4">
+									<Badge variant={statusColors[reservation.status] || 'outline'}>
+										{reservation.status}
+									</Badge>
+								</td>
 								<td class="p-4 text-sm text-muted-foreground">
-									{new Date(post.createdAt).toLocaleDateString()}
+									{new Date(reservation.createdAt).toLocaleDateString()}
 								</td>
 								<td class="p-4">
-									<div class="flex gap-2">
-										<Button variant="outline" size="sm" href="/admin/blogs/edit/{post.id}"
-											>Edit</Button
-										>
-										{#if post.published}
-											<Button variant="outline" size="sm" href="/blog/{post.slug}" target="_blank">
-												View
-											</Button>
-											<Button
-												variant="secondary"
-												size="sm"
-												onclick={() => togglePublish(post.id, post.published ?? false)}
-												disabled={loading === post.id}
-											>
-												{loading === post.id ? 'Updating...' : 'Unpublish'}
-											</Button>
-										{:else}
+									<div class="flex flex-wrap gap-1">
+										{#if reservation.status !== 'confirmed'}
 											<Button
 												variant="default"
 												size="sm"
-												onclick={() => togglePublish(post.id, post.published ?? false)}
-												disabled={loading === post.id}
+												onclick={() => updateStatus(reservation.id, 'confirmed')}
+												disabled={loading === reservation.id}
 											>
-												{loading === post.id ? 'Updating...' : 'Publish'}
+												Confirm
+											</Button>
+										{/if}
+										{#if reservation.status !== 'completed'}
+											<Button
+												variant="secondary"
+												size="sm"
+												onclick={() => updateStatus(reservation.id, 'completed')}
+												disabled={loading === reservation.id}
+											>
+												Complete
+											</Button>
+										{/if}
+										{#if reservation.status !== 'cancelled'}
+											<Button
+												variant="outline"
+												size="sm"
+												onclick={() => updateStatus(reservation.id, 'cancelled')}
+												disabled={loading === reservation.id}
+											>
+												Cancel
 											</Button>
 										{/if}
 									</div>
