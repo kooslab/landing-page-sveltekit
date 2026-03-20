@@ -3,10 +3,16 @@
 	import { page } from '$app/stores';
 	import { Button } from '$lib/components/ui/button';
 	import { ArrowLeft } from 'lucide-svelte';
+	import ReservationModal from '../workshops/components/reservation-modal.svelte';
 
 	let lang = $derived($page.params?.lang || 'en');
 	let langPrefix = $derived(lang === 'en' ? '' : `/${lang}`);
+
+	let reservationOpen = $state(false);
+	let reservationType = $state<'requirements' | 'vibe' | 'free'>('free');
 </script>
+
+<ReservationModal bind:open={reservationOpen} bind:workshopType={reservationType} />
 
 <main class="w-full px-5 pb-16 pt-14 md:px-8 md:pb-24 md:pt-20">
 	<div class="mx-auto max-w-2xl md:max-w-3xl">
@@ -292,7 +298,14 @@
 			<p class="mb-5 text-sm text-muted-foreground md:text-base">
 				{$_('dxReport.reportCta.description')}
 			</p>
-			<Button size="lg" class="text-sm md:text-base" href="mailto:ilmokoo@koostory.net">
+			<Button
+				size="lg"
+				class="text-sm md:text-base"
+				onclick={() => {
+					reservationType = 'free';
+					reservationOpen = true;
+				}}
+			>
 				{$_('dxReport.reportCta.button')}
 			</Button>
 		</div>

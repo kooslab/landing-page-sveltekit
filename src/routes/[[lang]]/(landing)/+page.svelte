@@ -7,6 +7,10 @@
 	import { ArrowRight, ArrowDown, ChevronLeft, ChevronRight, CheckCircle } from 'lucide-svelte';
 	import DxReportSample from '$lib/components/sections/dx-report-sample.svelte';
 	import PromoPopup from '$lib/components/sections/promo-popup.svelte';
+	import ReservationModal from './workshops/components/reservation-modal.svelte';
+
+	let reservationOpen = $state(false);
+	let reservationType = $state<'requirements' | 'vibe' | 'free'>('free');
 
 	let lang = $derived($page.params?.lang || 'en');
 	let isKorean = $derived(lang === 'ko');
@@ -147,7 +151,13 @@
 	}}
 />
 
-<PromoPopup />
+<PromoPopup
+	onBook={() => {
+		reservationType = 'free';
+		reservationOpen = true;
+	}}
+/>
+<ReservationModal bind:open={reservationOpen} bind:workshopType={reservationType} />
 
 <main class="w-full">
 	<!-- ═══════════════════════════════════════════════ -->
@@ -164,7 +174,14 @@
 				{$_('landing.hero.subtitle')}
 			</p>
 			<div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center md:mt-10">
-				<Button size="lg" class="group text-sm" href="mailto:ilmokoo@koostory.net">
+				<Button
+					size="lg"
+					class="group text-sm"
+					onclick={() => {
+						reservationType = 'free';
+						reservationOpen = true;
+					}}
+				>
 					{$_('landing.hero.cta')}
 					<ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 				</Button>
@@ -651,7 +668,14 @@
 			<DxReportSample />
 
 			<div class="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-				<Button size="lg" class="group text-sm" href="mailto:ilmokoo@koostory.net">
+				<Button
+					size="lg"
+					class="group text-sm"
+					onclick={() => {
+						reservationType = 'free';
+						reservationOpen = true;
+					}}
+				>
 					{$_('workshop.cta')}
 					<ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 				</Button>

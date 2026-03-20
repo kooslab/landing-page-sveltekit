@@ -5,6 +5,8 @@
 	import { ArrowRight } from 'lucide-svelte';
 	import { browser } from '$app/environment';
 
+	let { onBook = () => {} }: { onBook?: () => void } = $props();
+
 	const STORAGE_KEY = 'koostory_promo_dismissed';
 
 	let open = $state(false);
@@ -89,7 +91,10 @@
 			<Button
 				size="lg"
 				class="group w-full text-sm"
-				href="mailto:ilmokoo@koostory.net?subject=Free Discovery Session"
+				onclick={() => {
+					open = false;
+					onBook();
+				}}
 			>
 				{$_('promo.cta')}
 				<ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />

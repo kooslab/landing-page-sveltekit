@@ -117,17 +117,30 @@
 			<!-- Form -->
 			<form onsubmit={handleSubmit} class="space-y-4">
 				<!-- Workshop type selector -->
-				<div class="space-y-1.5">
-					<Label for="workshopType">{$_('reservation.workshopLabel')}</Label>
-					<select
-						id="workshopType"
-						bind:value={workshopType}
-						class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-					>
-						<option value="requirements">{$_('reservation.types.requirements')}</option>
-						<option value="vibe">{$_('reservation.types.vibe')}</option>
-						<option value="free">{$_('reservation.types.free')}</option>
-					</select>
+				<div class="space-y-2">
+					<Label>{$_('reservation.workshopLabel')}</Label>
+					<div class="space-y-1.5">
+						{#each ['free', 'requirements', 'vibe'] as type}
+							<button
+								type="button"
+								class="flex w-full items-center gap-3 rounded-lg border px-3.5 py-2.5 text-left text-sm transition-colors
+									{workshopType === type
+									? 'border-primary bg-primary/5 font-medium'
+									: 'border-input hover:bg-muted/50'}"
+								onclick={() => (workshopType = type)}
+							>
+								<span
+									class="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full border-2
+									{workshopType === type ? 'border-primary' : 'border-muted-foreground/30'}"
+								>
+									{#if workshopType === type}
+										<span class="h-2 w-2 rounded-full bg-primary"></span>
+									{/if}
+								</span>
+								{$_(`reservation.types.${type}`)}
+							</button>
+						{/each}
+					</div>
 				</div>
 
 				<!-- Date picker -->
