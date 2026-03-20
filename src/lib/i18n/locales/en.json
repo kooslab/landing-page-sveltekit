@@ -1,4 +1,19 @@
 {
+	"promo": {
+		"title": "10 Hours of Free Development",
+		"subtitle": "500 EUR value — for early customers",
+		"description": "Book and complete a free problem discovery session with us. If we run the session together, the first 10 hours of custom development are on us.",
+		"examplesLabel": "Examples of what 10 hours can build",
+		"examples": [
+			"A customized business landing page with lead collection",
+			"One automated workflow for your most repetitive task (n8n)",
+			"A simple CMS for managing your content",
+			"An AI-powered chatbot trained on your business FAQ"
+		],
+		"expiry": "The 10 free hours must be used within 1 month from your session. This offer won't last — we'll close it once our schedule fills up.",
+		"cta": "Book a Free Discovery Session",
+		"dontShow": "Don't show this today"
+	},
 	"landing": {
 		"hero": {
 			"title": "Software Won't Save\nYour Business.",

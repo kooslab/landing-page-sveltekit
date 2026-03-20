@@ -1,4 +1,19 @@
 {
+	"promo": {
+		"title": "10 Stunden kostenlose Entwicklung",
+		"subtitle": "500 EUR Wert — fur fruhe Kunden",
+		"description": "Buchen und absolvieren Sie eine kostenlose Problem-Discovery-Sitzung mit uns. Wenn wir die Sitzung gemeinsam durchfuhren, sind die ersten 10 Stunden Entwicklung kostenlos.",
+		"examplesLabel": "Beispiele, was in 10 Stunden gebaut werden kann",
+		"examples": [
+			"Eine massgeschneiderte Business-Landingpage mit Lead-Erfassung",
+			"Ein automatisierter Workflow fur Ihre repetitivste Aufgabe (n8n)",
+			"Ein einfaches CMS zur Verwaltung Ihrer Inhalte",
+			"Ein KI-Chatbot, trainiert auf Ihre Business-FAQ"
+		],
+		"expiry": "Die 10 kostenlosen Stunden mussen innerhalb von 1 Monat nach Ihrer Sitzung genutzt werden. Dieses Angebot ist begrenzt — wir schliessen es, sobald unser Zeitplan voll ist.",
+		"cta": "Kostenlose Discovery-Sitzung buchen",
+		"dontShow": "Heute nicht mehr anzeigen"
+	},
 	"landing": {
 		"hero": {
 			"title": "Software rettet\nIhr Geschaft nicht.",

@@ -6,6 +6,7 @@
 	import { Badge } from '$lib/components/ui/badge';
 	import { ArrowRight, ArrowDown, ChevronLeft, ChevronRight, CheckCircle } from 'lucide-svelte';
 	import DxReportSample from '$lib/components/sections/dx-report-sample.svelte';
+	import PromoPopup from '$lib/components/sections/promo-popup.svelte';
 
 	let lang = $derived($page.params?.lang || 'en');
 	let isKorean = $derived(lang === 'ko');
@@ -145,6 +146,8 @@
 		}
 	}}
 />
+
+<PromoPopup />
 
 <main class="w-full">
 	<!-- ═══════════════════════════════════════════════ -->
