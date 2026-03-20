@@ -1,16 +1,62 @@
 {
+	"landing": {
+		"hero": {
+			"title": "Software rettet\nIhr Geschaft nicht.",
+			"subtitle": "Es sei denn, Sie setzen sie richtig ein. Wir beginnen mit Ihrem Problem — oft brauchen Sie gar keine Software.",
+			"cta": "Kostenlose Problem-Discovery-Sitzung buchen",
+			"scroll": "Warum das so ist"
+		},
+		"reality": {
+			"badge": "Die ehrliche Wahrheit",
+			"title": "Die meisten Unternehmen scheitern nicht an fehlender Technologie.",
+			"points": [
+				"Sie scheitern an unklaren Prozessen, falschen Prioritaten oder dem Versuch, Probleme mit Tools zu losen, die sie nicht brauchen. KI wird einen kaputten Workflow nicht retten. Eine neue App wird ein Team nicht retten, das nicht weiss, was Prioritat hat.",
+				"Bevor Sie in Digitalisierung oder KI investieren — fragen Sie sich: Ist das Problem wirklich Technologie? Oder hat einfach niemand aufgeschrieben, wie Ihr Geschaft tatsachlich funktioniert?",
+				"Technologie ist ein Multiplikator. Sie verstarkt, was bereits funktioniert. Wenn noch nichts funktioniert — wird kein Tool das andern."
+			]
+		},
+		"when": {
+			"badge": "Wann investieren",
+			"title": "Technologie ist ein Multiplikator, kein Zauberstab.",
+			"intro": "Sie schafft keinen Wert aus dem Nichts. Sie macht, was bereits funktioniert — schneller, gunstiger, zuverlassiger. So hilft sie wirklich:",
+			"items": [
+				"Sie haben einen funktionierenden Prozess, aber voller manueller Wiederholungen — automatisieren Sie nur diesen Teil.",
+				"Automatisieren Sie nicht, was Sie noch nicht verstanden haben. Bringen Sie erst den Prozess in Ordnung."
+			]
+		},
+		"services": {
+			"badge": "Was wir tun",
+			"title": "Zwei Wege, wie wir helfen konnen.",
+			"intro": "Je nachdem, wo Sie stehen:",
+			"pathA": {
+				"label": "Laufendes Geschaft",
+				"title": "Ihr Geschaft lauft — machen Sie es schneller.",
+				"description": "Sie haben Kunden, Umsatz und ein Team. Aber manches ist langsam, manuell oder schwer skalierbar. Wir finden die Engpasse und setzen DX/AX dort ein, wo es wirklich Zeit und Geld spart. Kein Uberengineering — nur was zahlt."
+			},
+			"pathB": {
+				"label": "Etwas Neues starten",
+				"title": "Testen Sie Ihre Idee mit minimalem Aufwand.",
+				"description": "Sie haben eine Dienstleistungs- oder Produktidee, wissen aber nicht, wie Sie sie umsetzen sollen. Wir helfen Ihnen, ein minimal verkaufsfahiges Produkt zu bauen — das Kleinste, das beweist, dass Ihr Markt funktioniert. Schnell, schlank, ohne Verschwendung."
+			},
+			"difference": "Wir stellen mehr Geschaftsfragen als jede Entwicklungsagentur. Weil die richtige Antwort manchmal lautet: Bauen Sie das nicht."
+		},
+		"process": {
+			"badge": "Wie wir arbeiten",
+			"title": "Von der Diagnose zur Lieferung"
+		}
+	},
 	"hero": {
 		"tagline": "Individuelle Software für den Mittelstand",
 		"title": "Läuft Ihr Unternehmen noch mit Excel und E-Mail?",
 		"description": "Wir entwickeln Software, die zu Ihren Abläufen passt — nicht umgekehrt.",
 		"cta": {
-			"workshop": "Kostenlosen Anforderungs-Workshop buchen",
+			"workshop": "Kostenlose Problem-Discovery buchen",
 			"portfolio": "Unsere Projekte ansehen"
 		}
 	},
 	"pain": {
 		"badge": "Kommt Ihnen das bekannt vor?",
-		"title": "Diese Probleme lösen sich nicht von allein",
+		"title": "Jedes wachsende Unternehmen trifft auf diese Wand",
 		"items": {
 			"excel": {
 				"icon": "table",
@@ -63,23 +109,18 @@
 		"steps": {
 			"workshop": {
 				"step": "1",
-				"title": "Kostenloser Workshop (60 Min.)",
-				"description": "Sie beschreiben Ihren Arbeitsalltag. Kein Fachchinesisch. Wir hören zu."
+				"title": "Kostenlose Problem-Discovery (60 Min.)",
+				"description": "Sie beschreiben Ihren Arbeitsalltag. Wir diagnostizieren, was Sie Zeit und Geld kostet."
 			},
 			"document": {
 				"step": "2",
-				"title": "Anforderungsdokument",
-				"description": "Sie erhalten ein klares User-Story-Dokument in verständlicher Sprache — was genau gebaut werden soll."
+				"title": "Sie erhalten einen Problem-Discoverybericht",
+				"description": "Ein klarer Bericht mit Bewertungen, Engpassanalyse und priorisierter Roadmap. Er gehort Ihnen — arbeiten Sie selbst daran, geben Sie ihn an ein anderes Team, oder lassen Sie uns weitermachen."
 			},
 			"build": {
 				"step": "3",
-				"title": "Wir bauen es",
-				"description": "Kleine Schritte, wöchentliche Demos. Sie sehen jede Woche Fortschritt."
-			},
-			"own": {
-				"step": "4",
-				"title": "Es gehört Ihnen",
-				"description": "Ihre Software. Ihre Daten. Vollständige Übergabe, Schulung und Support."
+				"title": "Sie losen es — oder wir",
+				"description": "Viele Kunden losen es selbst mit unserem Bericht und unseren Vorschlagen. Wenn Sie praktische Hilfe brauchen, sind wir da. Minimaler Technik-Einsatz, skalierbar, kein Uberbauen."
 			}
 		}
 	},
@@ -106,6 +147,30 @@
 			}
 		}
 	},
+	"ax": {
+		"badge": "KI-Transformation (AX)",
+		"title": "Sie wollen KI nutzen — wissen aber nicht, wo Sie anfangen sollen?",
+		"description": "Sie haben ChatGPT fur ein paar Aufgaben ausprobiert. Aber KI im gesamten Geschaftsablauf einzusetzen? Das ist eine andere Herausforderung.",
+		"items": {
+			"diagnosis": {
+				"title": "Wir finden, wo KI wirklich hilft",
+				"description": "Nicht jeder Prozess braucht KI. Wir identifizieren die Bereiche mit hoher Wirkung, wo KI echte Zeit und Kosten spart."
+			},
+			"workflow": {
+				"title": "Durchgangige KI-Workflows",
+				"description": "Uber einzelne ChatGPT-Prompts hinaus. Wir entwerfen und implementieren KI-gestutzte Workflows, die Ihre Tools, Daten und Teamprozesse verbinden."
+			},
+			"practical": {
+				"title": "Praktisch, nicht theoretisch",
+				"description": "Kein 50-seitiges KI-Strategiepapier. Sie bekommen funktionierende Automatisierungen — Dokumentenverarbeitung, E-Mail-Triage, Datenextraktion — in Tagen einsatzbereit."
+			},
+			"independent": {
+				"title": "Sie betreiben es selbst weiter",
+				"description": "Wir bauen es so, dass Ihr Team es betreiben und weiterentwickeln kann. Klare Dokumentation, einfache Oberflachen, KI-Tools die Ihre Leute verstehen."
+			}
+		},
+		"cta": "Erhalten Sie eine kostenlose AX-Bewertung in Ihrer Problem-Discovery"
+	},
 	"korea": {
 		"badge": "Warum Korea",
 		"title": "Koreanische Ingenieurskunst. Gemacht für deutsche Unternehmen.",
@@ -130,35 +195,194 @@
 	},
 	"checklist": {
 		"badge": "Bevor Sie investieren",
-		"title": "Brauchen Sie wirklich individuelle Software?",
-		"intro": "Bevor Sie Tausende ausgeben, gehen Sie das ehrlich durch. Die Antwort ist meistens nicht das, was Sie denken.",
+		"title": "Bevor Sie in KI oder Digitalisierung investieren",
+		"intro": "Ehrlicher Rat, bevor Sie Geld ausgeben. Die meisten Unternehmen brauchen nicht das, was sie denken.",
 		"step1": {
-			"title": "Sie brauchen wahrscheinlich gar keine Software.",
-			"description": "Die meisten Geschaftsprobleme lassen sich mit einer gut strukturierten Tabelle, einer besseren Vorlage oder einem klareren Prozess losen. Wenn Ihr Workflow chaotisch ist, automatisiert Software nur das Chaos. Bringen Sie zuerst den Prozess in Ordnung."
+			"title": "Sie brauchen wahrscheinlich gar keine KI.",
+			"description": "Die meiste KI-Adoption ist FOMO, kein Geschaftsbedarf. Solange KI nicht ein konkretes, tagliches Problem lost, ist es nur ein teures Experiment. ChatGPT ist grossartig — aber es fur zufallige Aufgaben zu nutzen ist keine \"KI-Transformation.\""
 		},
 		"step2": {
-			"title": "Wenn Sie das Problem kennen, konnen Sie selbst bauen.",
-			"description": "Wenn Sie mit einem Computer umgehen konnen, konnen Sie heute mit KI-Tools Ihr eigenes MVP oder Ihren Prototyp bauen. Suchen Sie auf YouTube nach 'Vibe Coding' — nicht-technische Menschen bauen jeden Tag ihre eigene Software. Geben Sie nicht 20-30.000 EUR aus, bevor Sie das versucht haben. Wirklich, Sie konnen das.",
-			"workshop_before_link": "Wenn Sie praktische Hilfe wollen: Ich biete einen 1-Tages-1:1-Workshop (300 EUR) an. In Berlin sitze ich direkt neben Ihnen, sonst online. Sie gehen mit Ihrem eigenen funktionierenden Programm nach Hause. ",
-			"workshop_link_text": "Jetzt buchen",
-			"workshop_after_link": "."
+			"title": "Die meisten Probleme brauchen auch keine individuelle Software.",
+			"description": "Eine gut strukturierte Tabelle, ein klarerer Prozess oder eine bessere Vorlage lost 80% der Geschaftsprobleme. Einen chaotischen Prozess zu digitalisieren automatisiert nur das Chaos. Bringen Sie zuerst den Prozess in Ordnung."
 		},
 		"step3": {
-			"title": "Wenn nichts davon passt — dann bauen wir es zusammen.",
-			"description": "Sie haben Tabellen ausprobiert, selbst bauen versucht, und das Problem ist wirklich komplex genug fur individuelle Software. Dann kommen wir ins Spiel."
+			"title": "Technologie hilft nur, wenn sie auf das richtige Problem angewandt wird.",
+			"description": "Uberengineering verschwendet Zeit und Geld. Das Ziel ist nicht \"mehr Technologie\" — sondern weniger Reibung, weniger Fehler, schnellere Ergebnisse. Bauen Sie nur, was wirklich etwas bewegt."
+		},
+		"step4": {
+			"title": "Deshalb beginnen wir mit Ihrem Geschaft, nicht mit Ihrem Tech-Stack.",
+			"description": "Anders als typische Entwicklungsagenturen verbringen wir die meiste Zeit damit, nach Ihren Prozessen, Engpassen und taglichen Ablaufen zu fragen. Wir klaren, was gebaut werden soll — oder was nicht — bevor wir eine einzige Zeile Code schreiben."
+		},
+		"step5": {
+			"title": "Wenn wir bauen — tragt es tatsachlich bei.",
+			"description": "Massgeschneidertes DX/AX-Engineering, das messbare Effizienz liefert. Automatisierung, die Ihr Team tatsachlich nutzt. KI-Workflows, die echte Stunden sparen, nicht theoretische. Kein Aufblahen, keine Verschwendung — nur was zahlt."
 		}
 	},
 	"workshop": {
-		"badge": "Kostenloser Workshop",
-		"title": "Lassen Sie uns herausfinden, was Sie wirklich brauchen",
-		"description": "Buchen Sie einen kostenlosen 60-Minuten-Anforderungsworkshop. Sie gehen mit einem Entwurf Ihres Anforderungsdokuments nach Hause — ob Sie mit uns arbeiten oder nicht.",
+		"badge": "Kostenlose 60-Min.-Sitzung",
+		"title": "Ihr CTO fur eine Stunde — kostenlos.",
+		"description": "Wenn Ihr Unternehmen einen CTO oder technischen Teamleiter hatte, wurde er genau das tun: sich mit Ihnen zusammensetzen, Ihre Ablaufe verstehen und Ihnen sagen, was Technologie fur Sie tun kann und was nicht. Genau das machen wir — kostenlos.",
+		"how": "60% horen wir zu und fragen. 40% sagen wir Ihnen, was moglich ist.",
+		"focus": "In 60 Minuten konnen wir nicht alles besprechen. Deshalb fragen wir Sie: Was ist gerade Ihr dringendstes Problem? Darauf konzentrieren wir uns — und gehen in die Tiefe.",
 		"deliverables": {
-			"userstory": "Entwurf eines User-Story-Dokuments",
-			"processmap": "Prozesslandkarte Ihrer aktuellen Abläufe",
-			"roadmap": "Priorisierte Digitalisierungs-Roadmap"
+			"diagnosis": "DX/AX-Diagnosebericht mit Bewertungen",
+			"processmap": "Aktuelle Workflow-Engpassanalyse",
+			"roadmap": "Priorisierte Roadmap — was zuerst zu tun ist"
 		},
-		"cta": "Kostenlosen Workshop buchen",
-		"trust": "Keine Verpflichtung. Kein Fachchinesisch. Einfach ein Gespräch über Ihr Unternehmen."
+		"ownership": "Der Bericht gehort Ihnen. Arbeiten Sie selbst daran, geben Sie ihn an einen Freelancer, oder lassen Sie uns weitermachen.",
+		"cta": "Kostenlose Sitzung buchen",
+		"trust": "Keine Verpflichtung. Kein Verkaufsgesprach. Nur ehrliche Antworten.",
+		"sampleReport": "Beispielbericht ansehen"
+	},
+	"dxReport": {
+		"previewLabel": "Beispiel aus einem realen Projekt",
+		"title": "Problem-Discoverybericht — Shared Office",
+		"subtitle": "Realer Fall: Virtuelle Adresse in einem Shared Office in Seoul.",
+		"disclaimer": "Beispiel aus einem realen Projekt. Ihr Bericht wird auf Ihr Unternehmen zugeschnitten.",
+		"seeFullReport": "Vollstandigen Beispielbericht ansehen",
+		"backToHome": "Zuruck zur Startseite",
+		"emailError": "Bitte geben Sie eine gultige E-Mail ein",
+		"emailDialog": {
+			"title": "Vollstandigen Bericht ansehen",
+			"description": "Geben Sie Ihre E-Mail ein, um den vollstandigen Beispielbericht zu sehen.",
+			"placeholder": "sie@unternehmen.de",
+			"submit": "Bericht ansehen",
+			"submitting": "Wird geladen...",
+			"consent": "Ich stimme zu, dass KooStory meine E-Mail speichern und mich bezuglich ihrer Dienstleistungen kontaktieren darf. Ich kann die Einwilligung jederzeit widerrufen.",
+			"consentError": "Bitte stimmen Sie zu, um fortzufahren"
+		},
+		"reportLabel": "Problem-Discovery-Bericht",
+		"report": {
+			"summary": {
+				"title": "Zusammenfassung",
+				"text": "Der virtuelle Adressservice dieses Shared Office in Seoul lauft fast vollstandig uber manuelle Prozesse. Jeder Kundenkontaktpunkt — Anfrage, Vertrag, Zahlung — hangt von einer einzigen Kontaktperson ab. Das verursacht Verzogerungen, menschliche Fehler und Kundenabwanderung. Drei Automatisierungsmoglichkeiten mit hoher Wirkung wurden identifiziert.",
+				"stats": [
+					{ "value": "5", "label": "manuelle Schritte in der Customer Journey" },
+					{ "value": "4", "label": "Engpasse identifiziert" },
+					{ "value": "3", "label": "vorgeschlagene Massnahmen" }
+				]
+			},
+			"asIsIntro": "Wir haben die komplette Customer Journey von der ersten Anfrage bis zur monatlichen Zahlung erfasst. Rote Markierungen zeigen, wo Verzogerungen und Fehler auftreten.",
+			"painPoints": {
+				"title": "Kunden-Schmerzpunkte",
+				"intro": "Dies sind die Momente, in denen Kunden Reibung, Verzogerung oder Frustration erleben.",
+				"items": [
+					{
+						"severity": "H",
+						"title": "Keine Antwortbestatigung nach Anfrage",
+						"description": "Kunde fullt ein Formular aus und sieht nichts — keine Bestatigungs-E-Mail, keine erwartete Antwortzeit. Er weiss nicht, ob jemand seine Anfrage erhalten hat."
+					},
+					{
+						"severity": "H",
+						"title": "Langsame Antwortzeit (Stunden bis Tage)",
+						"description": "Die Antwort hangt von der Verfugbarkeit einer Person ab. In Stosszeiten warten Anfragen 1-3 Tage im Posteingang. Wettbewerber antworten schneller."
+					},
+					{
+						"severity": "M",
+						"title": "Kein Self-Service fur Zahlungsmanagement",
+						"description": "Zum Kundigen, Andern oder Prufen des Zahlungsstatus mussen Kunden den Support per Messenger kontaktieren. Keine Moglichkeit, das eigene Abo selbst zu verwalten."
+					}
+				]
+			},
+			"suggestionsIntro": "Priorisiert nach Kundenauswirkung. Jeder Vorschlag kann unabhangig umgesetzt werden.",
+			"suggestions": {
+				"items": [
+					{ "category": "Customer Journey · Anfrage" },
+					{ "category": "Customer Journey · Vertrag" },
+					{ "category": "Customer Journey · Zahlung" }
+				]
+			},
+			"priority": {
+				"title": "Prioritatsmatrix",
+				"intro": "Empfohlene Umsetzungsreihenfolge basierend auf Wirkung vs. Aufwand.",
+				"action": "Massnahme",
+				"impact": "Wirkung",
+				"effort": "Aufwand",
+				"order": "Prioritat",
+				"rows": [
+					{
+						"action": "Auto-Antwort + Vertragslink",
+						"impact": "Hoch",
+						"effort": "Niedrig",
+						"order": "#1"
+					},
+					{ "action": "E-Signatur-API", "impact": "Hoch", "effort": "Mittel", "order": "#2" },
+					{ "action": "Karten-Abo", "impact": "Mittel", "effort": "Mittel", "order": "#3" }
+				]
+			},
+			"nextSteps": {
+				"title": "Empfohlene nachste Schritte",
+				"items": [
+					"Prufen Sie diesen Bericht und entscheiden Sie, welche Vorschlage zu Ihren Prioritaten passen.",
+					"Sie konnen diese selbst umsetzen, an einen Entwickler oder Freelancer weitergeben, oder uns kontaktieren.",
+					"Wenn Sie mit uns weitermachen mochten, erstellen wir einen detaillierten Umfang und Zeitplan — keine Verpflichtung, bis Sie bereit sind."
+				]
+			}
+		},
+		"reportCta": {
+			"title": "Mochten Sie einen solchen Bericht fur Ihr Unternehmen?",
+			"description": "Buchen Sie eine kostenlose 60-Minuten Problem-Discovery-Sitzung. Sie erhalten einen auf Ihre Ablaufe zugeschnittenen Bericht.",
+			"button": "Kostenlose Discovery-Sitzung"
+		},
+		"case": {
+			"industry": "Shared Office / Co-working",
+			"title": "Virtuelle-Adresse-Service — Kundenreise-Analyse",
+			"bottleneck": "Engpass gefunden",
+			"suggestion": "Empfohlene Massnahme",
+			"highlight1": {
+				"title": "Anfrage-Antwort hangt von einer Person ab",
+				"description": "Kunde stellt Anfrage auf der Website. Kontaktperson erhalt E-Mail und muss manuell antworten. Wenn beschaftigt oder vergessen — der Kunde wartet. Oder geht.",
+				"impact": "Kundenbeschwerde: langsame Antwort, keine Bestatigung"
+			},
+			"highlight2": {
+				"title": "Anfrage-Antwort + Vertragsfluss automatisieren",
+				"description": "Kunde erhalt sofort Bestatigung mit Preisen und Vertragslink. Kein menschlicher Engpass am ersten Kontaktpunkt.",
+				"value": "Kein Warten. Keine verlorenen Anfragen."
+			},
+			"asIs": {
+				"title": "As-Is: Aktueller Prozess",
+				"steps": [
+					"Kunde besucht Website, fullt Anfrageformular aus (Preis, Vertragsinformationen)",
+					"Kontaktperson erhalt E-Mail-Benachrichtigung",
+					"Kontaktperson antwortet manuell mit Preis- und Vertragsdetails",
+					"Kunde stimmt zu → Mitarbeiter sendet manuell E-Signatur-Vertrag",
+					"Kunde zahlt per Bankuberweisung → Mitarbeiter pruft monatlich manuell"
+				],
+				"problems": [
+					"-",
+					"Wenn beschaftigt oder abwesend — Anfrage liegt im Posteingang. Keine Auto-Antwort, keine Bestatigung.",
+					"Verspatete Antwort (Stunden bis Tage). Kunde kontaktiert moglicherweise Wettbewerber.",
+					"Vergessen zu senden? Kunde wartet. Menschlicher Fehler = verlorene Geschafte.",
+					"Verspätete Zahlungen, fehlende Uberweisungen, monatlicher manueller Abgleich."
+				]
+			},
+			"suggestions": {
+				"title": "Unser Vorschlag",
+				"items": [
+					{
+						"action": "Anfrage-Antwort automatisieren",
+						"detail": "Kunde erhalt sofort Bestatigung mit Preisen und Vertragslink.",
+						"value": "Kein Warten. Keine verlorenen Anfragen.",
+						"diy": "Selbst losen: Formular-Tool wie Tally oder Typeform mit Auto-Antwort. Reicht fur die meisten Falle, aber begrenzte Anpassung.",
+						"pro": "Volle Losung: Massgeschneiderter Flow, integriert in Ihr bestehendes System. Keine Plattform-Limits, voll gebrandet, skalierbar."
+					},
+					{
+						"action": "E-Signatur-API integrieren",
+						"detail": "Vertrag wird automatisch gesendet, wenn der Kunde bestatigt.",
+						"value": "Nahtlose Anmeldung. Null Reibung.",
+						"diy": "Selbst losen: DocuSign oder PandaDoc mit manuellem Ausloser. Deckt Grundbedurfnisse, aber manuelle Schritte bleiben.",
+						"pro": "Volle Losung: API-integrierter Auto-Versand bei Kundenbestatigung. Null menschliche Schritte, null vergessene Vertrage."
+					},
+					{
+						"action": "Auf wiederkehrende Kartenzahlung umstellen",
+						"detail": "Kunde kann selbst zahlen, kundigen, andern oder erstatten.",
+						"value": "Volle Kontrolle uber das Abo. Kein Support notig.",
+						"diy": "Selbst losen: Stripe Checkout oder PayPal-Abos. Schnell eingerichtet, aber auf deren UI und Workflows beschrankt.",
+						"pro": "Volle Losung: Massgeschneidertes Zahlungssystem, integriert in Ihre Ablaufe. Volles Self-Service-Portal, automatisierter Abgleich."
+					}
+				]
+			}
+		}
 	},
 	"portfolio": {
 		"badge": "Kundenportfolio",
@@ -547,7 +771,7 @@
 		"about": "Über uns",
 		"process": "Ablauf",
 		"portfolio": "Portfolio",
-		"profile": "Profil",
+		"about": "Uber mich",
 		"workshops": "Workshops",
 		"blog": "Blog"
 	},
@@ -731,9 +955,9 @@
 			"intro": "Ob Sie Klarheit brauchen, was gebaut werden soll, oder es selbst lernen wollen.",
 			"free": {
 				"price": "Kostenlos",
-				"title": "Anforderungsberatungs-Workshop",
-				"description": "120 Min., online oder offline. Wir gehen Ihr Geschaftsproblem durch und Sie gehen mit einem klaren Bild davon, was zu bauen ist. Keine Verpflichtung.",
-				"cta": "Kostenlosen Workshop buchen"
+				"title": "Problem-Discovery-Sitzung",
+				"description": "60 Min., online oder offline. Wir diagnostizieren Ihre aktuellen Abläufe und Sie erhalten einen Problem-Discoverybericht. Keine Verpflichtung.",
+				"cta": "Kostenlose Problem-Discovery buchen"
 			},
 			"requirements": {
 				"title": "1-Tages-Anforderungsworkshop",
@@ -793,8 +1017,8 @@
 		},
 		"free": {
 			"badge": "Ebenfalls verfugbar",
-			"title": "Kostenlose Anforderungsberatung",
-			"description": "120-Minuten-Sitzung, online oder offline. Wir gehen Ihr Geschaftsproblem durch und Sie bekommen ein klares Bild davon, was zu bauen ist. Ohne Verpflichtung.",
+			"title": "Kostenlose Problem-Discovery",
+			"description": "60-Minuten-Sitzung, online oder offline. Wir diagnostizieren Ihre aktuellen Abläufe und liefern einen DX-Bericht mit konkreten Empfehlungen. Ohne Verpflichtung.",
 			"cta": "Kostenlose Sitzung buchen"
 		},
 		"priceNote": "Early-Bird-Preise gelten bis 30. April 2026. Danach gelten die regularen Preise (400 EUR / 200 EUR).",
@@ -826,7 +1050,7 @@
 		"types": {
 			"requirements": "Anforderungsworkshop (200 EUR)",
 			"vibe": "Vibe-Coding-Workshop (100 EUR)",
-			"free": "Kostenlose Anforderungsberatung"
+			"free": "Kostenlose Problem-Discovery"
 		},
 		"datesLabel": "Wunschtermine (bis zu 3)",
 		"nameLabel": "Name",

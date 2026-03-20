@@ -1,16 +1,62 @@
 {
+	"landing": {
+		"hero": {
+			"title": "Software Won't Save\nYour Business.",
+			"subtitle": "Unless you apply it right. We start with your problem — often, you don't need software at all.",
+			"cta": "Free Discovery Session",
+			"scroll": "Read why"
+		},
+		"reality": {
+			"badge": "The honest truth",
+			"title": "Most Businesses Don't Fail Because of Lack of Technology.",
+			"points": [
+				"They fail because of unclear processes, misplaced priorities, or trying to fix things with tools they don't need. AI won't save a broken workflow. A new app won't fix a team that doesn't know what to prioritize.",
+				"Before you invest in digitalization or AI — ask yourself: is the problem really technology? Or is it that nobody wrote down how your business actually works?",
+				"Technology is a multiplier. It amplifies what already works. If nothing works yet — no tool will change that."
+			]
+		},
+		"when": {
+			"badge": "When to invest",
+			"title": "Technology Is a Multiplier, Not a Magic Wand.",
+			"intro": "It doesn't create value from nothing. It makes what already works — faster, cheaper, more reliable. Here's when it actually helps:",
+			"items": [
+				"You have a working process but it's full of repetitive manual work — automate just that part.",
+				"Don't automate what you haven't figured out yet. Fix the process first."
+			]
+		},
+		"services": {
+			"badge": "What we do",
+			"title": "Two Ways We Can Help.",
+			"intro": "Depending on where you are:",
+			"pathA": {
+				"label": "Running a business",
+				"title": "Your business works — make it faster.",
+				"description": "You already have customers, revenue, and a team. But things are slow, manual, or hard to scale. We find the bottlenecks and apply DX/AX where it actually saves time and money. No overengineering — only what moves the needle."
+			},
+			"pathB": {
+				"label": "Launching something new",
+				"title": "Test your idea with minimum engineering.",
+				"description": "You have a service or product idea but don't know how to build it. We help you create a minimum sellable product — the smallest thing that proves your market works. Fast, lean, no waste."
+			},
+			"difference": "We ask more business questions than any dev agency you've met. Because the right answer is sometimes: don't build that."
+		},
+		"process": {
+			"badge": "How we work",
+			"title": "From Diagnosis to Delivery"
+		}
+	},
 	"hero": {
 		"tagline": "Custom Software for Mittelstand",
 		"title": "Still Running Your Business on Excel and Email?",
 		"description": "We build custom software that fits how your team actually works — not the other way around.",
 		"cta": {
-			"workshop": "Book a Free Requirements Workshop",
+			"workshop": "Book a Free Problem Discovery",
 			"portfolio": "See Our Work"
 		}
 	},
 	"pain": {
 		"badge": "Sound Familiar?",
-		"title": "These Problems Don't Go Away on Their Own",
+		"title": "Every Growing Business Hits This Wall",
 		"items": {
 			"excel": {
 				"icon": "table",
@@ -63,23 +109,18 @@
 		"steps": {
 			"workshop": {
 				"step": "1",
-				"title": "Free Workshop (60 min)",
-				"description": "You describe your daily work. No tech jargon. We listen."
+				"title": "Free Problem Discovery (60 min)",
+				"description": "You describe your daily work. We diagnose what's costing you time and money."
 			},
 			"document": {
 				"step": "2",
-				"title": "Requirements Document",
-				"description": "You get a clear User Story document in plain language describing exactly what to build."
+				"title": "You Get a Problem Discovery Report",
+				"description": "A clear report with scores, bottleneck analysis, and a prioritized roadmap. It's yours — work on it yourself, hand it to another team, or let us take care of it."
 			},
 			"build": {
 				"step": "3",
-				"title": "We Build It",
-				"description": "Small iterations, weekly demos. You see progress every week."
-			},
-			"own": {
-				"step": "4",
-				"title": "You Own It",
-				"description": "Your software. Your data. Full handover, training, and support."
+				"title": "You Solve It — or We Do",
+				"description": "Many clients solve it themselves with our report and suggestions. If you need hands-on help, we're here. Minimum engineering, scalable technology, no overbuilding."
 			}
 		}
 	},
@@ -106,6 +147,30 @@
 			}
 		}
 	},
+	"ax": {
+		"badge": "AI Transformation (AX)",
+		"title": "Want to Use AI — But Don't Know Where to Start?",
+		"description": "You've tried ChatGPT for a few tasks. But applying AI across your entire business workflow? That's a different challenge.",
+		"items": {
+			"diagnosis": {
+				"title": "We Find Where AI Actually Helps",
+				"description": "Not every process needs AI. We identify the high-impact areas where AI saves real time and money — not just the trendy ones."
+			},
+			"workflow": {
+				"title": "End-to-End AI Workflows",
+				"description": "Beyond one-off ChatGPT prompts. We design and implement AI-driven workflows that connect your tools, data, and team processes."
+			},
+			"practical": {
+				"title": "Practical, Not Theoretical",
+				"description": "No 50-page AI strategy deck. You get working automations — document processing, email triage, data extraction, report generation — deployed in days."
+			},
+			"independent": {
+				"title": "You Keep Running It",
+				"description": "We build it so your team can operate and evolve it. Clear documentation, simple interfaces, and AI tools your people actually understand."
+			}
+		},
+		"cta": "Get a free AX assessment in your DX diagnosis"
+	},
 	"korea": {
 		"badge": "Why Korea",
 		"title": "Built with Korean Engineering. Made for German Business.",
@@ -129,36 +194,195 @@
 		}
 	},
 	"checklist": {
-		"badge": "Before You Spend",
-		"title": "Do You Really Need Custom Software?",
-		"intro": "Before spending thousands, go through this honestly. Most of the time, the answer is not what you think.",
+		"badge": "Before You Invest",
+		"title": "Before You Invest in AI or Digitalization",
+		"intro": "Honest advice before you spend money. Most businesses don't need what they think they need.",
 		"step1": {
-			"title": "You probably don't need software at all.",
-			"description": "Most business problems can be solved with a well-structured spreadsheet, a better template, or a clearer process. If your workflow is messy, building software on top of it just automates the mess. Fix the process first."
+			"title": "You probably don't need AI at all.",
+			"description": "Most AI adoption is FOMO, not business need. Unless AI is solving a specific, daily pain point, it's just an expensive experiment. ChatGPT is great — but using it for random tasks isn't \"AI transformation.\""
 		},
 		"step2": {
-			"title": "If you know the problem, you can build it yourself.",
-			"description": "If you're comfortable using a computer, you can build your own MVP or prototype with AI tools today. Search YouTube for 'vibe coding' — non-technical people are building their own software every day. Don't spend 20-30k EUR before trying this. Seriously, you can do it.",
-			"workshop_before_link": "If you want hands-on help: I run a 1-day 1:1 workshop (300 EUR). In Berlin I sit right next to you, online otherwise. You'll walk away with your own working program. ",
-			"workshop_link_text": "Book it",
-			"workshop_after_link": "."
+			"title": "Most problems don't need custom software either.",
+			"description": "A well-structured spreadsheet, a clearer process, or a better template solves 80% of business problems. Digitizing a messy process just automates the mess. Fix the process first."
 		},
 		"step3": {
-			"title": "If none of the above — let's build it together.",
-			"description": "You've tried spreadsheets, you've tried building yourself, and the problem is genuinely complex enough for custom software. That's where we come in."
+			"title": "Technology only helps when applied to the right problem.",
+			"description": "Overengineering wastes time and money. The goal isn't \"more technology\" — it's less friction, fewer errors, faster results. Only build what actually moves the needle."
+		},
+		"step4": {
+			"title": "That's why we start with your business, not your tech stack.",
+			"description": "Unlike typical dev agencies, we spend most of our time asking about your processes, bottlenecks, and daily operations. We figure out what to build — or what not to build — before writing a single line of code."
+		},
+		"step5": {
+			"title": "When we do build — it actually contributes.",
+			"description": "Customized DX/AX engineering that delivers measurable efficiency. Automation your team actually uses. AI workflows that save real hours, not theoretical ones. No bloat, no waste — only what matters."
 		}
 	},
 	"workshop": {
-		"badge": "Free Workshop",
-		"title": "Let's Figure Out What You Actually Need",
-		"description": "Book a free 60-minute requirements workshop. You'll walk away with a draft requirements document — whether you work with us or not.",
+		"badge": "Free 60-min session",
+		"title": "Your CTO for an Hour — Free.",
+		"description": "If your company had a CTO or tech team leader, they'd do this: sit down with you, understand your operations, and tell you what technology can and can't do for you. We do exactly that — for free.",
+		"how": "60% we listen and ask. 40% we tell you what's possible.",
+		"focus": "We can't cover everything in 60 minutes. So we'll ask you: what's the most urgent problem right now? We focus on that — and go deep.",
 		"deliverables": {
-			"userstory": "Draft User Story document",
-			"processmap": "Process map of your current workflow",
-			"roadmap": "Prioritized digitization roadmap"
+			"diagnosis": "DX/AX diagnosis report with scores",
+			"processmap": "Current workflow bottleneck analysis",
+			"roadmap": "Prioritized roadmap — what to do first"
 		},
-		"cta": "Book Your Free Workshop",
-		"trust": "No commitment. No tech jargon. Just a conversation about your business."
+		"ownership": "The report is yours. Work on it yourself, hand it to a freelancer, or let us continue.",
+		"cta": "Book Your Free Session",
+		"trust": "No commitment. No sales pitch. Just honest answers.",
+		"sampleReport": "See a sample report"
+	},
+	"dxReport": {
+		"previewLabel": "Sample from a real project",
+		"title": "Problem Discovery Report — Shared Office",
+		"subtitle": "Real case: virtual address service at a shared office in Seoul.",
+		"disclaimer": "Sample from a real project. Your report will be tailored to your business.",
+		"seeFullReport": "See full sample report",
+		"backToHome": "Back to home",
+		"emailError": "Please enter a valid email",
+		"emailDialog": {
+			"title": "View the full report",
+			"description": "Enter your email to see the complete sample report.",
+			"placeholder": "you@company.com",
+			"submit": "View Report",
+			"submitting": "Loading...",
+			"consent": "I agree that KooStory may store my email and contact me about their services. I can withdraw consent at any time.",
+			"consentError": "Please agree to continue"
+		},
+		"reportLabel": "Problem Discovery Report",
+		"report": {
+			"summary": {
+				"title": "Executive Summary",
+				"text": "The virtual address service at this shared office in Seoul runs almost entirely on manual processes. Every customer touchpoint — inquiry, contract, payment — depends on a single contact person. This creates delays, human errors, and customer churn. Three high-impact automation opportunities were identified.",
+				"stats": [
+					{ "value": "5", "label": "manual steps in customer journey" },
+					{ "value": "4", "label": "bottlenecks identified" },
+					{ "value": "3", "label": "suggested actions" }
+				]
+			},
+			"asIsIntro": "We mapped the complete customer journey from first inquiry to monthly payment. Red markers show where delays and errors occur.",
+			"painPoints": {
+				"title": "Customer Pain Points",
+				"intro": "These are the moments where customers experience friction, delay, or frustration.",
+				"items": [
+					{
+						"severity": "H",
+						"title": "No response confirmation after inquiry",
+						"description": "Customer submits a form and sees nothing — no confirmation email, no expected response time. They don't know if anyone received their inquiry."
+					},
+					{
+						"severity": "H",
+						"title": "Slow response time (hours to days)",
+						"description": "Response depends on one person's availability. During busy periods, inquiries wait in inbox for 1-3 days. Competitors respond faster."
+					},
+					{
+						"severity": "M",
+						"title": "No self-service for payment management",
+						"description": "To cancel, modify, or check payment status, customers must contact support via messenger. No way to manage their own subscription."
+					}
+				]
+			},
+			"suggestionsIntro": "Prioritized by customer impact. Each suggestion can be implemented independently.",
+			"suggestions": {
+				"items": [
+					{ "category": "Customer Journey · Inquiry" },
+					{ "category": "Customer Journey · Contract" },
+					{ "category": "Customer Journey · Payment" }
+				]
+			},
+			"priority": {
+				"title": "Priority Matrix",
+				"intro": "Suggested implementation order based on impact vs. effort.",
+				"action": "Action",
+				"impact": "Impact",
+				"effort": "Effort",
+				"order": "Priority",
+				"rows": [
+					{
+						"action": "Auto-reply + contract link",
+						"impact": "High",
+						"effort": "Low",
+						"order": "#1"
+					},
+					{ "action": "E-signature API", "impact": "High", "effort": "Medium", "order": "#2" },
+					{ "action": "Card subscription", "impact": "Medium", "effort": "Medium", "order": "#3" }
+				]
+			},
+			"nextSteps": {
+				"title": "Recommended Next Steps",
+				"items": [
+					"Review this report and decide which suggestions align with your priorities.",
+					"You can implement these yourself, hand this to a developer or freelancer, or contact us for help.",
+					"If you'd like us to continue, we'll provide a detailed scope and timeline — no commitment until you're ready."
+				]
+			}
+		},
+		"reportCta": {
+			"title": "Want a report like this for your business?",
+			"description": "Book a free 60-minute problem discovery session. You'll get a report tailored to your operations.",
+			"button": "Free Discovery Session"
+		},
+		"case": {
+			"industry": "Shared Office / Co-working",
+			"title": "Virtual Address Service — Customer Journey Analysis",
+			"bottleneck": "Bottleneck found",
+			"suggestion": "Suggested action",
+			"highlight1": {
+				"title": "Inquiry reply depends on one person",
+				"description": "Customer submits inquiry on landing page. Contact person receives email and has to reply manually. If they're busy or forget — the customer waits. Or leaves.",
+				"impact": "Customer complaint: slow response, no confirmation"
+			},
+			"highlight2": {
+				"title": "Automate inquiry response + contract flow",
+				"description": "Customer gets instant confirmation with pricing and contract link. No human bottleneck at the first touchpoint.",
+				"value": "No more waiting. No lost inquiries."
+			},
+			"asIs": {
+				"title": "As-Is: Current Process",
+				"steps": [
+					"Customer visits landing page, submits inquiry form (price, contract info)",
+					"Contact person receives email notification",
+					"Contact person manually replies with pricing and contract details",
+					"Customer agrees → staff manually sends e-signature contract",
+					"Customer pays via bank transfer → staff checks manually each month"
+				],
+				"problems": [
+					"-",
+					"If busy or absent — inquiry sits in inbox. No auto-reply, no confirmation.",
+					"Delayed response (hours to days). Customer may contact competitors.",
+					"Forgot to send? Customer waits. Human error = lost deals.",
+					"Late payments, missing transfers, manual reconciliation every month."
+				]
+			},
+			"suggestions": {
+				"title": "Our Suggestion",
+				"items": [
+					{
+						"action": "Automate inquiry response",
+						"detail": "Customer gets instant confirmation with pricing and contract link.",
+						"value": "No more waiting. No lost inquiries.",
+						"diy": "DIY option: Use a form tool like Tally or Typeform with auto-reply. Works well for most cases, but limited customization.",
+						"pro": "Full solution: Custom-built flow integrated with your existing system. No platform limits, fully branded, scalable."
+					},
+					{
+						"action": "Integrate e-signature API",
+						"detail": "Contract is sent automatically when customer confirms.",
+						"value": "Seamless sign-up experience. Zero friction.",
+						"diy": "DIY option: Use DocuSign or PandaDoc with manual triggers. Covers basic needs, but manual steps remain.",
+						"pro": "Full solution: API-integrated auto-send on customer confirmation. Zero human steps, zero forgotten contracts."
+					},
+					{
+						"action": "Switch to recurring card payment",
+						"detail": "Customer can pay, cancel, modify, or request refund on their own.",
+						"value": "Full control over their subscription. No need to contact support.",
+						"diy": "DIY option: Use Stripe Checkout or PayPal subscriptions. Quick to set up, but limited to their UI and workflows.",
+						"pro": "Full solution: Custom payment system integrated with your operations. Full self-service portal, automated reconciliation."
+					}
+				]
+			}
+		}
 	},
 	"portfolio": {
 		"badge": "Client Portfolio",
@@ -527,7 +751,7 @@
 		"about": "About",
 		"process": "Process",
 		"portfolio": "Portfolio",
-		"profile": "Profile",
+		"about": "About",
 		"workshops": "Workshops",
 		"blog": "Blog"
 	},
@@ -711,9 +935,9 @@
 			"intro": "Whether you need clarity on what to build, or want to learn to build it yourself.",
 			"free": {
 				"price": "Free",
-				"title": "Requirements Consulting Workshop",
-				"description": "120 min, online or offline. We go through your business problem and you walk away with a clear picture of what to build. No commitment.",
-				"cta": "Book Free Workshop"
+				"title": "Problem Discovery Session",
+				"description": "60 min, online or offline. We diagnose your current workflows and you walk away with a DX diagnosis report. No commitment.",
+				"cta": "Book Free Problem Discovery"
 			},
 			"requirements": {
 				"title": "1-Day Requirements Workshop",
@@ -773,9 +997,9 @@
 		},
 		"free": {
 			"badge": "Also available",
-			"title": "Free Requirements Consulting",
-			"description": "120-minute session, online or offline. We go through your business problem and you get a clear picture of what to build. No strings attached.",
-			"cta": "Book Free Session"
+			"title": "Free Problem Discovery",
+			"description": "60-minute session, online or offline. We diagnose your current workflows and deliver a DX report with actionable insights. No strings attached.",
+			"cta": "Book Free Diagnosis"
 		},
 		"priceNote": "Early bird pricing ends April 30, 2026. After that, regular prices apply (400 EUR / 200 EUR).",
 		"faq": {
@@ -806,7 +1030,7 @@
 		"types": {
 			"requirements": "Requirements Workshop (200 EUR)",
 			"vibe": "Vibe Coding Workshop (100 EUR)",
-			"free": "Free Requirements Consulting"
+			"free": "Free Problem Discovery"
 		},
 		"datesLabel": "Preferred Dates (up to 3)",
 		"nameLabel": "Name",

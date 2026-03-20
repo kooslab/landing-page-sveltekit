@@ -46,6 +46,16 @@ export const workshopReservations = pgTable('workshop_reservations', {
 	updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull()
 });
 
+// Email consent records (GDPR)
+export const emailConsents = pgTable('email_consents', {
+	id: uuid('id').defaultRandom().primaryKey(),
+	email: text('email').notNull(),
+	purpose: text('purpose').notNull(), // e.g. 'sample_report', 'newsletter'
+	consentText: text('consent_text').notNull(), // exact text they agreed to
+	ip: text('ip'),
+	createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull()
+});
+
 export type User = typeof users.$inferSelect;
 export type Session = typeof sessions.$inferSelect;
 export type BlogPost = typeof blogPosts.$inferSelect;

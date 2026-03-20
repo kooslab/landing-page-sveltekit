@@ -29,3 +29,6 @@ static/blogData.json
 # claude monitor
 uploads
 usage_tracking*.json
+
+# MCP tools
+.playwright-mcp/

@@ -15,12 +15,6 @@
 
 <div class="hidden items-center md:ml-6 md:flex">
 	<a
-		href="{langPrefix}/#about"
-		class="mr-4 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
-	>
-		{$_('nav.about')}
-	</a>
-	<a
 		href="{langPrefix}/#process"
 		class="mr-4 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
 	>
@@ -33,10 +27,10 @@
 		{$_('nav.portfolio')}
 	</a>
 	<a
-		href="{langPrefix}/profile"
+		href="{langPrefix}/about"
 		class="mr-4 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
 	>
-		{$_('nav.profile')}
+		{$_('nav.about')}
 	</a>
 	<a
 		href="{langPrefix}/workshops"

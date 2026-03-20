@@ -87,16 +87,6 @@
 			<button
 				class="flex items-center gap-3 rounded-md px-3 py-2 text-left text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
 				onclick={() => {
-					scrollToSection('about');
-				}}
-			>
-				<User class="h-5 w-5" />
-				{$_('nav.about')}
-			</button>
-
-			<button
-				class="flex items-center gap-3 rounded-md px-3 py-2 text-left text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
-				onclick={() => {
 					scrollToSection('process');
 				}}
 			>
@@ -115,18 +105,18 @@
 			</button>
 
 			<a
-				href="{langPrefix}/profile"
+				href="{langPrefix}/about"
 				class="flex items-center gap-3 rounded-md px-3 py-2 text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
 				onclick={(e) => {
 					e.preventDefault();
 					sheetOpen = false;
 					setTimeout(() => {
-						goto(`${langPrefix}/profile`);
+						goto(`${langPrefix}/about`);
 					}, 300);
 				}}
 			>
 				<User class="h-5 w-5" />
-				{$_('nav.profile')}
+				{$_('nav.about')}
 			</a>
 
 			<a
