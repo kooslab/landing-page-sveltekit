@@ -1,10 +1,16 @@
-import { init, register, locale, waitLocale } from 'svelte-i18n';
+import { init, addMessages, locale, waitLocale } from 'svelte-i18n';
 import { browser } from '$app/environment';
 
-// Register all translation files
-register('en', () => import('./locales/en.json'));
-register('ko', () => import('./locales/ko.json'));
-register('de', () => import('./locales/de.json'));
+// Load translations synchronously so SSR renders full HTML
+// (lazy register() + {#await waitLocale()} renders nothing during SSR,
+// which makes the page invisible to search engine crawlers)
+import en from './locales/en.json';
+import ko from './locales/ko.json';
+import de from './locales/de.json';
+
+addMessages('en', en);
+addMessages('ko', ko);
+addMessages('de', de);
 
 // Get initial locale from URL if available
 function getInitialLocale() {

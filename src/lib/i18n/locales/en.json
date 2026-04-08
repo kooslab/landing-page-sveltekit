@@ -17,6 +17,7 @@
 	"landing": {
 		"hero": {
 			"title": "Software Won't Save\nYour Business.",
+			"target": "For small teams drowning in spreadsheets, manual work, and duct-taped processes.",
 			"subtitle": "Unless you apply it right. We start with your problem — often, you don't need software at all.",
 			"cta": "Free Discovery Session",
 			"scroll": "Read why"

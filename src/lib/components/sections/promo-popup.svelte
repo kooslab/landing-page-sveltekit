@@ -5,7 +5,8 @@
 	import { ArrowRight } from 'lucide-svelte';
 	import { browser } from '$app/environment';
 
-	let { onBook = () => {} }: { onBook?: () => void } = $props();
+	let { onBook = () => {}, showPromo = false }: { onBook?: () => void; showPromo?: boolean } =
+		$props();
 
 	const STORAGE_KEY = 'koostory_promo_dismissed';
 
@@ -21,9 +22,9 @@
 		}
 	});
 
-	// Scroll trigger
+	// Scroll trigger — only if showPromo is true (geo-targeted)
 	$effect(() => {
-		if (!browser || dismissed) return;
+		if (!browser || dismissed || !showPromo) return;
 
 		let triggered = false;
 

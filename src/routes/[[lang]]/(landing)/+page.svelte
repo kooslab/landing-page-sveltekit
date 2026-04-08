@@ -9,6 +9,8 @@
 	import PromoPopup from '$lib/components/sections/promo-popup.svelte';
 	import ReservationModal from './workshops/components/reservation-modal.svelte';
 
+	let { data } = $props();
+
 	let reservationOpen = $state(false);
 	let reservationType = $state<'requirements' | 'vibe' | 'free'>('free');
 
@@ -152,6 +154,7 @@
 />
 
 <PromoPopup
+	showPromo={data.showPromo}
 	onBook={() => {
 		reservationType = 'free';
 		reservationOpen = true;
@@ -170,7 +173,10 @@
 			>
 				{$_('landing.hero.title')}
 			</h1>
-			<p class="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg md:mt-6 md:text-xl">
+			<p class="mt-3 text-sm font-medium uppercase tracking-wide text-primary/80 sm:text-base">
+				{$_('landing.hero.target')}
+			</p>
+			<p class="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg md:mt-5 md:text-xl">
 				{$_('landing.hero.subtitle')}
 			</p>
 			<div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center md:mt-10">
