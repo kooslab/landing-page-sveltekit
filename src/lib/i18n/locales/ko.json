@@ -714,7 +714,9 @@
 			"message": "문의 내용",
 			"messagePlaceholder": "비즈니스 과제에 대해 알려주세요...",
 			"submit": "문의하기",
-			"sending": "전송 중..."
+			"sending": "전송 중...",
+			"consent": "KooStory(Koostory UG)가 문의에 답변하기 위해 제 이름과 이메일을 처리하는 것에 동의합니다. ilmokoo@koostory.net으로 이메일을 보내 언제든지 동의를 철회할 수 있습니다.",
+			"consentError": "계속하려면 동의해 주세요"
 		}
 	},
 	"nav": {
@@ -723,7 +725,8 @@
 		"portfolio": "포트폴리오",
 		"about": "소개",
 		"workshops": "워크숍",
-		"blog": "블로그"
+		"blog": "블로그",
+		"backHome": "홈으로 돌아가기"
 	},
 	"profile": {
 		"seo": {
@@ -1014,6 +1017,8 @@
 		"success": "예약이 접수되었습니다! 1-2 영업일 내에 날짜를 확인해 드리겠습니다. 이메일을 확인해 주세요.",
 		"error": "문제가 발생했습니다. 다시 시도해 주세요.",
 		"close": "닫기",
+		"consent": "KooStory(Koostory UG)가 워크숍 예약 관리 및 관련 안내를 위해 제 이름, 이메일, 메시지를 저장·처리하는 것에 동의합니다. ilmokoo@koostory.net으로 이메일을 보내 언제든지 동의를 철회할 수 있습니다.",
+		"consentError": "데이터 처리 약관에 동의해 주세요",
 		"calendar": {
 			"sun": "일",
 			"mon": "월",
@@ -1027,7 +1032,82 @@
 		"errors": {
 			"nameRequired": "이름을 입력해 주세요",
 			"emailInvalid": "유효한 이메일을 입력해 주세요",
-			"datesRequired": "희망 날짜를 하나 이상 선택해 주세요"
+			"datesRequired": "희망 날짜를 하나 이상 선택해 주세요",
+			"consentRequired": "데이터 처리 약관에 동의해 주세요"
+		}
+	},
+	"footer": {
+		"privacy": "개인정보처리방침",
+		"terms": "이용약관"
+	},
+	"privacy": {
+		"seo": {
+			"title": "개인정보처리방침 — KooStory",
+			"description": "KooStory가 GDPR에 따라 개인정보를 수집, 이용, 보호하는 방법을 안내합니다."
+		},
+		"title": "개인정보처리방침",
+		"lastUpdated": "최종 업데이트: 2026년 4월",
+		"intro": "Koostory UG (haftungsbeschränkt), Akazienstraße 3a, 10827 Berlin, Germany(이하 'KooStory', '당사')는 koostory.net을 운영합니다. 본 방침은 당사가 수집하는 개인정보, 수집 목적, 귀하의 GDPR 상 권리를 설명합니다.",
+		"sections": {
+			"controller": {
+				"heading": "1. 개인정보 처리자",
+				"body": "Koostory UG (haftungsbeschränkt)\nAkazienstraße 3a, 10827 Berlin, Germany\n이메일: ilmokoo@koostory.net"
+			},
+			"whatWeCollect": {
+				"heading": "2. 수집 항목 및 목적",
+				"body": "당사는 귀하가 직접 제공하는 경우에만 개인정보를 수집합니다.\n\n• 문의 양식: 이름, 이메일, 메시지 — 문의 응대 목적(GDPR 제6조 1항 b호, 계약 전 조치).\n• 워크숍 예약: 이름, 이메일, 메시지, 희망 일정 — 예약 관리 목적(GDPR 제6조 1항 b호).\n• 샘플 리포트 요청: 이메일 주소 — 자료 발송 및 서비스 안내 목적, 귀하의 명시적 동의 기반(GDPR 제6조 1항 a호).\n\n추적·분석용 쿠키는 사용하지 않습니다. 인증을 위한 기술적으로 필수적인 세션 쿠키만 설정됩니다."
+			},
+			"retention": {
+				"heading": "3. 보유 기간",
+				"body": "개인정보는 필요한 기간 동안만 보유합니다. 문의 및 예약 데이터는 사업상 후속 조치 및 법적 의무 준수를 위해 최대 24개월간 보유합니다. 언제든지 삭제를 요청할 수 있습니다."
+			},
+			"thirdParties": {
+				"heading": "4. 제3자 처리업체",
+				"body": "• Vercel Inc.(호스팅, 미국) — 가능한 경우 EU 리전 서버 이용\n• Resend Inc.(이메일 발송, 미국) — 이메일 전송 처리\n• Neon Inc.(데이터베이스, 미국) — 저장 데이터 암호화\n\n모든 처리업체와 데이터 처리 계약이 체결되어 있으며, EU 외 이전은 EU-미국 데이터 프라이버시 프레임워크 또는 표준 계약 조항에 따라 처리됩니다."
+			},
+			"rights": {
+				"heading": "5. 귀하의 권리",
+				"body": "GDPR에 따라 귀하는 열람(제15조), 정정(제16조), 삭제(제17조), 처리 제한(제18조), 이동(제20조) 권리와 처리에 대한 이의제기(제21조) 권리를 갖습니다. 과거 처리에 영향 없이 언제든지 동의를 철회할 수 있습니다.\n\n권리 행사를 원하시면 ilmokoo@koostory.net으로 연락주세요. 독일 감독기관(Berliner Beauftragte für Datenschutz und Informationsfreiheit, www.datenschutz-berlin.de)에 이의를 제기할 권리도 있습니다."
+			},
+			"changes": {
+				"heading": "6. 방침 변경",
+				"body": "운영 관행 또는 법령 변경을 반영하기 위해 본 방침을 업데이트할 수 있습니다. 변경 시 페이지 상단의 날짜가 갱신됩니다."
+			}
+		}
+	},
+	"terms": {
+		"seo": {
+			"title": "이용약관 — KooStory",
+			"description": "KooStory 서비스 및 웹사이트 이용에 관한 약관입니다."
+		},
+		"title": "이용약관",
+		"lastUpdated": "최종 업데이트: 2026년 4월",
+		"intro": "본 약관은 koostory.net 이용 및 Koostory UG (haftungsbeschränkt)(이하 'KooStory')의 서비스 제공에 적용됩니다. 이 웹사이트를 이용하거나 양식을 제출함으로써 본 약관에 동의하는 것으로 간주됩니다.",
+		"sections": {
+			"services": {
+				"heading": "1. 서비스",
+				"body": "KooStory는 소프트웨어 컨설팅, 요구사항 워크숍 및 관련 디지털 서비스를 제공합니다. 구체적인 산출물, 범위 및 가격은 개별 계약 또는 워크숍 예약을 통해 합의됩니다."
+			},
+			"workshops": {
+				"heading": "2. 워크숍 예약",
+				"body": "예약 양식 제출은 구속력 있는 계약이 아닌 요청으로 간주됩니다. KooStory의 서면 확인을 받은 경우에만 예약이 확정됩니다. 유료 워크숍은 별도 서면 합의가 없는 한 세션 전 결제가 필요합니다. 48시간 미만 취소 시 세션 가격의 50%에 해당하는 취소 수수료가 부과될 수 있습니다."
+			},
+			"liability": {
+				"heading": "3. 책임 제한",
+				"body": "독일 법이 허용하는 범위 내에서 KooStory의 책임은 고의 및 중과실의 경우로 제한됩니다. 간접적, 결과적 또는 부수적 손해에 대해 책임지지 않습니다. 어떠한 청구에 대해서도 당사의 총 책임은 해당 서비스에 대해 지급된 금액을 초과하지 않습니다."
+			},
+			"ip": {
+				"heading": "4. 지적재산권",
+				"body": "유료 계약 하에 제작된 산출물은 별도의 서면 명시가 없는 한 전액 결제 완료 후 고객에게 이전됩니다. 웹사이트 콘텐츠, 템플릿 및 KooStory가 제작한 도구는 명시적으로 이전되지 않는 한 KooStory의 지적재산으로 남습니다."
+			},
+			"law": {
+				"heading": "5. 준거법",
+				"body": "본 약관은 독일법의 적용을 받습니다. 분쟁은 적용 법률이 허용하는 범위 내에서 독일 베를린 법원의 전속 관할에 따릅니다."
+			},
+			"contact": {
+				"heading": "6. 연락처",
+				"body": "Koostory UG (haftungsbeschränkt)\nAkazienstraße 3a, 10827 Berlin, Germany\n이메일: ilmokoo@koostory.net"
+			}
 		}
 	}
 }

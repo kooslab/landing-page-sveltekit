@@ -5,6 +5,7 @@
 	import { Label } from '$lib/components/ui/label';
 	import { toast } from 'svelte-sonner';
 	import { _ } from 'svelte-i18n';
+	import { page } from '$app/stores';
 
 	let formData = $state({
 		name: '',
@@ -13,9 +14,19 @@
 	});
 
 	let isSubmitting = $state(false);
+	let consentChecked = $state(false);
+	let consentError = $state(false);
+
+	let langPrefix = $derived($page.params.lang ? `/${$page.params.lang}` : '');
 
 	async function handleSubmit(e: Event) {
 		e.preventDefault();
+
+		if (!consentChecked) {
+			consentError = true;
+			return;
+		}
+		consentError = false;
 		isSubmitting = true;
 
 		try {
@@ -44,11 +55,8 @@
 			if (response.ok && result.success) {
 				toast.success("Thank you for your message! We'll get back to you soon.");
 				// Reset form
-				formData = {
-					name: '',
-					email: '',
-					message: ''
-				};
+				formData = { name: '', email: '', message: '' };
+				consentChecked = false;
 			} else {
 				throw new Error(result.message || 'Failed to send email');
 			}
@@ -96,6 +104,26 @@
 			required
 			disabled={isSubmitting}
 		/>
+	</div>
+
+	<div class="space-y-1.5">
+		<label class="flex cursor-pointer items-start gap-3">
+			<input
+				type="checkbox"
+				bind:checked={consentChecked}
+				class="mt-0.5 h-4 w-4 flex-shrink-0 rounded border-input accent-primary"
+				disabled={isSubmitting}
+			/>
+			<span class="text-sm text-foreground/70">
+				{$_('contact.form.consent')}
+				<a href="{langPrefix}/privacy" class="underline hover:text-foreground/90">
+					{$_('footer.privacy')}
+				</a>
+			</span>
+		</label>
+		{#if consentError}
+			<p class="text-xs text-destructive">{$_('contact.form.consentError')}</p>
+		{/if}
 	</div>
 
 	<Button type="submit" class="w-full" disabled={isSubmitting}>

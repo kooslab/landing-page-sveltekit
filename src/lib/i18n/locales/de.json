@@ -780,7 +780,9 @@
 			"message": "Nachricht",
 			"messagePlaceholder": "Erzählen Sie uns von Ihrer geschäftlichen Herausforderung...",
 			"submit": "Nachricht senden",
-			"sending": "Wird gesendet..."
+			"sending": "Wird gesendet...",
+			"consent": "Ich bin damit einverstanden, dass KooStory (Koostory UG) meinen Namen und meine E-Mail-Adresse verarbeitet, um auf meine Anfrage zu antworten. Ich kann meine Einwilligung jederzeit per E-Mail an ilmokoo@koostory.net widerrufen.",
+			"consentError": "Bitte stimmen Sie zu, um fortzufahren"
 		}
 	},
 	"nav": {
@@ -789,7 +791,8 @@
 		"portfolio": "Portfolio",
 		"about": "Uber mich",
 		"workshops": "Workshops",
-		"blog": "Blog"
+		"blog": "Blog",
+		"backHome": "Zurück zur Startseite"
 	},
 	"profile": {
 		"seo": {
@@ -1080,6 +1083,8 @@
 		"success": "Reservierung eingegangen! Wir bestatigen Ihren Termin innerhalb von 1-2 Werktagen. Prufen Sie Ihre E-Mail.",
 		"error": "Etwas ist schiefgelaufen. Bitte versuchen Sie es erneut.",
 		"close": "Schliessen",
+		"consent": "Ich bin damit einverstanden, dass KooStory (Koostory UG) meinen Namen, meine E-Mail-Adresse und meine Nachricht speichert und verarbeitet, um meine Workshop-Buchung zu verwalten und mich darüber zu kontaktieren. Ich kann meine Einwilligung jederzeit per E-Mail an ilmokoo@koostory.net widerrufen.",
+		"consentError": "Bitte stimmen Sie den Datenschutzbedingungen zu",
 		"calendar": {
 			"sun": "So",
 			"mon": "Mo",
@@ -1093,7 +1098,82 @@
 		"errors": {
 			"nameRequired": "Name ist erforderlich",
 			"emailInvalid": "Bitte geben Sie eine gultige E-Mail ein",
-			"datesRequired": "Bitte wahlen Sie mindestens einen Wunschtermin"
+			"datesRequired": "Bitte wahlen Sie mindestens einen Wunschtermin",
+			"consentRequired": "Bitte stimmen Sie den Datenschutzbedingungen zu"
+		}
+	},
+	"footer": {
+		"privacy": "Datenschutzerklärung",
+		"terms": "Nutzungsbedingungen"
+	},
+	"privacy": {
+		"seo": {
+			"title": "Datenschutzerklärung — KooStory",
+			"description": "Wie KooStory Ihre personenbezogenen Daten gemäß DSGVO erhebt, verwendet und schützt."
+		},
+		"title": "Datenschutzerklärung",
+		"lastUpdated": "Zuletzt aktualisiert: April 2026",
+		"intro": "Die Koostory UG (haftungsbeschränkt), Akazienstraße 3a, 10827 Berlin, Deutschland (\"KooStory\", \"wir\", \"uns\") betreibt koostory.net. Diese Erklärung erläutert, welche personenbezogenen Daten wir erheben, warum und welche Rechte Ihnen gemäß DSGVO zustehen.",
+		"sections": {
+			"controller": {
+				"heading": "1. Verantwortlicher",
+				"body": "Koostory UG (haftungsbeschränkt)\nAkazienstraße 3a, 10827 Berlin, Deutschland\nE-Mail: ilmokoo@koostory.net"
+			},
+			"whatWeCollect": {
+				"heading": "2. Erhobene Daten und Zwecke",
+				"body": "Wir erheben personenbezogene Daten nur, wenn Sie diese aktiv bereitstellen:\n\n• Kontaktformular: Name, E-Mail-Adresse, Nachricht — zur Beantwortung Ihrer Anfrage (Art. 6 Abs. 1 lit. b DSGVO, vorvertragliche Maßnahmen).\n• Workshop-Buchung: Name, E-Mail, Nachricht, Wunschtermine — zur Verwaltung Ihrer Buchung (Art. 6 Abs. 1 lit. b DSGVO).\n• Musterbericht-Anfrage: E-Mail-Adresse — zum Versand des Dokuments und zur Kontaktaufnahme über unsere Leistungen, auf Basis Ihrer ausdrücklichen Einwilligung (Art. 6 Abs. 1 lit. a DSGVO).\n\nWir verwenden keine Tracking- oder Analyse-Cookies. Lediglich technisch notwendige Session-Cookies für die Authentifizierung werden gesetzt."
+			},
+			"retention": {
+				"heading": "3. Speicherdauer",
+				"body": "Wir speichern Ihre Daten nur so lange wie erforderlich: Kontakt- und Buchungsdaten bis zu 24 Monate zur geschäftlichen Nachverfolgung und Erfüllung gesetzlicher Pflichten. Eine frühere Löschung kann jederzeit beantragt werden."
+			},
+			"thirdParties": {
+				"heading": "4. Auftragsverarbeiter",
+				"body": "• Vercel Inc. (Hosting, USA) — EU-Server, soweit möglich\n• Resend Inc. (Transaktions-E-Mail, USA) — Verarbeitung des E-Mail-Versands\n• Neon Inc. (Datenbank, USA) — Verschlüsselung gespeicherter Daten\n\nAlle Auftragsverarbeiter sind durch Datenverarbeitungsverträge gebunden. Übermittlungen in die USA erfolgen im Rahmen des EU-US Data Privacy Framework oder Standardvertragsklauseln."
+			},
+			"rights": {
+				"heading": "5. Ihre Rechte",
+				"body": "Gemäß DSGVO haben Sie das Recht auf Auskunft (Art. 15), Berichtigung (Art. 16), Löschung (Art. 17), Einschränkung der Verarbeitung (Art. 18), Datenübertragbarkeit (Art. 20) und Widerspruch (Art. 21). Sie können Ihre Einwilligung jederzeit ohne Auswirkung auf die bisherige Verarbeitung widerrufen.\n\nZur Ausübung Ihrer Rechte wenden Sie sich bitte an ilmokoo@koostory.net. Sie haben außerdem das Recht, eine Beschwerde bei einer Aufsichtsbehörde einzureichen — in Berlin: Berliner Beauftragte für Datenschutz und Informationsfreiheit (www.datenschutz-berlin.de)."
+			},
+			"changes": {
+				"heading": "6. Änderungen dieser Erklärung",
+				"body": "Wir können diese Erklärung aktualisieren, um Änderungen unserer Praxis oder des geltenden Rechts widerzuspiegeln. Das Datum oben auf dieser Seite wird entsprechend aktualisiert."
+			}
+		}
+	},
+	"terms": {
+		"seo": {
+			"title": "Nutzungsbedingungen — KooStory",
+			"description": "Nutzungsbedingungen für KooStory-Dienste und die Website."
+		},
+		"title": "Nutzungsbedingungen",
+		"lastUpdated": "Zuletzt aktualisiert: April 2026",
+		"intro": "Diese Bedingungen regeln Ihre Nutzung von koostory.net und der von Koostory UG (haftungsbeschränkt) (\"KooStory\") erbrachten Dienstleistungen. Durch die Nutzung dieser Website oder das Absenden eines Formulars stimmen Sie diesen Bedingungen zu.",
+		"sections": {
+			"services": {
+				"heading": "1. Leistungen",
+				"body": "KooStory bietet Software-Beratung, Anforderungsworkshops und verwandte digitale Dienstleistungen an. Konkrete Liefergegenstände, Umfang und Preise werden in individuellen Verträgen oder Workshop-Buchungen vereinbart."
+			},
+			"workshops": {
+				"heading": "2. Workshop-Buchungen",
+				"body": "Das Absenden eines Buchungsformulars ist eine Anfrage, kein verbindlicher Vertrag. Eine Buchung ist erst nach schriftlicher Bestätigung durch KooStory verbindlich. Kostenpflichtige Workshops erfordern — sofern nicht schriftlich anders vereinbart — eine Zahlung vor der Sitzung. Bei Stornierungen mit weniger als 48 Stunden Vorlauf kann eine Stornogebühr von 50 % des Sitzungspreises anfallen."
+			},
+			"liability": {
+				"heading": "3. Haftungsbeschränkung",
+				"body": "Soweit gesetzlich zulässig, ist die Haftung von KooStory auf Vorsatz und grobe Fahrlässigkeit beschränkt. Für mittelbare, Folge- oder Nebenschäden wird keine Haftung übernommen. Die Gesamthaftung für jeden Anspruch übersteigt nicht den für die betreffende Leistung gezahlten Betrag."
+			},
+			"ip": {
+				"heading": "4. Geistiges Eigentum",
+				"body": "Im Rahmen eines kostenpflichtigen Auftrags erstellte Ergebnisse gehen nach vollständiger Zahlung auf den Auftraggeber über, sofern nicht schriftlich anders vereinbart. Website-Inhalte, Vorlagen und von KooStory entwickelte Tools bleiben unser geistiges Eigentum, sofern keine ausdrückliche Übertragung erfolgt."
+			},
+			"law": {
+				"heading": "5. Anwendbares Recht",
+				"body": "Diese Bedingungen unterliegen deutschem Recht. Streitigkeiten unterliegen — soweit anwendbares Recht dies zulässt — der ausschließlichen Zuständigkeit der Gerichte in Berlin, Deutschland."
+			},
+			"contact": {
+				"heading": "6. Kontakt",
+				"body": "Koostory UG (haftungsbeschränkt)\nAkazienstraße 3a, 10827 Berlin, Deutschland\nE-Mail: ilmokoo@koostory.net"
+			}
 		}
 	}
 }

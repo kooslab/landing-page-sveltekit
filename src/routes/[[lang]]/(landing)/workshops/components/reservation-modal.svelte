@@ -6,6 +6,7 @@
 	import { Label } from '$lib/components/ui/label';
 	import { Textarea } from '$lib/components/ui/textarea';
 	import DatePickerGrid from './date-picker-grid.svelte';
+	import { page } from '$app/stores';
 
 	let {
 		open = $bindable(false),
@@ -19,9 +20,12 @@
 	let email = $state('');
 	let message = $state('');
 	let selectedDates = $state<string[]>([]);
+	let consentChecked = $state(false);
 	let submitting = $state(false);
 	let result = $state<{ success: boolean; message: string } | null>(null);
 	let errors = $state<Record<string, string>>({});
+
+	let langPrefix = $derived($page.params.lang ? `/${$page.params.lang}` : '');
 
 	let workshopLabels = $derived({
 		requirements: $_('reservation.types.requirements'),
@@ -34,6 +38,7 @@
 		email = '';
 		message = '';
 		selectedDates = [];
+		consentChecked = false;
 		result = null;
 		errors = {};
 	}
@@ -54,6 +59,7 @@
 		if (!name.trim()) errors.name = $_('reservation.errors.nameRequired');
 		if (!email.trim() || !email.includes('@')) errors.email = $_('reservation.errors.emailInvalid');
 		if (selectedDates.length === 0) errors.dates = $_('reservation.errors.datesRequired');
+		if (!consentChecked) errors.consent = $_('reservation.errors.consentRequired');
 
 		if (Object.keys(errors).length > 0) return;
 
@@ -120,14 +126,14 @@
 				<div class="space-y-2">
 					<Label>{$_('reservation.workshopLabel')}</Label>
 					<div class="space-y-1.5">
-						{#each ['free', 'requirements', 'vibe'] as type}
+						{#each ['free', 'requirements', 'vibe'] as type (type)}
 							<button
 								type="button"
 								class="flex w-full items-center gap-3 rounded-lg border px-3.5 py-2.5 text-left text-sm transition-colors
 									{workshopType === type
 									? 'border-primary bg-primary/5 font-medium'
 									: 'border-input hover:bg-muted/50'}"
-								onclick={() => (workshopType = type)}
+								onclick={() => (workshopType = type as 'requirements' | 'vibe' | 'free')}
 							>
 								<span
 									class="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full border-2
@@ -184,6 +190,27 @@
 						placeholder={$_('reservation.messagePlaceholder')}
 						rows={3}
 					/>
+				</div>
+
+				<!-- Consent -->
+				<div class="space-y-1.5">
+					<label class="flex cursor-pointer items-start gap-3">
+						<input
+							type="checkbox"
+							bind:checked={consentChecked}
+							class="mt-0.5 h-4 w-4 flex-shrink-0 rounded border-input accent-primary"
+							disabled={submitting}
+						/>
+						<span class="text-sm text-foreground/70">
+							{$_('reservation.consent')}
+							<a href="{langPrefix}/privacy" class="underline hover:text-foreground/90">
+								{$_('footer.privacy')}
+							</a>
+						</span>
+					</label>
+					{#if errors.consent}
+						<p class="text-xs text-destructive">{errors.consent}</p>
+					{/if}
 				</div>
 
 				{#if result && !result.success}
