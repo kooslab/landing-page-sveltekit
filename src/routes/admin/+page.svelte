@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
+	import { toggleMode, mode } from 'mode-watcher';
+	import { Sun, Moon } from 'lucide-svelte';
 </script>
 
 <div class="flex min-h-screen">
@@ -115,6 +117,18 @@
 				</svg>
 				View Site
 			</a>
+			<button
+				onclick={toggleMode}
+				class="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+			>
+				{#if $mode === 'dark'}
+					<Sun size={20} />
+					Light Mode
+				{:else}
+					<Moon size={20} />
+					Dark Mode
+				{/if}
+			</button>
 		</nav>
 	</div>
 

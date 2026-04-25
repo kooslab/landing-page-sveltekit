@@ -2,7 +2,10 @@
 	import type { PageData } from './$types';
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
+	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import { invalidateAll } from '$app/navigation';
+	import { toggleMode, mode } from 'mode-watcher';
+	import { Sun, Moon, Ellipsis, CheckCircle, CircleCheck, XCircle, Trash2 } from 'lucide-svelte';
 
 	let { data }: { data: PageData } = $props();
 	let loading = $state<string | null>(null);
@@ -34,6 +37,21 @@
 		} catch (error) {
 			console.error('Error updating reservation:', error);
 			alert('Failed to update reservation');
+		} finally {
+			loading = null;
+		}
+	}
+
+	async function deleteReservation(id: string) {
+		if (!confirm('Delete this reservation?')) return;
+		loading = id;
+		try {
+			const response = await fetch(`/api/admin/reservations/${id}`, { method: 'DELETE' });
+			if (!response.ok) throw new Error('Failed to delete');
+			await invalidateAll();
+		} catch (error) {
+			console.error('Error deleting reservation:', error);
+			alert('Failed to delete reservation');
 		} finally {
 			loading = null;
 		}
@@ -146,6 +164,18 @@
 				</svg>
 				View Site
 			</a>
+			<button
+				onclick={toggleMode}
+				class="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+			>
+				{#if $mode === 'dark'}
+					<Sun size={20} />
+					Light Mode
+				{:else}
+					<Moon size={20} />
+					Dark Mode
+				{/if}
+			</button>
 		</nav>
 	</div>
 
@@ -204,38 +234,47 @@
 									{new Date(reservation.createdAt).toLocaleDateString()}
 								</td>
 								<td class="p-4">
-									<div class="flex flex-wrap gap-1">
-										{#if reservation.status !== 'confirmed'}
-											<Button
-												variant="default"
-												size="sm"
-												onclick={() => updateStatus(reservation.id, 'confirmed')}
-												disabled={loading === reservation.id}
-											>
-												Confirm
+									<DropdownMenu.Root>
+										<DropdownMenu.Trigger>
+											<Button variant="ghost" size="sm" disabled={loading === reservation.id}>
+												<Ellipsis size={16} />
 											</Button>
-										{/if}
-										{#if reservation.status !== 'completed'}
-											<Button
-												variant="secondary"
-												size="sm"
-												onclick={() => updateStatus(reservation.id, 'completed')}
-												disabled={loading === reservation.id}
+										</DropdownMenu.Trigger>
+										<DropdownMenu.Content align="end">
+											{#if reservation.status !== 'confirmed'}
+												<DropdownMenu.Item
+													onclick={() => updateStatus(reservation.id, 'confirmed')}
+												>
+													<CheckCircle size={14} class="mr-2" />
+													Confirm
+												</DropdownMenu.Item>
+											{/if}
+											{#if reservation.status !== 'completed'}
+												<DropdownMenu.Item
+													onclick={() => updateStatus(reservation.id, 'completed')}
+												>
+													<CircleCheck size={14} class="mr-2" />
+													Complete
+												</DropdownMenu.Item>
+											{/if}
+											{#if reservation.status !== 'cancelled'}
+												<DropdownMenu.Item
+													onclick={() => updateStatus(reservation.id, 'cancelled')}
+												>
+													<XCircle size={14} class="mr-2" />
+													Cancel
+												</DropdownMenu.Item>
+											{/if}
+											<DropdownMenu.Separator />
+											<DropdownMenu.Item
+												class="text-destructive focus:text-destructive"
+												onclick={() => deleteReservation(reservation.id)}
 											>
-												Complete
-											</Button>
-										{/if}
-										{#if reservation.status !== 'cancelled'}
-											<Button
-												variant="outline"
-												size="sm"
-												onclick={() => updateStatus(reservation.id, 'cancelled')}
-												disabled={loading === reservation.id}
-											>
-												Cancel
-											</Button>
-										{/if}
-									</div>
+												<Trash2 size={14} class="mr-2" />
+												Delete
+											</DropdownMenu.Item>
+										</DropdownMenu.Content>
+									</DropdownMenu.Root>
 								</td>
 							</tr>
 						{/each}

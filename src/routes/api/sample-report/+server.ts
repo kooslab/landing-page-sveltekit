@@ -9,12 +9,6 @@ const resend = new Resend(RESEND_API_KEY);
 const today = () =>
 	new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
-const oneMonthFromNow = () => {
-	const d = new Date();
-	d.setMonth(d.getMonth() + 1);
-	return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-};
-
 export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 	try {
 		const { email, consentText } = await request.json();
@@ -51,26 +45,24 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 
 	<p>Thanks for checking out our sample problem discovery report.</p>
 
-	<p>If it made you think about your own business, let's talk. We offer a <strong>free 60-minute problem discovery session</strong> — we listen to how your business runs and tell you what technology can (and can't) do for you.</p>
+	<p>If it made you think about your own business, let's talk. We offer a <strong>free 45-minute automation consulting session</strong> — we'll map your workflows, find the bottlenecks, and show you exactly where automation can save you hours every week.</p>
 
 	<p style="background: #f5f5f5; border-left: 3px solid #1a1a1a; padding: 16px 20px; margin: 24px 0;">
-		<strong>For a limited time:</strong><br>
-		Book and complete a discovery session with us, and we'll give you <strong>10 hours of custom development — free.</strong> That's 500 EUR worth of engineering.
+		<strong>What you'll walk away with:</strong>
 	</p>
 
-	<p><strong>Examples of what 10 hours can build:</strong></p>
 	<ul style="padding-left: 20px;">
-		<li>A customized business landing page with lead collection</li>
-		<li>One automated workflow for your most repetitive task (n8n)</li>
-		<li>A simple CMS for managing your content</li>
-		<li>An AI-powered chatbot trained on your business FAQ</li>
+		<li>A clear picture of where your team is losing time</li>
+		<li>Specific bottlenecks that can be automated today</li>
+		<li>A prioritized action plan — what to automate first and why</li>
+		<li>Honest advice on what's worth automating and what isn't</li>
 	</ul>
 
 	<p style="font-size: 14px; color: #666;">
-		The 10 free hours must be used within 1 month from today (${today()}), by <strong>${oneMonthFromNow()}</strong>. This offer won't last — we'll close it once our schedule fills up.
+		Spots are limited — we'll close this once our schedule fills up.
 	</p>
 
-	<p>→ <strong>Reply to this email</strong> to schedule your session.</p>
+	<p>→ <strong>Reply to this email</strong> to book your free consulting session.</p>
 
 	<p style="margin-top: 32px;">
 		— Ilmo Koo<br>

@@ -3,6 +3,8 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Badge } from '$lib/components/ui/badge';
 	import { invalidateAll } from '$app/navigation';
+	import { toggleMode, mode } from 'mode-watcher';
+	import { Sun, Moon } from 'lucide-svelte';
 
 	let { data }: { data: PageData } = $props();
 	let loading = $state<string | null>(null);
@@ -148,6 +150,18 @@
 				</svg>
 				View Site
 			</a>
+			<button
+				onclick={toggleMode}
+				class="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+			>
+				{#if $mode === 'dark'}
+					<Sun size={20} />
+					Light Mode
+				{:else}
+					<Moon size={20} />
+					Dark Mode
+				{/if}
+			</button>
 		</nav>
 	</div>
 
@@ -178,7 +192,13 @@
 					</thead>
 					<tbody>
 						{#each data.posts as post}
-							<tr class="border-b hover:bg-muted/50">
+							<tr
+								class="cursor-pointer border-b hover:bg-muted/50"
+								onclick={(e) => {
+									if ((e.target as HTMLElement).closest('button')) return;
+									window.location.href = `/admin/blogs/edit/${post.id}`;
+								}}
+							>
 								<td class="p-4">
 									<div>
 										<div class="font-medium">{post.title}</div>
@@ -197,9 +217,6 @@
 								</td>
 								<td class="p-4">
 									<div class="flex gap-2">
-										<Button variant="outline" size="sm" href="/admin/blogs/edit/{post.id}"
-											>Edit</Button
-										>
 										{#if post.published}
 											<Button variant="outline" size="sm" href="/blog/{post.slug}" target="_blank">
 												View

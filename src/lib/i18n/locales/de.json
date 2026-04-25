@@ -1,17 +1,17 @@
 {
 	"promo": {
-		"title": "10 Stunden kostenlose Entwicklung",
-		"subtitle": "500 EUR Wert — fur fruhe Kunden",
-		"description": "Buchen und absolvieren Sie eine kostenlose Problem-Discovery-Sitzung mit uns. Wenn wir die Sitzung gemeinsam durchfuhren, sind die ersten 10 Stunden Entwicklung kostenlos.",
-		"examplesLabel": "Beispiele, was in 10 Stunden gebaut werden kann",
+		"title": "Kostenloses 45-Min Automatisierungs-Consulting",
+		"subtitle": "Finden Sie heraus, wo Sie Zeit verlieren — und wie Sie es beheben",
+		"description": "Wir analysieren Ihre aktuellen Workflows, identifizieren die grössten Engpässe und zeigen Ihnen genau, wo Automatisierung jede Woche Stunden sparen kann.",
+		"examplesLabel": "Was Sie mitnehmen",
 		"examples": [
-			"Eine massgeschneiderte Business-Landingpage mit Lead-Erfassung",
-			"Ein automatisierter Workflow fur Ihre repetitivste Aufgabe (n8n)",
-			"Ein einfaches CMS zur Verwaltung Ihrer Inhalte",
-			"Ein KI-Chatbot, trainiert auf Ihre Business-FAQ"
+			"Ein klares Bild, wo Ihr Team Zeit verliert",
+			"Konkrete Engpässe, die heute automatisiert werden können",
+			"Ein priorisierter Aktionsplan — was zuerst automatisieren und warum",
+			"Ehrliche Beratung, was sich zu automatisieren lohnt und was nicht"
 		],
-		"expiry": "Die 10 kostenlosen Stunden mussen innerhalb von 1 Monat nach Ihrer Sitzung genutzt werden. Dieses Angebot ist begrenzt — wir schliessen es, sobald unser Zeitplan voll ist.",
-		"cta": "Kostenlose Discovery-Sitzung buchen",
+		"expiry": "Plätze sind begrenzt — wir schliessen das Angebot, sobald unser Zeitplan voll ist.",
+		"cta": "Kostenloses Consulting buchen",
 		"dontShow": "Heute nicht mehr anzeigen"
 	},
 	"landing": {
@@ -1174,6 +1174,91 @@
 				"heading": "6. Kontakt",
 				"body": "Koostory UG (haftungsbeschränkt)\nAkazienstraße 3a, 10827 Berlin, Deutschland\nE-Mail: ilmokoo@koostory.net"
 			}
+		}
+	},
+	"agencies": {
+		"hero": {
+			"badge": "Für Agenturen & Beratungen",
+			"title": "Ihre Agentur braucht individuelle Tools. Kein Entwicklerteam nötig.",
+			"subtitle": "Wir entwickeln Kundenportale, interne Tools und Workflow-Automatisierung für Agenturen und Beratungen in Berlin — damit Sie sich auf Ihre Kunden konzentrieren, nicht auf Ihre Technik.",
+			"cta": "Kostenloses Erstgespräch buchen"
+		},
+		"pain": {
+			"badge": "Der Alltag",
+			"title": "Kommt Ihnen das bekannt vor?",
+			"items": [
+				"Kundeninformationen sind über E-Mail-Threads, Tabellen und Chatnachrichten verstreut. Wenn ein Kunde anruft, suchen Sie hektisch nach der Projekthistorie.",
+				"Ihre Kunden wissen nicht, wo ihr Projekt steht — es sei denn, sie schreiben eine E-Mail und warten. Sie verschwenden Zeit mit Status-Calls, die überflüssig sein könnten.",
+				"Ihr Team erledigt jede Woche dieselbe manuelle Arbeit — Daten kopieren, Erinnerungen senden, Berichte erstellen. Langsam und fehleranfällig."
+			]
+		},
+		"solutions": {
+			"badge": "Was wir für Sie bauen",
+			"title": "Ein Entwickler. Ein System. Ihr ganzer Betrieb.",
+			"portal": {
+				"problem": "\"Wie ist der Stand meines Projekts?\"",
+				"pain": "Kunden schreiben E-Mails für Updates. Sie verbringen 30 Minuten mit Statusberichten. Nächste Woche fragen sie wieder.",
+				"fix": "Ein Kundenportal — Kunden loggen sich ein, sehen Status, Dateien und Deadlines. Keine Status-Mails mehr.",
+				"flow": [
+					"Agentur erstellt Projekt",
+					"Kunde loggt sich ein",
+					"Status & Dateien",
+					"Auto-Benachrichtigung"
+				]
+			},
+			"crm": {
+				"problem": "\"Salesforce ist Overkill. Tabellen reichen nicht.\"",
+				"pain": "Sie haben ein CRM ausprobiert — 30 Tage Konfiguration, zu teuer, Ihr Team nutzt die Hälfte der Funktionen nicht. Also wieder zurück zu Tabellen und Notizen.",
+				"fix": "Ein schlankes CRM für Ihren Workflow — nur die Funktionen, die Sie wirklich brauchen, fertig in Wochen.",
+				"flow": ["Lead kommt rein", "Auto-Zuweisung", "Deal-Phasen tracken", "Rechnung & Abschluss"]
+			},
+			"esign": {
+				"problem": "\"Wo ist der Vertrag, den ich unterschrieben habe?\"",
+				"pain": "Sie schicken einen Vertrag per E-Mail. Der Kunde unterschreibt in DocuSign. Drei Monate später fragt er nach einer Kopie. Sie suchen im E-Sign-Tool, laden das PDF herunter und mailen es zurück. Mal 20 Kunden.",
+				"fix": "E-Signatur in Ihrem Kundenportal integriert — Kunden unterschreiben und finden ihre Verträge jederzeit an einem Ort.",
+				"flow": [
+					"Vertrag senden",
+					"Kunde unterschreibt",
+					"Im Portal gespeichert",
+					"Kunde greift selbst zu"
+				]
+			}
+		},
+		"track": {
+			"badge": "Unsere Referenzen",
+			"title": "Entwickelt und ausgeliefert.",
+			"items": {
+				"office": "Shared-Office-Verwaltung",
+				"kiosk": "Cloud-Kiosk-Software",
+				"parking": "Parkplatzverwaltung",
+				"cms": "Websites mit CMS",
+				"events": "Event- & Umfrageplattformen"
+			},
+			"summary": "Über 15 operative Systeme für Unternehmen verschiedener Branchen entwickelt."
+		},
+		"process": {
+			"badge": "So funktioniert es",
+			"title": "Vom Erstgespräch zum Launch in Wochen, nicht Monaten.",
+			"steps": {
+				"call": {
+					"title": "Video-Call",
+					"description": "Wir sprechen darüber, was Ihr Team ausbremst und was Sie brauchen. 30 Minuten, unverbindlich."
+				},
+				"prototype": {
+					"title": "Prototyp",
+					"description": "Innerhalb von 1-2 Wochen sehen Sie einen funktionierenden Prototypen. Sie geben Feedback, wir passen an."
+				},
+				"launch": {
+					"title": "Launch & Support",
+					"description": "Ihr Tool geht live. Wir bieten Support und entwickeln weiter, wenn Ihre Anforderungen wachsen."
+				}
+			}
+		},
+		"cta": {
+			"title": "Schluss mit Notlösungen.",
+			"subtitle": "Holen Sie sich ein System, das wirklich zu Ihrer Agentur passt.",
+			"button": "Kostenloses Erstgespräch buchen",
+			"trust": "Keine Verpflichtung. Kein Verkaufsgespräch. Nur ehrliche Antworten."
 		}
 	}
 }

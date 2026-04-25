@@ -1,17 +1,17 @@
 {
 	"promo": {
-		"title": "10 Hours of Free Development",
-		"subtitle": "500 EUR value — for early customers",
-		"description": "Book and complete a free problem discovery session with us. If we run the session together, the first 10 hours of custom development are on us.",
-		"examplesLabel": "Examples of what 10 hours can build",
+		"title": "Free 45-Min Automation Consulting",
+		"subtitle": "Find out where you're losing time — and how to fix it",
+		"description": "We'll map your current workflows, identify the biggest bottlenecks, and show you exactly where automation can save hours every week.",
+		"examplesLabel": "What you'll walk away with",
 		"examples": [
-			"A customized business landing page with lead collection",
-			"One automated workflow for your most repetitive task (n8n)",
-			"A simple CMS for managing your content",
-			"An AI-powered chatbot trained on your business FAQ"
+			"A clear picture of where your team is losing time",
+			"Specific bottlenecks that can be automated today",
+			"A prioritized action plan — what to automate first and why",
+			"Honest advice on what's worth automating and what isn't"
 		],
-		"expiry": "The 10 free hours must be used within 1 month from your session. This offer won't last — we'll close it once our schedule fills up.",
-		"cta": "Book a Free Discovery Session",
+		"expiry": "Spots are limited — we'll close this once our schedule fills up.",
+		"cta": "Book Your Free Consulting Session",
 		"dontShow": "Don't show this today"
 	},
 	"landing": {
@@ -769,9 +769,12 @@
 		"about": "About",
 		"process": "Process",
 		"portfolio": "Portfolio",
+		"whoWeHelp": "Who We Help",
 		"workshops": "Workshops",
 		"blog": "Blog",
-		"backHome": "Back to home"
+		"backHome": "Back to home",
+		"forAgencies": "For Agencies",
+		"forSpreadsheetTeams": "For Spreadsheet Teams"
 	},
 	"profile": {
 		"seo": {
@@ -1153,6 +1156,181 @@
 				"heading": "6. Contact",
 				"body": "Koostory UG (haftungsbeschränkt)\nAkazienstraße 3a, 10827 Berlin, Germany\nEmail: ilmokoo@koostory.net"
 			}
+		}
+	},
+	"agencies": {
+		"hero": {
+			"badge": "For Agencies & Consultancies",
+			"title": "Your agency needs custom tools. You don't need a dev team.",
+			"subtitle": "We build client portals, internal tools, and workflow automation for agencies and consultancies in Berlin — so you can focus on your clients, not your tech stack.",
+			"cta": "Book a Free Discovery Call"
+		},
+		"pain": {
+			"badge": "The daily reality",
+			"title": "Sound familiar?",
+			"items": [
+				"Client info is scattered across email threads, spreadsheets, and chat messages. When a client calls, you scramble to find their project history.",
+				"Your clients have no idea where their project stands unless they email you and wait. You waste time on status update calls that could be self-serve.",
+				"Your team does the same manual work every week — copying data between tools, sending reminders, generating reports. It's slow and error-prone."
+			]
+		},
+		"solutions": {
+			"badge": "What we build for you",
+			"title": "One developer. One system. Your whole operation.",
+			"portal": {
+				"problem": "\"Where's my project at?\"",
+				"pain": "Clients email you for updates. You spend 30 minutes writing status reports. They ask again next week.",
+				"fix": "A client portal — they log in, see status, files, and deadlines. You never write another status email.",
+				"flow": ["Agency creates project", "Client logs in", "Status & files", "Auto-notify"]
+			},
+			"crm": {
+				"problem": "\"Salesforce is overkill. Spreadsheets aren't enough.\"",
+				"pain": "You tried a CRM but it took 30 days to configure, costs too much, and your team uses half the features. So you're back to spreadsheets and sticky notes.",
+				"fix": "A lightweight CRM built for your exact workflow — only the features you actually use, ready in weeks.",
+				"flow": ["Lead comes in", "Auto-assign to rep", "Track deal stages", "Invoice & close"]
+			},
+			"esign": {
+				"problem": "\"Where's the contract I signed?\"",
+				"pain": "You email a contract. The client signs it in DocuSign. Three months later they ask for a copy. You dig through the e-sign tool, download the PDF, and email it back. Multiply that by 20 clients.",
+				"fix": "E-signature integrated into your client portal — clients sign and access their contracts anytime, in one place.",
+				"flow": ["Send contract", "Client signs online", "Stored in portal", "Client self-serves"]
+			}
+		},
+		"track": {
+			"badge": "Our track record",
+			"title": "Built and shipped.",
+			"items": {
+				"office": "Shared Office Management",
+				"kiosk": "Cloud Kiosk Software",
+				"parking": "Parking Lot Management",
+				"cms": "Websites with CMS",
+				"events": "Event & Survey Platforms"
+			},
+			"summary": "15+ operational systems built for businesses across industries."
+		},
+		"process": {
+			"badge": "How it works",
+			"title": "From first call to launch in weeks, not months.",
+			"steps": {
+				"call": {
+					"title": "Video Call",
+					"description": "We talk about what's slowing your team down and what you need. 30 minutes, no commitment."
+				},
+				"prototype": {
+					"title": "Prototype",
+					"description": "Within 1-2 weeks, you see a working prototype. You give feedback, we adjust."
+				},
+				"launch": {
+					"title": "Launch & Support",
+					"description": "Your tool goes live. We provide support and iterate as your needs grow."
+				}
+			}
+		},
+		"cta": {
+			"title": "Stop duct-taping your workflow.",
+			"subtitle": "Get a system that actually fits how your agency works.",
+			"button": "Book a Free Discovery Call",
+			"trust": "No commitment. No sales pitch. Just honest answers."
+		}
+	},
+	"noMoreOffices": {
+		"hero": {
+			"badge": "For Growing Teams",
+			"title": "Spreadsheets Are Great.\nUntil They're Not.",
+			"subtitle": "Excel and Google Sheets are amazing tools — for the right scale. But when your team grows and workflows get complex, they start holding you back. We help you graduate to a system built for how you actually work.",
+			"cta": "Book a Free Consulting Session"
+		},
+		"research": {
+			"badge": "What the research says",
+			"title": "Spreadsheets work — until your team scales.",
+			"cards": [
+				{
+					"stat": "94%",
+					"label": "of business spreadsheets contain errors",
+					"source": "University of Hawaii study",
+					"sub": "Error rates compound as files grow and more people edit them."
+				},
+				{
+					"stat": "9 hrs",
+					"label": "per week lost searching and gathering data",
+					"source": "McKinsey",
+					"sub": "Coordination time grows exponentially as your team scales — not linearly."
+				},
+				{
+					"stat": "60%",
+					"label": "of workers say 6+ hrs/week could be automated",
+					"source": "Smartsheet survey",
+					"sub": "Most manual work your team does every week doesn't need a human."
+				}
+			]
+		},
+		"symptoms": {
+			"badge": "Quick check",
+			"title": "How many apply to your team?",
+			"items": [
+				"Multiple versions of the same tracker live in different folders",
+				"Someone spends hours every week syncing data between files",
+				"New team members struggle to understand the system",
+				"Critical knowledge lives in one person's head",
+				"You've added more tabs, more sheets, more color-coding — but it's still messy",
+				"A formula error or accidental edit once caused a real problem"
+			],
+			"result0": "You're in good shape — spreadsheets still work for you.",
+			"result1": "A few cracks showing. Worth keeping an eye on.",
+			"result2": "Your team is starting to outgrow spreadsheets.",
+			"result3": "Let's talk — a 45-minute call could save your team hours every week.",
+			"resultCta": "Book a Free Consulting Session"
+		},
+		"solutions": {
+			"badge": "What we build",
+			"title": "The same data, in a system designed for your team.",
+			"inventory": {
+				"problem": "\"Which file has the real stock numbers?\"",
+				"pain": "Multiple people update inventory in different spreadsheets. By Friday, the numbers don't match. Reconciling takes hours — and reorders get delayed.",
+				"fix": "A single inventory system — real-time stock levels, automatic low-stock alerts, and a clear audit trail. One source of truth, always up to date.",
+				"flow": ["Stock updated", "Auto-calculate totals", "Low-stock alert", "Reorder triggered"]
+			},
+			"orders": {
+				"problem": "\"Did we ship that order? Let me check... which sheet was it in?\"",
+				"pain": "Orders arrive by email, get logged in a spreadsheet, then someone copies the info to another file for fulfillment. Things slip through the cracks every week.",
+				"fix": "An order management system where everything flows in one place — from intake to fulfillment to invoicing. No copy-pasting, no lost orders.",
+				"flow": ["Order received", "Auto-assign", "Track fulfillment", "Invoice & close"]
+			},
+			"clients": {
+				"problem": "\"Where's that client's contract? Somewhere in the shared drive...\"",
+				"pain": "Client details are scattered across spreadsheets, email threads, and folders. When someone calls, your team spends 10 minutes just finding the right info.",
+				"fix": "A client management system — every interaction, contract, and note in one searchable place. Anyone on the team can pick up right where someone else left off.",
+				"flow": [
+					"Client onboarded",
+					"All data centralized",
+					"Team collaborates",
+					"Client self-serves"
+				]
+			}
+		},
+		"process": {
+			"badge": "How it works",
+			"title": "From spreadsheet to system — in three steps.",
+			"steps": {
+				"consult": {
+					"title": "Understand Your Workflows",
+					"description": "We spend 45 minutes mapping how your team actually works — what data goes where, which spreadsheets matter most, and where the friction is."
+				},
+				"design": {
+					"title": "Design the Right System",
+					"description": "We design a custom tool that fits your workflows — not the other way around. You'll see a working prototype within 1-2 weeks."
+				},
+				"build": {
+					"title": "Build, Migrate & Launch",
+					"description": "We build it, move your data over, train your team, and support you through the transition. Your spreadsheets served you well — now you have something built for what's next."
+				}
+			}
+		},
+		"cta": {
+			"title": "Ready for a system that grows with you?",
+			"subtitle": "Book a free 45-minute call. We'll map your current setup and show you what a purpose-built system could look like.",
+			"button": "Book a Free Consulting Session",
+			"trust": "No commitment. No sales pitch. Just honest advice."
 		}
 	}
 }

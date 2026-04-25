@@ -12,7 +12,10 @@
 		Briefcase,
 		BookOpen,
 		ChevronDown,
-		LogOut
+		LogOut,
+		Layers,
+		Building2,
+		FileSpreadsheet
 	} from 'lucide-svelte';
 
 	import { buttonVariants } from '$lib/components/ui/button';
@@ -24,6 +27,7 @@
 	let langPrefix = $derived(lang === 'en' ? '' : `/${lang}`);
 
 	let sheetOpen = $state(false);
+	let solutionsOpen = $state(false);
 
 	function toggleSheet() {
 		sheetOpen = !sheetOpen;
@@ -85,24 +89,47 @@
 			</a>
 
 			<button
-				class="flex items-center gap-3 rounded-md px-3 py-2 text-left text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
-				onclick={() => {
-					scrollToSection('process');
-				}}
+				class="flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
+				onclick={() => (solutionsOpen = !solutionsOpen)}
 			>
-				<Hammer class="h-5 w-5" />
-				{$_('nav.process')}
+				<span class="flex items-center gap-3">
+					<Layers class="h-5 w-5" />
+					{$_('nav.whoWeHelp')}
+				</span>
+				<ChevronDown class="h-4 w-4 transition-transform {solutionsOpen ? 'rotate-180' : ''}" />
 			</button>
-
-			<button
-				class="flex items-center gap-3 rounded-md px-3 py-2 text-left text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
-				onclick={() => {
-					scrollToSection('portfolio');
-				}}
-			>
-				<Briefcase class="h-5 w-5" />
-				{$_('nav.portfolio')}
-			</button>
+			{#if solutionsOpen}
+				<div class="ml-8 flex flex-col gap-1">
+					<a
+						href="{langPrefix}/for/agencies"
+						class="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+						onclick={(e) => {
+							e.preventDefault();
+							sheetOpen = false;
+							setTimeout(() => {
+								goto(`${langPrefix}/for/agencies`);
+							}, 300);
+						}}
+					>
+						<Building2 class="h-4 w-4" />
+						{$_('nav.forAgencies')}
+					</a>
+					<a
+						href="{langPrefix}/for/no-more-offices"
+						class="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
+						onclick={(e) => {
+							e.preventDefault();
+							sheetOpen = false;
+							setTimeout(() => {
+								goto(`${langPrefix}/for/no-more-offices`);
+							}, 300);
+						}}
+					>
+						<FileSpreadsheet class="h-4 w-4" />
+						{$_('nav.forSpreadsheetTeams')}
+					</a>
+				</div>
+			{/if}
 
 			<a
 				href="{langPrefix}/about"
