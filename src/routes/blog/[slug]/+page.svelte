@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
 	import type { PageData } from './$types';
 	import { marked } from 'marked';
 	import SEO from '$lib/components/SEO.svelte';
@@ -14,29 +14,37 @@
 	});
 
 	// Render mermaid diagrams after content loads
-	onMount(async () => {
-		const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
-		if (mermaidBlocks.length === 0) return;
+	onMount(() => {
+		// Wait for DOM to settle, then render mermaid
+		setTimeout(async () => {
+			await tick();
+			const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
+			if (mermaidBlocks.length === 0) return;
 
-		const mermaid = (await import('mermaid')).default;
-		mermaid.initialize({
-			startOnLoad: false,
-			theme: document.documentElement.classList.contains('dark') ? 'dark' : 'default',
-			fontFamily: 'system-ui, -apple-system, sans-serif'
-		});
+			const mermaid = (await import('mermaid')).default;
+			mermaid.initialize({
+				startOnLoad: false,
+				theme: document.documentElement.classList.contains('dark') ? 'dark' : 'default',
+				fontFamily: 'system-ui, -apple-system, sans-serif'
+			});
 
-		for (const block of mermaidBlocks) {
-			const pre = block.parentElement;
-			if (!pre) continue;
-			const code = block.textContent || '';
-			const id = `mermaid-${Math.random().toString(36).slice(2, 9)}`;
-			// mermaid.render returns sanitized SVG output
-			const { svg } = await mermaid.render(id, code);
-			const wrapper = document.createElement('div');
-			wrapper.className = 'my-8 flex justify-center';
-			wrapper.innerHTML = svg; // Safe: mermaid.render produces sanitized SVG
-			pre.replaceWith(wrapper);
-		}
+			for (const block of mermaidBlocks) {
+				const pre = block.parentElement;
+				if (!pre) continue;
+				const code = block.textContent || '';
+				const id = `mermaid-${Math.random().toString(36).slice(2, 9)}`;
+				try {
+					// mermaid.render returns sanitized SVG output
+					const { svg } = await mermaid.render(id, code);
+					const wrapper = document.createElement('div');
+					wrapper.className = 'my-8 flex justify-center';
+					wrapper.innerHTML = svg; // Safe: mermaid.render produces sanitized SVG
+					pre.replaceWith(wrapper);
+				} catch (e) {
+					console.error('Mermaid render error:', e);
+				}
+			}
+		}, 100);
 	});
 
 	// Clean up the content to ensure tables are parsed correctly
