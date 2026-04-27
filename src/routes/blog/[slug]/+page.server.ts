@@ -1,6 +1,7 @@
 import { db, blogPosts } from '$lib/server/db';
 import { eq } from 'drizzle-orm';
 import { error } from '@sveltejs/kit';
+import { env } from '$env/dynamic/private';
 import type { PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async ({ params }) => {
@@ -11,6 +12,7 @@ export const load: PageServerLoad = async ({ params }) => {
 	}
 
 	return {
-		post
+		post,
+		translateEnabled: !!env.DEEPL_API_KEY
 	};
 };

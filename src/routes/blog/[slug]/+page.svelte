@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import type { PageData } from './$types';
 	import { marked } from 'marked';
 	import SEO from '$lib/components/SEO.svelte';
@@ -10,6 +11,32 @@
 	marked.setOptions({
 		gfm: true,
 		breaks: true
+	});
+
+	// Render mermaid diagrams after content loads
+	onMount(async () => {
+		const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
+		if (mermaidBlocks.length === 0) return;
+
+		const mermaid = (await import('mermaid')).default;
+		mermaid.initialize({
+			startOnLoad: false,
+			theme: document.documentElement.classList.contains('dark') ? 'dark' : 'default',
+			fontFamily: 'system-ui, -apple-system, sans-serif'
+		});
+
+		for (const block of mermaidBlocks) {
+			const pre = block.parentElement;
+			if (!pre) continue;
+			const code = block.textContent || '';
+			const id = `mermaid-${Math.random().toString(36).slice(2, 9)}`;
+			// mermaid.render returns sanitized SVG output
+			const { svg } = await mermaid.render(id, code);
+			const wrapper = document.createElement('div');
+			wrapper.className = 'my-8 flex justify-center';
+			wrapper.innerHTML = svg; // Safe: mermaid.render produces sanitized SVG
+			pre.replaceWith(wrapper);
+		}
 	});
 
 	// Clean up the content to ensure tables are parsed correctly
@@ -96,13 +123,15 @@
 					day: 'numeric'
 				})}
 			</time>
-			<TranslateButton
-				slug={data.post.slug}
-				originalTitle={data.post.title}
-				{originalHtmlContent}
-				onTranslate={handleTranslate}
-				onShowOriginal={handleShowOriginal}
-			/>
+			{#if data.translateEnabled}
+				<TranslateButton
+					slug={data.post.slug}
+					originalTitle={data.post.title}
+					{originalHtmlContent}
+					onTranslate={handleTranslate}
+					onShowOriginal={handleShowOriginal}
+				/>
+			{/if}
 		</div>
 	</header>
 

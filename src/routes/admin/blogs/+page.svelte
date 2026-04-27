@@ -195,7 +195,7 @@
 							<tr
 								class="cursor-pointer border-b hover:bg-muted/50"
 								onclick={(e) => {
-									if ((e.target as HTMLElement).closest('button')) return;
+									if ((e.target as HTMLElement).closest('button, a')) return;
 									window.location.href = `/admin/blogs/edit/${post.id}`;
 								}}
 							>
