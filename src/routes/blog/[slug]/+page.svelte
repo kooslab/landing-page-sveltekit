@@ -55,7 +55,7 @@
 	title={data.post.title}
 	description={metaDescription}
 	ogType="article"
-	ogImage="/og-image-blog.png"
+	ogImage={`/og?title=${encodeURIComponent(data.post.title)}&subtitle=${encodeURIComponent(data.post.excerpt || '')}&type=blog`}
 	publishedTime={data.post.createdAt.toISOString()}
 	modifiedTime={data.post.updatedAt.toISOString()}
 	author={data.post.authorEmail.split('@')[0]}

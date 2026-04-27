@@ -25,7 +25,7 @@
 		keywords = 'software development Berlin, Softwareentwicklung Berlin, custom software Germany, maßgeschneiderte Software, web development, app development, automation, small business, SMB, KMU, Mittelstand, outsourcing, IT Dienstleister Berlin, Softwareagentur Deutschland',
 		canonical,
 		ogType = 'website',
-		ogImage = '/og-image.png',
+		ogImage = '/og?title=KooStory&subtitle=Custom software for growing teams',
 		ogImageAlt = 'KooStory - Software Development Agency',
 		twitterCard = 'summary_large_image',
 		author = 'KooStory',
@@ -183,10 +183,7 @@
 			]
 		},
 		knowsLanguage: ['de', 'en', 'ko'],
-		sameAs: [
-			'https://github.com/koostory',
-			'https://www.linkedin.com/company/koostory'
-		]
+		sameAs: ['https://github.com/koostory', 'https://www.linkedin.com/company/koostory']
 	};
 
 	// Merge default and custom JSON-LD
@@ -249,7 +246,10 @@
 	<!-- Additional SEO Meta Tags -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta name="language" content={$locale === 'de' ? 'German' : $locale === 'ko' ? 'Korean' : 'English'} />
+	<meta
+		name="language"
+		content={$locale === 'de' ? 'German' : $locale === 'ko' ? 'Korean' : 'English'}
+	/>
 	<meta name="revisit-after" content="7 days" />
 
 	<!-- Geo-targeting for Berlin/Germany -->
