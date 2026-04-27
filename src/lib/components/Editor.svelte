@@ -272,6 +272,7 @@
 <div class="relative overflow-hidden rounded-lg border">
 	<div class="flex items-center gap-2 border-b bg-muted/50 p-2">
 		<button
+			type="button"
 			class="rounded-md px-3 py-1 text-sm font-medium transition-colors {activeTab === 'write'
 				? 'bg-background text-foreground shadow-sm'
 				: 'text-muted-foreground hover:text-foreground'}"
@@ -280,6 +281,7 @@
 			Write
 		</button>
 		<button
+			type="button"
 			class="rounded-md px-3 py-1 text-sm font-medium transition-colors {activeTab === 'preview'
 				? 'bg-background text-foreground shadow-sm'
 				: 'text-muted-foreground hover:text-foreground'}"

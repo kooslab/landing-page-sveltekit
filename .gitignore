@@ -32,3 +32,6 @@ usage_tracking*.json
 
 # MCP tools
 .playwright-mcp/
+
+# Blog drafts
+drafts/
