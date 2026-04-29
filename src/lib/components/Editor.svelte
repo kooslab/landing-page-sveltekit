@@ -10,6 +10,7 @@
 	let textarea: HTMLTextAreaElement;
 	let fileInput: HTMLInputElement;
 	let uploading = $state(false);
+	let savedCursorPos = 0;
 
 	// Slash command menu state
 	let showSlashMenu = $state(false);
@@ -94,8 +95,9 @@
 
 		switch (id) {
 			case 'image':
-				// Remove the slash text first, then trigger file picker
+				// Remove the slash text first, save cursor position, then trigger file picker
 				content = content.slice(0, slashStart) + content.slice(textarea.selectionStart);
+				savedCursorPos = slashStart;
 				await tick();
 				textarea.selectionStart = slashStart;
 				textarea.selectionEnd = slashStart;
@@ -149,7 +151,14 @@
 		for (const file of input.files) {
 			const url = await uploadImage(file);
 			if (url) {
-				insertAtCursor(`![](${url})\n`);
+				const text = `![](${url})\n`;
+				const pos = savedCursorPos;
+				content = content.slice(0, pos) + text + content.slice(pos);
+				savedCursorPos = pos + text.length;
+				await tick();
+				textarea.selectionStart = savedCursorPos;
+				textarea.selectionEnd = savedCursorPos;
+				textarea.focus();
 			}
 		}
 		input.value = '';
