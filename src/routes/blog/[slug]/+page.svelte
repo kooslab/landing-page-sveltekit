@@ -76,6 +76,12 @@
 		translatedHtmlContent = null;
 	}
 
+	// Extract first image from markdown content for OG image
+	const firstImage = $derived(() => {
+		const match = data.post.content.match(/!\[.*?\]\((.*?)\)/);
+		return match?.[1] || null;
+	});
+
 	// Extract first 160 characters for meta description
 	const metaDescription = $derived(
 		data.post.excerpt ||
@@ -90,7 +96,8 @@
 	title={data.post.title}
 	description={metaDescription}
 	ogType="article"
-	ogImage={`/og?title=${encodeURIComponent(data.post.title)}&subtitle=${encodeURIComponent(data.post.excerpt || '')}&type=blog`}
+	ogImage={firstImage() ||
+		`/og?title=${encodeURIComponent(data.post.title)}&subtitle=${encodeURIComponent(data.post.excerpt || '')}&type=blog`}
 	publishedTime={data.post.createdAt.toISOString()}
 	modifiedTime={data.post.updatedAt.toISOString()}
 	author={data.post.authorEmail.split('@')[0]}
