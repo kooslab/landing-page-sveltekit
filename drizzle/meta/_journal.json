@@ -15,6 +15,13 @@
 			"when": 1774026081385,
 			"tag": "0001_omniscient_stellaris",
 			"breakpoints": true
+		},
+		{
+			"idx": 2,
+			"version": "7",
+			"when": 1777723481086,
+			"tag": "0002_white_quentin_quire",
+			"breakpoints": true
 		}
 	]
 }

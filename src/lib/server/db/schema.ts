@@ -1,4 +1,4 @@
-import { pgTable, text, boolean, timestamp, uuid } from 'drizzle-orm/pg-core';
+import { pgTable, text, boolean, timestamp, uuid, json } from 'drizzle-orm/pg-core';
 
 // Users table for Lucia Auth
 export const users = pgTable('users', {
@@ -56,9 +56,20 @@ export const emailConsents = pgTable('email_consents', {
 	createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull()
 });
 
+// Per-user admin settings (Anthropic API key, AI review preferences)
+export const adminSettings = pgTable('admin_settings', {
+	userId: text('user_id')
+		.primaryKey()
+		.references(() => users.id, { onDelete: 'cascade' }),
+	anthropicApiKeyEncrypted: text('anthropic_api_key_encrypted'),
+	voiceReferencePostIds: json('voice_reference_post_ids').$type<string[]>().default([]).notNull(),
+	updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull()
+});
+
 export type User = typeof users.$inferSelect;
 export type Session = typeof sessions.$inferSelect;
 export type BlogPost = typeof blogPosts.$inferSelect;
 export type NewBlogPost = typeof blogPosts.$inferInsert;
 export type WorkshopReservation = typeof workshopReservations.$inferSelect;
 export type NewWorkshopReservation = typeof workshopReservations.$inferInsert;
+export type AdminSettings = typeof adminSettings.$inferSelect;

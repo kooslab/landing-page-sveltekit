@@ -4,8 +4,7 @@
 	import { Badge } from '$lib/components/ui/badge';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu';
 	import { invalidateAll } from '$app/navigation';
-	import { toggleMode, mode } from 'mode-watcher';
-	import { Sun, Moon, Ellipsis, CheckCircle, CircleCheck, XCircle, Trash2 } from 'lucide-svelte';
+	import { Ellipsis, CheckCircle, CircleCheck, XCircle, Trash2 } from 'lucide-svelte';
 
 	let { data }: { data: PageData } = $props();
 	let loading = $state<string | null>(null);
@@ -71,216 +70,100 @@
 	}
 </script>
 
-<div class="flex min-h-screen">
-	<!-- Sidebar -->
-	<div class="w-64 border-r bg-background p-6">
-		<div class="mb-8">
-			<h2 class="text-lg font-semibold">Admin Panel</h2>
-		</div>
-		<nav class="space-y-2">
-			<a
-				href="/admin"
-				class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
-			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="20"
-					height="20"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<rect x="3" y="3" width="7" height="7"></rect>
-					<rect x="14" y="3" width="7" height="7"></rect>
-					<rect x="14" y="14" width="7" height="7"></rect>
-					<rect x="3" y="14" width="7" height="7"></rect>
-				</svg>
-				Dashboard
-			</a>
-			<a
-				href="/admin/blogs"
-				class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
-			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="20"
-					height="20"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
-					<path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
-				</svg>
-				Blog Posts
-			</a>
-			<a
-				href="/admin/reservations"
-				class="flex items-center gap-3 rounded-lg bg-accent px-3 py-2 text-sm font-medium text-accent-foreground"
-			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="20"
-					height="20"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-					<line x1="16" y1="2" x2="16" y2="6"></line>
-					<line x1="8" y1="2" x2="8" y2="6"></line>
-					<line x1="3" y1="10" x2="21" y2="10"></line>
-				</svg>
-				Reservations
-			</a>
-			<div class="my-4 border-t"></div>
-			<a
-				href="/"
-				class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
-			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					width="20"
-					height="20"
-					viewBox="0 0 24 24"
-					fill="none"
-					stroke="currentColor"
-					stroke-width="2"
-					stroke-linecap="round"
-					stroke-linejoin="round"
-				>
-					<path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path>
-					<polyline points="10 17 15 12 10 7"></polyline>
-					<line x1="15" y1="12" x2="3" y2="12"></line>
-				</svg>
-				View Site
-			</a>
-			<button
-				onclick={toggleMode}
-				class="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
-			>
-				{#if $mode === 'dark'}
-					<Sun size={20} />
-					Light Mode
-				{:else}
-					<Moon size={20} />
-					Dark Mode
-				{/if}
-			</button>
-		</nav>
+<div class="flex-1 px-8 py-8">
+	<div class="mb-8 flex items-center justify-between">
+		<h1 class="text-3xl font-bold">Workshop Reservations</h1>
+		<form method="POST" action="/logout">
+			<Button type="submit" variant="outline">Logout</Button>
+		</form>
 	</div>
 
-	<!-- Main Content -->
-	<div class="flex-1 px-8 py-8">
-		<div class="mb-8 flex items-center justify-between">
-			<h1 class="text-3xl font-bold">Workshop Reservations</h1>
-			<form method="POST" action="/logout">
-				<Button type="submit" variant="outline">Logout</Button>
-			</form>
-		</div>
-
-		{#if data.reservations.length === 0}
-			<p class="text-muted-foreground">No reservations yet.</p>
-		{:else}
-			<div class="overflow-x-auto">
-				<table class="w-full border-collapse">
-					<thead>
-						<tr class="border-b">
-							<th class="p-4 text-left">Name</th>
-							<th class="p-4 text-left">Email</th>
-							<th class="p-4 text-left">Workshop</th>
-							<th class="p-4 text-left">Preferred Dates</th>
-							<th class="p-4 text-left">Status</th>
-							<th class="p-4 text-left">Created</th>
-							<th class="p-4 text-left">Actions</th>
-						</tr>
-					</thead>
-					<tbody>
-						{#each data.reservations as reservation}
-							<tr class="border-b hover:bg-muted/50">
-								<td class="p-4">
-									<div class="font-medium">{reservation.name}</div>
-									{#if reservation.message}
-										<div
-											class="mt-1 max-w-xs truncate text-xs text-muted-foreground"
-											title={reservation.message}
-										>
-											{reservation.message}
-										</div>
-									{/if}
-								</td>
-								<td class="p-4 text-sm">{reservation.email}</td>
-								<td class="p-4">
-									<Badge variant="secondary">
-										{workshopLabels[reservation.workshopType] || reservation.workshopType}
-									</Badge>
-								</td>
-								<td class="p-4 text-sm">{formatDates(reservation.preferredDates)}</td>
-								<td class="p-4">
-									<Badge variant={statusColors[reservation.status] || 'outline'}>
-										{reservation.status}
-									</Badge>
-								</td>
-								<td class="p-4 text-sm text-muted-foreground">
-									{new Date(reservation.createdAt).toLocaleDateString()}
-								</td>
-								<td class="p-4">
-									<DropdownMenu.Root>
-										<DropdownMenu.Trigger>
-											<Button variant="ghost" size="sm" disabled={loading === reservation.id}>
-												<Ellipsis size={16} />
-											</Button>
-										</DropdownMenu.Trigger>
-										<DropdownMenu.Content align="end">
-											{#if reservation.status !== 'confirmed'}
-												<DropdownMenu.Item
-													onclick={() => updateStatus(reservation.id, 'confirmed')}
-												>
-													<CheckCircle size={14} class="mr-2" />
-													Confirm
-												</DropdownMenu.Item>
-											{/if}
-											{#if reservation.status !== 'completed'}
-												<DropdownMenu.Item
-													onclick={() => updateStatus(reservation.id, 'completed')}
-												>
-													<CircleCheck size={14} class="mr-2" />
-													Complete
-												</DropdownMenu.Item>
-											{/if}
-											{#if reservation.status !== 'cancelled'}
-												<DropdownMenu.Item
-													onclick={() => updateStatus(reservation.id, 'cancelled')}
-												>
-													<XCircle size={14} class="mr-2" />
-													Cancel
-												</DropdownMenu.Item>
-											{/if}
-											<DropdownMenu.Separator />
-											<DropdownMenu.Item
-												class="text-destructive focus:text-destructive"
-												onclick={() => deleteReservation(reservation.id)}
-											>
-												<Trash2 size={14} class="mr-2" />
-												Delete
+	{#if data.reservations.length === 0}
+		<p class="text-muted-foreground">No reservations yet.</p>
+	{:else}
+		<div class="overflow-x-auto">
+			<table class="w-full border-collapse">
+				<thead>
+					<tr class="border-b">
+						<th class="p-4 text-left">Name</th>
+						<th class="p-4 text-left">Email</th>
+						<th class="p-4 text-left">Workshop</th>
+						<th class="p-4 text-left">Preferred Dates</th>
+						<th class="p-4 text-left">Status</th>
+						<th class="p-4 text-left">Created</th>
+						<th class="p-4 text-left">Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{#each data.reservations as reservation}
+						<tr class="border-b hover:bg-muted/50">
+							<td class="p-4">
+								<div class="font-medium">{reservation.name}</div>
+								{#if reservation.message}
+									<div
+										class="mt-1 max-w-xs truncate text-xs text-muted-foreground"
+										title={reservation.message}
+									>
+										{reservation.message}
+									</div>
+								{/if}
+							</td>
+							<td class="p-4 text-sm">{reservation.email}</td>
+							<td class="p-4">
+								<Badge variant="secondary">
+									{workshopLabels[reservation.workshopType] || reservation.workshopType}
+								</Badge>
+							</td>
+							<td class="p-4 text-sm">{formatDates(reservation.preferredDates)}</td>
+							<td class="p-4">
+								<Badge variant={statusColors[reservation.status] || 'outline'}>
+									{reservation.status}
+								</Badge>
+							</td>
+							<td class="p-4 text-sm text-muted-foreground">
+								{new Date(reservation.createdAt).toLocaleDateString()}
+							</td>
+							<td class="p-4">
+								<DropdownMenu.Root>
+									<DropdownMenu.Trigger>
+										<Button variant="ghost" size="sm" disabled={loading === reservation.id}>
+											<Ellipsis size={16} />
+										</Button>
+									</DropdownMenu.Trigger>
+									<DropdownMenu.Content align="end">
+										{#if reservation.status !== 'confirmed'}
+											<DropdownMenu.Item onclick={() => updateStatus(reservation.id, 'confirmed')}>
+												<CheckCircle size={14} class="mr-2" />
+												Confirm
 											</DropdownMenu.Item>
-										</DropdownMenu.Content>
-									</DropdownMenu.Root>
-								</td>
-							</tr>
-						{/each}
-					</tbody>
-				</table>
-			</div>
-		{/if}
-	</div>
+										{/if}
+										{#if reservation.status !== 'completed'}
+											<DropdownMenu.Item onclick={() => updateStatus(reservation.id, 'completed')}>
+												<CircleCheck size={14} class="mr-2" />
+												Complete
+											</DropdownMenu.Item>
+										{/if}
+										{#if reservation.status !== 'cancelled'}
+											<DropdownMenu.Item onclick={() => updateStatus(reservation.id, 'cancelled')}>
+												<XCircle size={14} class="mr-2" />
+												Cancel
+											</DropdownMenu.Item>
+										{/if}
+										<DropdownMenu.Separator />
+										<DropdownMenu.Item
+											class="text-destructive focus:text-destructive"
+											onclick={() => deleteReservation(reservation.id)}
+										>
+											<Trash2 size={14} class="mr-2" />
+											Delete
+										</DropdownMenu.Item>
+									</DropdownMenu.Content>
+								</DropdownMenu.Root>
+							</td>
+						</tr>
+					{/each}
+				</tbody>
+			</table>
+		</div>
+	{/if}
 </div>

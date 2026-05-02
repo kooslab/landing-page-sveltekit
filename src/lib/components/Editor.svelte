@@ -1,8 +1,39 @@
 <script lang="ts">
-	import { tick } from 'svelte';
+	import { tick, untrack } from 'svelte';
 	import { marked } from 'marked';
+	import { Sparkles } from 'lucide-svelte';
 
-	let { content = $bindable('') } = $props();
+	type AIModel = 'claude-haiku-4-5' | 'claude-sonnet-4-6' | 'claude-opus-4-7';
+
+	let {
+		content = $bindable(''),
+		aiModel = 'claude-sonnet-4-6' as AIModel,
+		onOpenAIPanel = undefined as (() => void) | undefined,
+		highlightRange = null as { start: number; end: number } | null
+	}: {
+		content: string;
+		aiModel?: AIModel;
+		onOpenAIPanel?: () => void;
+		highlightRange?: { start: number; end: number } | null;
+	} = $props();
+
+	// Apply external highlight (from AI review panel suggestions).
+	// Wrap body in untrack() so this only re-fires when highlightRange itself
+	// changes — not when the user is typing (content updates).
+	$effect(() => {
+		const range = highlightRange;
+		untrack(() => {
+			if (!textarea) return;
+			if (range) {
+				textarea.focus();
+				textarea.setSelectionRange(range.start, range.end);
+				const style = getComputedStyle(textarea);
+				const lineHeight = parseFloat(style.lineHeight) || 20;
+				const linesBefore = content.slice(0, range.start).split('\n').length - 1;
+				textarea.scrollTop = Math.max(0, linesBefore * lineHeight - textarea.clientHeight / 3);
+			}
+		});
+	});
 
 	let activeTab: 'write' | 'preview' = $state('write');
 	let previewHtml = $state('');
@@ -11,6 +42,17 @@
 	let fileInput: HTMLInputElement;
 	let uploading = $state(false);
 	let savedCursorPos = 0;
+
+	// Selection-based vocab state
+	let altButtonPos = $state<{ top: number; left: number } | null>(null);
+	let altSelectionStart = 0;
+	let altSelectionEnd = 0;
+	let altSelectionText = $state('');
+	let altSelectionContext = '';
+	let vocabLoading = $state(false);
+	let vocabResults = $state<Array<{ word: string; nuance: string }> | null>(null);
+	let vocabError = $state<string | null>(null);
+	let vocabOpen = $state(false);
 
 	// Slash command menu state
 	let showSlashMenu = $state(false);
@@ -164,6 +206,38 @@
 		input.value = '';
 	}
 
+	function getCoordinatesForOffset(offset: number) {
+		const mirror = document.createElement('div');
+		const style = getComputedStyle(textarea);
+
+		mirror.style.position = 'absolute';
+		mirror.style.visibility = 'hidden';
+		mirror.style.whiteSpace = 'pre-wrap';
+		mirror.style.wordWrap = 'break-word';
+		mirror.style.width = style.width;
+		mirror.style.font = style.font;
+		mirror.style.padding = style.padding;
+		mirror.style.border = style.border;
+		mirror.style.lineHeight = style.lineHeight;
+		mirror.style.letterSpacing = style.letterSpacing;
+
+		mirror.textContent = content.slice(0, offset);
+		const span = document.createElement('span');
+		span.textContent = '|';
+		mirror.appendChild(span);
+		document.body.appendChild(mirror);
+
+		const rect = textarea.getBoundingClientRect();
+		const spanRect = span.getBoundingClientRect();
+		const mirrorRect = mirror.getBoundingClientRect();
+
+		const top = rect.top + (spanRect.top - mirrorRect.top) - textarea.scrollTop;
+		const left = rect.left + (spanRect.left - mirrorRect.left);
+
+		document.body.removeChild(mirror);
+		return { top, left };
+	}
+
 	function getCaretCoordinates() {
 		// Create a mirror div to measure caret position
 		const mirror = document.createElement('div');
@@ -198,6 +272,78 @@
 
 		document.body.removeChild(mirror);
 		return { top, left };
+	}
+
+	function getSentenceContext(start: number, end: number): string {
+		// Walk outward to nearest sentence-ish boundary on both sides
+		const before = content.slice(0, start);
+		const after = content.slice(end);
+		const sentenceStart = Math.max(
+			before.lastIndexOf('. '),
+			before.lastIndexOf('\n'),
+			before.lastIndexOf('? '),
+			before.lastIndexOf('! ')
+		);
+		const afterMatch = after.search(/[.?!]\s|\n/);
+		const afterEnd = afterMatch === -1 ? after.length : afterMatch + 1;
+		return content.slice(sentenceStart === -1 ? 0 : sentenceStart + 1, end + afterEnd).trim();
+	}
+
+	function handleSelectionChange() {
+		if (!textarea) return;
+		const start = textarea.selectionStart;
+		const end = textarea.selectionEnd;
+		if (start === end) {
+			altButtonPos = null;
+			vocabOpen = false;
+			return;
+		}
+		const selected = content.slice(start, end).trim();
+		// Only show for short selections — words/phrases, not paragraphs
+		if (selected.length === 0 || selected.length > 60 || /\n/.test(selected)) {
+			altButtonPos = null;
+			return;
+		}
+		altSelectionStart = start;
+		altSelectionEnd = end;
+		altSelectionText = selected;
+		altSelectionContext = getSentenceContext(start, end);
+		const coords = getCoordinatesForOffset(end);
+		altButtonPos = { top: coords.top - 36, left: coords.left + 8 };
+	}
+
+	async function fetchAlternatives() {
+		vocabOpen = true;
+		vocabLoading = true;
+		vocabError = null;
+		vocabResults = null;
+		try {
+			const res = await fetch('/api/admin/blog/ai-vocab', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({
+					word: altSelectionText,
+					context: altSelectionContext,
+					model: aiModel
+				})
+			});
+			const data = await res.json();
+			if (!res.ok) {
+				vocabError = data.error ?? 'Lookup failed';
+				return;
+			}
+			vocabResults = data.alternatives ?? [];
+		} catch (e) {
+			vocabError = e instanceof Error ? e.message : 'Lookup failed';
+		} finally {
+			vocabLoading = false;
+		}
+	}
+
+	function applyAlternative(word: string) {
+		content = content.slice(0, altSelectionStart) + word + content.slice(altSelectionEnd);
+		vocabOpen = false;
+		altButtonPos = null;
 	}
 
 	function handleInput() {
@@ -308,6 +454,18 @@
 				> for commands
 			</span>
 		{/if}
+
+		{#if onOpenAIPanel}
+			<button
+				type="button"
+				onclick={() => onOpenAIPanel?.()}
+				class="ml-auto inline-flex items-center gap-1.5 rounded-md border border-primary/30 bg-primary/5 px-2.5 py-1 text-xs font-medium text-primary transition-colors hover:bg-primary/10"
+				title="Open AI review panel"
+			>
+				<Sparkles size={14} />
+				AI Review
+			</button>
+		{/if}
 	</div>
 
 	{#if uploading}
@@ -329,6 +487,14 @@
 			onkeydown={handleKeydown}
 			ondrop={handleDrop}
 			onpaste={handlePaste}
+			onmouseup={handleSelectionChange}
+			onkeyup={handleSelectionChange}
+			onblur={() => {
+				// Hide alt button after small delay so the click can land
+				setTimeout(() => {
+					if (!vocabOpen) altButtonPos = null;
+				}, 150);
+			}}
 			class="min-h-[400px] w-full resize-none bg-background p-4 font-mono text-sm focus:outline-none"
 			placeholder="Write your article in Markdown... Type / for commands"
 		/>
@@ -381,3 +547,67 @@
 	class="hidden"
 	onchange={handleFileSelect}
 />
+
+{#if altButtonPos && !vocabOpen}
+	<button
+		type="button"
+		onmousedown={(e) => {
+			e.preventDefault();
+			fetchAlternatives();
+		}}
+		class="fixed z-50 inline-flex items-center gap-1 rounded-full border border-primary/40 bg-primary px-2.5 py-1 text-[11px] font-medium text-primary-foreground shadow-md hover:opacity-90"
+		style="top: {altButtonPos.top}px; left: {altButtonPos.left}px;"
+	>
+		<Sparkles size={12} />
+		Alternatives
+	</button>
+{/if}
+
+{#if vocabOpen && altButtonPos}
+	<div
+		class="fixed z-50 w-72 rounded-lg border bg-popover shadow-xl"
+		style="top: {altButtonPos.top + 28}px; left: {altButtonPos.left}px;"
+	>
+		<div class="flex items-center justify-between border-b px-3 py-2">
+			<span class="text-xs font-medium text-muted-foreground">
+				Alternatives for <span class="font-semibold text-foreground">"{altSelectionText}"</span>
+			</span>
+			<button
+				type="button"
+				onclick={() => {
+					vocabOpen = false;
+					altButtonPos = null;
+				}}
+				class="text-muted-foreground hover:text-foreground"
+				aria-label="Close"
+			>
+				×
+			</button>
+		</div>
+
+		<div class="max-h-72 overflow-y-auto p-2">
+			{#if vocabLoading}
+				<p class="px-2 py-3 text-xs text-muted-foreground">Looking up alternatives…</p>
+			{:else if vocabError}
+				<p class="px-2 py-3 text-xs text-red-600">{vocabError}</p>
+			{:else if vocabResults && vocabResults.length === 0}
+				<p class="px-2 py-3 text-xs text-muted-foreground">No alternatives.</p>
+			{:else if vocabResults}
+				<ul class="space-y-1">
+					{#each vocabResults as alt}
+						<li>
+							<button
+								type="button"
+								onclick={() => applyAlternative(alt.word)}
+								class="w-full rounded-md px-2 py-2 text-left transition-colors hover:bg-accent"
+							>
+								<div class="text-sm font-medium">{alt.word}</div>
+								<div class="text-xs text-muted-foreground">{alt.nuance}</div>
+							</button>
+						</li>
+					{/each}
+				</ul>
+			{/if}
+		</div>
+	</div>
+{/if}
