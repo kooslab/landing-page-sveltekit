@@ -2,10 +2,10 @@
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
 	import { Label } from '$lib/components/ui/label';
-	import { Textarea } from '$lib/components/ui/textarea';
 	import { Switch } from '$lib/components/ui/switch';
 	import Editor from '$lib/components/Editor.svelte';
 	import AIReviewPanel from '$lib/components/AIReviewPanel.svelte';
+	import ExcerptField from '$lib/components/ExcerptField.svelte';
 	import { goto, invalidateAll } from '$app/navigation';
 
 	let title = $state('');
@@ -86,16 +86,7 @@
 			</p>
 		</div>
 
-		<div class="space-y-2">
-			<h2 class="text-lg font-semibold text-foreground">Excerpt (optional)</h2>
-			<Textarea
-				id="excerpt"
-				bind:value={excerpt}
-				rows={3}
-				placeholder="A brief summary of your blog post that will appear in the blog listing..."
-			/>
-			<p class="text-sm text-muted-foreground">A short preview of your article (2-3 sentences)</p>
-		</div>
+		<ExcerptField bind:value={excerpt} {content} model={aiModel} />
 
 		<div class="space-y-2">
 			<h2 class="text-lg font-semibold text-foreground">Article Content</h2>

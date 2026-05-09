@@ -58,6 +58,12 @@ const VocabResponseSchema = z.object({
 	alternatives: z.array(VocabAlternativeSchema)
 });
 
+const ExcerptResponseSchema = z.object({
+	excerpt: z.string()
+});
+
+export type ExcerptResult = z.infer<typeof ExcerptResponseSchema>;
+
 const ImagePromptSchema = z.object({
 	title: z.string(),
 	prompt: z.string()
@@ -489,4 +495,46 @@ export async function runImagePrompts({
 
 	const parsed = ImagePromptsResponseSchema.parse(message.parsed_output);
 	return { prompts: parsed.prompts, usage: message.usage };
+}
+
+const EXCERPT_SYSTEM = `You are writing a short excerpt for a personal tech blog post by Ilmo Koo, a Korean developer who writes in a direct, conversational style.
+
+Rules:
+- Write 2–3 sentences maximum.
+- Match the author's voice: plain, direct, no marketing fluff.
+- Lead with the main argument or problem — not "In this article..." or "This post covers...".
+- Make it a hook: give the reader enough to know if it's worth their time.
+- Do NOT add a title or label — return only the excerpt text.`;
+
+export async function runExcerpt({
+	apiKey,
+	model,
+	draft,
+	signal
+}: {
+	apiKey: string;
+	model: SupportedModel;
+	draft: string;
+	signal?: AbortSignal;
+}) {
+	const client = buildClient(apiKey);
+	const speed = chatModelOptions(model);
+
+	const message = await client.messages.parse(
+		{
+			model,
+			max_tokens: 300,
+			system: EXCERPT_SYSTEM,
+			messages: [{ role: 'user', content: `Write an excerpt for this article:\n\n${draft}` }],
+			...(speed.thinking ? { thinking: speed.thinking } : {}),
+			output_config: {
+				format: zodOutputFormat(ExcerptResponseSchema),
+				...(speed.output_config ? { effort: speed.output_config.effort } : {})
+			}
+		},
+		signal ? { signal } : undefined
+	);
+
+	if (!message.parsed_output) throw new Error('Anthropic returned an unparseable response');
+	return ExcerptResponseSchema.parse(message.parsed_output);
 }
