@@ -33,7 +33,8 @@ export const REVIEW_CATEGORIES = [
 	'undefined_term',
 	'unfinished',
 	'narrative',
-	'consistency'
+	'consistency',
+	'phrasing'
 ] as const;
 export type ReviewCategory = (typeof REVIEW_CATEGORIES)[number];
 
@@ -119,7 +120,9 @@ const CATEGORY_DEFINITIONS: Record<ReviewCategory, string> = {
 	narrative:
 		'"narrative": A paragraph or section that does not follow logically from what came before — a missing connective sentence, a non-sequitur jump, or a section break where the reader needs help understanding why we\'re now talking about this. Be conservative: only flag if the jump genuinely confused you on first read, not just because the transition could be smoother.',
 	consistency:
-		'"consistency": A claim, fact, or assertion in one part of the draft directly contradicts a claim in another part (e.g. paragraph 2 says X is true, paragraph 7 says X is false; or two different numbers given for the same thing). Both fragments must be quoted in the "original" field. Do NOT flag opinion shifts or evolving thinking — only direct factual contradictions.'
+		'"consistency": A claim, fact, or assertion in one part of the draft directly contradicts a claim in another part (e.g. paragraph 2 says X is true, paragraph 7 says X is false; or two different numbers given for the same thing). Both fragments must be quoted in the "original" field. Do NOT flag opinion shifts or evolving thinking — only direct factual contradictions.',
+	phrasing:
+		'"phrasing": A sentence, phrase, or word where a meaningfully different alternative could add precision or shift emphasis — while staying in the exact same register and voice. Rules: (a) the alternative must preserve the exact same meaning, (b) it must sound like the same person wrote it — NOT more native-speaker, NOT more professional, (c) it must add something specific (precision, emphasis, cadence) rather than just being a synonym or "smoother" wording. Do NOT suggest changes that make the prose sound polished or elevated. Limit to 2–3 suggestions per draft — only flag when the alternative is genuinely distinct, not obvious.'
 };
 
 const VOICE_PRESERVATION_PROMPT = `You are a writing assistant for Ilmo Koo, a non-native English speaker (Korean) who writes a personal blog. Your job is to flag ONLY objective errors. You are NOT a copy editor. You are NOT here to "improve" the writing.
@@ -132,7 +135,7 @@ ABSOLUTE RULES — read carefully:
 
 3. If a sentence is grammatically valid but sounds "awkward" or "could flow better" — LEAVE IT ALONE. Awkward-but-comprehensible is the author's voice. Only flag if comprehension is genuinely broken.
 
-4. Never suggest replacing a simple word with a more sophisticated one. Never suggest replacing a sophisticated word with a simpler one. Vocabulary changes are NOT in scope for this review.
+4. Never suggest replacing a simple word with a more sophisticated one. Never suggest replacing a sophisticated word with a simpler one. Vocabulary and phrasing changes are NOT in scope for this review — UNLESS the "phrasing" category is explicitly active for this review. When "phrasing" is active, you may suggest alternatives, but ONLY if they preserve the same register and voice (see phrasing category definition).
 
 5. Only flag issues that fall into the categories the user explicitly enabled for this review (provided in the user message). If a category is not in the active list, do not flag issues of that type, even if you notice them.
 

@@ -13,7 +13,8 @@
 		| 'undefined_term'
 		| 'unfinished'
 		| 'narrative'
-		| 'consistency';
+		| 'consistency'
+		| 'phrasing';
 	type Suggestion = {
 		id: string;
 		type: SuggestionType;
@@ -73,6 +74,12 @@
 			label: 'Self-consistency',
 			defaultOn: false,
 			statusMsg: 'Cross-checking for contradictions…'
+		},
+		{
+			value: 'phrasing',
+			label: 'Phrase alternatives',
+			defaultOn: false,
+			statusMsg: 'Looking for alternative phrasings…'
 		}
 	];
 
@@ -291,7 +298,8 @@
 		undefined_term: 'UNDEFINED TERM',
 		unfinished: 'UNFINISHED',
 		narrative: 'NARRATIVE',
-		consistency: 'CONSISTENCY'
+		consistency: 'CONSISTENCY',
+		phrasing: 'PHRASING'
 	};
 
 	const TYPE_BADGE: Record<SuggestionType, string> = {
@@ -302,7 +310,8 @@
 		undefined_term: 'bg-purple-100 text-purple-800 dark:bg-purple-950 dark:text-purple-300',
 		unfinished: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-950 dark:text-yellow-300',
 		narrative: 'bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300',
-		consistency: 'bg-pink-100 text-pink-800 dark:bg-pink-950 dark:text-pink-300'
+		consistency: 'bg-pink-100 text-pink-800 dark:bg-pink-950 dark:text-pink-300',
+		phrasing: 'bg-teal-100 text-teal-800 dark:bg-teal-950 dark:text-teal-300'
 	};
 </script>
 
@@ -417,6 +426,8 @@
 					<p>Click <b>Review with AI</b> to get a pass over your draft.</p>
 					<p>
 						Claude is configured to flag only the categories above — never to "polish" your voice.
+						Enable <b>Phrase alternatives</b> to also get optional rephrasing ideas that stay in your
+						register.
 					</p>
 					<p class="text-xs">
 						If you want vocabulary alternatives, select a word in the editor and click the floating

@@ -7,7 +7,7 @@
 	import { Switch } from '$lib/components/ui/switch';
 	import Editor from '$lib/components/Editor.svelte';
 	import AIReviewPanel from '$lib/components/AIReviewPanel.svelte';
-	import { invalidateAll } from '$app/navigation';
+	import { invalidateAll, goto } from '$app/navigation';
 
 	let { data }: { data: PageData } = $props();
 
