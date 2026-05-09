@@ -7,7 +7,7 @@
 	import { Switch } from '$lib/components/ui/switch';
 	import Editor from '$lib/components/Editor.svelte';
 	import AIReviewPanel from '$lib/components/AIReviewPanel.svelte';
-	import { goto } from '$app/navigation';
+	import { invalidateAll } from '$app/navigation';
 
 	let { data }: { data: PageData } = $props();
 
@@ -55,7 +55,7 @@
 				throw new Error('Failed to update post');
 			}
 
-			await goto('/admin/blogs');
+			await invalidateAll();
 		} catch (error) {
 			console.error('Error updating post:', error);
 			alert('Failed to update post');
