@@ -389,7 +389,7 @@
 		<header class="flex items-center justify-between border-b px-4 py-3">
 			<div class="flex items-center gap-2">
 				<Sparkles size={18} class="text-primary" />
-				<h2 class="text-base font-semibold">AI Assistant</h2>
+				<h2 class="text-base font-semibold">AI Support</h2>
 			</div>
 			<div class="flex items-center gap-1">
 				<a

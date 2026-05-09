@@ -460,10 +460,10 @@
 				type="button"
 				onclick={() => onOpenAIPanel?.()}
 				class="ml-auto inline-flex items-center gap-1.5 rounded-md border border-primary/30 bg-primary/5 px-2.5 py-1 text-xs font-medium text-primary transition-colors hover:bg-primary/10"
-				title="Open AI review panel"
+				title="Open AI support panel"
 			>
 				<Sparkles size={14} />
-				AI Review
+				AI Support
 			</button>
 		{/if}
 	</div>
