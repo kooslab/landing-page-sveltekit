@@ -2,7 +2,11 @@
 	import type { PageData } from './$types';
 	import SEO from '$lib/components/SEO.svelte';
 
-	export let data: PageData;
+	let { data }: { data: PageData } = $props();
+
+	function firstImage(content: string): string | null {
+		return content.match(/!\[.*?\]\((.*?)\)/)?.[1] ?? null;
+	}
 </script>
 
 <SEO
@@ -44,22 +48,32 @@
 	{:else}
 		<div class="space-y-8">
 			{#each data.posts as post}
+				{@const img = firstImage(post.content)}
 				<article class="border-b pb-8">
-					<a href="/blog/{post.slug}" class="group">
-						<h2 class="mb-2 text-2xl font-semibold transition-colors group-hover:text-primary">
-							{post.title}
-						</h2>
-						{#if post.excerpt}
-							<p class="mb-4 text-muted-foreground">{post.excerpt}</p>
+					<a href="/blog/{post.slug}" class="group flex gap-5">
+						{#if img}
+							<img
+								src={img}
+								alt={post.title}
+								class="h-28 w-44 flex-shrink-0 rounded-md object-cover"
+							/>
 						{/if}
-						<div class="text-sm text-muted-foreground">
-							<time datetime={new Date(post.createdAt).toISOString()}>
-								{new Date(post.createdAt).toLocaleDateString('en-US', {
-									year: 'numeric',
-									month: 'long',
-									day: 'numeric'
-								})}
-							</time>
+						<div class="flex flex-col justify-center">
+							<h2 class="mb-2 text-2xl font-semibold transition-colors group-hover:text-primary">
+								{post.title}
+							</h2>
+							{#if post.excerpt}
+								<p class="mb-3 text-muted-foreground">{post.excerpt}</p>
+							{/if}
+							<div class="text-sm text-muted-foreground">
+								<time datetime={new Date(post.createdAt).toISOString()}>
+									{new Date(post.createdAt).toLocaleDateString('en-US', {
+										year: 'numeric',
+										month: 'long',
+										day: 'numeric'
+									})}
+								</time>
+							</div>
 						</div>
 					</a>
 				</article>
