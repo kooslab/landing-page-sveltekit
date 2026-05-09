@@ -58,8 +58,18 @@ const VocabResponseSchema = z.object({
 	alternatives: z.array(VocabAlternativeSchema)
 });
 
+const ImagePromptSchema = z.object({
+	title: z.string(),
+	prompt: z.string()
+});
+
+const ImagePromptsResponseSchema = z.object({
+	prompts: z.array(ImagePromptSchema)
+});
+
 export type ReviewSuggestion = z.infer<typeof ReviewSuggestionSchema>;
 export type VocabAlternative = z.infer<typeof VocabAlternativeSchema>;
+export type ImagePrompt = z.infer<typeof ImagePromptSchema>;
 
 export async function getDecryptedApiKey(userId: string): Promise<string | null> {
 	const [row] = await db
@@ -122,7 +132,7 @@ const CATEGORY_DEFINITIONS: Record<ReviewCategory, string> = {
 	consistency:
 		'"consistency": A claim, fact, or assertion in one part of the draft directly contradicts a claim in another part (e.g. paragraph 2 says X is true, paragraph 7 says X is false; or two different numbers given for the same thing). Both fragments must be quoted in the "original" field. Do NOT flag opinion shifts or evolving thinking — only direct factual contradictions.',
 	phrasing:
-		'"phrasing": A sentence, phrase, or word where a meaningfully different alternative could add precision or shift emphasis — while staying in the exact same register and voice. Rules: (a) the alternative must preserve the exact same meaning, (b) it must sound like the same person wrote it — NOT more native-speaker, NOT more professional, (c) it must add something specific (precision, emphasis, cadence) rather than just being a synonym or "smoother" wording. Do NOT suggest changes that make the prose sound polished or elevated. Limit to 2–3 suggestions per draft — only flag when the alternative is genuinely distinct, not obvious.'
+		'"phrasing": An alternative way to say a phrase, sentence, or word — to give the author options. The alternative should stay in the same conversational register (not formal, not native-speaker-polished). It can shift emphasis, reorder for rhythm, swap a word for one with a different connotation, or just offer a different angle on the same idea. The author will decide whether they prefer it — your job is to show what else could work, not to fix a problem. Aim for 3–5 per draft. When in doubt, include it — the author can always dismiss it.'
 };
 
 const VOICE_PRESERVATION_PROMPT = `You are a writing assistant for Ilmo Koo, a non-native English speaker (Korean) who writes a personal blog. Your job is to flag ONLY objective errors. You are NOT a copy editor. You are NOT here to "improve" the writing.
@@ -135,7 +145,7 @@ ABSOLUTE RULES — read carefully:
 
 3. If a sentence is grammatically valid but sounds "awkward" or "could flow better" — LEAVE IT ALONE. Awkward-but-comprehensible is the author's voice. Only flag if comprehension is genuinely broken.
 
-4. Never suggest replacing a simple word with a more sophisticated one. Never suggest replacing a sophisticated word with a simpler one. Vocabulary and phrasing changes are NOT in scope for this review — UNLESS the "phrasing" category is explicitly active for this review. When "phrasing" is active, you may suggest alternatives, but ONLY if they preserve the same register and voice (see phrasing category definition).
+4. Never suggest replacing a simple word with a more sophisticated one. Never suggest replacing a sophisticated word with a simpler one. Vocabulary and phrasing changes are NOT in scope for this review — UNLESS the "phrasing" category is explicitly active. When "phrasing" is active, rules 1–3 above are suspended for phrasing-type suggestions only. Actively look for phrases where a different wording could shift emphasis, add punch, or say the same thing in a more interesting way. The goal is to give the author options to consider, not to fix problems. You MUST produce at least 3–5 phrasing suggestions when that category is active — returning zero is wrong.
 
 5. Only flag issues that fall into the categories the user explicitly enabled for this review (provided in the user message). If a category is not in the active list, do not flag issues of that type, even if you notice them.
 
@@ -425,4 +435,58 @@ export async function runVocab({
 		alternatives: parsed.alternatives,
 		usage: message.usage
 	};
+}
+
+const IMAGE_PROMPT_SYSTEM = `You are an image prompt specialist for a personal tech blog. Given a blog article, generate image prompts that work well as section illustrations or header images.
+
+Rules:
+- Each prompt must be ready to paste into Midjourney or DALL-E — no further editing needed
+- Style: clean, modern, flat or semi-flat illustration. Muted colors. No stock-photo clichés.
+- No faces, no people unless the concept absolutely requires a human figure (use silhouettes if so)
+- Avoid: "businesspeople shaking hands", "laptop on a desk", "lightbulb idea", "gears"
+- Focus on: abstract visual metaphors, diagrams, environments, or objects that represent the concept
+- Each prompt should end with a style clause: ", flat illustration, minimal, muted palette, editorial"
+- "title" is 3–6 words describing what concept this image covers
+- Generate 4–6 prompts covering different sections or key ideas in the article`;
+
+export async function runImagePrompts({
+	apiKey,
+	model,
+	draft,
+	signal
+}: {
+	apiKey: string;
+	model: SupportedModel;
+	draft: string;
+	signal?: AbortSignal;
+}) {
+	const client = buildClient(apiKey);
+	const speed = chatModelOptions(model);
+
+	const message = await client.messages.parse(
+		{
+			model,
+			max_tokens: 2000,
+			system: IMAGE_PROMPT_SYSTEM,
+			messages: [
+				{
+					role: 'user',
+					content: `Generate image prompts for the following article:\n\n${draft}`
+				}
+			],
+			...(speed.thinking ? { thinking: speed.thinking } : {}),
+			output_config: {
+				format: zodOutputFormat(ImagePromptsResponseSchema),
+				...(speed.output_config ? { effort: speed.output_config.effort } : {})
+			}
+		},
+		signal ? { signal } : undefined
+	);
+
+	if (!message.parsed_output) {
+		throw new Error('Anthropic returned an unparseable response');
+	}
+
+	const parsed = ImagePromptsResponseSchema.parse(message.parsed_output);
+	return { prompts: parsed.prompts, usage: message.usage };
 }

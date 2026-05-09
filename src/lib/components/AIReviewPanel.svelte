@@ -1,6 +1,17 @@
 <script lang="ts">
 	import { Button } from '$lib/components/ui/button';
-	import { Sparkles, X, Settings, CheckCircle2, Send, MessageCircle, Square } from 'lucide-svelte';
+	import {
+		Sparkles,
+		X,
+		Settings,
+		CheckCircle2,
+		Send,
+		MessageCircle,
+		Square,
+		ImageIcon,
+		ClipboardCopy,
+		Check
+	} from 'lucide-svelte';
 	import WordDiff from './WordDiff.svelte';
 	import ThinkingIndicator from './ThinkingIndicator.svelte';
 	import Markdown from './Markdown.svelte';
@@ -37,18 +48,18 @@
 		defaultOn: boolean;
 		statusMsg: string;
 	}[] = [
-		{ value: 'typo', label: 'Typo', defaultOn: true, statusMsg: 'Scanning for typos…' },
-		{ value: 'clarity', label: 'Clarity', defaultOn: true, statusMsg: 'Checking clarity…' },
+		{ value: 'typo', label: 'Typo', defaultOn: false, statusMsg: 'Scanning for typos…' },
+		{ value: 'clarity', label: 'Clarity', defaultOn: false, statusMsg: 'Checking clarity…' },
 		{
 			value: 'markdown',
 			label: 'Markdown syntax',
-			defaultOn: true,
+			defaultOn: false,
 			statusMsg: 'Validating markdown syntax…'
 		},
 		{
 			value: 'broken_ref',
 			label: 'Broken refs',
-			defaultOn: true,
+			defaultOn: false,
 			statusMsg: 'Following internal references…'
 		},
 		{
@@ -94,6 +105,9 @@
 		model: (typeof MODELS)[number]['value'];
 		onHighlight?: (range: { start: number; end: number } | null) => void;
 	} = $props();
+	type Tab = 'review' | 'image-prompts';
+	let activeTab = $state<Tab>('review');
+
 	let suggestions = $state<Suggestion[]>([]);
 	let loading = $state(false);
 	let error = $state<string | null>(null);
@@ -101,6 +115,13 @@
 	let selectedSuggestionId = $state<string | null>(null);
 	let reviewAbort: AbortController | null = null;
 	let askAbort: AbortController | null = null;
+
+	type ImagePrompt = { title: string; prompt: string };
+	let imagePrompts = $state<ImagePrompt[]>([]);
+	let imageLoading = $state(false);
+	let imageError = $state<string | null>(null);
+	let imageAbort: AbortController | null = null;
+	let copiedIndex = $state<number | null>(null);
 
 	let activeCategories = $state<Record<SuggestionType, boolean>>(
 		Object.fromEntries(CATEGORIES.map((c) => [c.value, c.defaultOn])) as Record<
@@ -313,6 +334,45 @@
 		consistency: 'bg-pink-100 text-pink-800 dark:bg-pink-950 dark:text-pink-300',
 		phrasing: 'bg-teal-100 text-teal-800 dark:bg-teal-950 dark:text-teal-300'
 	};
+
+	async function generateImagePrompts() {
+		imageLoading = true;
+		imageError = null;
+		imageAbort = new AbortController();
+		try {
+			const res = await fetch('/api/admin/blog/ai-image-prompts', {
+				method: 'POST',
+				headers: { 'Content-Type': 'application/json' },
+				body: JSON.stringify({ content, model }),
+				signal: imageAbort.signal
+			});
+			const data = await res.json();
+			if (!res.ok) {
+				imageError = data.error ?? 'Generation failed';
+				return;
+			}
+			imagePrompts = data.prompts;
+		} catch (e) {
+			if (e instanceof DOMException && e.name === 'AbortError') {
+				// stopped
+			} else {
+				imageError = e instanceof Error ? e.message : 'Generation failed';
+			}
+		} finally {
+			imageLoading = false;
+			imageAbort = null;
+		}
+	}
+
+	function stopImageGeneration() {
+		imageAbort?.abort();
+	}
+
+	async function copyPrompt(prompt: string, index: number) {
+		await navigator.clipboard.writeText(prompt);
+		copiedIndex = index;
+		setTimeout(() => (copiedIndex = null), 1500);
+	}
 </script>
 
 {#if open}
@@ -329,7 +389,7 @@
 		<header class="flex items-center justify-between border-b px-4 py-3">
 			<div class="flex items-center gap-2">
 				<Sparkles size={18} class="text-primary" />
-				<h2 class="text-base font-semibold">AI Review</h2>
+				<h2 class="text-base font-semibold">AI Assistant</h2>
 			</div>
 			<div class="flex items-center gap-1">
 				<a
@@ -351,249 +411,350 @@
 			</div>
 		</header>
 
-		<!-- Controls -->
-		<div class="space-y-3 border-b px-4 py-3">
-			<div class="space-y-1.5">
-				<label for="ai-model" class="text-xs font-medium text-muted-foreground">Model</label>
-				<select
-					id="ai-model"
-					bind:value={model}
-					class="w-full rounded-md border bg-background px-3 py-2 text-sm"
-				>
-					{#each MODELS as m}
-						<option value={m.value}>{m.label}</option>
-					{/each}
-				</select>
-			</div>
-
-			<div class="space-y-1.5">
-				<div class="text-xs font-medium text-muted-foreground">Categories</div>
-				<div class="grid grid-cols-2 gap-x-3 gap-y-1.5">
-					{#each CATEGORIES as cat}
-						<label class="flex cursor-pointer items-center gap-2 text-xs">
-							<input
-								type="checkbox"
-								bind:checked={activeCategories[cat.value]}
-								class="h-3.5 w-3.5 rounded border-input"
-							/>
-							{cat.label}
-						</label>
-					{/each}
-				</div>
-			</div>
-
-			{#if loading}
-				<Button onclick={stopReview} variant="destructive" class="w-full">
-					<Square size={14} class="fill-current" />
-					<span class="ml-2">Stop</span>
-				</Button>
-			{:else}
-				<Button
-					onclick={runReview}
-					disabled={!content.trim() || activeCategoryList.length === 0}
-					class="w-full"
-				>
-					{#if suggestions.length === 0}
-						Review with AI
-					{:else}
-						Re-run review
-					{/if}
-				</Button>
-			{/if}
-
-			{#if lastReviewedAt}
-				<p class="text-xs text-muted-foreground">
-					Last review: {lastReviewedAt.toLocaleTimeString()} · {liveCount} active
-					{#if staleCount > 0}
-						· {staleCount} stale
-					{/if}
-				</p>
-			{/if}
+		<!-- Tab strip -->
+		<div class="flex border-b">
+			<button
+				onclick={() => (activeTab = 'review')}
+				class="flex flex-1 items-center justify-center gap-1.5 px-4 py-2.5 text-xs font-medium transition-colors {activeTab ===
+				'review'
+					? 'border-b-2 border-primary text-primary'
+					: 'text-muted-foreground hover:text-foreground'}"
+			>
+				<Sparkles size={13} />
+				Review
+			</button>
+			<button
+				onclick={() => (activeTab = 'image-prompts')}
+				class="flex flex-1 items-center justify-center gap-1.5 px-4 py-2.5 text-xs font-medium transition-colors {activeTab ===
+				'image-prompts'
+					? 'border-b-2 border-primary text-primary'
+					: 'text-muted-foreground hover:text-foreground'}"
+			>
+				<ImageIcon size={13} />
+				Image Prompts
+			</button>
 		</div>
+
+		<!-- Controls (review tab only) -->
+		{#if activeTab === 'review'}
+			<div class="space-y-3 border-b px-4 py-3">
+				<div class="space-y-1.5">
+					<label for="ai-model" class="text-xs font-medium text-muted-foreground">Model</label>
+					<select
+						id="ai-model"
+						bind:value={model}
+						class="w-full rounded-md border bg-background px-3 py-2 text-sm"
+					>
+						{#each MODELS as m}
+							<option value={m.value}>{m.label}</option>
+						{/each}
+					</select>
+				</div>
+
+				<div class="space-y-1.5">
+					<div class="text-xs font-medium text-muted-foreground">Categories</div>
+					<div class="grid grid-cols-2 gap-x-3 gap-y-1.5">
+						{#each CATEGORIES as cat}
+							<label class="flex cursor-pointer items-center gap-2 text-xs">
+								<input
+									type="checkbox"
+									bind:checked={activeCategories[cat.value]}
+									class="h-3.5 w-3.5 rounded border-input"
+								/>
+								{cat.label}
+							</label>
+						{/each}
+					</div>
+				</div>
+
+				{#if loading}
+					<Button onclick={stopReview} variant="destructive" class="w-full">
+						<Square size={14} class="fill-current" />
+						<span class="ml-2">Stop</span>
+					</Button>
+				{:else}
+					<Button
+						onclick={runReview}
+						disabled={!content.trim() || activeCategoryList.length === 0}
+						class="w-full"
+					>
+						{#if suggestions.length === 0}
+							Review with AI
+						{:else}
+							Re-run review
+						{/if}
+					</Button>
+				{/if}
+
+				{#if lastReviewedAt}
+					<p class="text-xs text-muted-foreground">
+						Last review: {lastReviewedAt.toLocaleTimeString()} · {liveCount} active
+						{#if staleCount > 0}
+							· {staleCount} stale
+						{/if}
+					</p>
+				{/if}
+			</div>
+		{/if}
 
 		<!-- Body (scrolls; sticky ask-input below) -->
 		<div class="flex-1 overflow-y-auto px-4 py-4">
-			{#if error}
-				<div
-					class="rounded-md border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-800 dark:border-red-800 dark:bg-red-950 dark:text-red-300"
-				>
-					{error}
-				</div>
-			{:else if loading && suggestions.length === 0}
-				<ThinkingIndicator messages={reviewStatusMessages} />
-			{:else if !lastReviewedAt}
-				<div class="space-y-3 text-sm text-muted-foreground">
-					<p>Click <b>Review with AI</b> to get a pass over your draft.</p>
-					<p>
-						Claude is configured to flag only the categories above — never to "polish" your voice.
-						Enable <b>Phrase alternatives</b> to also get optional rephrasing ideas that stay in your
-						register.
-					</p>
-					<p class="text-xs">
-						If you want vocabulary alternatives, select a word in the editor and click the floating
-						button.
-					</p>
-				</div>
-			{:else if suggestions.length === 0}
-				<div
-					class="rounded-lg border border-green-300 bg-green-50 px-4 py-6 text-center dark:border-green-800 dark:bg-green-950/40"
-				>
-					<CheckCircle2 size={32} class="mx-auto mb-2 text-green-600 dark:text-green-400" />
-					<p class="font-semibold text-green-800 dark:text-green-300">No issues found</p>
-					<p class="mt-1 text-xs text-green-700/80 dark:text-green-400/70">
-						Claude reviewed your draft against the active categories and found nothing to flag. Your
-						voice came through clean.
-					</p>
-				</div>
-			{:else if activeSuggestions.length === 0}
-				<div
-					class="rounded-md border bg-muted/30 px-4 py-6 text-center text-sm text-muted-foreground"
-				>
-					All suggestions handled. Re-run review if you've made changes.
+			{#if activeTab === 'image-prompts'}
+				<!-- Image prompts tab -->
+				<div class="space-y-3">
+					{#if imageLoading}
+						<ThinkingIndicator
+							messages={['Reading your draft…', 'Thinking of visual concepts…', 'Writing prompts…']}
+						/>
+						<Button onclick={stopImageGeneration} variant="destructive" class="mt-3 w-full">
+							<Square size={14} class="fill-current" />
+							<span class="ml-2">Stop</span>
+						</Button>
+					{:else if imageError}
+						<div
+							class="rounded-md border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-800 dark:border-red-800 dark:bg-red-950 dark:text-red-300"
+						>
+							{imageError}
+						</div>
+						<Button onclick={generateImagePrompts} disabled={!content.trim()} class="w-full">
+							Retry
+						</Button>
+					{:else if imagePrompts.length === 0}
+						<div class="space-y-3 text-sm text-muted-foreground">
+							<p>
+								Generate image prompts based on your draft — ready to paste into Midjourney or
+								DALL-E.
+							</p>
+							<p class="text-xs">
+								Each prompt covers a different section or key concept in the article.
+							</p>
+						</div>
+						<Button onclick={generateImagePrompts} disabled={!content.trim()} class="mt-3 w-full">
+							<ImageIcon size={14} class="mr-2" />
+							Generate prompts
+						</Button>
+					{:else}
+						<ul class="space-y-3">
+							{#each imagePrompts as ip, i (i)}
+								<li class="space-y-2 rounded-lg border bg-card p-3">
+									<div class="flex items-start justify-between gap-2">
+										<span class="text-xs font-semibold text-foreground">{ip.title}</span>
+										<button
+											type="button"
+											onclick={() => copyPrompt(ip.prompt, i)}
+											class="flex-shrink-0 rounded p-1 text-muted-foreground transition-colors hover:bg-accent hover:text-foreground"
+											aria-label="Copy prompt"
+											title="Copy prompt"
+										>
+											{#if copiedIndex === i}
+												<Check size={14} class="text-green-600" />
+											{:else}
+												<ClipboardCopy size={14} />
+											{/if}
+										</button>
+									</div>
+									<p class="text-xs leading-relaxed text-muted-foreground">{ip.prompt}</p>
+								</li>
+							{/each}
+						</ul>
+						<Button
+							onclick={generateImagePrompts}
+							variant="outline"
+							disabled={!content.trim()}
+							class="mt-1 w-full"
+						>
+							Regenerate
+						</Button>
+					{/if}
 				</div>
 			{:else}
-				<ul class="space-y-3">
-					{#each activeSuggestions as s (s.id)}
-						{@const stale = isStale(s)}
-						{@const selected = selectedSuggestionId === s.id}
-						<li
-							class="rounded-lg border transition-colors {stale ? 'opacity-50' : ''} {selected
-								? 'border-primary bg-primary/5 ring-1 ring-primary/40'
-								: 'hover:bg-accent/30'}"
-						>
+				{#if error}
+					<div
+						class="rounded-md border border-red-300 bg-red-50 px-4 py-3 text-sm text-red-800 dark:border-red-800 dark:bg-red-950 dark:text-red-300"
+					>
+						{error}
+					</div>
+				{:else if loading && suggestions.length === 0}
+					<ThinkingIndicator messages={reviewStatusMessages} />
+				{:else if !lastReviewedAt}
+					<div class="space-y-3 text-sm text-muted-foreground">
+						<p>Click <b>Review with AI</b> to get a pass over your draft.</p>
+						<p>
+							Claude is configured to flag only the categories above — never to "polish" your voice.
+							Enable <b>Phrase alternatives</b> to also get optional rephrasing ideas that stay in your
+							register.
+						</p>
+						<p class="text-xs">
+							If you want vocabulary alternatives, select a word in the editor and click the
+							floating button.
+						</p>
+					</div>
+				{:else if suggestions.length === 0}
+					<div
+						class="rounded-lg border border-green-300 bg-green-50 px-4 py-6 text-center dark:border-green-800 dark:bg-green-950/40"
+					>
+						<CheckCircle2 size={32} class="mx-auto mb-2 text-green-600 dark:text-green-400" />
+						<p class="font-semibold text-green-800 dark:text-green-300">No issues found</p>
+						<p class="mt-1 text-xs text-green-700/80 dark:text-green-400/70">
+							Claude reviewed your draft against the active categories and found nothing to flag.
+							Your voice came through clean.
+						</p>
+					</div>
+				{:else if activeSuggestions.length === 0}
+					<div
+						class="rounded-md border bg-muted/30 px-4 py-6 text-center text-sm text-muted-foreground"
+					>
+						All suggestions handled. Re-run review if you've made changes.
+					</div>
+				{:else}
+					<ul class="space-y-3">
+						{#each activeSuggestions as s (s.id)}
+							{@const stale = isStale(s)}
+							{@const selected = selectedSuggestionId === s.id}
+							<li
+								class="rounded-lg border transition-colors {stale ? 'opacity-50' : ''} {selected
+									? 'border-primary bg-primary/5 ring-1 ring-primary/40'
+									: 'hover:bg-accent/30'}"
+							>
+								<button
+									type="button"
+									onclick={() => selectSuggestion(s)}
+									class="block w-full p-3 text-left"
+								>
+									<div class="mb-2 flex items-center justify-between">
+										<span
+											class="rounded px-2 py-0.5 text-[10px] font-bold tracking-wider {TYPE_BADGE[
+												s.type
+											]}"
+										>
+											{TYPE_LABELS[s.type]}
+										</span>
+										{#if stale}
+											<span class="text-[10px] uppercase tracking-wider text-muted-foreground"
+												>stale</span
+											>
+										{:else if selected}
+											<span class="text-[10px] uppercase tracking-wider text-primary">selected</span
+											>
+										{/if}
+									</div>
+
+									<div class="mb-2 rounded bg-muted/40 px-3 py-2 {stale ? 'line-through' : ''}">
+										<WordDiff original={s.original} suggestion={s.suggestion} />
+									</div>
+
+									<p class="text-xs text-muted-foreground">
+										<span class="font-medium">Why:</span>
+										{s.reason}
+									</p>
+								</button>
+
+								<div class="flex gap-2 border-t px-3 py-2">
+									<Button size="sm" onclick={() => applySuggestion(s)} disabled={stale}
+										>Apply</Button
+									>
+									<Button size="sm" variant="ghost" onclick={() => dismiss(s)}>Dismiss</Button>
+								</div>
+							</li>
+						{/each}
+					</ul>
+				{/if}
+
+				<!-- Ask thread (free-form Q&A) -->
+				{#if askThread.length > 0}
+					<div class="mt-6 space-y-3 border-t pt-4">
+						<div class="flex items-center justify-between">
+							<div
+								class="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground"
+							>
+								<MessageCircle size={14} />
+								Ask thread
+							</div>
 							<button
 								type="button"
-								onclick={() => selectSuggestion(s)}
-								class="block w-full p-3 text-left"
+								onclick={clearThread}
+								class="text-[10px] uppercase tracking-wider text-muted-foreground hover:text-foreground"
 							>
-								<div class="mb-2 flex items-center justify-between">
-									<span
-										class="rounded px-2 py-0.5 text-[10px] font-bold tracking-wider {TYPE_BADGE[
-											s.type
-										]}"
-									>
-										{TYPE_LABELS[s.type]}
-									</span>
-									{#if stale}
-										<span class="text-[10px] uppercase tracking-wider text-muted-foreground"
-											>stale</span
-										>
-									{:else if selected}
-										<span class="text-[10px] uppercase tracking-wider text-primary">selected</span>
-									{/if}
-								</div>
-
-								<div class="mb-2 rounded bg-muted/40 px-3 py-2 {stale ? 'line-through' : ''}">
-									<WordDiff original={s.original} suggestion={s.suggestion} />
-								</div>
-
-								<p class="text-xs text-muted-foreground">
-									<span class="font-medium">Why:</span>
-									{s.reason}
-								</p>
+								Clear
 							</button>
-
-							<div class="flex gap-2 border-t px-3 py-2">
-								<Button size="sm" onclick={() => applySuggestion(s)} disabled={stale}>Apply</Button>
-								<Button size="sm" variant="ghost" onclick={() => dismiss(s)}>Dismiss</Button>
-							</div>
-						</li>
-					{/each}
-				</ul>
-			{/if}
-
-			<!-- Ask thread (free-form Q&A) -->
-			{#if askThread.length > 0}
-				<div class="mt-6 space-y-3 border-t pt-4">
-					<div class="flex items-center justify-between">
-						<div
-							class="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground"
-						>
-							<MessageCircle size={14} />
-							Ask thread
 						</div>
-						<button
-							type="button"
-							onclick={clearThread}
-							class="text-[10px] uppercase tracking-wider text-muted-foreground hover:text-foreground"
-						>
-							Clear
-						</button>
+						{#each askThread as turn (turn.id)}
+							<div class="space-y-2">
+								<div class="ml-6 rounded-lg rounded-tr-sm bg-primary/10 px-3 py-2 text-sm">
+									{turn.question}
+								</div>
+								{#if turn.error}
+									<div
+										class="mr-6 rounded-lg rounded-tl-sm border border-red-300 bg-red-50 px-3 py-2 text-xs text-red-800 dark:border-red-800 dark:bg-red-950 dark:text-red-300"
+									>
+										{turn.error}
+									</div>
+								{:else if turn.loading && !turn.answer}
+									<div class="mr-6">
+										<ThinkingIndicator label="Reading your draft" />
+									</div>
+								{:else}
+									<div class="mr-6 rounded-lg rounded-tl-sm border bg-card px-3 py-2 text-sm">
+										<Markdown source={turn.answer ?? ''} />
+										{#if turn.loading}
+											<span
+												class="ml-0.5 inline-block h-3 w-1.5 animate-pulse bg-primary align-middle"
+											></span>
+										{/if}
+									</div>
+								{/if}
+							</div>
+						{/each}
 					</div>
-					{#each askThread as turn (turn.id)}
-						<div class="space-y-2">
-							<div class="ml-6 rounded-lg rounded-tr-sm bg-primary/10 px-3 py-2 text-sm">
-								{turn.question}
-							</div>
-							{#if turn.error}
-								<div
-									class="mr-6 rounded-lg rounded-tl-sm border border-red-300 bg-red-50 px-3 py-2 text-xs text-red-800 dark:border-red-800 dark:bg-red-950 dark:text-red-300"
-								>
-									{turn.error}
-								</div>
-							{:else if turn.loading && !turn.answer}
-								<div class="mr-6">
-									<ThinkingIndicator label="Reading your draft" />
-								</div>
-							{:else}
-								<div class="mr-6 rounded-lg rounded-tl-sm border bg-card px-3 py-2 text-sm">
-									<Markdown source={turn.answer ?? ''} />
-									{#if turn.loading}
-										<span
-											class="ml-0.5 inline-block h-3 w-1.5 animate-pulse bg-primary align-middle"
-										></span>
-									{/if}
-								</div>
-							{/if}
-						</div>
-					{/each}
-				</div>
+				{/if}
 			{/if}
 		</div>
 
-		<!-- Sticky ask input -->
-		<form
-			onsubmit={(e) => {
-				e.preventDefault();
-				submitAsk();
-			}}
-			class="border-t bg-background px-3 py-2"
-		>
-			<div class="flex items-end gap-2">
-				<textarea
-					bind:value={askInput}
-					placeholder={'Ask about this draft… ("Does paragraph 3 make sense?")'}
-					rows="2"
-					class="flex-1 resize-none rounded-md border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
-					onkeydown={(e) => {
-						if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
-							e.preventDefault();
-							submitAsk();
-						}
-					}}
-				></textarea>
-				{#if askAbort}
-					<button
-						type="button"
-						onclick={stopAsk}
-						class="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-md bg-destructive text-destructive-foreground hover:opacity-90"
-						aria-label="Stop"
-						title="Stop"
-					>
-						<Square size={14} class="fill-current" />
-					</button>
-				{:else}
-					<button
-						type="submit"
-						disabled={!askInput.trim() || !content.trim()}
-						class="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
-						aria-label="Send"
-					>
-						<Send size={14} />
-					</button>
-				{/if}
-			</div>
-			<p class="mt-1 text-[10px] text-muted-foreground/70">⌘+Enter to send</p>
-		</form>
+		<!-- Sticky ask input (review tab only) -->
+		{#if activeTab === 'review'}
+			<form
+				onsubmit={(e) => {
+					e.preventDefault();
+					submitAsk();
+				}}
+				class="border-t bg-background px-3 py-2"
+			>
+				<div class="flex items-end gap-2">
+					<textarea
+						bind:value={askInput}
+						placeholder={'Ask about this draft… ("Does paragraph 3 make sense?")'}
+						rows="2"
+						class="flex-1 resize-none rounded-md border bg-background px-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-primary"
+						onkeydown={(e) => {
+							if (e.key === 'Enter' && (e.metaKey || e.ctrlKey)) {
+								e.preventDefault();
+								submitAsk();
+							}
+						}}
+					></textarea>
+					{#if askAbort}
+						<button
+							type="button"
+							onclick={stopAsk}
+							class="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-md bg-destructive text-destructive-foreground hover:opacity-90"
+							aria-label="Stop"
+							title="Stop"
+						>
+							<Square size={14} class="fill-current" />
+						</button>
+					{:else}
+						<button
+							type="submit"
+							disabled={!askInput.trim() || !content.trim()}
+							class="inline-flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground hover:opacity-90 disabled:cursor-not-allowed disabled:opacity-40"
+							aria-label="Send"
+						>
+							<Send size={14} />
+						</button>
+					{/if}
+				</div>
+				<p class="mt-1 text-[10px] text-muted-foreground/70">⌘+Enter to send</p>
+			</form>
+		{/if}
 	</aside>
 {/if}
