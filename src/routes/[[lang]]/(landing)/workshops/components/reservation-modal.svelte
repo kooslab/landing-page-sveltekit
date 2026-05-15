@@ -10,10 +10,10 @@
 
 	let {
 		open = $bindable(false),
-		workshopType = $bindable<'requirements' | 'vibe' | 'free'>('requirements')
+		workshopType = $bindable<'diagnosis' | 'ax_l1' | 'ax_l2' | 'ax_l3' | 'custom'>('diagnosis')
 	}: {
 		open: boolean;
-		workshopType: 'requirements' | 'vibe' | 'free';
+		workshopType: 'diagnosis' | 'ax_l1' | 'ax_l2' | 'ax_l3' | 'custom';
 	} = $props();
 
 	let name = $state('');
@@ -28,9 +28,11 @@
 	let langPrefix = $derived($page.params.lang ? `/${$page.params.lang}` : '');
 
 	let workshopLabels = $derived({
-		requirements: $_('reservation.types.requirements'),
-		vibe: $_('reservation.types.vibe'),
-		free: $_('reservation.types.free')
+		diagnosis: $_('reservation.types.diagnosis'),
+		ax_l1: $_('reservation.types.ax_l1'),
+		ax_l2: $_('reservation.types.ax_l2'),
+		ax_l3: $_('reservation.types.ax_l3'),
+		custom: $_('reservation.types.custom')
 	});
 
 	function resetForm() {
@@ -126,14 +128,15 @@
 				<div class="space-y-2">
 					<Label>{$_('reservation.workshopLabel')}</Label>
 					<div class="space-y-1.5">
-						{#each ['free', 'requirements', 'vibe'] as type (type)}
+						{#each ['diagnosis', 'ax_l1', 'ax_l2', 'ax_l3', 'custom'] as type (type)}
 							<button
 								type="button"
 								class="flex w-full items-center gap-3 rounded-lg border px-3.5 py-2.5 text-left text-sm transition-colors
 									{workshopType === type
 									? 'border-primary bg-primary/5 font-medium'
 									: 'border-input hover:bg-muted/50'}"
-								onclick={() => (workshopType = type as 'requirements' | 'vibe' | 'free')}
+								onclick={() =>
+									(workshopType = type as 'diagnosis' | 'ax_l1' | 'ax_l2' | 'ax_l3' | 'custom')}
 							>
 								<span
 									class="flex h-4 w-4 flex-shrink-0 items-center justify-center rounded-full border-2

@@ -12,7 +12,7 @@
 	let { data } = $props();
 
 	let reservationOpen = $state(false);
-	let reservationType = $state<'requirements' | 'vibe' | 'free'>('free');
+	let reservationType = $state<'diagnosis' | 'ax_l1' | 'ax_l2' | 'ax_l3' | 'custom'>('diagnosis');
 
 	let lang = $derived($page.params?.lang || 'en');
 	let isKorean = $derived(lang === 'ko');
@@ -157,7 +157,7 @@
 <PromoPopup
 	showPromo={data.showPromo}
 	onBook={() => {
-		reservationType = 'free';
+		reservationType = 'diagnosis';
 		reservationOpen = true;
 	}}
 />
@@ -185,7 +185,7 @@
 					size="lg"
 					class="group text-sm"
 					onclick={() => {
-						reservationType = 'free';
+						reservationType = 'diagnosis';
 						reservationOpen = true;
 					}}
 				>
@@ -362,7 +362,7 @@
 					variant="outline"
 					class="group text-sm"
 					onclick={() => {
-						reservationType = 'free';
+						reservationType = 'diagnosis';
 						reservationOpen = true;
 					}}
 				>
@@ -417,7 +417,7 @@
 							size="lg"
 							class="group shrink-0 text-sm"
 							onclick={() => {
-								reservationType = 'free';
+								reservationType = 'diagnosis';
 								reservationOpen = true;
 							}}
 						>
@@ -464,7 +464,7 @@
 					<button
 						class="text-sm font-medium text-primary underline-offset-4 hover:underline"
 						onclick={() => {
-							reservationType = 'free';
+							reservationType = 'ax_l1';
 							reservationOpen = true;
 						}}
 					>
@@ -491,7 +491,7 @@
 							size="lg"
 							class="group shrink-0 text-sm"
 							onclick={() => {
-								reservationType = 'free';
+								reservationType = 'custom';
 								reservationOpen = true;
 							}}
 						>
@@ -850,7 +850,7 @@
 					size="lg"
 					class="group text-sm"
 					onclick={() => {
-						reservationType = 'free';
+						reservationType = 'diagnosis';
 						reservationOpen = true;
 					}}
 				>

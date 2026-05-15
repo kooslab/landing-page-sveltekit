@@ -10,9 +10,9 @@
 	let langPrefix = $derived(lang === 'en' ? '' : `/${lang}`);
 
 	let modalOpen = $state(false);
-	let modalWorkshopType = $state<'requirements' | 'vibe' | 'free'>('requirements');
+	let modalWorkshopType = $state<'diagnosis' | 'ax_l1' | 'ax_l2' | 'ax_l3' | 'custom'>('ax_l1');
 
-	function openReservation(type: 'requirements' | 'vibe' | 'free') {
+	function openReservation(type: 'diagnosis' | 'ax_l1' | 'ax_l2' | 'ax_l3' | 'custom') {
 		modalWorkshopType = type;
 		modalOpen = true;
 	}
@@ -133,11 +133,7 @@
 						{$_('workshops.requirements.format')}
 					</p>
 
-					<Button
-						size="lg"
-						class="group/btn w-full"
-						onclick={() => openReservation('requirements')}
-					>
+					<Button size="lg" class="group/btn w-full" onclick={() => openReservation('ax_l1')}>
 						{$_('workshops.requirements.cta')}
 						<ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
 					</Button>
@@ -218,7 +214,7 @@
 						{$_('workshops.vibe.format')}
 					</p>
 
-					<Button size="lg" class="group/btn w-full" onclick={() => openReservation('vibe')}>
+					<Button size="lg" class="group/btn w-full" onclick={() => openReservation('ax_l3')}>
 						{$_('workshops.vibe.cta')}
 						<ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
 					</Button>
@@ -249,7 +245,12 @@
 				<p class="mx-auto mb-6 max-w-lg text-[15px] leading-relaxed text-muted-foreground">
 					{$_('workshops.free.description')}
 				</p>
-				<Button variant="outline" size="lg" class="group" onclick={() => openReservation('free')}>
+				<Button
+					variant="outline"
+					size="lg"
+					class="group"
+					onclick={() => openReservation('diagnosis')}
+				>
 					{$_('workshops.free.cta')}
 					<ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 				</Button>

@@ -27,14 +27,14 @@
 	import ReservationModal from '../../workshops/components/reservation-modal.svelte';
 
 	let reservationOpen = $state(false);
-	let reservationType = $state<'requirements' | 'vibe' | 'free'>('free');
+	let reservationType = $state<'diagnosis' | 'ax_l1' | 'ax_l2' | 'ax_l3' | 'custom'>('diagnosis');
 	let checked = $state([false, false, false, false, false, false]);
 	let checkedCount = $derived(checked.filter(Boolean).length);
 
 	let lang = $derived($page.params?.lang || 'en');
 
 	function openBooking() {
-		reservationType = 'free';
+		reservationType = 'diagnosis';
 		reservationOpen = true;
 	}
 

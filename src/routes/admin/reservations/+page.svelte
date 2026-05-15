@@ -17,8 +17,14 @@
 	};
 
 	const workshopLabels: Record<string, string> = {
-		requirements: 'Requirements',
-		vibe: 'Vibe Coding',
+		diagnosis: 'Business Diagnosis',
+		ax_l1: 'AX Training L1 — AI Productivity',
+		ax_l2: 'AX Training L2 — AI Workflows',
+		ax_l3: 'AX Training L3 — Claude Code',
+		custom: 'Custom Software',
+		// legacy
+		requirements: 'Requirements Workshop',
+		vibe: 'Vibe Coding Workshop',
 		free: 'Free Consulting'
 	};
 

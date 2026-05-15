@@ -9,7 +9,7 @@
 	let langPrefix = $derived(lang === 'en' ? '' : `/${lang}`);
 
 	let reservationOpen = $state(false);
-	let reservationType = $state<'requirements' | 'vibe' | 'free'>('free');
+	let reservationType = $state<'diagnosis' | 'ax_l1' | 'ax_l2' | 'ax_l3' | 'custom'>('diagnosis');
 </script>
 
 <ReservationModal bind:open={reservationOpen} bind:workshopType={reservationType} />
@@ -302,7 +302,7 @@
 				size="lg"
 				class="text-sm md:text-base"
 				onclick={() => {
-					reservationType = 'free';
+					reservationType = 'diagnosis';
 					reservationOpen = true;
 				}}
 			>
