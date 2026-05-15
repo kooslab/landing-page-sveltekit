@@ -16,10 +16,10 @@
 	},
 	"landing": {
 		"hero": {
-			"title": "Software Won't Save\nYour Business.",
-			"target": "For small teams drowning in spreadsheets, manual work, and duct-taped processes.",
-			"subtitle": "Unless you apply it right. We start with your problem — often, you don't need software at all.",
-			"cta": "Free Discovery Session",
+			"title": "AI Is Changing How\nBusiness Works.",
+			"target": "For B2B teams who want real AI capability — not just tools.",
+			"subtitle": "We start with a diagnosis of your business. From there, we either build the solution for you — or train your team to solve their own problems with AI.",
+			"cta": "Book a Diagnosis",
 			"scroll": "Read why"
 		},
 		"reality": {
@@ -41,24 +41,95 @@
 			]
 		},
 		"services": {
-			"badge": "What we do",
-			"title": "Two Ways We Can Help.",
-			"intro": "Depending on where you are:",
+			"badge": "Two paths after your diagnosis",
+			"title": "One Starting Point. Two Paths Forward.",
+			"intro": "The diagnosis tells us what your business actually needs. It usually leads clearly to one of these:",
 			"pathA": {
-				"label": "Running a business",
-				"title": "Your business works — make it faster.",
-				"description": "You already have customers, revenue, and a team. But things are slow, manual, or hard to scale. We find the bottlenecks and apply DX/AX where it actually saves time and money. No overengineering — only what moves the needle."
+				"label": "Path A — Custom Software",
+				"title": "We build it. Your team runs it.",
+				"description": "Your process is slow, manual, or broken. We design and build a tailored software solution — no overengineering, only what actually moves the needle. Your team uses it from day one."
 			},
 			"pathB": {
-				"label": "Launching something new",
-				"title": "Test your idea with minimum engineering.",
-				"description": "You have a service or product idea but don't know how to build it. We help you create a minimum sellable product — the smallest thing that proves your market works. Fast, lean, no waste."
+				"label": "Path B — AX Team Training",
+				"title": "We train your team. They solve it themselves.",
+				"description": "Your business needs AI capability in-house. We run hands-on workshops so your employees can use AI — from daily productivity all the way to building real web applications with Claude Code."
 			},
-			"difference": "We ask more business questions than any dev agency you've met. Because the right answer is sometimes: don't build that."
+			"difference": "The diagnosis is honest. Sometimes the answer is neither — and we'll tell you that too."
+		},
+		"ax_training": {
+			"badge": "AX Training Program",
+			"title": "Three Levels. From AI Basics to Building Real Apps.",
+			"intro": "Each session is standalone — or take the full progression. Designed for non-technical employees who want real capability, not slide decks.",
+			"levels": {
+				"basic": {
+					"level": "Level 1",
+					"title": "AI Productivity for Daily Work",
+					"description": "ChatGPT, Claude, and AI tools applied to real daily business tasks. Document drafting, email writing, data analysis, meeting summaries. No technical background needed.",
+					"duration": "Half day"
+				},
+				"intermediate": {
+					"level": "Level 2",
+					"title": "AI Workflows & Automation",
+					"description": "Build prompt workflows, automate repetitive processes, connect tools without writing code. Your team leaves with working automations — not theory.",
+					"duration": "Full day"
+				},
+				"advanced": {
+					"level": "Level 3",
+					"title": "Claude Code — Build Real Applications",
+					"description": "Hands-on application building with Claude Code. By end of day, your employee has a working, deployed web tool they built themselves. For teams that want to own their own solutions.",
+					"duration": "Full day + 1 week follow-up"
+				}
+			},
+			"note": "All sessions available in-person (Berlin) or online. Group and corporate rates available.",
+			"cta": "Ask about AX Training in your diagnosis session"
 		},
 		"process": {
 			"badge": "How we work",
-			"title": "From Diagnosis to Delivery"
+			"title": "From Diagnosis to the Right Path"
+		},
+		"pricing": {
+			"badge": "Current rates",
+			"title": "Transparent Pricing.",
+			"note": "Our rates increase as client demand grows. What you see is today's price — and the lowest it will ever be.",
+			"diagnosis": {
+				"label": "Diagnosis",
+				"price": "300",
+				"currency": "EUR",
+				"format": "Half day · In-person · Berlin",
+				"credit": "Credited toward your project if you proceed with us",
+				"cta": "Book a Diagnosis"
+			},
+			"ax": {
+				"label": "AX Training",
+				"perGroup": "per group",
+				"levels": {
+					"basic": {
+						"label": "Level 1",
+						"title": "AI Productivity",
+						"price": "400",
+						"format": "Half day · Group session"
+					},
+					"intermediate": {
+						"label": "Level 2",
+						"title": "AI Workflows",
+						"price": "700",
+						"format": "Full day · Group session"
+					},
+					"advanced": {
+						"label": "Level 3",
+						"title": "Claude Code",
+						"price": "1,200",
+						"format": "Full day · Group session + 60-min video call 5 days after"
+					}
+				},
+				"cta": "Ask about AX Training"
+			},
+			"custom": {
+				"label": "Custom Software",
+				"title": "Let's talk about your project.",
+				"description": "Every project is scoped individually. Tell us what you need and we'll find the right approach together.",
+				"cta": "Get in Touch"
+			}
 		}
 	},
 	"hero": {
@@ -135,8 +206,8 @@
 			},
 			"build": {
 				"step": "3",
-				"title": "You Solve It — or We Do",
-				"description": "Many clients solve it themselves with our report and suggestions. If you need hands-on help, we're here. Minimum engineering, scalable technology, no overbuilding."
+				"title": "We Choose the Right Path Together",
+				"description": "After the report, it becomes clear: do we build a custom solution for you, or train your team to solve it themselves with AI? Either way, you leave with a prioritized plan."
 			}
 		}
 	},
@@ -246,7 +317,7 @@
 			"roadmap": "Prioritized roadmap — what to do first"
 		},
 		"ownership": "The report is yours. Work on it yourself, hand it to a freelancer, or let us continue.",
-		"cta": "Book Your Free Session",
+		"cta": "Book a Diagnosis Session",
 		"trust": "No commitment. No sales pitch. Just honest answers.",
 		"sampleReport": "See a sample report"
 	},

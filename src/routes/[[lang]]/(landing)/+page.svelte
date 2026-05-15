@@ -125,6 +125,7 @@
 	// Process steps
 	const processKeys = ['workshop', 'document', 'build'] as const;
 	const deliverableKeys = ['diagnosis', 'processmap', 'roadmap'] as const;
+	const axLevelKeys = ['basic', 'intermediate', 'advanced'] as const;
 
 	function scrollTo(id: string) {
 		document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
@@ -133,11 +134,11 @@
 
 <SEO
 	title={isKorean
-		? 'KooStory - 중소기업 DX/AX 컨설팅 | 베를린'
-		: 'KooStory - DX/AX Consulting for Small Business | Berlin'}
+		? 'KooStory - B2B AI 전환 컨설팅 & AX 교육 | 베를린'
+		: 'KooStory - B2B AI Transformation & AX Training | Berlin'}
 	description={isKorean
-		? '기술이 아니라 비즈니스부터. 중소기업을 위한 맞춤형 DX/AX 컨설팅. 무료 진단 제공.'
-		: 'Business first, technology second. Custom DX/AX consulting for small businesses. Free diagnosis available.'}
+		? '무료 진단으로 시작합니다. 맞춤 소프트웨어 개발 또는 AI 핸즈온 교육 — 비즈니스에 맞는 경로를 찾아드립니다.'
+		: 'Start with a free diagnosis. Custom software development or hands-on AX training — we find the right path for your business.'}
 	ogImage="/og-image-landing.png"
 	jsonLd={{
 		'@context': 'https://schema.org',
@@ -220,82 +221,9 @@
 	</section>
 
 	<!-- ═══════════════════════════════════════════════ -->
-	<!-- 3. WHEN TECHNOLOGY HELPS — the multiplier      -->
+	<!-- 3. HOW THE DIAGNOSIS WORKS — 3 steps          -->
 	<!-- ═══════════════════════════════════════════════ -->
-	<section class="border-b border-border px-5 py-16 md:px-8 md:py-24 lg:py-32">
-		<div class="mx-auto max-w-3xl">
-			<p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-				{$_('landing.when.badge')}
-			</p>
-			<h2 class="text-2xl font-bold leading-tight tracking-tight sm:text-3xl md:text-4xl">
-				{$_('landing.when.title')}
-			</h2>
-			<p class="mt-5 text-base leading-relaxed text-muted-foreground md:mt-6 md:text-lg">
-				{$_('landing.when.intro')}
-			</p>
-
-			<div class="mt-10 space-y-6 md:mt-12">
-				{#each [0, 1] as i}
-					<div class="border-l-2 border-border py-1 pl-5 transition-colors hover:border-primary/50">
-						<p class="text-[15px] leading-relaxed text-foreground/80 md:text-base">
-							{$_(`landing.when.items.${i}`)}
-						</p>
-					</div>
-				{/each}
-			</div>
-		</div>
-	</section>
-
-	<!-- ═══════════════════════════════════════════════ -->
-	<!-- 4. WHAT WE DO — DX + AX                       -->
-	<!-- ═══════════════════════════════════════════════ -->
-	<section id="services" class="px-5 py-16 md:px-8 md:py-24 lg:py-32">
-		<div class="mx-auto max-w-3xl">
-			<p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-				{$_('landing.services.badge')}
-			</p>
-			<h2 class="text-2xl font-bold leading-tight tracking-tight sm:text-3xl md:text-4xl">
-				{$_('landing.services.title')}
-			</h2>
-			<p class="mt-5 text-base leading-relaxed text-muted-foreground md:mt-6 md:text-lg">
-				{$_('landing.services.intro')}
-			</p>
-
-			<div class="mt-10 grid gap-5 md:mt-12 md:grid-cols-2 md:gap-6">
-				<!-- Path A -->
-				<div class="rounded-xl border border-border p-6 md:p-7">
-					<p class="mb-2 text-xs font-bold uppercase tracking-[0.15em] text-primary">
-						{$_('landing.services.pathA.label')}
-					</p>
-					<h3 class="mb-3 text-lg font-semibold">{$_('landing.services.pathA.title')}</h3>
-					<p class="text-sm leading-relaxed text-muted-foreground">
-						{$_('landing.services.pathA.description')}
-					</p>
-				</div>
-				<!-- Path B -->
-				<div class="rounded-xl border border-border p-6 md:p-7">
-					<p class="mb-2 text-xs font-bold uppercase tracking-[0.15em] text-primary">
-						{$_('landing.services.pathB.label')}
-					</p>
-					<h3 class="mb-3 text-lg font-semibold">{$_('landing.services.pathB.title')}</h3>
-					<p class="text-sm leading-relaxed text-muted-foreground">
-						{$_('landing.services.pathB.description')}
-					</p>
-				</div>
-			</div>
-
-			<div class="mt-8 rounded-lg bg-muted/40 px-5 py-4 md:mt-10">
-				<p class="text-sm font-medium leading-relaxed text-foreground/70">
-					{$_('landing.services.difference')}
-				</p>
-			</div>
-		</div>
-	</section>
-
-	<!-- ═══════════════════════════════════════════════ -->
-	<!-- 5. HOW WE WORK — 4 steps                      -->
-	<!-- ═══════════════════════════════════════════════ -->
-	<section id="process" class="border-y border-border px-5 py-16 md:px-8 md:py-24 lg:py-32">
+	<section id="process" class="border-b border-border px-5 py-16 md:px-8 md:py-24 lg:py-32">
 		<div class="mx-auto max-w-3xl">
 			<p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
 				{$_('landing.process.badge')}
@@ -333,7 +261,251 @@
 	</section>
 
 	<!-- ═══════════════════════════════════════════════ -->
-	<!-- 6. PORTFOLIO                                   -->
+	<!-- 4. THE FORK — two paths after diagnosis        -->
+	<!-- ═══════════════════════════════════════════════ -->
+	<section id="services" class="px-5 py-16 md:px-8 md:py-24 lg:py-32">
+		<div class="mx-auto max-w-3xl">
+			<p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+				{$_('landing.services.badge')}
+			</p>
+			<h2 class="text-2xl font-bold leading-tight tracking-tight sm:text-3xl md:text-4xl">
+				{$_('landing.services.title')}
+			</h2>
+			<p class="mt-5 text-base leading-relaxed text-muted-foreground md:mt-6 md:text-lg">
+				{$_('landing.services.intro')}
+			</p>
+
+			<div class="mt-10 grid gap-5 md:mt-12 md:grid-cols-2 md:gap-6">
+				<!-- Path A -->
+				<div class="rounded-xl border border-border p-6 md:p-7">
+					<p class="mb-2 text-xs font-bold uppercase tracking-[0.15em] text-primary">
+						{$_('landing.services.pathA.label')}
+					</p>
+					<h3 class="mb-3 text-lg font-semibold">{$_('landing.services.pathA.title')}</h3>
+					<p class="text-sm leading-relaxed text-muted-foreground">
+						{$_('landing.services.pathA.description')}
+					</p>
+				</div>
+				<!-- Path B -->
+				<div class="rounded-xl border border-primary/30 bg-primary/5 p-6 md:p-7">
+					<p class="mb-2 text-xs font-bold uppercase tracking-[0.15em] text-primary">
+						{$_('landing.services.pathB.label')}
+					</p>
+					<h3 class="mb-3 text-lg font-semibold">{$_('landing.services.pathB.title')}</h3>
+					<p class="text-sm leading-relaxed text-muted-foreground">
+						{$_('landing.services.pathB.description')}
+					</p>
+				</div>
+			</div>
+
+			<div class="mt-8 rounded-lg bg-muted/40 px-5 py-4 md:mt-10">
+				<p class="text-sm font-medium leading-relaxed text-foreground/70">
+					{$_('landing.services.difference')}
+				</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- ═══════════════════════════════════════════════ -->
+	<!-- 5. AX TRAINING — Path B deep dive             -->
+	<!-- ═══════════════════════════════════════════════ -->
+	<section
+		id="ax-training"
+		class="border-y border-border bg-muted/30 px-5 py-16 md:px-8 md:py-24 lg:py-32"
+	>
+		<div class="mx-auto max-w-3xl">
+			<p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+				{$_('landing.ax_training.badge')}
+			</p>
+			<h2 class="text-2xl font-bold leading-tight tracking-tight sm:text-3xl md:text-4xl">
+				{$_('landing.ax_training.title')}
+			</h2>
+			<p class="mt-5 text-base leading-relaxed text-muted-foreground md:mt-6 md:text-lg">
+				{$_('landing.ax_training.intro')}
+			</p>
+
+			<div class="mt-10 space-y-4 md:mt-12">
+				{#each axLevelKeys as levelKey, i}
+					<div class="relative rounded-xl border border-border bg-background p-6 md:p-7">
+						<div class="mb-4 flex items-center gap-3">
+							<div
+								class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground"
+							>
+								{i + 1}
+							</div>
+							<span class="text-xs font-bold uppercase tracking-[0.15em] text-primary">
+								{$_(`landing.ax_training.levels.${levelKey}.level`)}
+							</span>
+							<span
+								class="ml-auto rounded-full border border-border px-3 py-0.5 text-xs text-muted-foreground"
+							>
+								{$_(`landing.ax_training.levels.${levelKey}.duration`)}
+							</span>
+						</div>
+						<h3 class="mb-2 text-base font-semibold md:text-lg">
+							{$_(`landing.ax_training.levels.${levelKey}.title`)}
+						</h3>
+						<p class="text-sm leading-relaxed text-muted-foreground md:text-[15px]">
+							{$_(`landing.ax_training.levels.${levelKey}.description`)}
+						</p>
+					</div>
+				{/each}
+			</div>
+
+			<p class="mt-6 text-sm text-muted-foreground md:mt-8">
+				{$_('landing.ax_training.note')}
+			</p>
+
+			<div class="mt-8 md:mt-10">
+				<Button
+					size="lg"
+					variant="outline"
+					class="group text-sm"
+					onclick={() => {
+						reservationType = 'free';
+						reservationOpen = true;
+					}}
+				>
+					{$_('landing.ax_training.cta')}
+					<ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+				</Button>
+			</div>
+		</div>
+	</section>
+
+	<!-- ═══════════════════════════════════════════════ -->
+	<!-- 6. PRICING                                     -->
+	<!-- ═══════════════════════════════════════════════ -->
+	<section id="pricing" class="border-y border-border px-5 py-16 md:px-8 md:py-24 lg:py-32">
+		<div class="mx-auto max-w-3xl">
+			<p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+				{$_('landing.pricing.badge')}
+			</p>
+			<div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+				<h2 class="text-2xl font-bold leading-tight tracking-tight sm:text-3xl md:text-4xl">
+					{$_('landing.pricing.title')}
+				</h2>
+			</div>
+			<p class="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
+				{$_('landing.pricing.note')}
+			</p>
+
+			<!-- Diagnosis -->
+			<div class="mt-10 md:mt-12">
+				<p class="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground">
+					{$_('landing.pricing.diagnosis.label')}
+				</p>
+				<div class="rounded-xl border border-border bg-card p-6 md:p-8">
+					<div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+						<div>
+							<div class="flex items-baseline gap-2">
+								<span class="text-4xl font-bold tracking-tight"
+									>€{$_('landing.pricing.diagnosis.price')}</span
+								>
+								<span class="text-base text-muted-foreground"
+									>{$_('landing.pricing.diagnosis.currency')}</span
+								>
+							</div>
+							<p class="mt-1 text-sm text-muted-foreground">
+								{$_('landing.pricing.diagnosis.format')}
+							</p>
+							<p class="mt-3 text-xs text-foreground/60">
+								{$_('landing.pricing.diagnosis.credit')}
+							</p>
+						</div>
+						<Button
+							size="lg"
+							class="group shrink-0 text-sm"
+							onclick={() => {
+								reservationType = 'free';
+								reservationOpen = true;
+							}}
+						>
+							{$_('landing.pricing.diagnosis.cta')}
+							<ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+						</Button>
+					</div>
+				</div>
+			</div>
+
+			<!-- AX Training -->
+			<div class="mt-8 md:mt-10">
+				<div class="mb-3 flex items-center justify-between">
+					<p class="text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground">
+						{$_('landing.pricing.ax.label')}
+					</p>
+					<p class="text-xs text-muted-foreground">{$_('landing.pricing.ax.perGroup')}</p>
+				</div>
+				<div class="grid gap-4 sm:grid-cols-3">
+					{#each axLevelKeys as levelKey, i}
+						<div
+							class="rounded-xl border border-border bg-card p-5 {i === 2
+								? 'border-primary/30 bg-primary/5'
+								: ''}"
+						>
+							<p class="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">
+								{$_(`landing.pricing.ax.levels.${levelKey}.label`)}
+							</p>
+							<p class="mb-2 text-base font-semibold">
+								{$_(`landing.pricing.ax.levels.${levelKey}.title`)}
+							</p>
+							<div class="flex items-baseline gap-1">
+								<span class="text-2xl font-bold tracking-tight"
+									>€{$_(`landing.pricing.ax.levels.${levelKey}.price`)}</span
+								>
+							</div>
+							<p class="mt-2 text-xs leading-relaxed text-muted-foreground">
+								{$_(`landing.pricing.ax.levels.${levelKey}.format`)}
+							</p>
+						</div>
+					{/each}
+				</div>
+				<div class="mt-4 flex justify-end">
+					<button
+						class="text-sm font-medium text-primary underline-offset-4 hover:underline"
+						onclick={() => {
+							reservationType = 'free';
+							reservationOpen = true;
+						}}
+					>
+						{$_('landing.pricing.ax.cta')} →
+					</button>
+				</div>
+			</div>
+
+			<!-- Custom Software -->
+			<div class="mt-8 md:mt-10">
+				<p class="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground">
+					{$_('landing.pricing.custom.label')}
+				</p>
+				<div class="rounded-xl border border-border bg-muted/30 p-6 md:p-8">
+					<div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+						<div>
+							<h3 class="text-lg font-semibold">{$_('landing.pricing.custom.title')}</h3>
+							<p class="mt-1 text-sm leading-relaxed text-muted-foreground">
+								{$_('landing.pricing.custom.description')}
+							</p>
+						</div>
+						<Button
+							variant="outline"
+							size="lg"
+							class="group shrink-0 text-sm"
+							onclick={() => {
+								reservationType = 'free';
+								reservationOpen = true;
+							}}
+						>
+							{$_('landing.pricing.custom.cta')}
+							<ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+						</Button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ═══════════════════════════════════════════════ -->
+	<!-- 7. PORTFOLIO                                   -->
 	<!-- ═══════════════════════════════════════════════ -->
 	<section id="portfolio" class="py-16 md:py-24 lg:py-32">
 		<div class="px-5 md:px-8">
@@ -482,7 +654,7 @@
 	</section>
 
 	<!-- ═══════════════════════════════════════════════ -->
-	<!-- 7. TESTIMONIALS                                -->
+	<!-- 8. TESTIMONIALS                                -->
 	<!-- ═══════════════════════════════════════════════ -->
 	<section id="testimonials" class="border-y border-border py-16 md:py-24 lg:py-32">
 		<div class="px-5 md:px-8">
