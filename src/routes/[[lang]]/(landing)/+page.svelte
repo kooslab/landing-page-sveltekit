@@ -316,10 +316,17 @@
 	>
 		<div class="mx-auto max-w-4xl">
 			<span
-				class="mb-14 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground md:mb-16"
+				class="mb-6 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
 			>
 				{$_('landing.method.badge')}
 			</span>
+
+			<p
+				class="mb-16 text-3xl font-bold leading-[1.12] tracking-tight sm:text-4xl md:mb-20 md:text-5xl lg:text-[52px]"
+				style="color: #292827;"
+			>
+				{$_('landing.method.headline')}
+			</p>
 
 			<div class="space-y-16 md:space-y-20">
 				{#each [0, 1, 2] as i}
@@ -507,10 +514,10 @@
 	<!-- ══════════════════════════════════════════════ -->
 	<!-- 6. AX LEVELS + PRICING — white               -->
 	<!-- ══════════════════════════════════════════════ -->
-	<section id="training" class="bg-white px-5 py-16 md:px-8 md:py-24 lg:py-28">
-		<div class="mx-auto max-w-3xl">
+	<section id="training" class="bg-white px-5 py-20 md:px-8 md:py-28 lg:py-36">
+		<div class="mx-auto max-w-4xl">
 			<span
-				class="mb-4 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
+				class="mb-6 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
 			>
 				{$_('landing.ax_training.badge')}
 			</span>
@@ -587,9 +594,12 @@
 	</section>
 
 	<!-- ══════════════════════════════════════════════ -->
-	<!-- 5. WORKSHOP RESULTS — white                   -->
+	<!-- 7. WORKSHOP RESULTS — canvas-soft             -->
 	<!-- ══════════════════════════════════════════════ -->
-	<section class="bg-white px-5 py-20 md:px-8 md:py-28 lg:py-36">
+	<section
+		style="background-color: #FAFAF8;"
+		class="border-y border-[#E8E4DD] px-5 py-20 md:px-8 md:py-28 lg:py-36"
+	>
 		<div class="mx-auto max-w-4xl">
 			<span
 				class="mb-6 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
@@ -604,10 +614,7 @@
 			</p>
 			<div class="grid gap-6 md:grid-cols-3">
 				{#each staticTestimonials as clientKey}
-					<div
-						class="flex flex-col rounded-2xl border border-[#E8E4DD] p-7"
-						style="background-color: #FAFAF8;"
-					>
+					<div class="flex flex-col rounded-2xl border border-[#E8E4DD] bg-white p-7">
 						<!-- Metric delta -->
 						<div class="mb-5 border-b border-[#E8E4DD] pb-5">
 							<p class="text-2xl font-bold leading-none tracking-tight" style="color: #1B1938;">
@@ -645,12 +652,12 @@
 	</section>
 
 	<!-- ══════════════════════════════════════════════ -->
-	<!-- 6. FAQ — white                                -->
+	<!-- 8. FAQ — white                                -->
 	<!-- ══════════════════════════════════════════════ -->
-	<section class="bg-white px-5 py-16 md:px-8 md:py-24 lg:py-28">
-		<div class="mx-auto max-w-3xl">
+	<section class="bg-white px-5 py-20 md:px-8 md:py-28 lg:py-36">
+		<div class="mx-auto max-w-4xl">
 			<span
-				class="mb-4 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
+				class="mb-6 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
 			>
 				{$_('landing.faq.badge')}
 			</span>
