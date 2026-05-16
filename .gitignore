@@ -35,3 +35,8 @@ usage_tracking*.json
 
 # Blog drafts
 drafts/
+
+# Design reference screenshots
+/*.jpeg
+/*.jpg
+/*.png
