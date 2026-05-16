@@ -4,12 +4,13 @@
 	import SEO from '$lib/components/SEO.svelte';
 	import PromoPopup from '$lib/components/sections/promo-popup.svelte';
 	import ReservationModal from './workshops/components/reservation-modal.svelte';
-	import { ArrowRight } from 'lucide-svelte';
+	import { ArrowRight, ChevronDown } from 'lucide-svelte';
 
 	let { data } = $props();
 
 	let reservationOpen = $state(false);
 	let reservationType = $state<'diagnosis' | 'ax_l1' | 'ax_l2' | 'ax_l3' | 'custom'>('ax_l1');
+	let openFaq = $state<number | null>(null);
 
 	let lang = $derived($page.params?.lang || 'en');
 	let isKorean = $derived(lang === 'ko');
@@ -59,7 +60,7 @@
 			<div
 				class="flex flex-col justify-center px-5 pb-16 pt-16 md:px-12 md:pb-20 md:pt-20 lg:w-1/2 lg:py-28 lg:pl-16 lg:pr-12 xl:pl-20"
 			>
-				<span class="mb-6 block text-xs font-semibold uppercase tracking-[0.2em] text-brand-violet">
+				<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand-violet">
 					{$_('landing.hero.eyebrow')}
 				</span>
 				<h1
@@ -79,128 +80,19 @@
 						{$_('landing.hero.cta')}
 						<ArrowRight class="h-4 w-4" />
 					</button>
-					<p class="mt-3 text-sm text-white/65">
+					<p class="mt-3 text-base text-white/75">
 						{$_('landing.hero.ctaSub')}
 					</p>
 				</div>
 			</div>
 
-			<!-- Right: before → after visual -->
+			<!-- Right: workshop photo -->
 			<div class="relative hidden lg:flex lg:w-1/2 lg:items-center lg:justify-center">
-				<!-- Radial glow -->
-				<div
-					class="pointer-events-none absolute inset-0"
-					style="background: radial-gradient(ellipse 70% 60% at 55% 50%, rgba(201,180,250,0.10) 0%, transparent 68%);"
-				></div>
-
-				<div class="relative mr-8 xl:mr-16">
-					<div
-						class="rounded-2xl border border-white/10 bg-white/[.05] p-8 backdrop-blur-[16px]"
-						style="min-width: 340px; max-width: 400px;"
-					>
-						<!-- Eyebrow -->
-						<p
-							class="mb-6 text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-violet/65"
-						>
-							Real result · last week
-						</p>
-
-						<!-- Before / After columns -->
-						<div class="mb-6 grid grid-cols-2 gap-3">
-							<!-- Before -->
-							<div class="rounded-xl bg-white/[.04] p-5">
-								<p class="mb-3 text-[10px] font-bold uppercase tracking-widest text-white/30">
-									Before
-								</p>
-								<p class="text-5xl font-bold leading-none text-white">3h</p>
-								<p class="mt-2 text-xs leading-snug text-white/40">
-									manual work<br />every Monday
-								</p>
-							</div>
-							<!-- After -->
-							<div class="rounded-xl border border-brand-violet/[.18] bg-brand-violet/[.08] p-5">
-								<p class="mb-3 text-[10px] font-bold uppercase tracking-widest text-brand-violet">
-									After
-								</p>
-								<p class="text-5xl font-bold leading-none text-white">0</p>
-								<p class="mt-2 text-xs leading-snug text-brand-violet/70">
-									runs itself<br />automatically
-								</p>
-							</div>
-						</div>
-
-						<!-- Confirmation bar -->
-						<div class="flex items-center gap-3 rounded-xl bg-brand-violet/10 px-5 py-4">
-							<div
-								class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-brand-violet text-xs font-bold text-brand"
-							>
-								✓
-							</div>
-							<p class="text-sm text-white/80">
-								Built and deployed in a <strong class="text-white">2h workshop</strong>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- ══════════════════════════════════════════════ -->
-	<!-- 2. PAIN — CEO monologue + AI gap             -->
-	<!-- ══════════════════════════════════════════════ -->
-
-	<!-- Part 1: CEO internal monologue -->
-	<section class="bg-white px-5 pb-16 pt-20 md:px-12 md:pb-20 md:pt-28 lg:pb-24 lg:pt-36">
-		<div class="mx-auto max-w-4xl">
-			<span
-				class="mb-14 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground md:mb-16"
-			>
-				{$_('landing.pain.badge')}
-			</span>
-			<div class="space-y-12 md:space-y-14">
-				{#each [0, 1, 2] as i}
-					<p
-						class="text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:text-5xl lg:text-[52px]"
-					>
-						{$_(`landing.pain.items.${i}`)}
-					</p>
-				{/each}
-			</div>
-		</div>
-	</section>
-
-	<!-- Part 2: AI gap — same white canvas, continues the thought -->
-	<section class="bg-white px-5 pb-20 md:px-12 md:pb-28 lg:pb-36">
-		<div class="mx-auto max-w-4xl">
-			<div class="border-t border-canvas-warm pt-16 md:pt-20 lg:pt-24">
-				<span
-					class="mb-10 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
-				>
-					{$_('landing.pain.aiGap.label')}
-				</span>
-
-				<!-- Current usage — visually faded to signal low value -->
-				<p
-					class="text-3xl font-bold leading-tight tracking-tight text-ink/[.22] sm:text-4xl md:text-[46px]"
-				>
-					{$_('landing.pain.aiGap.usage')}
-				</p>
-				<p class="mt-5 text-lg font-medium text-ink/[.38] md:text-xl">
-					{$_('landing.pain.aiGap.usageImpact')}
-				</p>
-
-				<!-- The reveal — snaps back to full contrast -->
-				<div class="mt-16 md:mt-20">
-					<p
-						class="text-3xl font-bold leading-[1.1] tracking-tight text-brand sm:text-4xl md:text-5xl lg:text-[52px]"
-					>
-						{$_('landing.pain.aiGap.reveal')}
-					</p>
-					<p class="mt-4 text-xl font-medium text-ink/50 md:text-2xl">
-						{$_('landing.pain.aiGap.revealSub')}
-					</p>
-				</div>
+				<img
+					src="/images/workshop.jpg"
+					alt="KooStory AI workshop in session"
+					class="max-h-[420px] w-[85%] rounded-2xl object-cover opacity-90"
+				/>
 			</div>
 		</div>
 	</section>
@@ -210,9 +102,7 @@
 	<!-- ══════════════════════════════════════════════ -->
 	<section class="bg-white px-5 py-20 md:px-12 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
-			<span
-				class="mb-12 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
-			>
+			<span class="mb-12 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
 				{$_('landing.fomo.badge')}
 			</span>
 
@@ -222,7 +112,7 @@
 			>
 				{$_('landing.fomo.headline')}
 			</p>
-			<p class="mt-5 text-xl font-medium text-ink/45 md:text-2xl">
+			<p class="mt-5 text-xl font-medium text-ink/70 md:text-2xl">
 				{$_('landing.fomo.subline')}
 			</p>
 
@@ -230,11 +120,11 @@
 			<div class="mt-16 grid gap-5 md:mt-20 md:grid-cols-2">
 				<!-- FOMO — muted, struck -->
 				<div class="rounded-2xl border border-canvas-warm p-7 md:p-9">
-					<p class="mb-5 text-[11px] font-bold uppercase tracking-[0.18em] text-ink/30">
+					<p class="mb-5 text-sm font-bold uppercase tracking-[0.18em] text-ink/80">
 						{$_('landing.fomo.wrongLabel')}
 					</p>
 					<p
-						class="text-xl font-medium leading-snug text-ink/25 md:text-2xl"
+						class="text-xl font-medium leading-snug text-ink/85 md:text-2xl"
 						style="text-decoration: line-through; text-decoration-color: rgba(41,40,39,0.15);"
 					>
 						"{$_('landing.fomo.wrongQuote')}"
@@ -246,7 +136,7 @@
 					class="rounded-2xl bg-brand/[.04] p-7 md:p-9"
 					style="border: 1.5px solid rgba(27,25,56,0.12);"
 				>
-					<p class="mb-5 text-[11px] font-bold uppercase tracking-[0.18em] text-brand">
+					<p class="mb-5 text-sm font-bold uppercase tracking-[0.18em] text-brand">
 						{$_('landing.fomo.rightLabel')}
 					</p>
 					<p class="text-xl font-semibold leading-snug text-ink md:text-2xl">
@@ -254,71 +144,50 @@
 					</p>
 				</div>
 			</div>
-
-			<!-- Conclusion bridge -->
-			<div class="mt-14 md:mt-16">
-				<p class="text-2xl font-bold tracking-tight text-ink/40 md:text-3xl lg:text-[36px]">
-					{$_('landing.fomo.conclusion')}
-				</p>
-				<p class="mt-1 text-2xl font-bold tracking-tight text-brand md:text-3xl lg:text-[36px]">
-					{$_('landing.fomo.conclusionBold')}
-				</p>
-				<p class="mt-6 text-base text-ink/50 md:text-lg">
-					{$_('landing.fomo.cta')}
-				</p>
-			</div>
 		</div>
 	</section>
 
 	<!-- ══════════════════════════════════════════════ -->
-	<!-- AXE STORY — white, full-width image           -->
+	<!-- WHY EFFORTS FAIL — canvas-soft, 3 cards      -->
 	<!-- ══════════════════════════════════════════════ -->
-	<section class="bg-white px-5 py-20 md:px-12 md:py-28 lg:py-36">
+	<section class="border-y border-canvas-warm bg-canvas-soft px-5 py-20 md:px-12 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
-			<span
-				class="mb-6 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
-			>
-				{$_('landing.axeStory.badge')}
+			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
+				{$_('landing.effortsFail.badge')}
 			</span>
 			<p
-				class="mb-5 text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:text-5xl lg:text-[52px]"
+				class="text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:text-5xl lg:text-[52px]"
 			>
-				{$_('landing.axeStory.headline')}
+				{$_('landing.effortsFail.headline')}
 			</p>
-			<p class="mb-14 text-xl font-medium text-ink/45 md:mb-16 md:text-2xl">
-				{$_('landing.axeStory.subline')}
+			<p class="mt-5 text-xl font-medium text-ink/70 md:text-2xl">
+				{$_('landing.effortsFail.subline')}
 			</p>
 
-			<!-- Image — replace with generated illustration; placeholder shown until available -->
-			<div
-				class="flex min-h-[320px] w-full items-center justify-center rounded-2xl border border-canvas-warm bg-canvas-soft p-12 text-center md:min-h-[420px]"
-			>
-				<div>
-					<p class="text-sm font-semibold uppercase tracking-widest text-ink/30">
-						Place illustration here
-					</p>
-					<p class="mt-2 max-w-sm text-xs text-ink/25">{$_('landing.axeStory.imageAlt')}</p>
-				</div>
+			<div class="mt-14 space-y-5 md:mt-16">
+				{#each [0, 1, 2] as i}
+					<div class="rounded-2xl border border-canvas-warm bg-white p-7 md:p-9">
+						<div class="flex items-center justify-between gap-4">
+							<p class="text-lg font-bold leading-snug text-ink md:text-xl">
+								{i + 1}. {$_(`landing.effortsFail.items.${i}.label`)}
+							</p>
+							<span
+								class="flex-shrink-0 rounded-full bg-ink/[.06] px-3 py-1 text-sm font-semibold uppercase tracking-[0.14em] text-ink/85"
+							>
+								{$_(`landing.effortsFail.items.${i}.tag`)}
+							</span>
+						</div>
+					</div>
+				{/each}
 			</div>
 
-			<!-- Two captions below image -->
-			<div class="mt-6 grid grid-cols-2 gap-6">
-				<div>
-					<p class="mb-2 text-[11px] font-bold uppercase tracking-[0.18em] text-ink/40">
-						{$_('landing.axeStory.leftLabel')}
-					</p>
-					<p class="text-sm leading-relaxed text-ink/55 md:text-base">
-						{$_('landing.axeStory.leftCaption')}
-					</p>
-				</div>
-				<div>
-					<p class="mb-2 text-[11px] font-bold uppercase tracking-[0.18em] text-brand">
-						{$_('landing.axeStory.rightLabel')}
-					</p>
-					<p class="text-sm leading-relaxed text-ink/55 md:text-base">
-						{$_('landing.axeStory.rightCaption')}
-					</p>
-				</div>
+			<div class="mt-10 rounded-2xl bg-brand px-8 py-7 md:mt-12">
+				<p class="text-base font-medium text-white/60 md:text-lg">
+					{$_('landing.effortsFail.conclusion')}
+				</p>
+				<p class="mt-1 text-xl font-bold text-white md:text-2xl">
+					{$_('landing.effortsFail.conclusionBold')}
+				</p>
 			</div>
 		</div>
 	</section>
@@ -328,9 +197,7 @@
 	<!-- ══════════════════════════════════════════════ -->
 	<section class="border-y border-canvas-warm bg-canvas-soft px-5 py-20 md:px-12 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
-			<span
-				class="mb-6 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
-			>
+			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
 				{$_('landing.method.badge')}
 			</span>
 
@@ -357,9 +224,6 @@
 							>
 								{$_(`landing.method.steps.${i}.title`)}
 							</h3>
-							<p class="mt-4 text-lg leading-relaxed text-ink/55 md:text-xl">
-								{$_(`landing.method.steps.${i}.description`)}
-							</p>
 						</div>
 					</div>
 				{/each}
@@ -373,7 +237,7 @@
 	<section class="bg-white px-5 py-20 md:px-12 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
 			<span
-				class="mb-12 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground md:mb-14"
+				class="mb-12 block text-sm font-semibold uppercase tracking-[0.2em] text-brand md:mb-14"
 			>
 				{$_('landing.transformation.badge')}
 			</span>
@@ -384,17 +248,17 @@
 			>
 				{$_('landing.transformation.headline')}
 			</p>
-			<p class="mt-5 text-xl font-medium text-ink/45 md:text-2xl">
+			<p class="mt-5 text-xl font-medium text-ink/70 md:text-2xl">
 				{$_('landing.transformation.subline')}
 			</p>
 
 			<!-- Column headers -->
 			<div class="mt-16 grid grid-cols-[1fr_32px_1fr] md:mt-20">
-				<p class="text-[11px] font-bold uppercase tracking-[0.18em] text-ink/30">
+				<p class="text-sm font-bold uppercase tracking-[0.18em] text-ink/80">
 					{$_('landing.transformation.beforeLabel')}
 				</p>
 				<div></div>
-				<p class="text-[11px] font-bold uppercase tracking-[0.18em] text-brand">
+				<p class="text-sm font-bold uppercase tracking-[0.18em] text-brand">
 					{$_('landing.transformation.afterLabel')}
 				</p>
 			</div>
@@ -405,10 +269,10 @@
 					<div
 						class="grid grid-cols-[1fr_32px_1fr] items-center border-b border-canvas-warm py-6 md:py-7"
 					>
-						<p class="text-base leading-snug text-ink/[.28] md:text-lg">
+						<p class="text-base leading-snug text-ink/80 md:text-lg">
 							{row.before}
 						</p>
-						<span class="text-center text-sm text-ink/[.18]">→</span>
+						<span class="text-center text-sm text-ink/80">→</span>
 						<p class="text-base font-semibold leading-snug text-ink md:text-lg">
 							{row.after}
 						</p>
@@ -421,7 +285,7 @@
 				<p class="text-3xl font-bold tracking-tight text-ink md:text-4xl lg:text-[44px]">
 					{$_('landing.transformation.closing')}
 				</p>
-				<p class="mt-4 text-lg text-ink/50 md:text-xl">
+				<p class="mt-4 text-lg text-ink/85 md:text-xl">
 					{$_('landing.transformation.closingSub')}
 				</p>
 			</div>
@@ -433,9 +297,7 @@
 	<!-- ══════════════════════════════════════════════ -->
 	<section class="border-y border-canvas-warm bg-canvas-soft px-5 py-20 md:px-12 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
-			<span
-				class="mb-6 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
-			>
+			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
 				{$_('landing.employeeTransform.badge')}
 			</span>
 			<p
@@ -444,49 +306,24 @@
 				{$_('landing.employeeTransform.headline')}
 			</p>
 
-			<!-- Image — replace with generated illustration; placeholder shown until available -->
-			<div
-				class="mb-12 flex min-h-[280px] w-full items-center justify-center rounded-2xl border border-canvas-warm bg-white p-12 text-center md:mb-16 md:min-h-[380px]"
-			>
-				<div>
-					<p class="text-sm font-semibold uppercase tracking-widest text-ink/30">
-						Place illustration here
-					</p>
-					<p class="mt-2 max-w-sm text-xs text-ink/25">
-						{$_('landing.employeeTransform.imageAlt')}
-					</p>
-				</div>
-			</div>
+			<img
+				src="/images/employee.png"
+				alt={$_('landing.employeeTransform.imageAlt')}
+				class="mb-12 w-full rounded-2xl object-cover md:mb-16"
+			/>
 
-			<!-- Before / After bullet columns -->
-			<div class="grid gap-10 md:grid-cols-2 md:gap-8">
-				<!-- Before -->
-				<div>
-					<p class="mb-6 text-[11px] font-bold uppercase tracking-[0.18em] text-ink/45">
-						{$_('landing.employeeTransform.beforeLabel')}
-					</p>
-					<div class="space-y-4">
-						{#each $_('landing.employeeTransform.beforeItems') as item}
-							<div class="flex items-start gap-3">
-								<div class="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-ink/25"></div>
-								<p class="text-base leading-snug text-ink/60 md:text-lg">{item}</p>
-							</div>
-						{/each}
-					</div>
-				</div>
-				<!-- After -->
-				<div>
-					<p class="mb-6 text-[11px] font-bold uppercase tracking-[0.18em] text-brand">
-						{$_('landing.employeeTransform.afterLabel')}
-					</p>
-					<div class="space-y-4">
-						{#each $_('landing.employeeTransform.afterItems') as item}
-							<div class="flex items-start gap-3">
-								<div class="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand"></div>
-								<p class="text-base font-medium leading-snug text-ink md:text-lg">{item}</p>
-							</div>
-						{/each}
-					</div>
+			<!-- After bullets only — image already shows the before -->
+			<div class="max-w-lg">
+				<p class="mb-6 text-sm font-bold uppercase tracking-[0.18em] text-brand">
+					{$_('landing.employeeTransform.afterLabel')}
+				</p>
+				<div class="space-y-4">
+					{#each $_('landing.employeeTransform.afterItems') as item}
+						<div class="flex items-start gap-3">
+							<div class="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand"></div>
+							<p class="text-base font-medium leading-snug text-ink md:text-lg">{item}</p>
+						</div>
+					{/each}
 				</div>
 			</div>
 		</div>
@@ -498,13 +335,13 @@
 	<section class="border-y border-canvas-warm bg-canvas-soft px-5 py-20 md:px-12 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
 			<span
-				class="mb-12 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground md:mb-14"
+				class="mb-12 block text-sm font-semibold uppercase tracking-[0.2em] text-brand md:mb-14"
 			>
 				{$_('landing.forNotFor.badge')}
 			</span>
 
 			<p
-				class="text-3xl font-bold leading-[1.12] tracking-tight text-ink sm:text-4xl md:text-5xl lg:text-[52px]"
+				class="text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:text-5xl lg:text-[52px]"
 			>
 				{$_('landing.forNotFor.headline')}
 			</p>
@@ -513,18 +350,18 @@
 			<div class="mt-16 grid gap-12 md:mt-20 md:grid-cols-2 md:gap-8">
 				<!-- NOT FOR — left -->
 				<div>
-					<p class="mb-8 text-[11px] font-bold uppercase tracking-[0.18em] text-ink/55">
+					<p class="mb-8 text-sm font-bold uppercase tracking-[0.18em] text-ink/80">
 						{$_('landing.forNotFor.notForLabel')}
 					</p>
 					<div class="space-y-6">
 						{#each $_('landing.forNotFor.notForItems') as item}
 							<div class="flex items-start gap-4">
 								<div
-									class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-ink/[.12] text-[11px] font-bold text-ink/60"
+									class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-ink/[.12] text-[11px] font-bold text-ink/80"
 								>
 									✕
 								</div>
-								<p class="text-lg leading-snug text-ink/65 md:text-xl">
+								<p class="text-lg leading-snug text-ink/85 md:text-xl">
 									{item}
 								</p>
 							</div>
@@ -534,7 +371,7 @@
 
 				<!-- FOR — right -->
 				<div>
-					<p class="mb-8 text-[11px] font-bold uppercase tracking-[0.18em] text-brand">
+					<p class="mb-8 text-sm font-bold uppercase tracking-[0.18em] text-brand">
 						{$_('landing.forNotFor.forLabel')}
 					</p>
 					<div class="space-y-6">
@@ -559,7 +396,7 @@
 				<p class="text-xl font-semibold text-ink md:text-2xl">
 					{$_('landing.forNotFor.unsureLabel')}
 				</p>
-				<p class="mt-3 text-base leading-relaxed text-ink/55 md:text-lg">
+				<p class="mt-3 text-base leading-relaxed text-ink/80 md:text-lg">
 					{$_('landing.forNotFor.unsureSub')}
 				</p>
 			</div>
@@ -571,17 +408,15 @@
 	<!-- ══════════════════════════════════════════════ -->
 	<section id="training" class="bg-white px-5 py-20 md:px-8 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
-			<span
-				class="mb-6 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
-			>
+			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
 				{$_('landing.ax_training.badge')}
 			</span>
 			<h2
-				class="text-3xl font-bold leading-[1.1] tracking-tight text-ink sm:text-4xl md:text-5xl lg:text-[52px]"
+				class="text-3xl font-bold leading-[1.1] tracking-tight text-brand sm:text-4xl md:text-5xl lg:text-[52px]"
 			>
 				{$_('landing.ax_training.title')}
 			</h2>
-			<p class="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground md:mt-8 md:text-xl">
+			<p class="mt-6 max-w-xl text-lg leading-relaxed text-ink/70 md:mt-8 md:text-xl">
 				{$_('landing.ax_training.intro')}
 			</p>
 
@@ -599,11 +434,11 @@
 										class="flex h-6 w-6 items-center justify-center rounded-full bg-brand text-[11px] font-bold text-white"
 										>{i + 1}</span
 									>
-									<span class="text-xs font-bold uppercase tracking-[0.15em] text-brand">
+									<span class="text-sm font-bold uppercase tracking-[0.15em] text-brand">
 										{$_(`landing.ax_training.levels.${levelKey}.level`)}
 									</span>
 									<span
-										class="rounded-full border border-canvas-warm px-3 py-0.5 text-xs text-muted-foreground"
+										class="rounded-full border border-canvas-warm px-3 py-0.5 text-sm text-ink/70"
 									>
 										{$_(`landing.ax_training.levels.${levelKey}.duration`)}
 									</span>
@@ -611,7 +446,7 @@
 								<h3 class="mb-2 text-base font-semibold text-ink md:text-lg">
 									{$_(`landing.ax_training.levels.${levelKey}.title`)}
 								</h3>
-								<p class="text-sm leading-relaxed text-muted-foreground">
+								<p class="text-base leading-relaxed text-ink/70">
 									{$_(`landing.ax_training.levels.${levelKey}.description`)}
 								</p>
 							</div>
@@ -632,11 +467,11 @@
 			</div>
 
 			<p
-				class="mt-6 rounded-xl border border-canvas-warm bg-canvas-soft px-5 py-4 text-sm leading-relaxed text-muted-foreground"
+				class="mt-6 rounded-xl border border-canvas-warm bg-canvas-soft px-5 py-4 text-base leading-relaxed text-ink/70"
 			>
 				{$_('landing.pricing.note')}
 			</p>
-			<p class="mt-4 text-xs text-muted-foreground">
+			<p class="mt-4 text-base text-ink/70">
 				{$_('landing.ax_training.note')}
 			</p>
 		</div>
@@ -647,13 +482,11 @@
 	<!-- ══════════════════════════════════════════════ -->
 	<section class="border-y border-canvas-warm bg-canvas-soft px-5 py-20 md:px-8 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
-			<span
-				class="mb-6 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
-			>
+			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
 				{$_('testimonials.badge')}
 			</span>
 			<p
-				class="mb-16 text-3xl font-bold leading-[1.12] tracking-tight text-ink sm:text-4xl md:text-5xl lg:text-[52px]"
+				class="mb-16 text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:text-5xl lg:text-[52px]"
 			>
 				{$_('testimonials.title')}
 			</p>
@@ -665,25 +498,18 @@
 							<p class="text-2xl font-bold leading-none tracking-tight text-brand">
 								{$_(`testimonials.clients.${clientKey}.metric`)}
 							</p>
-							<p class="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.15em] text-ink/45">
+							<p class="mt-1.5 text-sm font-semibold uppercase tracking-[0.15em] text-ink/70">
 								{$_(`testimonials.clients.${clientKey}.metricLabel`)}
 							</p>
 						</div>
 						<!-- Quote -->
-						<blockquote class="flex-1 text-base leading-relaxed text-ink/75">
+						<blockquote class="flex-1 text-base leading-relaxed text-ink/85">
 							"{$_(`testimonials.clients.${clientKey}.quote`)}"
 						</blockquote>
-						<!-- Author -->
-						<div class="mt-6">
-							<p class="text-sm font-semibold text-ink">
-								{$_(`testimonials.clients.${clientKey}.author`)}
-							</p>
-							<p class="text-xs text-ink/45">
-								{$_(`testimonials.clients.${clientKey}.role`)} · {$_(
-									`testimonials.clients.${clientKey}.company`
-								)}
-							</p>
-						</div>
+						<!-- Context tag — no fake names -->
+						<p class="mt-6 text-sm font-semibold uppercase tracking-[0.15em] text-ink/80">
+							{$_(`testimonials.clients.${clientKey}.context`)}
+						</p>
 					</div>
 				{/each}
 			</div>
@@ -695,55 +521,114 @@
 	<!-- ══════════════════════════════════════════════ -->
 	<section class="bg-white px-5 py-20 md:px-8 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
-			<span
-				class="mb-6 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
-			>
+			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
 				{$_('landing.faq.badge')}
 			</span>
 			<h2
-				class="mb-10 text-3xl font-bold leading-[1.1] tracking-tight text-ink sm:text-4xl md:mb-14 md:text-5xl lg:text-[52px]"
+				class="mb-10 text-3xl font-bold leading-[1.1] tracking-tight text-brand sm:text-4xl md:mb-14 md:text-5xl lg:text-[52px]"
 			>
 				{$_('landing.faq.title')}
 			</h2>
-			<div class="space-y-0">
+			<div class="divide-y divide-canvas-warm border-t border-canvas-warm">
 				{#each [0, 1, 2, 3] as i}
-					<div class="border-b border-canvas-warm py-8 first:pt-0 last:border-0 md:py-10">
-						<h3 class="mb-4 text-lg font-semibold leading-snug text-ink md:text-xl">
+					{@const isOpen = openFaq === i}
+					<button
+						class="flex w-full items-start justify-between gap-6 py-7 text-left md:py-8"
+						onclick={() => (openFaq = isOpen ? null : i)}
+					>
+						<h3 class="text-lg font-semibold leading-snug text-ink md:text-xl">
 							{$_(`landing.faq.items.${i}.q`)}
 						</h3>
-						<p class="text-base leading-relaxed text-ink/65 md:text-lg">
-							{$_(`landing.faq.items.${i}.a`)}
-						</p>
-					</div>
+						<ChevronDown
+							class="mt-1 h-6 w-6 flex-shrink-0 text-ink/60 transition-transform duration-200 {isOpen
+								? 'rotate-180'
+								: ''}"
+						/>
+					</button>
+					{#if isOpen}
+						<div class="pb-7 md:pb-8">
+							<p class="text-base leading-relaxed text-ink/80 md:text-lg">
+								{$_(`landing.faq.items.${i}.a`)}
+							</p>
+						</div>
+					{/if}
 				{/each}
 			</div>
 		</div>
 	</section>
 
 	<!-- ══════════════════════════════════════════════ -->
-	<!-- 7. CLOSING BAND — deep teal                   -->
+	<!-- CLOSING — axe narrative + scale or fade CTA  -->
 	<!-- ══════════════════════════════════════════════ -->
-	<section class="bg-brand px-5 py-24 text-center md:px-8 md:py-32 lg:py-40">
-		<div class="mx-auto max-w-2xl">
-			<h2
-				class="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
-				style="line-height: 0.96;"
-			>
-				{$_('landing.closing.title')}
-			</h2>
+	<section class="bg-brand px-5 pb-24 pt-20 md:px-12 md:pb-32 md:pt-28 lg:pb-40 lg:pt-36">
+		<div class="mx-auto max-w-4xl">
+			<!-- Axe image -->
+			<img
+				src="/images/ax.png"
+				alt={$_('landing.axeStory.imageAlt')}
+				class="w-full rounded-2xl object-cover opacity-90"
+			/>
+
+			<!-- Axe headline -->
 			<p
-				class="mx-auto mt-6 max-w-lg text-base leading-relaxed text-white/[.72] md:mt-8 md:text-lg"
+				class="mt-12 text-3xl font-bold leading-[1.12] tracking-tight text-white sm:text-4xl md:mt-16 md:text-5xl lg:text-[52px]"
 			>
-				{$_('landing.closing.lead')}
+				{$_('landing.closing.axeHeadline')}
 			</p>
-			<div class="mt-10 md:mt-12">
-				<button
-					onclick={() => book('ax_l1')}
-					class="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-brand transition-opacity hover:opacity-90 active:translate-y-px"
+
+			<!-- Fade vs Scale two columns -->
+			<div class="mt-10 grid gap-8 md:mt-14 md:grid-cols-2 md:gap-10">
+				<!-- Fade -->
+				<div class="rounded-2xl border border-white/10 bg-white/[.05] p-7 md:p-8">
+					<p class="mb-5 text-sm font-bold uppercase tracking-[0.18em] text-white/50">
+						{$_('landing.closing.fadeLabel')}
+					</p>
+					<div class="space-y-3">
+						{#each $_('landing.closing.fadeItems') as item}
+							<div class="flex items-start gap-3">
+								<span class="mt-1 text-white/30">✕</span>
+								<p class="text-base leading-snug text-white/60 md:text-lg">{item}</p>
+							</div>
+						{/each}
+					</div>
+				</div>
+
+				<!-- Scale -->
+				<div class="rounded-2xl border border-brand-violet/20 bg-brand-violet/10 p-7 md:p-8">
+					<p class="mb-5 text-sm font-bold uppercase tracking-[0.18em] text-brand-violet">
+						{$_('landing.closing.scaleLabel')}
+					</p>
+					<div class="space-y-3">
+						{#each $_('landing.closing.scaleItems') as item}
+							<div class="flex items-start gap-3">
+								<span class="mt-1 text-brand-violet">✓</span>
+								<p class="text-base font-medium leading-snug text-white md:text-lg">{item}</p>
+							</div>
+						{/each}
+					</div>
+				</div>
+			</div>
+
+			<!-- Scale or Fade title + CTA -->
+			<div class="mt-16 text-center md:mt-20">
+				<h2
+					class="text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl"
+					style="line-height: 0.96;"
 				>
-					{$_('landing.closing.cta')}
-					<ArrowRight class="h-4 w-4" />
-				</button>
+					{$_('landing.closing.title')}
+				</h2>
+				<p class="mx-auto mt-6 max-w-lg text-base leading-relaxed text-white/70 md:mt-8 md:text-lg">
+					{$_('landing.closing.lead')}
+				</p>
+				<div class="mt-10 md:mt-12">
+					<button
+						onclick={() => book('ax_l1')}
+						class="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-brand transition-opacity hover:opacity-90 active:translate-y-px"
+					>
+						{$_('landing.closing.cta')}
+						<ArrowRight class="h-4 w-4" />
+					</button>
+				</div>
 			</div>
 		</div>
 	</section>

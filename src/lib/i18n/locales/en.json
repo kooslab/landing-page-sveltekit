@@ -134,6 +134,7 @@
 		},
 		"pain": {
 			"badge": "Sound familiar?",
+			"itemLabels": ["Usage gap", "Demo trap", "Headcount wall"],
 			"items": [
 				"Your team uses AI for emails and spell check. Not for the work that actually matters.",
 				"You've sat through two AI demos this quarter. Nothing changed on Monday.",
@@ -165,24 +166,50 @@
 			"steps": [
 				{
 					"title": "Bring your real problem.",
-					"description": "Not a hypothetical. Not 'we want to use AI more.' A specific bottleneck that costs you time or money right now."
+					"description": "A specific bottleneck that costs you time or money right now. Not a hypothetical."
 				},
 				{
 					"title": "Build it in the room.",
-					"description": "We work on it together. Some things fail. That's how you actually learn — not by watching a demo."
+					"description": "Your team works on it in the room. Some things fail. That's how you actually learn."
 				},
 				{
 					"title": "Leave with something deployed.",
-					"description": "By the end of the session, something works. You built it. You own it. You know how to repeat it."
+					"description": "Something works by the end. You built it, you own it, you can repeat it."
 				}
 			]
 		},
+		"effortsFail": {
+			"badge": "Why AI efforts fail",
+			"headline": "Companies try. Nothing changes.",
+			"subline": "Three patterns. All of them have the same outcome: zero behavior change.",
+			"items": [
+				{
+					"label": "Pay for subscriptions and wait",
+					"description": "Buy seats. Send a Slack message. Expect magic. Nothing changes.",
+					"tag": "Most companies"
+				},
+				{
+					"label": "Set AI KPIs and pressure people",
+					"description": "Employees do it like homework. Fear-driven outputs that check the box and change nothing.",
+					"tag": "Wrong motivation"
+				},
+				{
+					"label": "Send them to a course or seminar",
+					"description": "Interesting for 2 days. Forgotten in 2 weeks. Not one workflow changed.",
+					"tag": "You know this already"
+				}
+			],
+			"conclusion": "The only thing that works:",
+			"conclusionBold": "Solving a real problem with AI. With your hands. With someone guiding you through it."
+		},
 		"axeStory": {
-			"badge": "Why most AI efforts fail",
+			"badge": "The initiative you keep postponing",
 			"headline": "Too busy chopping to sharpen the axe.",
-			"subline": "Every team that skips the investment runs the same rate forever. The ones who pause to build the capability come back producing more with less.",
+			"subline": "There's always something more urgent. Meanwhile, the leaders who stopped to invest are pulling ahead. Every week you wait, the gap grows.",
 			"leftLabel": "The busy team",
 			"leftCaption": "Always producing. Never scaling. The axe gets duller every week.",
+			"middleLabel": "The investment",
+			"middleCaption": "Stop. Study. Build something smarter. Others will call it a waste of time.",
 			"rightLabel": "The trained team",
 			"rightCaption": "One real investment. Then permanently better output with less effort.",
 			"imageAlt": "Two woodcutters — one frantically chopping with a dull axe, one pausing to sharpen and then cutting far more efficiently"
@@ -192,17 +219,15 @@
 			"headline": "Same person. Completely different role.",
 			"beforeLabel": "Before the workshop",
 			"beforeItems": [
-				"Domain expert doing everything manually",
+				"Executes everything manually",
 				"Bottleneck = their own capacity",
-				"Too busy to think about scaling",
-				"Hard to replace — all knowledge in their head"
+				"Hard to replace — knowledge stuck in their head"
 			],
 			"afterLabel": "After the workshop",
 			"afterItems": [
-				"Domain expert who also automates their work",
-				"Bottleneck = quality of their decisions",
-				"Designs workflows instead of running them",
-				"Multiplies their output without hiring"
+				"Automates the execution, owns the decisions",
+				"Bottleneck = quality of their thinking",
+				"Multiplies output without working more hours"
 			],
 			"imageAlt": "Employee before and after AI training — from overwhelmed executor to strategic multiplier"
 		},
@@ -213,16 +238,12 @@
 			"forItems": [
 				"Can name a specific problem that costs you time or money right now",
 				"Want your team to own the capability — not depend on a vendor forever",
-				"Are willing to come prepared and actually work during the session",
-				"Measure success by output and KPIs, not by hours trained",
-				"Understand that real learning is messier than a slide deck"
+				"Are willing to come prepared and actually work during the session"
 			],
 			"notForLabel": "Not for you — if you",
 			"notForItems": [
-				"Want to sit, watch, and leave feeling inspired — without doing the work",
 				"Can't name a concrete problem before the session starts",
-				"Have team members who actively refuse to engage with AI",
-				"Want AI to think for you, not alongside you",
+				"Want to sit, watch, and leave feeling inspired — without doing the work",
 				"Are looking for a vendor to handle AI so your team doesn't have to learn"
 			],
 			"unsureLabel": "Not sure which side you're on?",
@@ -237,8 +258,6 @@
 			"rows": [
 				{ "before": "Executes tasks manually", "after": "Defines what needs to happen" },
 				{ "before": "Repeats the same steps every week", "after": "Sets it up once. AI runs it." },
-				{ "before": "Researches and compiles alone", "after": "Reviews what AI prepared" },
-				{ "before": "Figures out the solution", "after": "Chooses the best option AI built" },
 				{
 					"before": "Output limited by their hours",
 					"after": "Output limited only by their thinking"
@@ -249,8 +268,16 @@
 		},
 		"closing": {
 			"title": "Scale or Fade.",
+			"axeHeadline": "Too busy chopping to sharpen the axe.",
+			"fadeLabel": "Companies that keep chopping",
+			"fadeItems": [
+				"Same output. Same effort. Every day.",
+				"Falling behind competitors who invested."
+			],
+			"scaleLabel": "Companies that stopped to sharpen",
+			"scaleItems": ["One investment. Permanent multiplier.", "Same people. 10× the output."],
 			"lead": "Your competitors are not waiting. Every week your team is not using AI, the gap grows.",
-			"cta": "Book a session"
+			"cta": "Book a free 20-min call"
 		},
 		"faq": {
 			"badge": "Common questions",
@@ -858,34 +885,28 @@
 		}
 	},
 	"testimonials": {
-		"badge": "Workshop results",
-		"title": "What teams built in 2 days",
+		"badge": "Typical outcomes",
+		"title": "What teams typically achieve",
 		"description": "Specific problems. Specific outcomes. Measured in hours saved.",
 		"showAll": "Show all stories",
 		"clients": {
 			"workshop1": {
 				"metric": "4h → 20min",
 				"metricLabel": "Weekly reporting",
-				"quote": "We built the workflow in the session. It now runs automatically. The report is better than before and nobody had to touch a spreadsheet.",
-				"author": "Laura M.",
-				"role": "Marketing Manager",
-				"company": "B2B SaaS, Berlin"
+				"quote": "The workflow now runs automatically. The report is better than before and nobody has to touch a spreadsheet.",
+				"context": "Marketing team · B2B SaaS"
 			},
 			"workshop2": {
 				"metric": "3 days → same day",
 				"metricLabel": "Proposal turnaround",
-				"quote": "We were losing deals because our proposals took too long. After Level 2, we built a proposal assistant. Our close rate went up in the first month.",
-				"author": "Thomas K.",
-				"role": "CEO",
-				"company": "Professional Services, Hamburg"
+				"quote": "Proposals were taking too long and costing deals. After the session, a proposal assistant handles the first draft. Close rate went up in the first month.",
+				"context": "Sales team · Professional Services"
 			},
 			"workshop3": {
 				"metric": "5h saved / person / week",
 				"metricLabel": "Status reporting",
-				"quote": "One person spent half her morning emailing shipment updates to clients. We automated it during the session. She now handles exceptions only.",
-				"author": "Maria S.",
-				"role": "Operations Lead",
-				"company": "Logistics SME, Munich"
+				"quote": "One person spent half her morning on shipment update emails. Automated in the session. She now handles exceptions only.",
+				"context": "Operations team · Logistics"
 			},
 			"workspace": {
 				"quote": "Excellent manual work! Very satisfied with communication style! Great work efficiency! They paid attention to even the smallest details.",
