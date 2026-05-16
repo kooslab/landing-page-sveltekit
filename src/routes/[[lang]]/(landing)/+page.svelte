@@ -4,7 +4,7 @@
 	import SEO from '$lib/components/SEO.svelte';
 	import PromoPopup from '$lib/components/sections/promo-popup.svelte';
 	import ReservationModal from './workshops/components/reservation-modal.svelte';
-	import { ArrowRight, ChevronDown } from 'lucide-svelte';
+	import { ArrowRight, ChevronDown, X, Check } from 'lucide-svelte';
 
 	let { data } = $props();
 
@@ -15,14 +15,18 @@
 	let lang = $derived($page.params?.lang || 'en');
 	let isKorean = $derived(lang === 'ko');
 
-	const axLevelKeys = ['basic', 'intermediate', 'advanced'] as const;
-	const axTypes = ['ax_l1', 'ax_l2', 'ax_l3'] as const;
 	const staticTestimonials = ['workshop1', 'workshop2', 'workshop3'];
 
 	function book(type: 'diagnosis' | 'ax_l1' | 'ax_l2' | 'ax_l3' | 'custom' = 'ax_l1') {
 		reservationType = type;
 		reservationOpen = true;
 	}
+
+	$effect(() => {
+		const handler = () => book('diagnosis');
+		document.addEventListener('open-booking-modal', handler);
+		return () => document.removeEventListener('open-booking-modal', handler);
+	});
 </script>
 
 <SEO
@@ -313,15 +317,15 @@
 			/>
 
 			<!-- After bullets only — image already shows the before -->
-			<div class="max-w-lg">
-				<p class="mb-6 text-sm font-bold uppercase tracking-[0.18em] text-brand">
+			<div>
+				<p class="mb-8 text-sm font-bold uppercase tracking-[0.2em] text-brand">
 					{$_('landing.employeeTransform.afterLabel')}
 				</p>
-				<div class="space-y-4">
+				<div class="space-y-5">
 					{#each $_('landing.employeeTransform.afterItems') as item}
-						<div class="flex items-start gap-3">
-							<div class="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand"></div>
-							<p class="text-base font-medium leading-snug text-ink md:text-lg">{item}</p>
+						<div class="flex items-start gap-4">
+							<div class="mt-2.5 h-2 w-2 flex-shrink-0 rounded-full bg-brand"></div>
+							<p class="text-xl font-semibold leading-snug text-ink md:text-2xl">{item}</p>
 						</div>
 					{/each}
 				</div>
@@ -346,49 +350,38 @@
 				{$_('landing.forNotFor.headline')}
 			</p>
 
-			<!-- Two columns — NOT FOR first, FOR second -->
-			<div class="mt-16 grid gap-12 md:mt-20 md:grid-cols-2 md:gap-8">
-				<!-- NOT FOR — left -->
-				<div>
-					<p class="mb-8 text-sm font-bold uppercase tracking-[0.18em] text-ink/80">
-						{$_('landing.forNotFor.notForLabel')}
-					</p>
-					<div class="space-y-6">
-						{#each $_('landing.forNotFor.notForItems') as item}
-							<div class="flex items-start gap-4">
-								<div
-									class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-ink/[.12] text-[11px] font-bold text-ink/80"
-								>
-									✕
-								</div>
-								<p class="text-lg leading-snug text-ink/85 md:text-xl">
-									{item}
-								</p>
-							</div>
-						{/each}
+			<!-- Row-by-row comparison table -->
+			<div class="mt-16 overflow-hidden rounded-2xl border border-canvas-warm md:mt-20">
+				<!-- Header row -->
+				<div class="grid grid-cols-2">
+					<div class="border-r border-white/10 bg-red-600 px-6 py-4 md:px-8">
+						<p class="text-xs font-bold uppercase tracking-[0.2em] text-white/90">
+							{$_('landing.forNotFor.notForLabel')}
+						</p>
+					</div>
+					<div class="bg-brand px-6 py-4 md:px-8">
+						<p class="text-xs font-bold uppercase tracking-[0.2em] text-white/90">
+							{$_('landing.forNotFor.forLabel')}
+						</p>
 					</div>
 				</div>
-
-				<!-- FOR — right -->
-				<div>
-					<p class="mb-8 text-sm font-bold uppercase tracking-[0.18em] text-brand">
-						{$_('landing.forNotFor.forLabel')}
-					</p>
-					<div class="space-y-6">
-						{#each $_('landing.forNotFor.forItems') as item}
-							<div class="flex items-start gap-4">
-								<div
-									class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full bg-brand text-[11px] font-bold text-white"
-								>
-									✓
-								</div>
-								<p class="text-lg font-medium leading-snug text-ink md:text-xl">
-									{item}
-								</p>
-							</div>
-						{/each}
+				<!-- Data rows -->
+				{#each $_('landing.forNotFor.notForItems') as notItem, i}
+					<div class="grid grid-cols-2 border-t border-canvas-warm bg-white">
+						<div
+							class="flex items-start gap-3 border-r border-canvas-warm px-6 py-6 md:px-8 md:py-7"
+						>
+							<X class="mt-1 h-4 w-4 flex-shrink-0 text-red-500" />
+							<p class="text-base leading-snug text-ink md:text-lg">{notItem}</p>
+						</div>
+						<div class="flex items-start gap-3 px-6 py-6 md:px-8 md:py-7">
+							<Check class="mt-1 h-4 w-4 flex-shrink-0 text-brand" />
+							<p class="faq-for-item text-base font-semibold leading-snug text-ink md:text-lg">
+								{@html $_('landing.forNotFor.forItems')[i]}
+							</p>
+						</div>
 					</div>
-				</div>
+				{/each}
 			</div>
 
 			<!-- Honest closer -->
@@ -404,81 +397,7 @@
 	</section>
 
 	<!-- ══════════════════════════════════════════════ -->
-	<!-- 6. AX LEVELS + PRICING — white               -->
-	<!-- ══════════════════════════════════════════════ -->
-	<section id="training" class="bg-white px-5 py-20 md:px-8 md:py-28 lg:py-36">
-		<div class="mx-auto max-w-4xl">
-			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
-				{$_('landing.ax_training.badge')}
-			</span>
-			<h2
-				class="text-3xl font-bold leading-[1.1] tracking-tight text-brand sm:text-4xl md:text-5xl lg:text-[52px]"
-			>
-				{$_('landing.ax_training.title')}
-			</h2>
-			<p class="mt-6 max-w-xl text-lg leading-relaxed text-ink/70 md:mt-8 md:text-xl">
-				{$_('landing.ax_training.intro')}
-			</p>
-
-			<div class="mt-10 space-y-4 md:mt-12">
-				{#each axLevelKeys as levelKey, i}
-					<div
-						class="rounded-xl border p-6 md:p-8 {i === 2
-							? 'border-brand/20 bg-brand/[0.03]'
-							: 'border-canvas-warm bg-white'}"
-					>
-						<div class="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
-							<div class="flex-1">
-								<div class="mb-3 flex flex-wrap items-center gap-2">
-									<span
-										class="flex h-6 w-6 items-center justify-center rounded-full bg-brand text-[11px] font-bold text-white"
-										>{i + 1}</span
-									>
-									<span class="text-sm font-bold uppercase tracking-[0.15em] text-brand">
-										{$_(`landing.ax_training.levels.${levelKey}.level`)}
-									</span>
-									<span
-										class="rounded-full border border-canvas-warm px-3 py-0.5 text-sm text-ink/70"
-									>
-										{$_(`landing.ax_training.levels.${levelKey}.duration`)}
-									</span>
-								</div>
-								<h3 class="mb-2 text-base font-semibold text-ink md:text-lg">
-									{$_(`landing.ax_training.levels.${levelKey}.title`)}
-								</h3>
-								<p class="text-base leading-relaxed text-ink/70">
-									{$_(`landing.ax_training.levels.${levelKey}.description`)}
-								</p>
-							</div>
-							<div class="flex flex-row items-center gap-4 sm:flex-col sm:items-end sm:gap-2">
-								<span class="text-2xl font-bold tracking-tight text-ink">
-									€{$_(`landing.pricing.ax.levels.${levelKey}.price`)}
-								</span>
-								<button
-									onclick={() => book(axTypes[i])}
-									class="rounded-lg bg-brand px-4 py-2 text-sm font-bold text-white transition-opacity hover:opacity-90 active:translate-y-px"
-								>
-									Book L{i + 1}
-								</button>
-							</div>
-						</div>
-					</div>
-				{/each}
-			</div>
-
-			<p
-				class="mt-6 rounded-xl border border-canvas-warm bg-canvas-soft px-5 py-4 text-base leading-relaxed text-ink/70"
-			>
-				{$_('landing.pricing.note')}
-			</p>
-			<p class="mt-4 text-base text-ink/70">
-				{$_('landing.ax_training.note')}
-			</p>
-		</div>
-	</section>
-
-	<!-- ══════════════════════════════════════════════ -->
-	<!-- 7. WORKSHOP RESULTS — canvas-soft             -->
+	<!-- 6. WORKSHOP RESULTS — canvas-soft             -->
 	<!-- ══════════════════════════════════════════════ -->
 	<section class="border-y border-canvas-warm bg-canvas-soft px-5 py-20 md:px-8 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
@@ -562,19 +481,19 @@
 	<!-- ══════════════════════════════════════════════ -->
 	<section class="bg-brand px-5 pb-24 pt-20 md:px-12 md:pb-32 md:pt-28 lg:pb-40 lg:pt-36">
 		<div class="mx-auto max-w-4xl">
+			<!-- Axe headline -->
+			<p
+				class="mb-12 text-3xl font-bold leading-[1.12] tracking-tight text-white sm:text-4xl md:mb-16 md:text-5xl lg:text-[52px]"
+			>
+				{$_('landing.closing.axeHeadline')}
+			</p>
+
 			<!-- Axe image -->
 			<img
 				src="/images/ax.png"
 				alt={$_('landing.axeStory.imageAlt')}
-				class="w-full rounded-2xl object-cover opacity-90"
+				class="mx-auto w-4/5 rounded-2xl object-cover opacity-90"
 			/>
-
-			<!-- Axe headline -->
-			<p
-				class="mt-12 text-3xl font-bold leading-[1.12] tracking-tight text-white sm:text-4xl md:mt-16 md:text-5xl lg:text-[52px]"
-			>
-				{$_('landing.closing.axeHeadline')}
-			</p>
 
 			<!-- Fade vs Scale two columns -->
 			<div class="mt-10 grid gap-8 md:mt-14 md:grid-cols-2 md:gap-10">
@@ -621,15 +540,24 @@
 					{$_('landing.closing.lead')}
 				</p>
 				<div class="mt-10 md:mt-12">
-					<button
-						onclick={() => book('ax_l1')}
+					<a
+						href="/workshops"
 						class="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-brand transition-opacity hover:opacity-90 active:translate-y-px"
 					>
 						{$_('landing.closing.cta')}
 						<ArrowRight class="h-4 w-4" />
-					</button>
+					</a>
 				</div>
 			</div>
 		</div>
 	</section>
 </main>
+
+<style>
+	.faq-for-item :global(mark) {
+		background-color: #fde047;
+		color: inherit;
+		padding: 0 3px;
+		border-radius: 2px;
+	}
+</style>

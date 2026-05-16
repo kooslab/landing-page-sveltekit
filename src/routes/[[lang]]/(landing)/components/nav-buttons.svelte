@@ -1,77 +1,45 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
 	import { page } from '$app/stores';
 	import { _ } from 'svelte-i18n';
-
-	import CircleUserIcon from 'lucide-svelte/icons/circle-user';
-	import { ChevronDown, Building2, FileSpreadsheet } from 'lucide-svelte';
-
-	import { Button, buttonVariants } from '@/components/ui/button';
-	import * as Dropdown from '@/components/ui/dropdown-menu';
+	import { ArrowRight } from 'lucide-svelte';
 
 	let { scrolled = true }: { scrolled?: boolean } = $props();
 
-	let { session } = $derived($page.data);
 	let lang = $derived($page.params?.lang || 'en');
 	let langPrefix = $derived(lang === 'en' ? '' : `/${lang}`);
-	let dropdownOpen = $state(false);
 
 	let linkClass = $derived(
 		scrolled ? 'text-muted-foreground hover:text-primary' : 'text-white/80 hover:text-white'
 	);
+
+	function openBooking() {
+		document.dispatchEvent(new CustomEvent('open-booking-modal'));
+	}
 </script>
 
-<div class="hidden items-center md:ml-6 md:flex">
-	<Dropdown.Root bind:open={dropdownOpen}>
-		<Dropdown.Trigger
-			class="mr-4 inline-flex items-center gap-1 text-sm font-medium transition-colors duration-300 {linkClass}"
-		>
-			{$_('nav.whoWeHelp')}
-			<ChevronDown class="h-3.5 w-3.5" />
-		</Dropdown.Trigger>
-		<Dropdown.Content align="start" class="w-56">
-			<a
-				href="{langPrefix}/for/agencies"
-				class="flex items-center gap-3 rounded-sm px-2 py-2.5 text-sm transition-colors hover:bg-accent hover:text-accent-foreground"
-				onclick={() => (dropdownOpen = false)}
-			>
-				<Building2 class="h-4 w-4 text-muted-foreground" />
-				<div>
-					<div class="font-medium">{$_('nav.forAgencies')}</div>
-					<div class="text-xs text-muted-foreground">Portals, CRM, workflows</div>
-				</div>
-			</a>
-			<a
-				href="{langPrefix}/for/no-more-offices"
-				class="flex items-center gap-3 rounded-sm px-2 py-2.5 text-sm transition-colors hover:bg-accent hover:text-accent-foreground"
-				onclick={() => (dropdownOpen = false)}
-			>
-				<FileSpreadsheet class="h-4 w-4 text-muted-foreground" />
-				<div>
-					<div class="font-medium">{$_('nav.forSpreadsheetTeams')}</div>
-					<div class="text-xs text-muted-foreground">Beyond spreadsheets</div>
-				</div>
-			</a>
-		</Dropdown.Content>
-	</Dropdown.Root>
-	<a
-		href="{langPrefix}/about"
-		class="mr-4 text-sm font-medium transition-colors duration-300 {linkClass}"
-	>
-		{$_('nav.about')}
-	</a>
+<div class="hidden items-center gap-6 md:ml-8 md:flex">
 	<a
 		href="{langPrefix}/workshops"
-		class="mr-4 text-sm font-medium transition-colors duration-300 {linkClass}"
+		class="text-sm font-medium transition-colors duration-300 {linkClass}"
 	>
 		{$_('nav.workshops')}
 	</a>
-	<Button
-		size="sm"
-		variant="ghost"
-		class="rounded-full transition-colors duration-300 {scrolled
-			? 'text-foreground/60'
-			: 'text-white/80 hover:bg-white/10 hover:text-white'}"
-		href="/blog">{$_('nav.blog')}</Button
+	<a
+		href="{langPrefix}/about"
+		class="text-sm font-medium transition-colors duration-300 {linkClass}"
 	>
+		{$_('nav.about')}
+	</a>
+	<a href="/blog" class="text-sm font-medium transition-colors duration-300 {linkClass}">
+		{$_('nav.blog')}
+	</a>
+	<button
+		onclick={openBooking}
+		class="inline-flex items-center gap-1.5 rounded-full px-5 py-2 text-sm font-bold transition-all duration-300 {scrolled
+			? 'bg-brand text-white hover:opacity-90'
+			: 'bg-white text-brand hover:opacity-90'}"
+	>
+		{$_('nav.bookCall')}
+		<ArrowRight class="h-3.5 w-3.5" />
+	</button>
 </div>

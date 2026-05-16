@@ -4,19 +4,7 @@
 	import { goto } from '$app/navigation';
 	import { _ } from 'svelte-i18n';
 
-	import {
-		Menu,
-		Home,
-		User,
-		Hammer,
-		Briefcase,
-		BookOpen,
-		ChevronDown,
-		LogOut,
-		Layers,
-		Building2,
-		FileSpreadsheet
-	} from 'lucide-svelte';
+	import { Menu, Home, User, BookOpen, Hammer, ArrowRight } from 'lucide-svelte';
 
 	import { buttonVariants } from '$lib/components/ui/button';
 	import { Button } from '$lib/components/ui/button';
@@ -27,30 +15,11 @@
 	let langPrefix = $derived(lang === 'en' ? '' : `/${lang}`);
 
 	let sheetOpen = $state(false);
-	let solutionsOpen = $state(false);
 
-	function toggleSheet() {
-		sheetOpen = !sheetOpen;
-	}
-
-	const scrollToSection = (sectionId: string) => {
+	function openBooking() {
 		sheetOpen = false;
-
-		setTimeout(() => {
-			const currentPath = window.location.pathname;
-			const isLandingPage = currentPath === '/' || currentPath === `/${lang}`;
-
-			if (!isLandingPage) {
-				goto(`${langPrefix}/#${sectionId}`);
-				return;
-			}
-
-			const element = document.getElementById(sectionId);
-			if (element) {
-				element.scrollIntoView({ behavior: 'smooth' });
-			}
-		}, 300);
-	};
+		setTimeout(() => document.dispatchEvent(new CustomEvent('open-booking-modal')), 300);
+	}
 </script>
 
 <Sheet.Root bind:open={sheetOpen}>
@@ -88,48 +57,18 @@
 				Home
 			</a>
 
-			<button
-				class="flex w-full items-center justify-between rounded-md px-3 py-2 text-left text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
-				onclick={() => (solutionsOpen = !solutionsOpen)}
+			<a
+				href="{langPrefix}/workshops"
+				class="flex items-center gap-3 rounded-md px-3 py-2 text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
+				onclick={(e) => {
+					e.preventDefault();
+					sheetOpen = false;
+					setTimeout(() => goto(`${langPrefix}/workshops`), 300);
+				}}
 			>
-				<span class="flex items-center gap-3">
-					<Layers class="h-5 w-5" />
-					{$_('nav.whoWeHelp')}
-				</span>
-				<ChevronDown class="h-4 w-4 transition-transform {solutionsOpen ? 'rotate-180' : ''}" />
-			</button>
-			{#if solutionsOpen}
-				<div class="ml-8 flex flex-col gap-1">
-					<a
-						href="{langPrefix}/for/agencies"
-						class="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
-						onclick={(e) => {
-							e.preventDefault();
-							sheetOpen = false;
-							setTimeout(() => {
-								goto(`${langPrefix}/for/agencies`);
-							}, 300);
-						}}
-					>
-						<Building2 class="h-4 w-4" />
-						{$_('nav.forAgencies')}
-					</a>
-					<a
-						href="{langPrefix}/for/no-more-offices"
-						class="flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-primary"
-						onclick={(e) => {
-							e.preventDefault();
-							sheetOpen = false;
-							setTimeout(() => {
-								goto(`${langPrefix}/for/no-more-offices`);
-							}, 300);
-						}}
-					>
-						<FileSpreadsheet class="h-4 w-4" />
-						{$_('nav.forSpreadsheetTeams')}
-					</a>
-				</div>
-			{/if}
+				<Hammer class="h-5 w-5" />
+				{$_('nav.workshops')}
+			</a>
 
 			<a
 				href="{langPrefix}/about"
@@ -137,9 +76,7 @@
 				onclick={(e) => {
 					e.preventDefault();
 					sheetOpen = false;
-					setTimeout(() => {
-						goto(`${langPrefix}/about`);
-					}, 300);
+					setTimeout(() => goto(`${langPrefix}/about`), 300);
 				}}
 			>
 				<User class="h-5 w-5" />
@@ -152,9 +89,7 @@
 				onclick={(e) => {
 					e.preventDefault();
 					sheetOpen = false;
-					setTimeout(() => {
-						goto('/blog');
-					}, 300);
+					setTimeout(() => goto('/blog'), 300);
 				}}
 			>
 				<BookOpen class="h-5 w-5" />
@@ -162,16 +97,13 @@
 			</a>
 
 			<div class="mt-6 border-t border-border pt-6">
-				<a
-					href="{langPrefix}/#workshop"
-					class={buttonVariants({ variant: 'default', size: 'sm', class: 'w-full' })}
-					onclick={(e) => {
-						e.preventDefault();
-						scrollToSection('workshop');
-					}}
+				<button
+					onclick={openBooking}
+					class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-bold text-white"
 				>
-					{$_('workshop.cta')}
-				</a>
+					{$_('nav.bookCall')}
+					<ArrowRight class="h-4 w-4" />
+				</button>
 			</div>
 		</nav>
 	</Sheet.Content>

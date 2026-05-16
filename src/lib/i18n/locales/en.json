@@ -236,9 +236,9 @@
 			"headline": "Is this for you?",
 			"forLabel": "Yes — if you",
 			"forItems": [
-				"Can name a specific problem that costs you time or money right now",
-				"Want your team to own the capability — not depend on a vendor forever",
-				"Are willing to come prepared and actually work during the session"
+				"Can name a <mark>specific problem</mark> that costs you time or money right now",
+				"Want your team to <mark>own the capability</mark> — not depend on a vendor forever",
+				"Are willing to come prepared and actually <mark>work during the session</mark>"
 			],
 			"notForLabel": "Not for you — if you",
 			"notForItems": [
@@ -1033,7 +1033,8 @@
 		"blog": "Blog",
 		"backHome": "Back to home",
 		"forAgencies": "For Agencies",
-		"forSpreadsheetTeams": "For Spreadsheet Teams"
+		"forSpreadsheetTeams": "For Spreadsheet Teams",
+		"bookCall": "Book a Free Call"
 	},
 	"profile": {
 		"seo": {

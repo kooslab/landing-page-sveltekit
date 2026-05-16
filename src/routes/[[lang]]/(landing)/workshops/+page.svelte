@@ -1,18 +1,20 @@
 <script lang="ts">
-	import { _, locale } from 'svelte-i18n';
+	import { _ } from 'svelte-i18n';
 	import { page } from '$app/stores';
 	import SEO from '$lib/components/SEO.svelte';
-	import { Button } from '$lib/components/ui/button';
-	import { ArrowRight } from 'lucide-svelte';
 	import ReservationModal from './components/reservation-modal.svelte';
+	import { ArrowRight, ChevronDown } from 'lucide-svelte';
 
 	let lang = $derived($page.params?.lang || 'en');
-	let langPrefix = $derived(lang === 'en' ? '' : `/${lang}`);
 
 	let modalOpen = $state(false);
 	let modalWorkshopType = $state<'diagnosis' | 'ax_l1' | 'ax_l2' | 'ax_l3' | 'custom'>('ax_l1');
+	let openFaq = $state<number | null>(null);
 
-	function openReservation(type: 'diagnosis' | 'ax_l1' | 'ax_l2' | 'ax_l3' | 'custom') {
+	const axLevelKeys = ['basic', 'intermediate', 'advanced'] as const;
+	const axTypes = ['ax_l1', 'ax_l2', 'ax_l3'] as const;
+
+	function book(type: 'diagnosis' | 'ax_l1' | 'ax_l2' | 'ax_l3' | 'custom') {
 		modalWorkshopType = type;
 		modalOpen = true;
 	}
@@ -27,253 +29,164 @@
 <ReservationModal bind:open={modalOpen} bind:workshopType={modalWorkshopType} />
 
 <main class="w-full">
-	<!-- ═══════════════════════════════════════════════ -->
-	<!-- HERO                                            -->
-	<!-- ═══════════════════════════════════════════════ -->
-	<section class="px-4 pb-12 pt-24 md:pb-20 md:pt-32">
-		<div class="mx-auto max-w-4xl text-center">
-			<div
-				class="mb-6 inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-1.5"
-			>
-				<span class="relative flex h-2 w-2">
-					<span
-						class="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"
-					></span>
-					<span class="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
-				</span>
-				<span class="text-xs font-semibold tracking-wide text-primary"
-					>{$_('workshops.earlyBird')}</span
-				>
-			</div>
-			<h1 class="text-3xl font-bold leading-[1.2] tracking-tight md:text-4xl lg:text-5xl">
-				{$_('workshops.hero.title')}
-			</h1>
-			<p class="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-				{$_('workshops.hero.subtitle')}
-			</p>
-		</div>
-	</section>
-
-	<!-- ═══════════════════════════════════════════════ -->
-	<!-- WORKSHOP CARDS                                   -->
-	<!-- ═══════════════════════════════════════════════ -->
-	<section class="px-4 pb-20 md:pb-28">
-		<div class="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
-			<!-- Requirements Workshop -->
-			<div
-				class="group relative overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:border-primary/30 hover:shadow-lg"
-			>
-				<div class="absolute right-0 top-0 overflow-hidden">
-					<div
-						class="translate-x-[30%] translate-y-[-10%] rotate-45 bg-primary px-10 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground"
-					>
-						50% off
-					</div>
-				</div>
-
-				<div class="p-8 md:p-10">
-					<!-- Price block -->
-					<div class="mb-6">
-						<div class="flex items-baseline gap-3">
-							<span class="text-4xl font-bold tracking-tight md:text-5xl">200</span>
-							<span class="text-lg font-medium text-muted-foreground">EUR</span>
-						</div>
-						<div class="mt-1 flex items-center gap-2">
-							<span class="text-base text-muted-foreground line-through decoration-destructive/60"
-								>400 EUR</span
-							>
-							<span class="rounded bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary"
-								>{$_('workshops.earlyBird')}</span
-							>
-						</div>
-					</div>
-
-					<!-- Title & description -->
-					<h2 class="mb-3 text-xl font-bold tracking-tight md:text-2xl">
-						{$_('workshops.requirements.title')}
-					</h2>
-					<p class="mb-8 text-[15px] leading-relaxed text-muted-foreground">
-						{$_('workshops.requirements.description')}
-					</p>
-
-					<!-- What's included -->
-					<div class="mb-8">
-						<p class="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground">
-							{$_('workshops.whatsIncluded')}
-						</p>
-						<ul class="space-y-3">
-							{#each $_('workshops.requirements.includes') as item}
-								<li class="flex items-start gap-3 text-sm">
-									<svg
-										class="mt-0.5 h-4 w-4 flex-shrink-0 text-primary"
-										viewBox="0 0 20 20"
-										fill="currentColor"
-									>
-										<path
-											fill-rule="evenodd"
-											d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-											clip-rule="evenodd"
-										/>
-									</svg>
-									<span class="text-foreground/80">{item}</span>
-								</li>
-							{/each}
-						</ul>
-					</div>
-
-					<!-- Format -->
-					<p class="mb-8 flex items-center gap-2 text-sm text-muted-foreground">
-						<svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-							<path
-								fill-rule="evenodd"
-								d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-								clip-rule="evenodd"
-							/>
-						</svg>
-						{$_('workshops.requirements.format')}
-					</p>
-
-					<Button size="lg" class="group/btn w-full" onclick={() => openReservation('ax_l1')}>
-						{$_('workshops.requirements.cta')}
-						<ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-					</Button>
-				</div>
-			</div>
-
-			<!-- Vibe Coding Workshop -->
-			<div
-				class="group relative overflow-hidden rounded-2xl border border-border bg-card transition-all duration-300 hover:border-primary/30 hover:shadow-lg"
-			>
-				<div class="absolute right-0 top-0 overflow-hidden">
-					<div
-						class="translate-x-[30%] translate-y-[-10%] rotate-45 bg-primary px-10 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground"
-					>
-						50% off
-					</div>
-				</div>
-
-				<div class="p-8 md:p-10">
-					<!-- Price block -->
-					<div class="mb-6">
-						<div class="flex items-baseline gap-3">
-							<span class="text-4xl font-bold tracking-tight md:text-5xl">100</span>
-							<span class="text-lg font-medium text-muted-foreground">EUR</span>
-						</div>
-						<div class="mt-1 flex items-center gap-2">
-							<span class="text-base text-muted-foreground line-through decoration-destructive/60"
-								>200 EUR</span
-							>
-							<span class="rounded bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary"
-								>{$_('workshops.earlyBird')}</span
-							>
-						</div>
-					</div>
-
-					<!-- Title & description -->
-					<h2 class="mb-3 text-xl font-bold tracking-tight md:text-2xl">
-						{$_('workshops.vibe.title')}
-					</h2>
-					<p class="mb-8 text-[15px] leading-relaxed text-muted-foreground">
-						{$_('workshops.vibe.description')}
-					</p>
-
-					<!-- What's included -->
-					<div class="mb-8">
-						<p class="mb-4 text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground">
-							{$_('workshops.whatsIncluded')}
-						</p>
-						<ul class="space-y-3">
-							{#each $_('workshops.vibe.includes') as item}
-								<li class="flex items-start gap-3 text-sm">
-									<svg
-										class="mt-0.5 h-4 w-4 flex-shrink-0 text-primary"
-										viewBox="0 0 20 20"
-										fill="currentColor"
-									>
-										<path
-											fill-rule="evenodd"
-											d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-											clip-rule="evenodd"
-										/>
-									</svg>
-									<span class="text-foreground/80">{item}</span>
-								</li>
-							{/each}
-						</ul>
-					</div>
-
-					<!-- Format -->
-					<p class="mb-8 flex items-center gap-2 text-sm text-muted-foreground">
-						<svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
-							<path
-								fill-rule="evenodd"
-								d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
-								clip-rule="evenodd"
-							/>
-						</svg>
-						{$_('workshops.vibe.format')}
-					</p>
-
-					<Button size="lg" class="group/btn w-full" onclick={() => openReservation('ax_l3')}>
-						{$_('workshops.vibe.cta')}
-						<ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-					</Button>
-				</div>
-			</div>
-		</div>
-
-		<!-- Price note -->
-		<p class="mx-auto mt-8 max-w-4xl text-center text-sm text-muted-foreground">
-			{$_('workshops.priceNote')}
-		</p>
-	</section>
-
-	<!-- ═══════════════════════════════════════════════ -->
-	<!-- FREE WORKSHOP CALLOUT                           -->
-	<!-- ═══════════════════════════════════════════════ -->
-	<section class="border-t border-border px-4 py-16 md:py-20">
+	<!-- ══════════════════════════════════════════════ -->
+	<!-- HERO                                           -->
+	<!-- ══════════════════════════════════════════════ -->
+	<section class="bg-brand px-5 pb-20 pt-24 md:px-12 md:pb-28 md:pt-32">
 		<div class="mx-auto max-w-4xl">
-			<div
-				class="rounded-2xl border border-dashed border-border bg-muted/30 p-8 text-center md:p-12"
+			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand-violet">
+				{$_('landing.ax_training.badge')}
+			</span>
+			<h1
+				class="text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl md:text-[52px] lg:text-[60px]"
 			>
-				<p class="mb-2 text-xs font-semibold uppercase tracking-[0.15em] text-muted-foreground">
-					{$_('workshops.free.badge')}
-				</p>
-				<h3 class="mb-3 text-xl font-bold tracking-tight md:text-2xl">
-					{$_('workshops.free.title')}
-				</h3>
-				<p class="mx-auto mb-6 max-w-lg text-[15px] leading-relaxed text-muted-foreground">
-					{$_('workshops.free.description')}
-				</p>
-				<Button
-					variant="outline"
-					size="lg"
-					class="group"
-					onclick={() => openReservation('diagnosis')}
+				{$_('landing.ax_training.title')}
+			</h1>
+			<p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/75 md:mt-8 md:text-xl">
+				{$_('landing.ax_training.intro')}
+			</p>
+			<div class="mt-10 md:mt-12">
+				<button
+					onclick={() => book('diagnosis')}
+					class="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white/90 transition-all hover:border-white/40 hover:text-white"
+				>
+					Not sure which level? Book a free 20-min call
+					<ArrowRight class="h-4 w-4" />
+				</button>
+			</div>
+		</div>
+	</section>
+
+	<!-- ══════════════════════════════════════════════ -->
+	<!-- AX LEVELS                                      -->
+	<!-- ══════════════════════════════════════════════ -->
+	<section class="bg-white px-5 py-20 md:px-8 md:py-28 lg:py-36">
+		<div class="mx-auto max-w-4xl space-y-5">
+			{#each axLevelKeys as levelKey, i}
+				<div
+					class="rounded-2xl border p-7 md:p-9 {i === 2
+						? 'border-brand/20 bg-brand/[0.03]'
+						: 'border-canvas-warm bg-white'}"
+				>
+					<div class="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+						<!-- Left: info -->
+						<div class="flex-1">
+							<div class="mb-4 flex flex-wrap items-center gap-2">
+								<span
+									class="flex h-7 w-7 items-center justify-center rounded-full bg-brand text-xs font-bold text-white"
+								>
+									{i + 1}
+								</span>
+								<span class="text-sm font-bold uppercase tracking-[0.15em] text-brand">
+									{$_(`landing.ax_training.levels.${levelKey}.level`)}
+								</span>
+								<span
+									class="rounded-full border border-canvas-warm px-3 py-0.5 text-sm text-ink/60"
+								>
+									{$_(`landing.ax_training.levels.${levelKey}.duration`)}
+								</span>
+							</div>
+							<h2 class="mb-2 text-xl font-bold text-ink md:text-2xl">
+								{$_(`landing.ax_training.levels.${levelKey}.title`)}
+							</h2>
+							<p class="text-base leading-relaxed text-ink/70">
+								{$_(`landing.ax_training.levels.${levelKey}.description`)}
+							</p>
+							<p class="mt-3 text-sm text-ink/50">
+								{$_(`landing.pricing.ax.levels.${levelKey}.format`)}
+							</p>
+						</div>
+
+						<!-- Right: price + CTA -->
+						<div class="flex flex-row items-center gap-5 sm:flex-col sm:items-end sm:gap-3">
+							<div class="text-right">
+								<p class="text-3xl font-bold tracking-tight text-ink md:text-4xl">
+									€{$_(`landing.pricing.ax.levels.${levelKey}.price`)}
+								</p>
+								<p class="text-sm text-ink/50">{$_('landing.pricing.ax.perGroup')}</p>
+							</div>
+							<button
+								onclick={() => book(axTypes[i])}
+								class="flex-shrink-0 rounded-full bg-brand px-6 py-2.5 text-sm font-bold text-white transition-opacity hover:opacity-90 active:translate-y-px"
+							>
+								Book L{i + 1}
+							</button>
+						</div>
+					</div>
+				</div>
+			{/each}
+
+			<p
+				class="rounded-xl border border-canvas-warm bg-canvas-soft px-5 py-4 text-sm leading-relaxed text-ink/70"
+			>
+				{$_('landing.pricing.note')}
+			</p>
+			<p class="text-sm text-ink/60">{$_('landing.ax_training.note')}</p>
+		</div>
+	</section>
+
+	<!-- ══════════════════════════════════════════════ -->
+	<!-- FREE DIAGNOSIS CTA                             -->
+	<!-- ══════════════════════════════════════════════ -->
+	<section class="border-y border-canvas-warm bg-canvas-soft px-5 py-16 md:px-12 md:py-20">
+		<div class="mx-auto max-w-4xl">
+			<div class="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+				<div>
+					<p class="mb-1 text-sm font-bold uppercase tracking-[0.18em] text-brand">
+						{$_('workshops.free.badge')}
+					</p>
+					<h3 class="text-2xl font-bold text-ink md:text-3xl">
+						{$_('workshops.free.title')}
+					</h3>
+					<p class="mt-2 max-w-lg text-base leading-relaxed text-ink/70">
+						{$_('workshops.free.description')}
+					</p>
+				</div>
+				<button
+					onclick={() => book('diagnosis')}
+					class="inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-sm font-bold text-white transition-opacity hover:opacity-90"
 				>
 					{$_('workshops.free.cta')}
-					<ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-				</Button>
+					<ArrowRight class="h-4 w-4" />
+				</button>
 			</div>
 		</div>
 	</section>
 
-	<!-- ═══════════════════════════════════════════════ -->
-	<!-- FAQ                                             -->
-	<!-- ═══════════════════════════════════════════════ -->
-	<section class="border-t border-border px-4 py-20 md:py-28">
-		<div class="mx-auto max-w-3xl">
-			<h2 class="mb-12 text-2xl font-bold tracking-tight md:text-3xl">
-				{$_('workshops.faq.title')}
+	<!-- ══════════════════════════════════════════════ -->
+	<!-- FAQ                                            -->
+	<!-- ══════════════════════════════════════════════ -->
+	<section class="bg-white px-5 py-20 md:px-8 md:py-28">
+		<div class="mx-auto max-w-4xl">
+			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
+				{$_('landing.faq.badge')}
+			</span>
+			<h2 class="mb-12 text-3xl font-bold leading-[1.1] tracking-tight text-brand md:text-4xl">
+				{$_('landing.faq.title')}
 			</h2>
-			<div class="space-y-8">
+			<div class="divide-y divide-canvas-warm border-t border-canvas-warm">
 				{#each [0, 1, 2, 3] as i}
-					<div>
-						<h3 class="mb-2 text-base font-semibold">{$_(`workshops.faq.items.${i}.q`)}</h3>
-						<p class="text-[15px] leading-relaxed text-muted-foreground">
-							{$_(`workshops.faq.items.${i}.a`)}
-						</p>
-					</div>
+					{@const isOpen = openFaq === i}
+					<button
+						class="flex w-full items-start justify-between gap-6 py-7 text-left md:py-8"
+						onclick={() => (openFaq = isOpen ? null : i)}
+					>
+						<h3 class="text-lg font-semibold leading-snug text-ink md:text-xl">
+							{$_(`landing.faq.items.${i}.q`)}
+						</h3>
+						<ChevronDown
+							class="mt-1 h-6 w-6 flex-shrink-0 text-ink/60 transition-transform duration-200 {isOpen
+								? 'rotate-180'
+								: ''}"
+						/>
+					</button>
+					{#if isOpen}
+						<div class="pb-7 md:pb-8">
+							<p class="text-base leading-relaxed text-ink/80 md:text-lg">
+								{$_(`landing.faq.items.${i}.a`)}
+							</p>
+						</div>
+					{/if}
 				{/each}
 			</div>
 		</div>
