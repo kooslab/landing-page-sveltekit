@@ -15,6 +15,15 @@ const config: Config = {
 		},
 		extend: {
 			colors: {
+				// Landing page design tokens
+				brand: 'rgb(27 25 56 / <alpha-value>)', // #1B1938 — indigo navy
+				'brand-violet': 'rgb(201 180 250 / <alpha-value>)', // #C9B4FA — violet accent
+				ink: 'rgb(41 40 39 / <alpha-value>)', // #292827 — warm dark text
+				canvas: {
+					soft: '#FAFAF8', // cream section background
+					warm: '#E8E4DD' // warm border
+				},
+				// Shadcn/ui tokens
 				border: 'hsl(var(--border) / <alpha-value>)',
 				input: 'hsl(var(--input) / <alpha-value>)',
 				ring: 'hsl(var(--ring) / <alpha-value>)',
