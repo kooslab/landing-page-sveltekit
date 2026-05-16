@@ -79,13 +79,10 @@
 						{$_('landing.hero.cta')}
 						<ArrowRight class="h-4 w-4" />
 					</button>
-					<p class="mt-3 text-xs text-white/50">
+					<p class="mt-3 text-sm text-white/65">
 						{$_('landing.hero.ctaSub')}
 					</p>
 				</div>
-				<p class="mt-8 text-xs tracking-wide text-white/45">
-					{$_('landing.hero.meta')}
-				</p>
 			</div>
 
 			<!-- Right: before → after visual -->
@@ -274,6 +271,59 @@
 	</section>
 
 	<!-- ══════════════════════════════════════════════ -->
+	<!-- AXE STORY — white, full-width image           -->
+	<!-- ══════════════════════════════════════════════ -->
+	<section class="bg-white px-5 py-20 md:px-12 md:py-28 lg:py-36">
+		<div class="mx-auto max-w-4xl">
+			<span
+				class="mb-6 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
+			>
+				{$_('landing.axeStory.badge')}
+			</span>
+			<p
+				class="mb-5 text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:text-5xl lg:text-[52px]"
+			>
+				{$_('landing.axeStory.headline')}
+			</p>
+			<p class="mb-14 text-xl font-medium text-ink/45 md:mb-16 md:text-2xl">
+				{$_('landing.axeStory.subline')}
+			</p>
+
+			<!-- Image — replace with generated illustration; placeholder shown until available -->
+			<div
+				class="flex min-h-[320px] w-full items-center justify-center rounded-2xl border border-canvas-warm bg-canvas-soft p-12 text-center md:min-h-[420px]"
+			>
+				<div>
+					<p class="text-sm font-semibold uppercase tracking-widest text-ink/30">
+						Place illustration here
+					</p>
+					<p class="mt-2 max-w-sm text-xs text-ink/25">{$_('landing.axeStory.imageAlt')}</p>
+				</div>
+			</div>
+
+			<!-- Two captions below image -->
+			<div class="mt-6 grid grid-cols-2 gap-6">
+				<div>
+					<p class="mb-2 text-[11px] font-bold uppercase tracking-[0.18em] text-ink/40">
+						{$_('landing.axeStory.leftLabel')}
+					</p>
+					<p class="text-sm leading-relaxed text-ink/55 md:text-base">
+						{$_('landing.axeStory.leftCaption')}
+					</p>
+				</div>
+				<div>
+					<p class="mb-2 text-[11px] font-bold uppercase tracking-[0.18em] text-brand">
+						{$_('landing.axeStory.rightLabel')}
+					</p>
+					<p class="text-sm leading-relaxed text-ink/55 md:text-base">
+						{$_('landing.axeStory.rightCaption')}
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ══════════════════════════════════════════════ -->
 	<!-- 4. METHOD — canvas-soft, large scale          -->
 	<!-- ══════════════════════════════════════════════ -->
 	<section class="border-y border-canvas-warm bg-canvas-soft px-5 py-20 md:px-12 md:py-28 lg:py-36">
@@ -374,6 +424,70 @@
 				<p class="mt-4 text-lg text-ink/50 md:text-xl">
 					{$_('landing.transformation.closingSub')}
 				</p>
+			</div>
+		</div>
+	</section>
+
+	<!-- ══════════════════════════════════════════════ -->
+	<!-- EMPLOYEE TRANSFORM — canvas-soft, image+list -->
+	<!-- ══════════════════════════════════════════════ -->
+	<section class="border-y border-canvas-warm bg-canvas-soft px-5 py-20 md:px-12 md:py-28 lg:py-36">
+		<div class="mx-auto max-w-4xl">
+			<span
+				class="mb-6 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
+			>
+				{$_('landing.employeeTransform.badge')}
+			</span>
+			<p
+				class="mb-14 text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:mb-16 md:text-5xl lg:text-[52px]"
+			>
+				{$_('landing.employeeTransform.headline')}
+			</p>
+
+			<!-- Image — replace with generated illustration; placeholder shown until available -->
+			<div
+				class="mb-12 flex min-h-[280px] w-full items-center justify-center rounded-2xl border border-canvas-warm bg-white p-12 text-center md:mb-16 md:min-h-[380px]"
+			>
+				<div>
+					<p class="text-sm font-semibold uppercase tracking-widest text-ink/30">
+						Place illustration here
+					</p>
+					<p class="mt-2 max-w-sm text-xs text-ink/25">
+						{$_('landing.employeeTransform.imageAlt')}
+					</p>
+				</div>
+			</div>
+
+			<!-- Before / After bullet columns -->
+			<div class="grid gap-10 md:grid-cols-2 md:gap-8">
+				<!-- Before -->
+				<div>
+					<p class="mb-6 text-[11px] font-bold uppercase tracking-[0.18em] text-ink/45">
+						{$_('landing.employeeTransform.beforeLabel')}
+					</p>
+					<div class="space-y-4">
+						{#each $_('landing.employeeTransform.beforeItems') as item}
+							<div class="flex items-start gap-3">
+								<div class="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-ink/25"></div>
+								<p class="text-base leading-snug text-ink/60 md:text-lg">{item}</p>
+							</div>
+						{/each}
+					</div>
+				</div>
+				<!-- After -->
+				<div>
+					<p class="mb-6 text-[11px] font-bold uppercase tracking-[0.18em] text-brand">
+						{$_('landing.employeeTransform.afterLabel')}
+					</p>
+					<div class="space-y-4">
+						{#each $_('landing.employeeTransform.afterItems') as item}
+							<div class="flex items-start gap-3">
+								<div class="mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-brand"></div>
+								<p class="text-base font-medium leading-snug text-ink md:text-lg">{item}</p>
+							</div>
+						{/each}
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>

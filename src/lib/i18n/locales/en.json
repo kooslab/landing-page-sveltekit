@@ -177,6 +177,35 @@
 				}
 			]
 		},
+		"axeStory": {
+			"badge": "Why most AI efforts fail",
+			"headline": "Too busy chopping to sharpen the axe.",
+			"subline": "Every team that skips the investment runs the same rate forever. The ones who pause to build the capability come back producing more with less.",
+			"leftLabel": "The busy team",
+			"leftCaption": "Always producing. Never scaling. The axe gets duller every week.",
+			"rightLabel": "The trained team",
+			"rightCaption": "One real investment. Then permanently better output with less effort.",
+			"imageAlt": "Two woodcutters — one frantically chopping with a dull axe, one pausing to sharpen and then cutting far more efficiently"
+		},
+		"employeeTransform": {
+			"badge": "What actually changes",
+			"headline": "Same person. Completely different role.",
+			"beforeLabel": "Before the workshop",
+			"beforeItems": [
+				"Domain expert doing everything manually",
+				"Bottleneck = their own capacity",
+				"Too busy to think about scaling",
+				"Hard to replace — all knowledge in their head"
+			],
+			"afterLabel": "After the workshop",
+			"afterItems": [
+				"Domain expert who also automates their work",
+				"Bottleneck = quality of their decisions",
+				"Designs workflows instead of running them",
+				"Multiplies their output without hiring"
+			],
+			"imageAlt": "Employee before and after AI training — from overwhelmed executor to strategic multiplier"
+		},
 		"forNotFor": {
 			"badge": "Honest answer",
 			"headline": "Is this for you?",
