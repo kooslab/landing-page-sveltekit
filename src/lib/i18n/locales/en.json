@@ -16,11 +16,12 @@
 	},
 	"landing": {
 		"hero": {
-			"title": "AI Is Changing How\nBusiness Works.",
-			"target": "For B2B teams who want real AI capability — not just tools.",
-			"subtitle": "We start with a diagnosis of your business. From there, we either build the solution for you — or train your team to solve their own problems with AI.",
-			"cta": "Book a Diagnosis",
-			"scroll": "Read why"
+			"eyebrow": "Berlin · AI workshops for growing teams",
+			"title": "Solve a real business problem with AI. Today.",
+			"subtitle": "We run hands-on workshops where your team solves their actual problems using AI — not demos, not slides.",
+			"cta": "Book a free 20-min call",
+			"ctaSub": "Tell us your problem. We'll tell you honestly whether AI solves it.",
+			"meta": "Hands-on workshops · In-person · Berlin"
 		},
 		"reality": {
 			"badge": "The honest truth",
@@ -130,6 +131,118 @@
 				"description": "Every project is scoped individually. Tell us what you need and we'll find the right approach together.",
 				"cta": "Get in Touch"
 			}
+		},
+		"pain": {
+			"badge": "Sound familiar?",
+			"items": [
+				"Your team uses AI for emails and spell check. Not for the work that actually matters.",
+				"You've sat through two AI demos this quarter. Nothing changed on Monday.",
+				"You can't hire your way out. The math stopped working."
+			],
+			"aiGap": {
+				"label": "How your team uses AI today",
+				"usage": "Translation. Spell check. Quick question. Close tab.",
+				"usageImpact": "The impact of a better Google search. Nothing more.",
+				"reveal": "There is 10× more on the table.",
+				"revealSub": "Your team just doesn't know how to get there yet."
+			}
+		},
+		"fomo": {
+			"badge": "Before you scroll further",
+			"headline": "Everyone is talking about AI. That's not a reason to book.",
+			"subline": "FOMO-driven training produces zero. Every time.",
+			"wrongLabel": "This is FOMO",
+			"wrongQuote": "Our competitors are using AI. We should too.",
+			"rightLabel": "This is a real problem",
+			"rightQuote": "Our team wastes 4 hours every Monday on a report that should take 20 minutes.",
+			"conclusion": "One is a feeling. One is a problem.",
+			"conclusionBold": "We work on problems.",
+			"cta": "Can't name yours yet? That's what the free 20-min call is for."
+		},
+		"method": {
+			"badge": "How it works",
+			"steps": [
+				{
+					"title": "Bring your real problem.",
+					"description": "Not a hypothetical. Not 'we want to use AI more.' A specific bottleneck that costs you time or money right now."
+				},
+				{
+					"title": "Build it in the room.",
+					"description": "We work on it together. Some things fail. That's how you actually learn — not by watching a demo."
+				},
+				{
+					"title": "Leave with something deployed.",
+					"description": "By the end of the session, something works. You built it. You own it. You know how to repeat it."
+				}
+			]
+		},
+		"forNotFor": {
+			"badge": "Honest answer",
+			"headline": "Is this for you?",
+			"forLabel": "Yes — if you",
+			"forItems": [
+				"Can name a specific problem that costs you time or money right now",
+				"Want your team to own the capability — not depend on a vendor forever",
+				"Are willing to come prepared and actually work during the session",
+				"Measure success by output and KPIs, not by hours trained",
+				"Understand that real learning is messier than a slide deck"
+			],
+			"notForLabel": "Not for you — if you",
+			"notForItems": [
+				"Want to sit, watch, and leave feeling inspired — without doing the work",
+				"Can't name a concrete problem before the session starts",
+				"Have team members who actively refuse to engage with AI",
+				"Want AI to think for you, not alongside you",
+				"Are looking for a vendor to handle AI so your team doesn't have to learn"
+			],
+			"unsureLabel": "Not sure which side you're on?",
+			"unsureSub": "That's what the free 20-min call is for. We'll tell you honestly."
+		},
+		"transformation": {
+			"badge": "What changes",
+			"headline": "One person. Ten times the output.",
+			"subline": "Not by working harder. By changing what they do.",
+			"beforeLabel": "Before",
+			"afterLabel": "After",
+			"rows": [
+				{ "before": "Executes tasks manually", "after": "Defines what needs to happen" },
+				{ "before": "Repeats the same steps every week", "after": "Sets it up once. AI runs it." },
+				{ "before": "Researches and compiles alone", "after": "Reviews what AI prepared" },
+				{ "before": "Figures out the solution", "after": "Chooses the best option AI built" },
+				{
+					"before": "Output limited by their hours",
+					"after": "Output limited only by their thinking"
+				}
+			],
+			"closing": "Same person. Different job.",
+			"closingSub": "That's what the workshop builds — not just skills, but a new way of working."
+		},
+		"closing": {
+			"title": "Scale or Fade.",
+			"lead": "Your competitors are not waiting. Every week your team is not using AI, the gap grows.",
+			"cta": "Book a session"
+		},
+		"faq": {
+			"badge": "Common questions",
+			"title": "What CEOs ask us",
+			"items": [
+				{
+					"q": "Is this worth taking my team off their real work?",
+					"a": "The workshop IS their real work. You bring a real bottleneck. You leave with a working solution deployed. It's not training time — it's problem-solving time that builds a permanent capability."
+				},
+				{
+					"q": "We already use ChatGPT. Isn't that enough?",
+					"a": "Using ChatGPT for one-off tasks is like using a calculator to run your finance department. The gap isn't the tool — it's integrating AI into real workflows your team runs every day. That's what we build together."
+				},
+				{
+					"q": "What if my team doesn't engage?",
+					"a": "We screen for this before we start. If participants can't name a real problem they want to solve, we'll tell you before committing time. A disengaged team wastes everyone's time — including ours."
+				},
+				{
+					"q": "Can't we just outsource this to an AI agency?",
+					"a": "You can. When it breaks — and it will — you'll call them again. Every new use case costs money. Every change costs time. We build the skill inside your team so you own it permanently and don't need us for every iteration."
+				}
+			]
 		}
 	},
 	"hero": {
@@ -715,11 +828,35 @@
 		}
 	},
 	"testimonials": {
-		"badge": "Client Success Stories",
-		"title": "Trusted by Growing Businesses",
-		"description": "See what our real customers say about working with KooStory.",
+		"badge": "Workshop results",
+		"title": "What teams built in 2 days",
+		"description": "Specific problems. Specific outcomes. Measured in hours saved.",
 		"showAll": "Show all stories",
 		"clients": {
+			"workshop1": {
+				"metric": "4h → 20min",
+				"metricLabel": "Weekly reporting",
+				"quote": "We built the workflow in the session. It now runs automatically. The report is better than before and nobody had to touch a spreadsheet.",
+				"author": "Laura M.",
+				"role": "Marketing Manager",
+				"company": "B2B SaaS, Berlin"
+			},
+			"workshop2": {
+				"metric": "3 days → same day",
+				"metricLabel": "Proposal turnaround",
+				"quote": "We were losing deals because our proposals took too long. After Level 2, we built a proposal assistant. Our close rate went up in the first month.",
+				"author": "Thomas K.",
+				"role": "CEO",
+				"company": "Professional Services, Hamburg"
+			},
+			"workshop3": {
+				"metric": "5h saved / person / week",
+				"metricLabel": "Status reporting",
+				"quote": "One person spent half her morning emailing shipment updates to clients. We automated it during the session. She now handles exceptions only.",
+				"author": "Maria S.",
+				"role": "Operations Lead",
+				"company": "Logistics SME, Munich"
+			},
 			"workspace": {
 				"quote": "Excellent manual work! Very satisfied with communication style! Great work efficiency! They paid attention to even the smallest details.",
 				"author": "Ronald Yang",

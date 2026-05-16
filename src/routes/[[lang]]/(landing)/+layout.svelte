@@ -13,13 +13,8 @@
 
 <Navbar />
 
-<div class="mx-auto min-h-dvh w-full max-w-7xl px-4 sm:px-8 md:px-12">
-	<div>
-		{@render children?.()}
-	</div>
-	<!-- <div class="dark:prose-dark prose">
-		{@render children?.()}
-	</div> -->
+<div class="min-h-dvh w-full">
+	{@render children?.()}
 </div>
 
 <Footer />

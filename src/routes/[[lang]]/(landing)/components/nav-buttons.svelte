@@ -9,16 +9,22 @@
 	import { Button, buttonVariants } from '@/components/ui/button';
 	import * as Dropdown from '@/components/ui/dropdown-menu';
 
+	let { scrolled = true }: { scrolled?: boolean } = $props();
+
 	let { session } = $derived($page.data);
 	let lang = $derived($page.params?.lang || 'en');
 	let langPrefix = $derived(lang === 'en' ? '' : `/${lang}`);
 	let dropdownOpen = $state(false);
+
+	let linkClass = $derived(
+		scrolled ? 'text-muted-foreground hover:text-primary' : 'text-white/80 hover:text-white'
+	);
 </script>
 
 <div class="hidden items-center md:ml-6 md:flex">
 	<Dropdown.Root bind:open={dropdownOpen}>
 		<Dropdown.Trigger
-			class="mr-4 inline-flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+			class="mr-4 inline-flex items-center gap-1 text-sm font-medium transition-colors duration-300 {linkClass}"
 		>
 			{$_('nav.whoWeHelp')}
 			<ChevronDown class="h-3.5 w-3.5" />
@@ -50,17 +56,22 @@
 	</Dropdown.Root>
 	<a
 		href="{langPrefix}/about"
-		class="mr-4 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+		class="mr-4 text-sm font-medium transition-colors duration-300 {linkClass}"
 	>
 		{$_('nav.about')}
 	</a>
 	<a
 		href="{langPrefix}/workshops"
-		class="mr-4 text-sm font-medium text-muted-foreground transition-colors hover:text-primary"
+		class="mr-4 text-sm font-medium transition-colors duration-300 {linkClass}"
 	>
 		{$_('nav.workshops')}
 	</a>
-	<Button size="sm" variant="ghost" class="rounded-full text-foreground/60" href="/blog"
-		>{$_('nav.blog')}</Button
+	<Button
+		size="sm"
+		variant="ghost"
+		class="rounded-full transition-colors duration-300 {scrolled
+			? 'text-foreground/60'
+			: 'text-white/80 hover:bg-white/10 hover:text-white'}"
+		href="/blog">{$_('nav.blog')}</Button
 	>
 </div>

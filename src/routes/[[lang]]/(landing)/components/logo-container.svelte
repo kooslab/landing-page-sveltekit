@@ -2,6 +2,8 @@
 	import { Logo } from '@/components/logo';
 	import { page } from '$app/stores';
 
+	let { scrolled = true }: { scrolled?: boolean } = $props();
+
 	let lang = $derived($page.params?.lang || 'en');
 	let langPrefix = $derived(lang === 'en' ? '' : `/${lang}`);
 </script>
@@ -9,6 +11,8 @@
 <a class="contents" href="{langPrefix}/">
 	<div class="flex h-9 items-center space-x-2 md:space-x-3">
 		<Logo size="sm" />
-		<div class="text-lg font-medium">Koostory</div>
+		<div class="text-lg font-medium transition-colors duration-300 {scrolled ? '' : 'text-white'}">
+			Koostory
+		</div>
 	</div>
 </a>

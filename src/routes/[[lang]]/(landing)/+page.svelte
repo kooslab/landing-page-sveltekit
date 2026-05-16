@@ -1,151 +1,43 @@
 <script lang="ts">
-	import { _, locale } from 'svelte-i18n';
+	import { _ } from 'svelte-i18n';
 	import { page } from '$app/stores';
-	import { Button } from '$lib/components/ui/button';
 	import SEO from '$lib/components/SEO.svelte';
-	import { Badge } from '$lib/components/ui/badge';
-	import { ArrowRight, ArrowDown, ChevronLeft, ChevronRight, CheckCircle } from 'lucide-svelte';
-	import DxReportSample from '$lib/components/sections/dx-report-sample.svelte';
 	import PromoPopup from '$lib/components/sections/promo-popup.svelte';
 	import ReservationModal from './workshops/components/reservation-modal.svelte';
+	import { ArrowRight } from 'lucide-svelte';
 
 	let { data } = $props();
 
 	let reservationOpen = $state(false);
-	let reservationType = $state<'diagnosis' | 'ax_l1' | 'ax_l2' | 'ax_l3' | 'custom'>('diagnosis');
+	let reservationType = $state<'diagnosis' | 'ax_l1' | 'ax_l2' | 'ax_l3' | 'custom'>('ax_l1');
 
 	let lang = $derived($page.params?.lang || 'en');
 	let isKorean = $derived(lang === 'ko');
 
-	// Portfolio
-	const useCaseKeys = [
-		'equest',
-		'inventory',
-		'scheduling',
-		'reporting',
-		'contract',
-		'delivery',
-		'parking',
-		'billsplit',
-		'ordermap',
-		'travel',
-		'indoor',
-		'payment',
-		'survey',
-		'quote',
-		'requirements'
-	];
-
-	const caseEmojis: Record<string, string> = {
-		equest: '📋',
-		inventory: '📦',
-		scheduling: '📅',
-		reporting: '📊',
-		contract: '📝',
-		delivery: '🚚',
-		parking: '🚗',
-		billsplit: '💰',
-		ordermap: '🗺️',
-		travel: '✈️',
-		indoor: '🏢',
-		payment: '💳',
-		survey: '📋',
-		quote: '💼',
-		requirements: '📄'
-	};
-
-	let currentIndex = $state(0);
-	let isPaused = $state(false);
-	let intervalId: number;
-
-	$effect(() => {
-		if (!isPaused) {
-			intervalId = window.setInterval(() => {
-				currentIndex = (currentIndex + 1) % useCaseKeys.length;
-			}, 10000);
-		} else {
-			if (intervalId) clearInterval(intervalId);
-		}
-		return () => {
-			if (intervalId) clearInterval(intervalId);
-		};
-	});
-
-	function goToSlide(index: number) {
-		currentIndex = index;
-		isPaused = true;
-		setTimeout(() => {
-			isPaused = false;
-		}, 15000);
-	}
-
-	// Testimonials
-	const testimonialKeys = [
-		'workspace',
-		'safety1',
-		'bunnyrate',
-		'association1',
-		'healthcare1',
-		'aicompany1',
-		'logistics1',
-		'safety3',
-		'healthcare2',
-		'safety2',
-		'aicompany2',
-		'association2',
-		'safety4',
-		'logistics2'
-	];
-
-	let tIndex = $state(0);
-	let tPaused = $state(false);
-	let tIntervalId: number;
-
-	$effect(() => {
-		if (!tPaused) {
-			tIntervalId = window.setInterval(() => {
-				tIndex = (tIndex + 1) % testimonialKeys.length;
-			}, 6000);
-		} else {
-			if (tIntervalId) clearInterval(tIntervalId);
-		}
-		return () => {
-			if (tIntervalId) clearInterval(tIntervalId);
-		};
-	});
-
-	function goToTestimonial(index: number) {
-		tIndex = index;
-		tPaused = true;
-		setTimeout(() => {
-			tPaused = false;
-		}, 12000);
-	}
-
-	// Process steps
-	const processKeys = ['workshop', 'document', 'build'] as const;
-	const deliverableKeys = ['diagnosis', 'processmap', 'roadmap'] as const;
 	const axLevelKeys = ['basic', 'intermediate', 'advanced'] as const;
+	const axTypes = ['ax_l1', 'ax_l2', 'ax_l3'] as const;
+	const staticTestimonials = ['workshop1', 'workshop2', 'workshop3'];
 
-	function scrollTo(id: string) {
-		document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
+	function book(type: 'diagnosis' | 'ax_l1' | 'ax_l2' | 'ax_l3' | 'custom' = 'ax_l1') {
+		reservationType = type;
+		reservationOpen = true;
 	}
 </script>
 
 <SEO
 	title={isKorean
-		? 'KooStory - B2B AI 전환 컨설팅 & AX 교육 | 베를린'
-		: 'KooStory - B2B AI Transformation & AX Training | Berlin'}
+		? 'KooStory - B2B AI 전환 & AX 핸즈온 교육 | 베를린'
+		: 'KooStory - Hands-on AI Training for B2B Teams | Berlin'}
 	description={isKorean
-		? '무료 진단으로 시작합니다. 맞춤 소프트웨어 개발 또는 AI 핸즈온 교육 — 비즈니스에 맞는 경로를 찾아드립니다.'
-		: 'Start with a free diagnosis. Custom software development or hands-on AX training — we find the right path for your business.'}
+		? 'Scale or Fade. 진짜 문제를 가져오세요. 함께 해결합니다. 베를린 기반 AI 핸즈온 교육.'
+		: "Scale or Fade. Bring your real problem. Break things. That's how you actually learn. Hands-on AI training in Berlin."}
 	ogImage="/og-image-landing.png"
 	jsonLd={{
 		'@context': 'https://schema.org',
 		'@type': 'WebSite',
 		name: 'KooStory',
 		url: 'https://koostory.net',
-		description: 'DX/AX consulting for small businesses',
+		description: 'AX hands-on training for B2B teams in Berlin',
 		publisher: {
 			'@type': 'Organization',
 			name: 'KooStory',
@@ -154,713 +46,665 @@
 	}}
 />
 
-<PromoPopup
-	showPromo={data.showPromo}
-	onBook={() => {
-		reservationType = 'diagnosis';
-		reservationOpen = true;
-	}}
-/>
+<PromoPopup showPromo={data.showPromo} onBook={() => book('diagnosis')} />
 <ReservationModal bind:open={reservationOpen} bind:workshopType={reservationType} />
 
 <main class="w-full">
-	<!-- ═══════════════════════════════════════════════ -->
-	<!-- 1. HERO                                        -->
-	<!-- ═══════════════════════════════════════════════ -->
-	<section class="px-5 pb-16 pt-14 md:px-8 md:pb-24 md:pt-28 lg:pb-32 lg:pt-36">
-		<div class="mx-auto max-w-3xl">
-			<h1
-				class="whitespace-pre-line text-[2.25rem] font-bold leading-[1.1] tracking-tight sm:text-5xl md:text-6xl lg:text-[4rem]"
+	<!-- ══════════════════════════════════════════════ -->
+	<!-- 1. HERO — indigo navy                         -->
+	<!-- ══════════════════════════════════════════════ -->
+	<section style="background-color: #1B1938;" class="overflow-hidden">
+		<div class="mx-auto flex max-w-7xl flex-col lg:flex-row lg:items-stretch">
+			<!-- Left: copy -->
+			<div
+				class="flex flex-col justify-center px-5 pb-16 pt-16 md:px-12 md:pb-20 md:pt-20 lg:w-1/2 lg:py-28 lg:pl-16 lg:pr-12 xl:pl-20"
 			>
-				{$_('landing.hero.title')}
-			</h1>
-			<p class="mt-3 text-sm font-medium uppercase tracking-wide text-primary/80 sm:text-base">
-				{$_('landing.hero.target')}
-			</p>
-			<p class="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg md:mt-5 md:text-xl">
-				{$_('landing.hero.subtitle')}
-			</p>
-			<div class="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center md:mt-10">
-				<Button
-					size="lg"
-					class="group text-sm"
-					onclick={() => {
-						reservationType = 'diagnosis';
-						reservationOpen = true;
-					}}
+				<span
+					class="mb-6 block text-xs font-semibold uppercase tracking-[0.2em]"
+					style="color: #C9B4FA;"
 				>
-					{$_('landing.hero.cta')}
-					<ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-				</Button>
+					{$_('landing.hero.eyebrow')}
+				</span>
+				<h1
+					class="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-[52px] xl:text-[58px]"
+					style="line-height: 1.08;"
+				>
+					{$_('landing.hero.title')}
+				</h1>
+				<p
+					class="mt-6 max-w-md text-lg leading-relaxed md:mt-8 md:text-xl"
+					style="color: rgba(255,255,255,0.80);"
+				>
+					{$_('landing.hero.subtitle')}
+				</p>
+				<div class="mt-10 md:mt-12">
+					<button
+						onclick={() => book('diagnosis')}
+						class="inline-flex items-center gap-2 rounded-full px-7 py-3.5 text-sm font-bold transition-opacity hover:opacity-90 active:translate-y-px"
+						style="background-color: #C9B4FA; color: #1B1938;"
+					>
+						{$_('landing.hero.cta')}
+						<ArrowRight class="h-4 w-4" />
+					</button>
+					<p class="mt-3 text-xs" style="color: rgba(255,255,255,0.50);">
+						{$_('landing.hero.ctaSub')}
+					</p>
+				</div>
+				<p class="mt-8 text-xs tracking-wide" style="color: rgba(255,255,255,0.45);">
+					{$_('landing.hero.meta')}
+				</p>
+			</div>
+
+			<!-- Right: before → after visual -->
+			<div class="relative hidden lg:flex lg:w-1/2 lg:items-center lg:justify-center">
+				<!-- Radial glow -->
+				<div
+					class="pointer-events-none absolute inset-0"
+					style="background: radial-gradient(ellipse 70% 60% at 55% 50%, rgba(201,180,250,0.10) 0%, transparent 68%);"
+				></div>
+
+				<div class="relative mr-8 xl:mr-16">
+					<div
+						class="rounded-2xl p-8"
+						style="background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); backdrop-filter: blur(16px); min-width: 340px; max-width: 400px;"
+					>
+						<!-- Eyebrow -->
+						<p
+							class="mb-6 text-[11px] font-semibold uppercase tracking-[0.18em]"
+							style="color: rgba(201,180,250,0.65);"
+						>
+							Real result · last week
+						</p>
+
+						<!-- Before / After columns -->
+						<div class="mb-6 grid grid-cols-2 gap-3">
+							<!-- Before -->
+							<div class="rounded-xl p-5" style="background: rgba(255,255,255,0.04);">
+								<p
+									class="mb-3 text-[10px] font-bold uppercase tracking-widest"
+									style="color: rgba(255,255,255,0.30);"
+								>
+									Before
+								</p>
+								<p class="text-5xl font-bold leading-none text-white">3h</p>
+								<p class="mt-2 text-xs leading-snug" style="color: rgba(255,255,255,0.40);">
+									manual work<br />every Monday
+								</p>
+							</div>
+							<!-- After -->
+							<div
+								class="rounded-xl p-5"
+								style="background: rgba(201,180,250,0.08); border: 1px solid rgba(201,180,250,0.18);"
+							>
+								<p
+									class="mb-3 text-[10px] font-bold uppercase tracking-widest"
+									style="color: #C9B4FA;"
+								>
+									After
+								</p>
+								<p class="text-5xl font-bold leading-none text-white">0</p>
+								<p class="mt-2 text-xs leading-snug" style="color: rgba(201,180,250,0.70);">
+									runs itself<br />automatically
+								</p>
+							</div>
+						</div>
+
+						<!-- Confirmation bar -->
+						<div
+							class="flex items-center gap-3 rounded-xl px-5 py-4"
+							style="background: rgba(201,180,250,0.10);"
+						>
+							<div
+								class="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-xs font-bold"
+								style="background-color: #C9B4FA; color: #1B1938;"
+							>
+								✓
+							</div>
+							<p class="text-sm" style="color: rgba(255,255,255,0.80);">
+								Built and deployed in a <strong class="text-white">2h workshop</strong>
+							</p>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- ═══════════════════════════════════════════════ -->
-	<!-- 2. THE REALITY — dark, confrontational         -->
-	<!-- ═══════════════════════════════════════════════ -->
-	<section
-		id="reality"
-		class="border-y border-border bg-muted/50 px-5 py-16 md:px-8 md:py-24 lg:py-32"
-	>
-		<div class="mx-auto max-w-3xl">
-			<p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-				{$_('landing.reality.badge')}
-			</p>
-			<h2 class="text-2xl font-bold leading-tight tracking-tight sm:text-3xl md:text-4xl">
-				{$_('landing.reality.title')}
-			</h2>
-			<div class="mt-8 space-y-6 md:mt-10">
+	<!-- ══════════════════════════════════════════════ -->
+	<!-- 2. PAIN — CEO monologue + AI gap             -->
+	<!-- ══════════════════════════════════════════════ -->
+
+	<!-- Part 1: CEO internal monologue -->
+	<section class="bg-white px-5 pb-16 pt-20 md:px-12 md:pb-20 md:pt-28 lg:pb-24 lg:pt-36">
+		<div class="mx-auto max-w-4xl">
+			<span
+				class="mb-14 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground md:mb-16"
+			>
+				{$_('landing.pain.badge')}
+			</span>
+			<div class="space-y-12 md:space-y-14">
 				{#each [0, 1, 2] as i}
-					<p class="text-base leading-relaxed text-muted-foreground md:text-lg">
-						{$_(`landing.reality.points.${i}`)}
+					<p
+						class="text-3xl font-bold leading-[1.12] tracking-tight sm:text-4xl md:text-5xl lg:text-[52px]"
+						style="color: #292827;"
+					>
+						{$_(`landing.pain.items.${i}`)}
 					</p>
 				{/each}
 			</div>
 		</div>
 	</section>
 
-	<!-- ═══════════════════════════════════════════════ -->
-	<!-- 3. HOW THE DIAGNOSIS WORKS — 3 steps          -->
-	<!-- ═══════════════════════════════════════════════ -->
-	<section id="process" class="border-b border-border px-5 py-16 md:px-8 md:py-24 lg:py-32">
-		<div class="mx-auto max-w-3xl">
-			<p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-				{$_('landing.process.badge')}
-			</p>
-			<h2
-				class="mb-10 text-2xl font-bold leading-tight tracking-tight sm:text-3xl md:mb-14 md:text-4xl"
-			>
-				{$_('landing.process.title')}
-			</h2>
+	<!-- Part 2: AI gap — same white canvas, continues the thought -->
+	<section class="bg-white px-5 pb-20 md:px-12 md:pb-28 lg:pb-36">
+		<div class="mx-auto max-w-4xl">
+			<div class="border-t border-[#E8E4DD] pt-16 md:pt-20 lg:pt-24">
+				<span
+					class="mb-10 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
+				>
+					{$_('landing.pain.aiGap.label')}
+				</span>
 
-			<div class="relative">
-				<div class="absolute bottom-0 left-4 top-0 w-px bg-border md:left-5"></div>
+				<!-- Current usage — visually faded to signal low value -->
+				<p
+					class="text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-[46px]"
+					style="color: rgba(41,40,39,0.22);"
+				>
+					{$_('landing.pain.aiGap.usage')}
+				</p>
+				<p class="mt-5 text-lg font-medium md:text-xl" style="color: rgba(41,40,39,0.38);">
+					{$_('landing.pain.aiGap.usageImpact')}
+				</p>
 
-				<div class="space-y-8 md:space-y-12">
-					{#each processKeys as key, i}
-						<div class="relative flex gap-5 md:gap-7">
-							<div
-								class="relative z-10 flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-full border border-foreground/20 bg-background text-xs font-bold tabular-nums md:h-11 md:w-11 md:text-sm"
-							>
-								{i + 1}
-							</div>
-							<div class="pt-1 md:pt-2">
-								<h3 class="mb-1 text-base font-semibold md:text-lg">
-									{$_(`process.steps.${key}.title`)}
-								</h3>
-								<p class="text-sm leading-relaxed text-muted-foreground md:text-[15px]">
-									{$_(`process.steps.${key}.description`)}
-								</p>
-							</div>
-						</div>
-					{/each}
+				<!-- The reveal — snaps back to full contrast -->
+				<div class="mt-16 md:mt-20">
+					<p
+						class="text-3xl font-bold leading-[1.1] tracking-tight sm:text-4xl md:text-5xl lg:text-[52px]"
+						style="color: #292827;"
+					>
+						{$_('landing.pain.aiGap.reveal')}
+					</p>
+					<p class="mt-4 text-xl font-medium md:text-2xl" style="color: rgba(41,40,39,0.50);">
+						{$_('landing.pain.aiGap.revealSub')}
+					</p>
 				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- ═══════════════════════════════════════════════ -->
-	<!-- 4. THE FORK — two paths after diagnosis        -->
-	<!-- ═══════════════════════════════════════════════ -->
-	<section id="services" class="px-5 py-16 md:px-8 md:py-24 lg:py-32">
-		<div class="mx-auto max-w-3xl">
-			<p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-				{$_('landing.services.badge')}
+	<!-- ══════════════════════════════════════════════ -->
+	<!-- 3. FOMO TRAP — white, pattern interrupt       -->
+	<!-- ══════════════════════════════════════════════ -->
+	<section class="bg-white px-5 py-20 md:px-12 md:py-28 lg:py-36">
+		<div class="mx-auto max-w-4xl">
+			<span
+				class="mb-12 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
+			>
+				{$_('landing.fomo.badge')}
+			</span>
+
+			<!-- Opener -->
+			<p
+				class="text-3xl font-bold leading-[1.12] tracking-tight sm:text-4xl md:text-5xl lg:text-[52px]"
+				style="color: #292827;"
+			>
+				{$_('landing.fomo.headline')}
 			</p>
-			<h2 class="text-2xl font-bold leading-tight tracking-tight sm:text-3xl md:text-4xl">
-				{$_('landing.services.title')}
-			</h2>
-			<p class="mt-5 text-base leading-relaxed text-muted-foreground md:mt-6 md:text-lg">
-				{$_('landing.services.intro')}
+			<p class="mt-5 text-xl font-medium md:text-2xl" style="color: rgba(41,40,39,0.45);">
+				{$_('landing.fomo.subline')}
 			</p>
 
-			<div class="mt-10 grid gap-5 md:mt-12 md:grid-cols-2 md:gap-6">
-				<!-- Path A -->
-				<div class="rounded-xl border border-border p-6 md:p-7">
-					<p class="mb-2 text-xs font-bold uppercase tracking-[0.15em] text-primary">
-						{$_('landing.services.pathA.label')}
+			<!-- Contrast: wrong vs. right -->
+			<div class="mt-16 grid gap-5 md:mt-20 md:grid-cols-2">
+				<!-- FOMO — muted, struck -->
+				<div class="rounded-2xl border border-[#E8E4DD] p-7 md:p-9">
+					<p
+						class="mb-5 text-[11px] font-bold uppercase tracking-[0.18em]"
+						style="color: rgba(41,40,39,0.30);"
+					>
+						{$_('landing.fomo.wrongLabel')}
 					</p>
-					<h3 class="mb-3 text-lg font-semibold">{$_('landing.services.pathA.title')}</h3>
-					<p class="text-sm leading-relaxed text-muted-foreground">
-						{$_('landing.services.pathA.description')}
+					<p
+						class="text-xl font-medium leading-snug md:text-2xl"
+						style="color: rgba(41,40,39,0.25); text-decoration: line-through; text-decoration-color: rgba(41,40,39,0.15);"
+					>
+						"{$_('landing.fomo.wrongQuote')}"
 					</p>
 				</div>
-				<!-- Path B -->
-				<div class="rounded-xl border border-primary/30 bg-primary/5 p-6 md:p-7">
-					<p class="mb-2 text-xs font-bold uppercase tracking-[0.15em] text-primary">
-						{$_('landing.services.pathB.label')}
+
+				<!-- Real problem — vivid -->
+				<div
+					class="rounded-2xl p-7 md:p-9"
+					style="background: rgba(27,25,56,0.04); border: 1.5px solid rgba(27,25,56,0.12);"
+				>
+					<p class="mb-5 text-[11px] font-bold uppercase tracking-[0.18em]" style="color: #1B1938;">
+						{$_('landing.fomo.rightLabel')}
 					</p>
-					<h3 class="mb-3 text-lg font-semibold">{$_('landing.services.pathB.title')}</h3>
-					<p class="text-sm leading-relaxed text-muted-foreground">
-						{$_('landing.services.pathB.description')}
+					<p class="text-xl font-semibold leading-snug md:text-2xl" style="color: #292827;">
+						"{$_('landing.fomo.rightQuote')}"
 					</p>
 				</div>
 			</div>
 
-			<div class="mt-8 rounded-lg bg-muted/40 px-5 py-4 md:mt-10">
-				<p class="text-sm font-medium leading-relaxed text-foreground/70">
-					{$_('landing.services.difference')}
+			<!-- Conclusion bridge -->
+			<div class="mt-14 md:mt-16">
+				<p
+					class="text-2xl font-bold tracking-tight md:text-3xl lg:text-[36px]"
+					style="color: rgba(41,40,39,0.40);"
+				>
+					{$_('landing.fomo.conclusion')}
+				</p>
+				<p
+					class="mt-1 text-2xl font-bold tracking-tight md:text-3xl lg:text-[36px]"
+					style="color: #292827;"
+				>
+					{$_('landing.fomo.conclusionBold')}
+				</p>
+				<p class="mt-6 text-base md:text-lg" style="color: rgba(41,40,39,0.50);">
+					{$_('landing.fomo.cta')}
 				</p>
 			</div>
 		</div>
 	</section>
 
-	<!-- ═══════════════════════════════════════════════ -->
-	<!-- 5. AX TRAINING — Path B deep dive             -->
-	<!-- ═══════════════════════════════════════════════ -->
+	<!-- ══════════════════════════════════════════════ -->
+	<!-- 4. METHOD — canvas-soft, large scale          -->
+	<!-- ══════════════════════════════════════════════ -->
 	<section
-		id="ax-training"
-		class="border-y border-border bg-muted/30 px-5 py-16 md:px-8 md:py-24 lg:py-32"
+		style="background-color: #FAFAF8;"
+		class="border-y border-[#E8E4DD] px-5 py-20 md:px-12 md:py-28 lg:py-36"
 	>
-		<div class="mx-auto max-w-3xl">
-			<p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-				{$_('landing.ax_training.badge')}
+		<div class="mx-auto max-w-4xl">
+			<span
+				class="mb-14 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground md:mb-16"
+			>
+				{$_('landing.method.badge')}
+			</span>
+
+			<div class="space-y-16 md:space-y-20">
+				{#each [0, 1, 2] as i}
+					<div class="flex gap-8 md:gap-12">
+						<!-- Step number -->
+						<div
+							class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full text-sm font-bold text-white md:h-12 md:w-12"
+							style="background-color: #1B1938; margin-top: 6px;"
+						>
+							{i + 1}
+						</div>
+						<!-- Step content -->
+						<div>
+							<h3
+								class="text-2xl font-bold leading-[1.15] tracking-tight sm:text-3xl md:text-4xl lg:text-[40px]"
+								style="color: #292827;"
+							>
+								{$_(`landing.method.steps.${i}.title`)}
+							</h3>
+							<p
+								class="mt-4 text-lg leading-relaxed md:text-xl"
+								style="color: rgba(41,40,39,0.55);"
+							>
+								{$_(`landing.method.steps.${i}.description`)}
+							</p>
+						</div>
+					</div>
+				{/each}
+			</div>
+		</div>
+	</section>
+
+	<!-- ══════════════════════════════════════════════ -->
+	<!-- 4. TRANSFORMATION — white                    -->
+	<!-- ══════════════════════════════════════════════ -->
+	<section class="bg-white px-5 py-20 md:px-12 md:py-28 lg:py-36">
+		<div class="mx-auto max-w-4xl">
+			<span
+				class="mb-12 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground md:mb-14"
+			>
+				{$_('landing.transformation.badge')}
+			</span>
+
+			<!-- Headline -->
+			<p
+				class="text-3xl font-bold leading-[1.12] tracking-tight sm:text-4xl md:text-5xl lg:text-[52px]"
+				style="color: #292827;"
+			>
+				{$_('landing.transformation.headline')}
 			</p>
-			<h2 class="text-2xl font-bold leading-tight tracking-tight sm:text-3xl md:text-4xl">
-				{$_('landing.ax_training.title')}
-			</h2>
-			<p class="mt-5 text-base leading-relaxed text-muted-foreground md:mt-6 md:text-lg">
-				{$_('landing.ax_training.intro')}
+			<p class="mt-5 text-xl font-medium md:text-2xl" style="color: rgba(41,40,39,0.45);">
+				{$_('landing.transformation.subline')}
 			</p>
 
-			<div class="mt-10 space-y-4 md:mt-12">
-				{#each axLevelKeys as levelKey, i}
-					<div class="relative rounded-xl border border-border bg-background p-6 md:p-7">
-						<div class="mb-4 flex items-center gap-3">
-							<div
-								class="flex h-8 w-8 flex-shrink-0 items-center justify-center rounded-full bg-primary text-xs font-bold text-primary-foreground"
-							>
-								{i + 1}
-							</div>
-							<span class="text-xs font-bold uppercase tracking-[0.15em] text-primary">
-								{$_(`landing.ax_training.levels.${levelKey}.level`)}
-							</span>
-							<span
-								class="ml-auto rounded-full border border-border px-3 py-0.5 text-xs text-muted-foreground"
-							>
-								{$_(`landing.ax_training.levels.${levelKey}.duration`)}
-							</span>
-						</div>
-						<h3 class="mb-2 text-base font-semibold md:text-lg">
-							{$_(`landing.ax_training.levels.${levelKey}.title`)}
-						</h3>
-						<p class="text-sm leading-relaxed text-muted-foreground md:text-[15px]">
-							{$_(`landing.ax_training.levels.${levelKey}.description`)}
+			<!-- Column headers -->
+			<div class="mt-16 grid grid-cols-[1fr_32px_1fr] md:mt-20">
+				<p
+					class="text-[11px] font-bold uppercase tracking-[0.18em]"
+					style="color: rgba(41,40,39,0.30);"
+				>
+					{$_('landing.transformation.beforeLabel')}
+				</p>
+				<div></div>
+				<p class="text-[11px] font-bold uppercase tracking-[0.18em]" style="color: #1B1938;">
+					{$_('landing.transformation.afterLabel')}
+				</p>
+			</div>
+
+			<!-- Transformation rows -->
+			<div class="mt-4 border-t" style="border-color: #E8E4DD;">
+				{#each $_('landing.transformation.rows') as row}
+					<div
+						class="grid grid-cols-[1fr_32px_1fr] items-center border-b py-6 md:py-7"
+						style="border-color: #E8E4DD;"
+					>
+						<p class="text-base leading-snug md:text-lg" style="color: rgba(41,40,39,0.28);">
+							{row.before}
+						</p>
+						<span class="text-center text-sm" style="color: rgba(41,40,39,0.18);">→</span>
+						<p class="text-base font-semibold leading-snug md:text-lg" style="color: #292827;">
+							{row.after}
 						</p>
 					</div>
 				{/each}
 			</div>
 
-			<p class="mt-6 text-sm text-muted-foreground md:mt-8">
-				{$_('landing.ax_training.note')}
-			</p>
-
-			<div class="mt-8 md:mt-10">
-				<Button
-					size="lg"
-					variant="outline"
-					class="group text-sm"
-					onclick={() => {
-						reservationType = 'diagnosis';
-						reservationOpen = true;
-					}}
+			<!-- Closing statement -->
+			<div class="mt-14 md:mt-16">
+				<p
+					class="text-3xl font-bold tracking-tight md:text-4xl lg:text-[44px]"
+					style="color: #292827;"
 				>
-					{$_('landing.ax_training.cta')}
-					<ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-				</Button>
+					{$_('landing.transformation.closing')}
+				</p>
+				<p class="mt-4 text-lg md:text-xl" style="color: rgba(41,40,39,0.50);">
+					{$_('landing.transformation.closingSub')}
+				</p>
 			</div>
 		</div>
 	</section>
 
-	<!-- ═══════════════════════════════════════════════ -->
-	<!-- 6. PRICING                                     -->
-	<!-- ═══════════════════════════════════════════════ -->
-	<section id="pricing" class="border-y border-border px-5 py-16 md:px-8 md:py-24 lg:py-32">
-		<div class="mx-auto max-w-3xl">
-			<p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-				{$_('landing.pricing.badge')}
-			</p>
-			<div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-				<h2 class="text-2xl font-bold leading-tight tracking-tight sm:text-3xl md:text-4xl">
-					{$_('landing.pricing.title')}
-				</h2>
-			</div>
-			<p class="mt-4 text-sm leading-relaxed text-muted-foreground md:text-base">
-				{$_('landing.pricing.note')}
+	<!-- ══════════════════════════════════════════════ -->
+	<!-- 5. FOR / NOT FOR — canvas-soft               -->
+	<!-- ══════════════════════════════════════════════ -->
+	<section
+		style="background-color: #FAFAF8;"
+		class="border-y border-[#E8E4DD] px-5 py-20 md:px-12 md:py-28 lg:py-36"
+	>
+		<div class="mx-auto max-w-4xl">
+			<span
+				class="mb-12 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground md:mb-14"
+			>
+				{$_('landing.forNotFor.badge')}
+			</span>
+
+			<p
+				class="text-3xl font-bold leading-[1.12] tracking-tight sm:text-4xl md:text-5xl lg:text-[52px]"
+				style="color: #292827;"
+			>
+				{$_('landing.forNotFor.headline')}
 			</p>
 
-			<!-- Diagnosis -->
-			<div class="mt-10 md:mt-12">
-				<p class="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground">
-					{$_('landing.pricing.diagnosis.label')}
-				</p>
-				<div class="rounded-xl border border-border bg-card p-6 md:p-8">
-					<div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
-						<div>
-							<div class="flex items-baseline gap-2">
-								<span class="text-4xl font-bold tracking-tight"
-									>€{$_('landing.pricing.diagnosis.price')}</span
-								>
-								<span class="text-base text-muted-foreground"
-									>{$_('landing.pricing.diagnosis.currency')}</span
-								>
-							</div>
-							<p class="mt-1 text-sm text-muted-foreground">
-								{$_('landing.pricing.diagnosis.format')}
-							</p>
-							<p class="mt-3 text-xs text-foreground/60">
-								{$_('landing.pricing.diagnosis.credit')}
-							</p>
-						</div>
-						<Button
-							size="lg"
-							class="group shrink-0 text-sm"
-							onclick={() => {
-								reservationType = 'diagnosis';
-								reservationOpen = true;
-							}}
-						>
-							{$_('landing.pricing.diagnosis.cta')}
-							<ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-						</Button>
-					</div>
-				</div>
-			</div>
-
-			<!-- AX Training -->
-			<div class="mt-8 md:mt-10">
-				<div class="mb-3 flex items-center justify-between">
-					<p class="text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground">
-						{$_('landing.pricing.ax.label')}
+			<!-- Two columns — NOT FOR first, FOR second -->
+			<div class="mt-16 grid gap-12 md:mt-20 md:grid-cols-2 md:gap-8">
+				<!-- NOT FOR — left -->
+				<div>
+					<p
+						class="mb-8 text-[11px] font-bold uppercase tracking-[0.18em]"
+						style="color: rgba(41,40,39,0.55);"
+					>
+						{$_('landing.forNotFor.notForLabel')}
 					</p>
-					<p class="text-xs text-muted-foreground">{$_('landing.pricing.ax.perGroup')}</p>
-				</div>
-				<div class="grid gap-4 sm:grid-cols-3">
-					{#each axLevelKeys as levelKey, i}
-						<div
-							class="rounded-xl border border-border bg-card p-5 {i === 2
-								? 'border-primary/30 bg-primary/5'
-								: ''}"
-						>
-							<p class="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-primary">
-								{$_(`landing.pricing.ax.levels.${levelKey}.label`)}
-							</p>
-							<p class="mb-2 text-base font-semibold">
-								{$_(`landing.pricing.ax.levels.${levelKey}.title`)}
-							</p>
-							<div class="flex items-baseline gap-1">
-								<span class="text-2xl font-bold tracking-tight"
-									>€{$_(`landing.pricing.ax.levels.${levelKey}.price`)}</span
+					<div class="space-y-6">
+						{#each $_('landing.forNotFor.notForItems') as item}
+							<div class="flex items-start gap-4">
+								<div
+									class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-bold"
+									style="background: rgba(41,40,39,0.12); color: rgba(41,40,39,0.60);"
 								>
-							</div>
-							<p class="mt-2 text-xs leading-relaxed text-muted-foreground">
-								{$_(`landing.pricing.ax.levels.${levelKey}.format`)}
-							</p>
-						</div>
-					{/each}
-				</div>
-				<div class="mt-4 flex justify-end">
-					<button
-						class="text-sm font-medium text-primary underline-offset-4 hover:underline"
-						onclick={() => {
-							reservationType = 'ax_l1';
-							reservationOpen = true;
-						}}
-					>
-						{$_('landing.pricing.ax.cta')} →
-					</button>
-				</div>
-			</div>
-
-			<!-- Custom Software -->
-			<div class="mt-8 md:mt-10">
-				<p class="mb-3 text-xs font-bold uppercase tracking-[0.15em] text-muted-foreground">
-					{$_('landing.pricing.custom.label')}
-				</p>
-				<div class="rounded-xl border border-border bg-muted/30 p-6 md:p-8">
-					<div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-						<div>
-							<h3 class="text-lg font-semibold">{$_('landing.pricing.custom.title')}</h3>
-							<p class="mt-1 text-sm leading-relaxed text-muted-foreground">
-								{$_('landing.pricing.custom.description')}
-							</p>
-						</div>
-						<Button
-							variant="outline"
-							size="lg"
-							class="group shrink-0 text-sm"
-							onclick={() => {
-								reservationType = 'custom';
-								reservationOpen = true;
-							}}
-						>
-							{$_('landing.pricing.custom.cta')}
-							<ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-						</Button>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- ═══════════════════════════════════════════════ -->
-	<!-- 7. PORTFOLIO                                   -->
-	<!-- ═══════════════════════════════════════════════ -->
-	<section id="portfolio" class="py-16 md:py-24 lg:py-32">
-		<div class="px-5 md:px-8">
-			<div class="mx-auto max-w-3xl">
-				<p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-					{$_('portfolio.badge')}
-				</p>
-				<h2 class="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
-					{$_('portfolio.title')}
-				</h2>
-			</div>
-		</div>
-
-		<!-- svelte-ignore a11y_no_static_element_interactions -->
-		<div
-			class="mt-10 md:mt-14"
-			onmouseenter={() => (isPaused = true)}
-			onmouseleave={() => (isPaused = false)}
-		>
-			<!-- Mobile: swipeable cards -->
-			<div class="px-5 md:hidden">
-				<div class="overflow-hidden">
-					<div
-						class="flex transition-transform duration-500 ease-in-out"
-						style="transform: translateX(-{currentIndex * 100}%)"
-					>
-						{#each useCaseKeys as caseKey}
-							<div class="w-full flex-shrink-0 pr-4">
-								<div class="rounded-xl border border-border bg-card p-5">
-									<div class="mb-3 flex items-start justify-between">
-										<Badge variant="outline" class="text-[11px]">
-											{$_(`portfolio.cases.${caseKey}.industry`)}
-										</Badge>
-										<span class="text-2xl">{caseEmojis[caseKey]}</span>
-									</div>
-									<h3 class="mb-2 text-base font-bold">{$_(`portfolio.cases.${caseKey}.title`)}</h3>
-									<p class="mb-3 text-xs text-muted-foreground">
-										{$_(`portfolio.cases.${caseKey}.problem`)}
-									</p>
-									<div class="border-t border-border pt-3">
-										<ul class="space-y-1.5">
-											{#each $_(`portfolio.cases.${caseKey}.results`).slice(0, 2) as result}
-												<li class="flex items-start gap-2 text-xs">
-													<CheckCircle class="mt-0.5 h-3 w-3 flex-shrink-0 text-primary" />
-													<span class="text-foreground/70">{result}</span>
-												</li>
-											{/each}
-										</ul>
-									</div>
+									✕
 								</div>
+								<p class="text-lg leading-snug md:text-xl" style="color: rgba(41,40,39,0.65);">
+									{item}
+								</p>
 							</div>
 						{/each}
 					</div>
 				</div>
-				<div class="mt-5 flex items-center justify-center gap-4">
-					<Button
-						variant="outline"
-						size="icon"
-						class="h-8 w-8 rounded-full"
-						onclick={() =>
-							goToSlide(currentIndex === 0 ? useCaseKeys.length - 1 : currentIndex - 1)}
-					>
-						<ChevronLeft class="h-4 w-4" />
-					</Button>
-					<span class="text-xs tabular-nums text-muted-foreground"
-						>{currentIndex + 1} / {useCaseKeys.length}</span
-					>
-					<Button
-						variant="outline"
-						size="icon"
-						class="h-8 w-8 rounded-full"
-						onclick={() => goToSlide((currentIndex + 1) % useCaseKeys.length)}
-					>
-						<ChevronRight class="h-4 w-4" />
-					</Button>
-				</div>
-			</div>
 
-			<!-- Desktop: 3-card carousel -->
-			<div class="hidden md:block">
-				<div class="mx-auto overflow-hidden" style="width: 1272px;">
-					<div
-						class="flex gap-2 transition-transform duration-500 ease-in-out"
-						style="transform: translateX(-{currentIndex * 388}px)"
-					>
-						{#each [...useCaseKeys, ...useCaseKeys.slice(0, 3)] as caseKey}
-							<div class="flex-shrink-0" style="width: 380px;">
-								<div class="h-full rounded-xl border border-border bg-card p-6">
-									<div class="mb-4 flex items-start justify-between">
-										<Badge variant="outline" class="text-xs">
-											{$_(`portfolio.cases.${caseKey}.industry`)}
-										</Badge>
-										<span class="text-3xl">{caseEmojis[caseKey]}</span>
-									</div>
-									<h3 class="mb-2 text-lg font-bold">{$_(`portfolio.cases.${caseKey}.title`)}</h3>
-									<p class="mb-3 text-sm text-muted-foreground">
-										{$_(`portfolio.cases.${caseKey}.problem`)}
-									</p>
-									<div class="border-t border-border pt-4">
-										<ul class="space-y-2">
-											{#each $_(`portfolio.cases.${caseKey}.results`).slice(0, 3) as result}
-												<li class="flex items-start gap-2 text-sm">
-													<CheckCircle class="mt-0.5 h-3.5 w-3.5 flex-shrink-0 text-primary" />
-													<span class="text-foreground/70">{result}</span>
-												</li>
-											{/each}
-										</ul>
-									</div>
-								</div>
-							</div>
-						{/each}
-					</div>
-				</div>
-				<div class="mt-8 flex items-center justify-center gap-4">
-					<Button
-						variant="outline"
-						size="icon"
-						onclick={() =>
-							goToSlide(currentIndex === 0 ? useCaseKeys.length - 1 : currentIndex - 1)}
-						class="rounded-full"
-					>
-						<ChevronLeft class="h-5 w-5" />
-					</Button>
-					<div class="flex gap-1.5">
-						{#each useCaseKeys as _, index}
-							<button
-								class="h-1.5 rounded-full transition-all duration-300 {currentIndex === index
-									? 'w-6 bg-primary'
-									: 'w-1.5 bg-primary/20 hover:bg-primary/40'}"
-								onclick={() => goToSlide(index)}
-								aria-label="Go to slide {index + 1}"
-							></button>
-						{/each}
-					</div>
-					<Button
-						variant="outline"
-						size="icon"
-						onclick={() => goToSlide((currentIndex + 1) % useCaseKeys.length)}
-						class="rounded-full"
-					>
-						<ChevronRight class="h-5 w-5" />
-					</Button>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- ═══════════════════════════════════════════════ -->
-	<!-- 8. TESTIMONIALS                                -->
-	<!-- ═══════════════════════════════════════════════ -->
-	<section id="testimonials" class="border-y border-border py-16 md:py-24 lg:py-32">
-		<div class="px-5 md:px-8">
-			<div class="mx-auto max-w-3xl">
-				<p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-					{$_('testimonials.badge')}
-				</p>
-				<h2 class="text-2xl font-bold tracking-tight sm:text-3xl md:text-4xl">
-					{$_('testimonials.title')}
-				</h2>
-			</div>
-		</div>
-
-		<!-- svelte-ignore a11y_no_static_element_interactions -->
-		<div
-			class="mt-10 md:mt-14"
-			onmouseenter={() => (tPaused = true)}
-			onmouseleave={() => (tPaused = false)}
-		>
-			<!-- Mobile -->
-			<div class="px-5 md:hidden">
-				<div class="overflow-hidden">
-					<div
-						class="flex transition-transform duration-500 ease-in-out"
-						style="transform: translateX(-{tIndex * 100}%)"
-					>
-						{#each testimonialKeys as clientKey}
-							<div class="w-full flex-shrink-0 pr-4">
-								<div class="rounded-xl border border-border/60 bg-card p-5">
-									<span class="select-none text-3xl leading-none text-primary/15" aria-hidden="true"
-										>"</span
-									>
-									<blockquote class="mt-1 text-[15px] leading-relaxed text-foreground/80">
-										{$_(`testimonials.clients.${clientKey}.quote`)}
-									</blockquote>
-									<div class="mt-4 flex items-center gap-3 border-t border-border/30 pt-4">
-										<div
-											class="flex h-8 w-8 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary"
-										>
-											{$_(`testimonials.clients.${clientKey}.author`).charAt(0)}
-										</div>
-										<div>
-											<p class="text-sm font-semibold">
-												{$_(`testimonials.clients.${clientKey}.author`)}
-											</p>
-											<p class="text-xs text-muted-foreground">
-												{$_(`testimonials.clients.${clientKey}.role`)}, {$_(
-													`testimonials.clients.${clientKey}.company`
-												)}
-											</p>
-										</div>
-									</div>
-								</div>
-							</div>
-						{/each}
-					</div>
-				</div>
-				<div class="mt-5 flex items-center justify-center gap-4">
-					<Button
-						variant="outline"
-						size="icon"
-						class="h-8 w-8 rounded-full"
-						onclick={() => goToTestimonial(tIndex === 0 ? testimonialKeys.length - 1 : tIndex - 1)}
-					>
-						<ChevronLeft class="h-4 w-4" />
-					</Button>
-					<span class="text-xs tabular-nums text-muted-foreground"
-						>{tIndex + 1} / {testimonialKeys.length}</span
-					>
-					<Button
-						variant="outline"
-						size="icon"
-						class="h-8 w-8 rounded-full"
-						onclick={() => goToTestimonial((tIndex + 1) % testimonialKeys.length)}
-					>
-						<ChevronRight class="h-4 w-4" />
-					</Button>
-				</div>
-			</div>
-
-			<!-- Desktop -->
-			<div class="hidden md:block">
-				<div class="mx-auto overflow-hidden" style="width: 1240px;">
-					<div
-						class="flex gap-5 transition-transform duration-500 ease-in-out"
-						style="transform: translateX(-{tIndex * 418}px)"
-					>
-						{#each [...testimonialKeys, ...testimonialKeys.slice(0, 3)] as clientKey}
-							<div
-								class="flex flex-shrink-0 flex-col rounded-xl border border-border/60 bg-card p-6 transition-colors hover:border-primary/20"
-								style="width: 398px;"
-							>
-								<span class="select-none text-4xl leading-none text-primary/15" aria-hidden="true"
-									>"</span
+				<!-- FOR — right -->
+				<div>
+					<p class="mb-8 text-[11px] font-bold uppercase tracking-[0.18em]" style="color: #1B1938;">
+						{$_('landing.forNotFor.forLabel')}
+					</p>
+					<div class="space-y-6">
+						{#each $_('landing.forNotFor.forItems') as item}
+							<div class="flex items-start gap-4">
+								<div
+									class="mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-full text-[11px] font-bold text-white"
+									style="background-color: #1B1938;"
 								>
-								<blockquote class="mb-6 mt-1 flex-1 text-[15px] leading-relaxed text-foreground/80">
-									{$_(`testimonials.clients.${clientKey}.quote`)}
-								</blockquote>
-								<div class="flex items-center gap-3 border-t border-border/30 pt-4">
-									<div
-										class="flex h-9 w-9 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary"
-									>
-										{$_(`testimonials.clients.${clientKey}.author`).charAt(0)}
-									</div>
-									<div>
-										<p class="text-sm font-semibold">
-											{$_(`testimonials.clients.${clientKey}.author`)}
-										</p>
-										<p class="text-xs text-muted-foreground">
-											{$_(`testimonials.clients.${clientKey}.role`)}, {$_(
-												`testimonials.clients.${clientKey}.company`
-											)}
-										</p>
-									</div>
+									✓
 								</div>
+								<p class="text-lg font-medium leading-snug md:text-xl" style="color: #292827;">
+									{item}
+								</p>
 							</div>
 						{/each}
 					</div>
 				</div>
-				<div class="mt-8 flex items-center justify-center gap-4">
-					<Button
-						variant="outline"
-						size="icon"
-						onclick={() => goToTestimonial(tIndex === 0 ? testimonialKeys.length - 1 : tIndex - 1)}
-						class="rounded-full"
-					>
-						<ChevronLeft class="h-5 w-5" />
-					</Button>
-					<div class="flex gap-1.5">
-						{#each Array(Math.ceil(testimonialKeys.length / 3)) as _, index}
-							<button
-								class="h-1.5 rounded-full transition-all duration-300 {Math.floor(tIndex / 3) ===
-								index
-									? 'w-6 bg-primary'
-									: 'w-1.5 bg-primary/20 hover:bg-primary/40'}"
-								onclick={() => goToTestimonial(index * 3)}
-								aria-label="Go to testimonial page {index + 1}"
-							></button>
-						{/each}
-					</div>
-					<Button
-						variant="outline"
-						size="icon"
-						onclick={() => goToTestimonial((tIndex + 1) % testimonialKeys.length)}
-						class="rounded-full"
-					>
-						<ChevronRight class="h-5 w-5" />
-					</Button>
-				</div>
+			</div>
+
+			<!-- Honest closer -->
+			<div class="mt-14 rounded-2xl border border-[#E8E4DD] bg-white p-8 md:mt-16 md:p-10">
+				<p class="text-xl font-semibold md:text-2xl" style="color: #292827;">
+					{$_('landing.forNotFor.unsureLabel')}
+				</p>
+				<p class="mt-3 text-base leading-relaxed md:text-lg" style="color: rgba(41,40,39,0.55);">
+					{$_('landing.forNotFor.unsureSub')}
+				</p>
 			</div>
 		</div>
 	</section>
 
-	<!-- ═══════════════════════════════════════════════ -->
-	<!-- 8. FREE DX/AX DIAGNOSIS CTA                   -->
-	<!-- ═══════════════════════════════════════════════ -->
-	<section id="workshop" class="px-5 py-16 md:px-8 md:py-24 lg:py-32">
+	<!-- ══════════════════════════════════════════════ -->
+	<!-- 6. AX LEVELS + PRICING — white               -->
+	<!-- ══════════════════════════════════════════════ -->
+	<section id="training" class="bg-white px-5 py-16 md:px-8 md:py-24 lg:py-28">
 		<div class="mx-auto max-w-3xl">
-			<p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-				{$_('workshop.badge')}
-			</p>
-			<h2 class="text-2xl font-bold leading-tight tracking-tight sm:text-3xl md:text-4xl">
-				{$_('workshop.title')}
+			<span
+				class="mb-4 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
+			>
+				{$_('landing.ax_training.badge')}
+			</span>
+			<h2
+				class="text-3xl font-bold leading-[1.1] tracking-tight sm:text-4xl md:text-5xl lg:text-[52px]"
+				style="color: #292827;"
+			>
+				{$_('landing.ax_training.title')}
 			</h2>
-			<p class="mt-5 text-base leading-relaxed text-muted-foreground md:mt-6 md:text-lg">
-				{$_('workshop.description')}
+			<p class="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground md:mt-8 md:text-xl">
+				{$_('landing.ax_training.intro')}
 			</p>
 
-			<p class="mt-6 text-sm font-medium text-foreground/80">
-				{$_('workshop.how')}
-			</p>
-
-			<p class="mt-4 text-sm leading-relaxed text-muted-foreground">
-				{$_('workshop.focus')}
-			</p>
-
-			<div class="mt-8 space-y-2.5 border-l-2 border-border pl-5 md:mt-10">
-				{#each deliverableKeys as key}
-					<p class="text-sm font-medium md:text-base">
-						{$_(`workshop.deliverables.${key}`)}
-					</p>
+			<div class="mt-10 space-y-4 md:mt-12">
+				{#each axLevelKeys as levelKey, i}
+					<div
+						class="rounded-xl border p-6 md:p-8 {i === 2
+							? 'border-[#1B1938]/20 bg-[#1B1938]/[0.03]'
+							: 'border-[#E8E4DD] bg-white'}"
+					>
+						<div class="flex flex-col gap-5 sm:flex-row sm:items-start sm:justify-between">
+							<div class="flex-1">
+								<div class="mb-3 flex flex-wrap items-center gap-2">
+									<span
+										class="flex h-6 w-6 items-center justify-center rounded-full text-[11px] font-bold text-white"
+										style="background-color: #1B1938;">{i + 1}</span
+									>
+									<span
+										class="text-xs font-bold uppercase tracking-[0.15em]"
+										style="color: #1B1938;"
+									>
+										{$_(`landing.ax_training.levels.${levelKey}.level`)}
+									</span>
+									<span
+										class="rounded-full border border-[#E8E4DD] px-3 py-0.5 text-xs text-muted-foreground"
+									>
+										{$_(`landing.ax_training.levels.${levelKey}.duration`)}
+									</span>
+								</div>
+								<h3 class="mb-2 text-base font-semibold md:text-lg" style="color: #292827;">
+									{$_(`landing.ax_training.levels.${levelKey}.title`)}
+								</h3>
+								<p class="text-sm leading-relaxed text-muted-foreground">
+									{$_(`landing.ax_training.levels.${levelKey}.description`)}
+								</p>
+							</div>
+							<div class="flex flex-row items-center gap-4 sm:flex-col sm:items-end sm:gap-2">
+								<span class="text-2xl font-bold tracking-tight" style="color: #292827;">
+									€{$_(`landing.pricing.ax.levels.${levelKey}.price`)}
+								</span>
+								<button
+									onclick={() => book(axTypes[i])}
+									class="rounded-lg px-4 py-2 text-sm font-bold text-white transition-opacity hover:opacity-90 active:translate-y-px"
+									style="background-color: #1B1938;"
+								>
+									Book L{i + 1}
+								</button>
+							</div>
+						</div>
+					</div>
 				{/each}
 			</div>
 
-			<p class="mt-6 text-sm leading-relaxed text-foreground/70">
-				{$_('workshop.ownership')}
+			<p
+				class="mt-6 rounded-xl border border-[#E8E4DD] px-5 py-4 text-sm leading-relaxed text-muted-foreground"
+				style="background-color: #FAFAF8;"
+			>
+				{$_('landing.pricing.note')}
 			</p>
+			<p class="mt-4 text-xs text-muted-foreground">
+				{$_('landing.ax_training.note')}
+			</p>
+		</div>
+	</section>
 
-			<DxReportSample />
-
-			<div class="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-				<Button
-					size="lg"
-					class="group text-sm"
-					onclick={() => {
-						reservationType = 'diagnosis';
-						reservationOpen = true;
-					}}
-				>
-					{$_('workshop.cta')}
-					<ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-				</Button>
+	<!-- ══════════════════════════════════════════════ -->
+	<!-- 5. WORKSHOP RESULTS — white                   -->
+	<!-- ══════════════════════════════════════════════ -->
+	<section class="bg-white px-5 py-20 md:px-8 md:py-28 lg:py-36">
+		<div class="mx-auto max-w-4xl">
+			<span
+				class="mb-6 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
+			>
+				{$_('testimonials.badge')}
+			</span>
+			<p
+				class="mb-16 text-3xl font-bold leading-[1.12] tracking-tight sm:text-4xl md:text-5xl lg:text-[52px]"
+				style="color: #292827;"
+			>
+				{$_('testimonials.title')}
+			</p>
+			<div class="grid gap-6 md:grid-cols-3">
+				{#each staticTestimonials as clientKey}
+					<div
+						class="flex flex-col rounded-2xl border border-[#E8E4DD] p-7"
+						style="background-color: #FAFAF8;"
+					>
+						<!-- Metric delta -->
+						<div class="mb-5 border-b border-[#E8E4DD] pb-5">
+							<p class="text-2xl font-bold leading-none tracking-tight" style="color: #1B1938;">
+								{$_(`testimonials.clients.${clientKey}.metric`)}
+							</p>
+							<p
+								class="mt-1.5 text-[11px] font-semibold uppercase tracking-[0.15em]"
+								style="color: rgba(41,40,39,0.45);"
+							>
+								{$_(`testimonials.clients.${clientKey}.metricLabel`)}
+							</p>
+						</div>
+						<!-- Quote -->
+						<blockquote
+							class="flex-1 text-base leading-relaxed"
+							style="color: rgba(41,40,39,0.75);"
+						>
+							"{$_(`testimonials.clients.${clientKey}.quote`)}"
+						</blockquote>
+						<!-- Author -->
+						<div class="mt-6">
+							<p class="text-sm font-semibold" style="color: #292827;">
+								{$_(`testimonials.clients.${clientKey}.author`)}
+							</p>
+							<p class="text-xs" style="color: rgba(41,40,39,0.45);">
+								{$_(`testimonials.clients.${clientKey}.role`)} · {$_(
+									`testimonials.clients.${clientKey}.company`
+								)}
+							</p>
+						</div>
+					</div>
+				{/each}
 			</div>
-			<p class="mt-3 text-sm text-muted-foreground">
-				{$_('workshop.trust')}
+		</div>
+	</section>
+
+	<!-- ══════════════════════════════════════════════ -->
+	<!-- 6. FAQ — white                                -->
+	<!-- ══════════════════════════════════════════════ -->
+	<section class="bg-white px-5 py-16 md:px-8 md:py-24 lg:py-28">
+		<div class="mx-auto max-w-3xl">
+			<span
+				class="mb-4 block text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground"
+			>
+				{$_('landing.faq.badge')}
+			</span>
+			<h2
+				class="mb-10 text-3xl font-bold leading-[1.1] tracking-tight sm:text-4xl md:mb-14 md:text-5xl lg:text-[52px]"
+				style="color: #292827;"
+			>
+				{$_('landing.faq.title')}
+			</h2>
+			<div class="space-y-0">
+				{#each [0, 1, 2, 3] as i}
+					<div class="border-b border-[#E8E4DD] py-8 first:pt-0 last:border-0 md:py-10">
+						<h3 class="mb-4 text-lg font-semibold leading-snug md:text-xl" style="color: #292827;">
+							{$_(`landing.faq.items.${i}.q`)}
+						</h3>
+						<p class="text-base leading-relaxed md:text-lg" style="color: rgba(41,40,39,0.65);">
+							{$_(`landing.faq.items.${i}.a`)}
+						</p>
+					</div>
+				{/each}
+			</div>
+		</div>
+	</section>
+
+	<!-- ══════════════════════════════════════════════ -->
+	<!-- 7. CLOSING BAND — deep teal                   -->
+	<!-- ══════════════════════════════════════════════ -->
+	<section
+		style="background-color: #0E3030;"
+		class="px-5 py-24 text-center md:px-8 md:py-32 lg:py-40"
+	>
+		<div class="mx-auto max-w-2xl">
+			<h2
+				class="text-4xl font-bold tracking-tight text-white md:text-5xl lg:text-6xl"
+				style="line-height: 0.96;"
+			>
+				{$_('landing.closing.title')}
+			</h2>
+			<p
+				class="mx-auto mt-6 max-w-lg text-base leading-relaxed md:mt-8 md:text-lg"
+				style="color: rgba(255,255,255,0.72);"
+			>
+				{$_('landing.closing.lead')}
 			</p>
+			<div class="mt-10 md:mt-12">
+				<button
+					onclick={() => book('ax_l1')}
+					class="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold transition-opacity hover:opacity-90 active:translate-y-px"
+					style="color: #0E3030;"
+				>
+					{$_('landing.closing.cta')}
+					<ArrowRight class="h-4 w-4" />
+				</button>
+			</div>
 		</div>
 	</section>
 </main>
