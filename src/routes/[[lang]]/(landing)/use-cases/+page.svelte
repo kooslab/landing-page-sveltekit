@@ -18,27 +18,30 @@
 			industry: 'Safety Compliance',
 			client: 'SafetyOn Solutions',
 			label: 'Software Requirements',
-			pain: 'Had deep domain expertise in safety solutions but no idea how to turn it into a software product. Didn't know what to ask for or how to brief developers.',
-			did: 'Ran requirements workshops, wrote detailed user stories, created wireframes and process maps. Discovered features and pages the client hadn't even considered.',
-			result: '<strong>Result:</strong> Client got a clear development roadmap and requirements document. Successfully outsourced development to an agency with zero confusion.',
+			pain: "Had deep domain expertise in safety solutions but no idea how to turn it into a software product. Didn't know what to ask for or how to brief developers.",
+			did: "Ran requirements workshops, wrote detailed user stories, created wireframes and process maps. Discovered features and pages the client hadn't even considered.",
+			result:
+				'<strong>Result:</strong> Client got a clear development roadmap and requirements document. Successfully outsourced development to an agency with zero confusion.',
 			features: ['Requirements Workshop', 'User Stories', 'Wireframes', 'Process Mapping']
 		},
 		onui: {
 			industry: 'Customer Relationship Management',
 			client: 'Onui',
 			label: 'CRM Software Requirements',
-			pain: 'Needed a custom CRM but couldn't articulate what they needed. Previous attempts with dev agencies failed because requirements were unclear.',
+			pain: "Needed a custom CRM but couldn't articulate what they needed. Previous attempts with dev agencies failed because requirements were unclear.",
 			did: 'Consulted on the full CRM requirements — workflows, data models, user stories. Created a comprehensive requirements document.',
-			result: '<strong>Result:</strong> Successfully outsourced to a dev agency with a clear brief. No back-and-forth, no scope creep.',
+			result:
+				'<strong>Result:</strong> Successfully outsourced to a dev agency with a clear brief. No back-and-forth, no scope creep.',
 			features: ['Requirements Doc', 'Data Modeling', 'Workflow Design', 'User Stories']
 		},
 		mindlogic: {
 			industry: 'AI / EdTech',
 			client: 'MindLogic',
 			label: 'SSO Integration Requirements',
-			pain: 'Their AI product (FactChat, similar to ChatGPT) needed to integrate with each university's own authentication system (SSO). Every university had a different login system.',
+			pain: "Their AI product (FactChat, similar to ChatGPT) needed to integrate with each university's own authentication system (SSO). Every university had a different login system.",
 			did: 'Created an improved client requirements questionnaire that standardized the information gathering across universities.',
-			result: '<strong>Result:</strong> Made the SSO integration project <strong>50% faster</strong> by eliminating back-and-forth communication. One questionnaire, clear answers, straight to implementation.',
+			result:
+				'<strong>Result:</strong> Made the SSO integration project <strong>50% faster</strong> by eliminating back-and-forth communication. One questionnaire, clear answers, straight to implementation.',
 			features: ['SSO Integration', 'Requirements Template', 'Process Standardization']
 		},
 		finnest: {
@@ -47,7 +50,8 @@
 			label: 'Finance Automation',
 			pain: '100% of financial data lived in Excel spreadsheets with complicated formulas. People edited and broke formulas. Hard to operate, hard to scale. Getting data from banks and card companies was manual.',
 			did: 'Built automated data extraction/scraping that runs every 24 hours, pulling data from banks and card systems. Integrated the extracted data into live operational spreadsheets with their existing complex formulas. Used n8n for workflow automation.',
-			result: '<strong>Result:</strong> Eliminated daily manual data entry. Financial operations run automatically with reliable data.',
+			result:
+				'<strong>Result:</strong> Eliminated daily manual data entry. Financial operations run automatically with reliable data.',
 			features: ['Web Scraping', 'Data Extraction', 'n8n Automation', 'Spreadsheet Integration']
 		},
 		workspace: {
@@ -56,7 +60,8 @@
 			label: 'Shared Office Operations',
 			pain: 'Shared office in Seoul managed all contracts and payments the traditional way — manual spreadsheet work for everything.',
 			did: 'Built custom subscription payment and contract management software with e-signature for online contract signing.',
-			result: '<strong>Result:</strong> <strong>90% of manual operations eliminated.</strong> Contracts, billing, and payments now automated.',
+			result:
+				'<strong>Result:</strong> <strong>90% of manual operations eliminated.</strong> Contracts, billing, and payments now automated.',
 			features: ['Subscription Payments', 'E-Signature', 'Contract Management']
 		},
 		grocery: {
@@ -65,7 +70,8 @@
 			label: 'Delivery Kiosk',
 			pain: 'At a major grocery department in Seoul, customers wrote their delivery addresses by hand. Slow process (60–100 seconds per order), required a dedicated staff member.',
 			did: 'Built a touch-based kiosk connected to a logistics API with a favorite address feature. Customers enter their mobile number, load their saved address, and complete the order.',
-			result: '<strong>Result:</strong> Order time dropped from 60–100 seconds to <strong>10 seconds</strong>. Eliminated one full-time hire — customers now self-serve.',
+			result:
+				'<strong>Result:</strong> Order time dropped from 60–100 seconds to <strong>10 seconds</strong>. Eliminated one full-time hire — customers now self-serve.',
 			features: ['Touch Kiosk UI', 'Logistics API', 'Mobile Lookup', 'Self-Service']
 		},
 		tour: {
@@ -74,8 +80,14 @@
 			label: 'Tour Booking Platform',
 			pain: 'Tour guides in Berlin and across Europe managed private tours completely by hand — bookings, payments, communication, everything manual.',
 			did: 'Built a platform where tour guides upload their tour products online. Travelers can browse, pay, and reserve online, with automatic messenger notifications.',
-			result: '<strong>Result:</strong> Tour guides went from manual operations to an automated booking and payment system.',
-			features: ['Online Booking', 'Payment Integration', 'Messenger Notifications', 'Guide Marketplace']
+			result:
+				'<strong>Result:</strong> Tour guides went from manual operations to an automated booking and payment system.',
+			features: [
+				'Online Booking',
+				'Payment Integration',
+				'Messenger Notifications',
+				'Guide Marketplace'
+			]
 		},
 		parking: {
 			industry: 'Property Management',
@@ -83,7 +95,8 @@
 			label: 'LPR Integration',
 			pain: 'Client wanted a CCTV-based AI parking management system but needed License Plate Recognition integrated into their existing cloud-based parking software.',
 			did: 'Integrated a License Plate Recognition (LPR) module into their cloud-based parking management software.',
-			result: '<strong>Result:</strong> Automated vehicle identification and parking management through CCTV.',
+			result:
+				'<strong>Result:</strong> Automated vehicle identification and parking management through CCTV.',
 			features: ['License Plate Recognition', 'CCTV AI', 'Cloud Integration']
 		}
 	};
