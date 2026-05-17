@@ -19,16 +19,22 @@
 
 <div class="hidden items-center gap-6 md:ml-8 md:flex">
 	<a
+		href="{langPrefix}/about"
+		class="text-sm font-medium transition-colors duration-300 {linkClass}"
+	>
+		{$_('nav.about')}
+	</a>
+	<a
 		href="{langPrefix}/workshops"
 		class="text-sm font-medium transition-colors duration-300 {linkClass}"
 	>
 		{$_('nav.workshops')}
 	</a>
 	<a
-		href="{langPrefix}/about"
+		href="{langPrefix}/use-cases"
 		class="text-sm font-medium transition-colors duration-300 {linkClass}"
 	>
-		{$_('nav.about')}
+		{$_('nav.useCases')}
 	</a>
 	<a href="/blog" class="text-sm font-medium transition-colors duration-300 {linkClass}">
 		{$_('nav.blog')}

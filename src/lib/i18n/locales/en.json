@@ -216,7 +216,7 @@
 		},
 		"employeeTransform": {
 			"badge": "What actually changes",
-			"headline": "Same person. Completely different role.",
+			"headline": "Work the same hours. Multiply the output.",
 			"beforeLabel": "Before the workshop",
 			"beforeItems": [
 				"Executes everything manually",
@@ -232,7 +232,7 @@
 			"imageAlt": "Employee before and after AI training — from overwhelmed executor to strategic multiplier"
 		},
 		"forNotFor": {
-			"badge": "Honest answer",
+			"badge": "Before you book",
 			"headline": "Is this for you?",
 			"forLabel": "Yes — if you",
 			"forItems": [
@@ -1026,6 +1026,7 @@
 	},
 	"nav": {
 		"about": "About",
+		"useCases": "Use Cases",
 		"process": "Process",
 		"portfolio": "Portfolio",
 		"whoWeHelp": "Who We Help",
@@ -1038,24 +1039,24 @@
 	},
 	"profile": {
 		"seo": {
-			"title": "Ilmo Koo — What I Do",
-			"description": "Real examples of business problems I have solved. Requirements workshops, process automation, custom software. Founder of Kooslab (Seoul) and KooStory (Berlin)."
+			"title": "About — KooStory",
+			"description": "KooStory is a Berlin-based software studio. Custom tools, process automation, and internal systems."
 		},
-		"badge": "Profile",
+		"badge": "About",
 		"hero": {
-			"title": "Here's what I do — with real examples.",
-			"subtitle": "I'm Ilmo Koo, founder of <strong>Kooslab</strong> (Seoul) and <strong>KooStory</strong> (Berlin). When a partner asks \"what can you actually do?\", I'd rather show than tell."
+			"title": "Your operations shouldn't depend on who shows up today.",
+			"subtitle": "We help Berlin's small businesses replace manual, people-dependent workflows with systems that run themselves — so you can scale without hiring more people."
 		},
 		"cases": {
-			"title": "Real Problems I've Solved",
-			"intro": "Every project below started with a business problem, not a feature request. Here's what the customer was struggling with, what I did, and what changed.",
+			"title": "Real Problems We've Solved",
+			"intro": "Every project below started with a business problem, not a feature request. Here's what the customer was struggling with, what we did, and what changed.",
 			"groupA": {
-				"title": "I defined it — so someone else could build it right",
-				"intro": "Requirements consulting projects where I created the requirements document, and the client used it to successfully outsource to a dev agency."
+				"title": "We defined it — so the client could build it right",
+				"intro": "Requirements consulting projects where we created the requirements document, and the client used it to successfully outsource to a dev agency."
 			},
 			"groupB": {
-				"title": "I built it",
-				"intro": "End-to-end projects where I defined AND built the solution."
+				"title": "We built it",
+				"intro": "End-to-end projects where we defined AND built the solution."
 			},
 			"safety": {
 				"industry": "Safety Compliance",
@@ -1063,7 +1064,8 @@
 				"label": "Software Requirements",
 				"pain": "Had deep domain expertise in safety solutions but no idea how to turn it into a software product. Didn't know what to ask for or how to brief developers.",
 				"did": "Ran requirements workshops, wrote detailed user stories, created wireframes and process maps. Discovered features and pages the client hadn't even considered.",
-				"result": "<strong>Result:</strong> Client got a clear development roadmap and requirements document. Successfully outsourced development to an agency with zero confusion."
+				"result": "<strong>Result:</strong> Client got a clear development roadmap and requirements document. Successfully outsourced development to an agency with zero confusion.",
+				"features": ["Requirements Workshop", "User Stories", "Wireframes", "Process Mapping"]
 			},
 			"onui": {
 				"industry": "Customer Relationship Management",
@@ -1071,7 +1073,8 @@
 				"label": "CRM Software Requirements",
 				"pain": "Needed a custom CRM but couldn't articulate what they needed. Previous attempts with dev agencies failed because requirements were unclear.",
 				"did": "Consulted on the full CRM requirements — workflows, data models, user stories. Created a comprehensive requirements document.",
-				"result": "<strong>Result:</strong> Successfully outsourced to a dev agency with a clear brief. No back-and-forth, no scope creep."
+				"result": "<strong>Result:</strong> Successfully outsourced to a dev agency with a clear brief. No back-and-forth, no scope creep.",
+				"features": ["Requirements Doc", "Data Modeling", "Workflow Design", "User Stories"]
 			},
 			"mindlogic": {
 				"industry": "AI / EdTech",
@@ -1079,7 +1082,8 @@
 				"label": "SSO Integration Requirements",
 				"pain": "Their AI product (FactChat, similar to ChatGPT) needed to integrate with each university's own authentication system (SSO). Every university had a different login system.",
 				"did": "Created an improved client requirements questionnaire that standardized the information gathering across universities.",
-				"result": "<strong>Result:</strong> Made the SSO integration project <strong>50% faster</strong> by eliminating back-and-forth communication. One questionnaire, clear answers, straight to implementation."
+				"result": "<strong>Result:</strong> Made the SSO integration project <strong>50% faster</strong> by eliminating back-and-forth communication. One questionnaire, clear answers, straight to implementation.",
+				"features": ["SSO Integration", "Requirements Template", "Process Standardization"]
 			},
 			"finnest": {
 				"industry": "Finance Outsourcing",
@@ -1087,7 +1091,8 @@
 				"label": "Finance Automation",
 				"pain": "100% of financial data lived in Excel spreadsheets with complicated formulas. People edited and broke formulas. Hard to operate, hard to scale. Getting data from banks and card companies was manual.",
 				"did": "Built automated data extraction/scraping that runs every 24 hours, pulling data from banks and card systems. Integrated the extracted data into live operational spreadsheets with their existing complex formulas. Used n8n for workflow automation.",
-				"result": "<strong>Result:</strong> Eliminated daily manual data entry. Financial operations run automatically with reliable data."
+				"result": "<strong>Result:</strong> Eliminated daily manual data entry. Financial operations run automatically with reliable data.",
+				"features": ["Web Scraping", "Data Extraction", "n8n Automation", "Spreadsheet Integration"]
 			},
 			"workspace": {
 				"industry": "Shared Office / Co-working",
@@ -1095,7 +1100,8 @@
 				"label": "Shared Office Operations",
 				"pain": "Shared office in Seoul managed all contracts and payments the traditional way — manual spreadsheet work for everything.",
 				"did": "Built custom subscription payment and contract management software with e-signature for online contract signing.",
-				"result": "<strong>Result:</strong> <strong>90% of manual operations eliminated.</strong> Contracts, billing, and payments now automated."
+				"result": "<strong>Result:</strong> <strong>90% of manual operations eliminated.</strong> Contracts, billing, and payments now automated.",
+				"features": ["Subscription Payments", "E-Signature", "Contract Management"]
 			},
 			"grocery": {
 				"industry": "Retail / Logistics",
@@ -1103,7 +1109,8 @@
 				"label": "Delivery Kiosk",
 				"pain": "At a major grocery department in Seoul, customers wrote their delivery addresses by hand. Slow process (60–100 seconds per order), required a dedicated staff member.",
 				"did": "Built a touch-based kiosk connected to a logistics API with a favorite address feature. Customers enter their mobile number, load their saved address, and complete the order.",
-				"result": "<strong>Result:</strong> Order time dropped from 60–100 seconds to <strong>10 seconds</strong>. Eliminated one full-time hire — customers now self-serve."
+				"result": "<strong>Result:</strong> Order time dropped from 60–100 seconds to <strong>10 seconds</strong>. Eliminated one full-time hire — customers now self-serve.",
+				"features": ["Touch Kiosk UI", "Logistics API", "Mobile Lookup", "Self-Service"]
 			},
 			"tour": {
 				"industry": "Travel / Tourism",
@@ -1111,7 +1118,13 @@
 				"label": "Tour Booking Platform",
 				"pain": "Tour guides in Berlin and across Europe managed private tours completely by hand — bookings, payments, communication, everything manual.",
 				"did": "Built a platform where tour guides upload their tour products online. Travelers can browse, pay, and reserve online, with automatic messenger notifications.",
-				"result": "<strong>Result:</strong> Tour guides went from manual operations to an automated booking and payment system."
+				"result": "<strong>Result:</strong> Tour guides went from manual operations to an automated booking and payment system.",
+				"features": [
+					"Online Booking",
+					"Payment Integration",
+					"Messenger Notifications",
+					"Guide Marketplace"
+				]
 			},
 			"parking": {
 				"industry": "Property Management",
@@ -1119,7 +1132,8 @@
 				"label": "LPR Integration",
 				"pain": "Client wanted a CCTV-based AI parking management system but needed License Plate Recognition integrated into their existing cloud-based parking software.",
 				"did": "Integrated a License Plate Recognition (LPR) module into their cloud-based parking management software.",
-				"result": "<strong>Result:</strong> Automated vehicle identification and parking management through CCTV."
+				"result": "<strong>Result:</strong> Automated vehicle identification and parking management through CCTV.",
+				"features": ["License Plate Recognition", "CCTV AI", "Cloud Integration"]
 			}
 		},
 		"products": {
@@ -1195,21 +1209,29 @@
 			"p2": "<strong>Flexible and lightweight.</strong> I act as your tech team. No big agency overhead, no months of onboarding.",
 			"p3": "<strong>I'd rather build one thing you use daily than ten features that collect dust.</strong> If a feature turns out to be useless, we cut it. Your success is my metric."
 		},
+		"howWeWork": {
+			"title": "How we work",
+			"p1": "Building software is not the most important part. Discovering and defining the right problem is.",
+			"p2": "Some clients already know exactly what needs to change. Others need help seeing it first. We adapt to where you are.",
+			"p3": "Then we take one of two paths: work hands-on with your team, or build the solution ourselves.",
+			"p4": "Either way, we don't hand over and disappear. We stay until it actually works."
+		},
 		"about": {
-			"title": "About Me",
-			"p1": "Engineer by training — aerospace engineering at the University of Maryland. Requirements and specs since day one: Korean Air (flight control systems), Vector Korea (automotive embedded software). Scaled Code States to 200+ team, $27M revenue as CPO — automated everything because growth demanded it.",
-			"p2_before_link": "Built 3 own products: ",
-			"p2_between_links": " (AI questionnaire), ",
-			"p2_between_links2": " (requirements management), ",
-			"p2_after_link": " (invoicing and timesheets).",
-			"p3": "Seoul + Berlin. Korean native, English business-level, German in progress."
+			"title": "Behind the company",
+			"p1": "KooStory was founded by Ilmo Koo — aerospace engineer by training, CPO by experience, developer by practice.",
+			"growthFrom": "5",
+			"growthTo": "270",
+			"growthFromLabel": "people at founding",
+			"growthToLabel": "employees at peak",
+			"p2": "As a co-founder, he grew a company from 5 people to 270. It was operations-heavy from day one — and every scaling problem came with the same default answer: hire more people. Sometimes it worked. But often, 1+1 wasn't 2. Sometimes not even 1.5. Occasionally, adding someone made things slower.",
+			"p3": "The hard lesson: hiring without an operational foundation doesn't compound. It's like building a sand castle — each wave of growth erodes what you built before."
 		},
 		"wontDo": {
-			"title": "What I Won't Do",
-			"p1": "I politely decline building software nobody will use.",
-			"p2": "If your idea doesn't solve a real daily problem, I'll tell you honestly.",
-			"p3": "<strong>Pretty code that creates no business value is waste.</strong>",
-			"p4": "Sometimes the best advice is \"don't build that.\""
+			"title": "What we don't take on",
+			"p1": "We don't build software nobody will use.",
+			"p2": "If an idea doesn't solve a real daily problem, we'll say so honestly.",
+			"p3": "<strong>Code that creates no business value is waste.</strong>",
+			"p4": "Sometimes the right answer is: don't build it."
 		},
 		"workshops": {
 			"title": "Workshops",

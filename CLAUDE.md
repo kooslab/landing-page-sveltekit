@@ -70,6 +70,13 @@ bun run format       # Auto-format code with Prettier
 - Deployed on Vercel (see `vercel.json`)
 - Form validation uses Superforms with Zod schemas
 
+# Design principles
+
+- **Never use `text-muted-foreground` for body copy or readable content.** It is only for truly secondary metadata: timestamps, labels, badges, captions. Body text, descriptions, and section content must use `text-foreground` or at most `text-foreground/80`.
+- **Minimum font size for body text is `text-base` (16px).** Section descriptions and prose should be `text-lg` or larger. Never use `text-sm` or smaller for content the user is meant to read.
+- **High contrast is the default.** Do not gray-wash content to make it look subtle — use spacing and hierarchy instead.
+- **`text-muted-foreground` allowed only for:** section eyebrow labels (e.g. "ABOUT"), form placeholders, timestamps, secondary metadata.
+
 # programming language and framework rules
 
 - use svelte 5 syntax all the time

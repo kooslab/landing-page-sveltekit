@@ -786,34 +786,34 @@
 		}
 	},
 	"nav": {
-		"about": "Über uns",
+		"about": "Uber mich",
+		"useCases": "Fallstudien",
 		"process": "Ablauf",
 		"portfolio": "Portfolio",
-		"about": "Uber mich",
 		"workshops": "Workshops",
 		"blog": "Blog",
 		"backHome": "Zurück zur Startseite"
 	},
 	"profile": {
 		"seo": {
-			"title": "Ilmo Koo — Was ich mache",
-			"description": "Echte Beispiele geloster Geschaftsprobleme. Anforderungsworkshops, Prozessautomatisierung, individuelle Software. Grunder von Kooslab (Seoul) und KooStory (Berlin)."
+			"title": "Uber uns — KooStory",
+			"description": "KooStory ist ein Software-Studio in Berlin. Massgeschneiderte Tools, Prozessautomatisierung und interne Systeme."
 		},
-		"badge": "Profil",
+		"badge": "Uber uns",
 		"hero": {
-			"title": "Das mache ich — mit echten Beispielen.",
-			"subtitle": "Ich bin Ilmo Koo, Grunder von <strong>Kooslab</strong> (Seoul) und <strong>KooStory</strong> (Berlin). Wenn ein Partner fragt \"Was konnen Sie konkret?\", zeige ich es lieber, als daruber zu reden."
+			"title": "Ihr Betrieb sollte nicht davon abhangen, wer heute erscheint.",
+			"subtitle": "Wir helfen Berliner Kleinunternehmen, manuelle, personenabhangige Ablaufe durch Systeme zu ersetzen, die sich selbst betreiben — damit Sie wachsen konnen, ohne mehr Mitarbeiter einzustellen."
 		},
 		"cases": {
 			"title": "Echte Probleme, die ich gelost habe",
 			"intro": "Jedes Projekt unten begann mit einem Geschaftsproblem, nicht mit einer Feature-Anfrage. Hier sehen Sie, womit der Kunde kampfte, was ich getan habe und was sich verandert hat.",
 			"groupA": {
-				"title": "Ich habe es definiert — damit jemand anderes es richtig bauen konnte",
-				"intro": "Anforderungsberatungsprojekte, bei denen ich das Anforderungsdokument erstellt habe und der Kunde es erfolgreich an eine Entwicklungsagentur weitergegeben hat."
+				"title": "Wir haben es definiert — damit der Kunde es richtig bauen konnte",
+				"intro": "Anforderungsberatungsprojekte, bei denen wir das Anforderungsdokument erstellt haben und der Kunde es erfolgreich an eine Entwicklungsagentur weitergegeben hat."
 			},
 			"groupB": {
-				"title": "Ich habe es gebaut",
-				"intro": "End-to-End-Projekte, bei denen ich die Losung definiert UND gebaut habe."
+				"title": "Wir haben es gebaut",
+				"intro": "End-to-End-Projekte, bei denen wir die Losung definiert UND gebaut haben."
 			},
 			"safety": {
 				"industry": "Sicherheits-Compliance",
@@ -953,21 +953,25 @@
 			"p2": "<strong>Flexibel und schlank.</strong> Ich agiere als Ihr Tech-Team. Kein Agentur-Overhead, kein monatelanges Onboarding.",
 			"p3": "<strong>Lieber eine Sache, die Sie taglich nutzen, als zehn Features, die verstauben.</strong> Wenn sich ein Feature als nutzlos herausstellt, streichen wir es. Ihr Erfolg ist mein Massstab."
 		},
+		"howWeWork": {
+			"title": "Wie wir arbeiten",
+			"p1": "Software zu bauen ist nicht das Wichtigste. Das richtige Problem zu entdecken und zu definieren ist der Schlussel.",
+			"p2": "Manche Kunden wissen bereits genau, was sich andern muss. Andere brauchen zunachst Hilfe, es zu erkennen. Wir passen uns an.",
+			"p3": "Dann wahlen wir einen von zwei Wegen: hands-on mit Ihrem Team arbeiten, oder die Losung selbst bauen.",
+			"p4": "So oder so: Wir ubergeben nicht und verschwinden nicht. Wir bleiben, bis es wirklich funktioniert."
+		},
 		"about": {
-			"title": "Uber mich",
-			"p1": "Ingenieur von Haus aus — Luft- und Raumfahrttechnik an der University of Maryland. Anforderungen und Spezifikationen vom ersten Tag an: Korean Air (Flugsteuerungssysteme), Vector Korea (Automotive Embedded Software). Code States als CPO auf 200+ Mitarbeiter, 27 Mio. $ Umsatz skaliert — alles automatisiert, weil das Wachstum es verlangte.",
-			"p2_before_link": "3 eigene Produkte gebaut: ",
-			"p2_between_links": " (KI-Fragebogen), ",
-			"p2_between_links2": " (Anforderungsmanagement), ",
-			"p2_after_link": " (Rechnungen und Zeiterfassung).",
-			"p3": "Seoul + Berlin. Koreanisch Muttersprache, Englisch Business-Level, Deutsch in Arbeit."
+			"title": "Hinter dem Unternehmen",
+			"p1": "KooStory wurde von Ilmo Koo gegrundet — Ingenieur von Haus aus, CPO durch Erfahrung, Entwickler in der Praxis.",
+			"p2": "Hintergrund: Flugsteuerungssysteme bei Korean Air, Automotive Embedded Software bei Vector Korea, und Code States als CPO auf 27 Mio. $ Umsatz skaliert.",
+			"p3": "Standort: Berlin."
 		},
 		"wontDo": {
-			"title": "Was ich nicht mache",
-			"p1": "Ich lehne es hoflich ab, Software zu bauen, die niemand nutzen wird.",
-			"p2": "Wenn Ihre Idee kein echtes tagliches Problem lost, sage ich es Ihnen ehrlich.",
-			"p3": "<strong>Hubscher Code, der keinen Geschaftswert schafft, ist Verschwendung.</strong>",
-			"p4": "Manchmal ist der beste Rat: \"Bauen Sie das nicht.\""
+			"title": "Was wir nicht ubernehmen",
+			"p1": "Wir bauen keine Software, die niemand nutzen wird.",
+			"p2": "Wenn eine Idee kein echtes tagliches Problem lost, sagen wir es ehrlich.",
+			"p3": "<strong>Code, der keinen Geschaftswert schafft, ist Verschwendung.</strong>",
+			"p4": "Manchmal ist die richtige Antwort: nicht bauen."
 		},
 		"workshops": {
 			"title": "Workshops",

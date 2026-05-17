@@ -283,16 +283,6 @@
 					</div>
 				{/each}
 			</div>
-
-			<!-- Closing statement -->
-			<div class="mt-14 md:mt-16">
-				<p class="text-3xl font-bold tracking-tight text-ink md:text-4xl lg:text-[44px]">
-					{$_('landing.transformation.closing')}
-				</p>
-				<p class="mt-4 text-lg text-ink/85 md:text-xl">
-					{$_('landing.transformation.closingSub')}
-				</p>
-			</div>
 		</div>
 	</section>
 
@@ -382,16 +372,6 @@
 						</div>
 					</div>
 				{/each}
-			</div>
-
-			<!-- Honest closer -->
-			<div class="mt-14 rounded-2xl border border-canvas-warm bg-white p-8 md:mt-16 md:p-10">
-				<p class="text-xl font-semibold text-ink md:text-2xl">
-					{$_('landing.forNotFor.unsureLabel')}
-				</p>
-				<p class="mt-3 text-base leading-relaxed text-ink/80 md:text-lg">
-					{$_('landing.forNotFor.unsureSub')}
-				</p>
 			</div>
 		</div>
 	</section>

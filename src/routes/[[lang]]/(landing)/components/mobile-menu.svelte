@@ -4,7 +4,7 @@
 	import { goto } from '$app/navigation';
 	import { _ } from 'svelte-i18n';
 
-	import { Menu, Home, User, BookOpen, Hammer, ArrowRight } from 'lucide-svelte';
+	import { Menu, Home, User, BookOpen, Hammer, ArrowRight, Briefcase } from 'lucide-svelte';
 
 	import { buttonVariants } from '$lib/components/ui/button';
 	import { Button } from '$lib/components/ui/button';
@@ -58,6 +58,19 @@
 			</a>
 
 			<a
+				href="{langPrefix}/about"
+				class="flex items-center gap-3 rounded-md px-3 py-2 text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
+				onclick={(e) => {
+					e.preventDefault();
+					sheetOpen = false;
+					setTimeout(() => goto(`${langPrefix}/about`), 300);
+				}}
+			>
+				<User class="h-5 w-5" />
+				{$_('nav.about')}
+			</a>
+
+			<a
 				href="{langPrefix}/workshops"
 				class="flex items-center gap-3 rounded-md px-3 py-2 text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
 				onclick={(e) => {
@@ -71,16 +84,16 @@
 			</a>
 
 			<a
-				href="{langPrefix}/about"
+				href="{langPrefix}/use-cases"
 				class="flex items-center gap-3 rounded-md px-3 py-2 text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
 				onclick={(e) => {
 					e.preventDefault();
 					sheetOpen = false;
-					setTimeout(() => goto(`${langPrefix}/about`), 300);
+					setTimeout(() => goto(`${langPrefix}/use-cases`), 300);
 				}}
 			>
-				<User class="h-5 w-5" />
-				{$_('nav.about')}
+				<Briefcase class="h-5 w-5" />
+				{$_('nav.useCases')}
 			</a>
 
 			<a
