@@ -18,15 +18,15 @@
 		"hero": {
 			"eyebrow": "Berlin · AI workshops for growing teams",
 			"title": "Solve a real business problem with AI. Today.",
-			"subtitle": "We run hands-on workshops where your team solves their actual problems using AI — not demos, not slides.",
+			"subtitle": "We run hands-on workshops where your team solves their actual bottlenecks using AI — not demos, not slides, not a seminar you forget in two weeks.",
 			"cta": "Book a free 20-min call",
 			"ctaSub": "Tell us your problem. We'll tell you honestly whether AI solves it.",
 			"meta": "Hands-on workshops · In-person · Berlin"
 		},
 		"mirror": {
 			"badge": "Sound familiar",
-			"headline": "A heavy operation means you built something real.",
-			"subline": "From here, the next gear isn’t more hours or more people — it’s a different way of running.",
+			"headline": "Recognize this?",
+			"subline": "Time to step back and rethink how you run things never shows up on its own. Someone has to commit, take the risk, and lead the team through it. Usually, that's the CEO.",
 			"items": [
 				"\"We've always done it this way.\" — and no one's had a spare hour to ask why.",
 				"The workflow lives in people’s heads. Ask someone to document their process. Watch them struggle."
@@ -160,15 +160,25 @@
 		},
 		"fomo": {
 			"badge": "Before you scroll further",
-			"headline": "Everyone is talking about AI. That's not a reason to book.",
-			"subline": "FOMO-driven training produces zero. Every time.",
-			"wrongLabel": "This is FOMO",
-			"wrongQuote": "Our competitors are using AI. We should too.",
-			"rightLabel": "This is a real problem",
-			"rightQuote": "Our team wastes 4 hours every Monday on a report that should take 20 minutes.",
-			"conclusion": "One is a feeling. One is a problem.",
-			"conclusionBold": "We work on problems.",
-			"cta": "Can't name yours yet? That's what the free 20-min call is for."
+			"headline": "Everyone is talking about AI. That’s not a reason to learn AI.",
+			"p1": "You’ve heard this before. Cloud. Blockchain. Big data. Metaverse. Digital transformation. Every few years, a new word fills the board decks and LinkedIn feeds. Most companies chased it — and came out with nothing to show.",
+			"p2": "Same story, every time. A new tool appears. Companies rush in tool-first. Nothing sticks. The ones who win start with a problem — and find the tool that solves it.",
+			"fomoLabel": "This is FOMO",
+			"realLabel": "This is a real problem",
+			"rows": [
+				{
+					"fomo": "Our competitors are using AI. We should too.",
+					"real": "Our team wastes 4 hours every Monday on a report that should take 20 minutes."
+				},
+				{
+					"fomo": "Our board asked about our AI strategy.",
+					"real": "We lose deals because proposals take 4 days. They should take 4 hours."
+				},
+				{
+					"fomo": "We feel like we’re falling behind.",
+					"real": "Onboarding is manual and breaks every time. It costs one person a full week every month."
+				}
+			]
 		},
 		"method": {
 			"badge": "How it works",
@@ -176,41 +186,37 @@
 			"steps": [
 				{
 					"title": "Bring your real problem.",
-					"description": "A specific bottleneck that costs you time or money right now. Not a hypothetical."
+					"description": "Not a fake one. Not a problem you think you might face someday. The one that blocked you yesterday. It doesn’t have to be big — a small hassle, a recurring annoyance, anything that slowed you down. But it has to be yours. You own it, you solve it."
 				},
 				{
-					"title": "Build it in the room.",
-					"description": "Your team works on it in the room. Some things fail. That's how you actually learn."
+					"title": "One full immersive day. No exit until it’s solved.",
+					"description": "Phone off. No social media. You are here for one reason — to solve this problem today. Break things. Fix them. Break them again. Repeat. The density of those hours is the whole point. You do not walk out until it’s done."
 				},
 				{
-					"title": "Leave with something deployed.",
-					"description": "Something works by the end. You built it, you own it, you can repeat it."
+					"title": "Leave knowing, not just having.",
+					"description": "Not “someone built this for me.” You built it. You understand every step of how you got there. You can reproduce it tomorrow on your own. You can explain it fully to someone else. That’s how you know it’s real."
 				}
 			]
 		},
 		"effortsFail": {
 			"badge": "Why AI efforts fail",
-			"headline": "Companies try. Nothing changes.",
-			"subline": "Three patterns. All of them have the same outcome: zero behavior change.",
+			"headline": "This is what happens when the tool comes first.",
 			"items": [
 				{
-					"label": "Pay for subscriptions and wait",
-					"description": "Buy seats. Send a Slack message. Expect magic. Nothing changes.",
-					"tag": "Most companies"
+					"label": "Pay for subscriptions and walk away.",
+					"description": "People see it as an employee benefit. And that’s it. Nothing happens."
 				},
 				{
-					"label": "Set AI KPIs and pressure people",
-					"description": "Employees do it like homework. Fear-driven outputs that check the box and change nothing.",
-					"tag": "Wrong motivation"
+					"label": "Set AI KPIs and tie them to performance reviews.",
+					"description": "People will create fake problems just to use powerful AI tools. Employees end up chasing tool KPIs, not business KPIs. Wrong motivation. Wrong outcome."
 				},
 				{
-					"label": "Send them to a course or seminar",
-					"description": "Interesting for 2 days. Forgotten in 2 weeks. Not one workflow changed.",
-					"tag": "You know this already"
+					"label": "Let employees learn AI on their own time, on-demand.",
+					"description": "Sit-and-watch doesn’t change behavior — the e-learning boom already proved that. Don’t spend a dime on paid courses. The best AI content is free, public, and updated weekly. What’s missing is a real problem to solve."
 				}
 			],
-			"conclusion": "The only thing that works:",
-			"conclusionBold": "Solving a real problem with AI. With your hands. With someone guiding you through it."
+			"conclusion": "There is one way. Nothing revolutionary. You’ve known it all along.",
+			"conclusionBold": "The difficulty was never knowing — it was doing."
 		},
 		"axeStory": {
 			"badge": "The initiative you keep postponing",
@@ -244,43 +250,24 @@
 		"forNotFor": {
 			"badge": "Before you book",
 			"headline": "Is this for you?",
-			"forLabel": "Yes — if you",
-			"forItems": [
-				"Can name a <mark>specific problem</mark> that costs you time or money right now",
-				"Want your team to <mark>own the capability</mark> — not depend on a vendor forever",
-				"Are willing to come prepared and actually <mark>work during the session</mark>"
-			],
-			"notForLabel": "Not for you — if you",
+			"notForLabel": "This is not for you or your team if:",
 			"notForItems": [
-				"Can't name a concrete problem before the session starts",
-				"Want to sit, watch, and leave feeling inspired — without doing the work",
-				"Are looking for a vendor to handle AI so your team doesn't have to learn"
+				"You cannot name a real problem to bring into the session.",
+				"Anyone is coming because they were told to, not because they chose to.",
+				"Anyone expects to watch rather than do."
 			],
-			"unsureLabel": "Not sure which side you're on?",
-			"unsureSub": "That's what the free 20-min call is for. We'll tell you honestly."
+			"note": "You don’t have to be in the room yourself. But you are responsible for who you send. The wrong participant wastes everyone’s day — including your own investment."
 		},
 		"transformation": {
 			"badge": "What changes",
-			"headline": "One person. Ten times the output.",
-			"subline": "Not by working harder. By changing what they do.",
+			"headline": "One before and after.",
 			"beforeLabel": "Before",
 			"afterLabel": "After",
-			"rows": [
-				{
-					"before": "Executes tasks manually",
-					"after": "Defines what needs to happen"
-				},
-				{
-					"before": "Repeats the same steps every week",
-					"after": "Sets it up once. AI runs it."
-				},
-				{
-					"before": "Output limited by their hours",
-					"after": "Output limited only by their thinking"
-				}
-			],
-			"closing": "Same person. Different job.",
-			"closingSub": "That's what the workshop builds — not just skills, but a new way of working."
+			"before": "You are the axe. Get sharper. Cut faster. Do more.",
+			"after": "You are no longer the axe. You decide which tree. You find the root. You design the cut. AI gets the job done.",
+			"p1": "None of this is new. Observe, diagnose, design, delegate — this is how the best managers have worked for hundreds of years. AI didn’t invent it.",
+			"p2": "No more excuses. The hard part now is the thinking, not the doing.",
+			"p3": "And who gets there first? Not always the strongest performer in the room. In every workshop, the ones who made the biggest leap were the ones who were genuinely curious and took full ownership of their problem."
 		},
 		"closing": {
 			"title": "Scale or Fade.",
@@ -292,28 +279,33 @@
 			],
 			"scaleLabel": "Companies that stopped to sharpen",
 			"scaleItems": ["One investment. Permanent multiplier.", "Same people. 10× the output."],
-			"lead": "Your competitors are not waiting. Every week your team is not using AI, the gap grows.",
-			"cta": "Book a free 20-min call"
+			"lead": "Now is the time. Not next quarter. Not later.",
+			"cta": "Book a 30-min discovery call",
+			"ctaSub": "No pitch. Just bring your problem."
 		},
 		"faq": {
 			"badge": "Common questions",
 			"title": "What CEOs ask us",
 			"items": [
 				{
-					"q": "Is this worth taking my team off their real work?",
-					"a": "The workshop IS their real work. You bring a real bottleneck. You leave with a working solution deployed. It's not training time — it's problem-solving time that builds a permanent capability."
+					"q": "How many people should I send, and how long does it take?",
+					"a": "One full day. As for who — smaller is better. Two to four motivated people outperform a room of ten who were told to show up. Don’t think about coverage. Think about who has a real problem and genuinely wants to solve it."
 				},
 				{
-					"q": "We already use ChatGPT. Isn't that enough?",
-					"a": "Using ChatGPT for one-off tasks is like using a calculator to run your finance department. The gap isn't the tool — it's integrating AI into real workflows your team runs every day. That's what we build together."
+					"q": "I still don’t know who to send.",
+					"a": "That’s exactly what the pre-session call is for. We talk, we ask questions, we help you find the right people. Contact us and we’ll figure it out together."
 				},
 				{
-					"q": "What if my team doesn't engage?",
-					"a": "We screen for this before we start. If participants can't name a real problem they want to solve, we'll tell you before committing time. A disengaged team wastes everyone's time — including ours."
+					"q": "Is it online or offline?",
+					"a": "Offline only. The immersive format doesn’t work on a video call — the focus, the energy, the hands-on dynamic all depend on being in the same room."
 				},
 				{
-					"q": "Can't we just outsource this to an AI agency?",
-					"a": "You can. When it breaks — and it will — you'll call them again. Every new use case costs money. Every change costs time. We build the skill inside your team so you own it permanently and don't need us for every iteration."
+					"q": "We’re not a tech company. Is this relevant for us?",
+					"a": "The goal is never to turn your team into engineers. The goal is the delta — how much can your team improve from where they are today. Before the session we run a short diagnosis to set goals that are meaningful, achievable, and directly tied to your business KPIs. Industry doesn’t matter. The problem does."
+				},
+				{
+					"q": "Where do you run workshops?",
+					"a": "We’re based in Berlin. For Berlin clients we come to you. We also travel across Germany — just get in touch."
 				}
 			]
 		}

@@ -278,6 +278,189 @@ Key objections:
 
 ---
 
+## 10. Current Live Section Review (2026-05-18)
+
+Working document — update as sections evolve.
+
+---
+
+### Current order + full content
+
+**1. HERO**
+
+> "Solve a real business problem with AI. Today."
+> We run hands-on workshops where your team solves their actual problems using AI — not demos, not slides.
+
+---
+
+**2. MIRROR** _(empathy / rapport)_
+Badge: Sound familiar
+
+> "A heavy operation means you built something real."
+
+[Cartoon: cavemen pushing cart with square wheels, offered a round one — "No thanks! We are too busy"]
+
+Quotes:
+
+- "We've always done it this way." — and no one's had a spare hour to ask why.
+- The workflow lives in people's heads. Ask someone to document their process. Watch them struggle.
+
+> Time to step back and rethink how you run things never shows up on its own. Someone has to commit, take the risk, and lead the team through it. Usually, that's the CEO.
+
+Bridge: _"That's the exact gear we help you shift."_
+
+---
+
+**3. WHY EFFORTS FAIL**
+Badge: Why AI efforts fail
+
+> "Companies try. Nothing changes."
+> Three patterns. All of them have the same outcome: zero behavior change.
+
+1. Pay for subscriptions and wait — _Most companies_
+2. Set AI KPIs and pressure people — _Wrong motivation_
+3. Send them to a course or seminar — _You know this already_
+
+> The only thing that works: Solving a real problem with AI. With your hands. With someone guiding you through it.
+
+---
+
+**4. FOMO** _(pattern interrupt)_
+Badge: Before you scroll further
+
+> "Everyone is talking about AI. That's not a reason to book."
+> FOMO-driven training produces zero. Every time.
+
+This is FOMO: _"Our competitors are using AI. We should too."_
+This is a real problem: _"Our team wastes 4 hours every Monday on a report that should take 20 minutes."_
+
+> One is a feeling. One is a problem. **We work on problems.**
+
+---
+
+**5. METHOD**
+Badge: How it works
+
+> "Three steps. All of them hands-on."
+
+1. Bring your real problem — a specific bottleneck that costs you time or money right now.
+2. Build it in the room — your team works on it. Some things fail. That's how you actually learn.
+3. Leave with something deployed — you built it, you own it, you can repeat it.
+
+---
+
+**6. TRANSFORMATION** _(before/after table)_
+Badge: What changes
+
+> "One person. Ten times the output."
+> Not by working harder. By changing what they do.
+
+| Before                            | After                                 |
+| --------------------------------- | ------------------------------------- |
+| Executes tasks manually           | Defines what needs to happen          |
+| Repeats the same steps every week | Sets it up once. AI runs it.          |
+| Output limited by their hours     | Output limited only by their thinking |
+
+---
+
+**7. EMPLOYEE TRANSFORM** _(image + bullets)_
+Badge: What actually changes
+
+> "Work the same hours. Multiply the output."
+
+After the workshop:
+
+- Automates the execution, owns the decisions
+- Bottleneck = quality of their thinking
+- Multiplies output without working more hours
+
+⚠️ **Redundant with #6** — same idea, different format. One should be cut.
+
+---
+
+**8. FOR / NOT FOR**
+Badge: Before you book
+
+> "Is this for you?"
+
+Not for you if: can't name a concrete problem, want to sit and watch, want a vendor to handle AI.
+Yes if: have a specific problem, want your team to own the capability, willing to actually work.
+
+⚠️ **Too early** — qualification before proof. Should come after testimonials.
+
+---
+
+**9. TESTIMONIALS**
+Badge: Typical outcomes
+
+> "What teams typically achieve"
+
+- 4h → 20min — Weekly reporting (Marketing, B2B SaaS)
+- 3 days → same day — Proposal turnaround (Sales, Professional Services)
+- 5h saved/person/week — Status reporting (Operations, Logistics)
+
+⚠️ **Too late** — proof should come right after Method (#5).
+
+---
+
+**10. FAQ**
+Badge: Common questions
+
+> "What CEOs ask us"
+
+- Is this worth taking my team off their real work?
+- We already use ChatGPT. Isn't that enough?
+- What if my team doesn't engage?
+- Can't we just outsource this to an AI agency?
+
+---
+
+**11. CLOSING**
+
+> "Too busy chopping to sharpen the axe."
+
+Fade: same output, same effort, falling behind.
+Scale: one investment, permanent multiplier.
+
+> "Scale or Fade."
+
+---
+
+### Issues identified
+
+| Issue                           | Detail                                                                                      |
+| ------------------------------- | ------------------------------------------------------------------------------------------- |
+| #6 and #7 are redundant         | Both say "same hours, more output." Keep Transformation (table), cut Employee Transform.    |
+| #3 and #4 overlap               | Both say "wrong approach = zero result." FOMO can be kept but may need trimming or merging. |
+| Proof (#9) is too late          | Testimonials should follow Method (#5) while trust is still being built.                    |
+| Qualification (#8) before proof | For/Not For should come after testimonials, not before.                                     |
+
+---
+
+### Proposed new order
+
+| #   | Section          | Purpose                                   |
+| --- | ---------------- | ----------------------------------------- |
+| 1   | Hero             | Attention + promise                       |
+| 2   | Mirror           | Empathy — you understand their world      |
+| 3   | Why Efforts Fail | Problem — what they've tried doesn't work |
+| 4   | FOMO             | Reframe — the right reason to act         |
+| 5   | Method           | Solution — here's how we work             |
+| 6   | Testimonials     | Proof — right after the solution          |
+| 7   | Transformation   | Outcome — what changes (one section only) |
+| 8   | For / Not For    | Qualification — now they're informed      |
+| 9   | FAQ              | Objections                                |
+| 10  | Closing CTA      | Scale or Fade                             |
+
+---
+
+### Open decisions
+
+- [ ] Cut Employee Transform (#7) or Transformation (#6)? → Lean toward keeping Transformation (table format, cleaner)
+- [ ] Merge FOMO into Why Efforts Fail, or keep as separate section?
+
+---
+
 ## 9. Tone & Copy Rules
 
 - **Write to the CEO, not the employee.** Budget, ROI, team capacity — their language.

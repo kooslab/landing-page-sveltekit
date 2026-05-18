@@ -4,7 +4,7 @@
 	import SEO from '$lib/components/SEO.svelte';
 	import PromoPopup from '$lib/components/sections/promo-popup.svelte';
 	import ReservationModal from './workshops/components/reservation-modal.svelte';
-	import { ArrowRight, ChevronDown, X, Check } from 'lucide-svelte';
+	import { ArrowRight, ChevronDown } from 'lucide-svelte';
 
 	let { data } = $props();
 
@@ -14,8 +14,6 @@
 
 	let lang = $derived($page.params?.lang || 'en');
 	let isKorean = $derived(lang === 'ko');
-
-	const staticTestimonials = ['workshop1', 'workshop2', 'workshop3'];
 
 	function book(type: 'diagnosis' | 'ax_l1' | 'ax_l2' | 'ax_l3' | 'custom' = 'ax_l1') {
 		reservationType = type;
@@ -55,9 +53,7 @@
 <ReservationModal bind:open={reservationOpen} bind:workshopType={reservationType} />
 
 <main class="w-full">
-	<!-- ══════════════════════════════════════════════ -->
-	<!-- 1. HERO — indigo navy                         -->
-	<!-- ══════════════════════════════════════════════ -->
+	<!-- ═══════════════════════════════════ 1. HERO ══ -->
 	<section class="min-h-screen overflow-hidden bg-brand">
 		<div class="mx-auto flex max-w-7xl flex-col lg:flex-row lg:items-stretch">
 			<!-- Left: copy -->
@@ -101,9 +97,7 @@
 		</div>
 	</section>
 
-	<!-- ══════════════════════════════════════════════ -->
-	<!-- 2. MIRROR — empathy, rapport                  -->
-	<!-- ══════════════════════════════════════════════ -->
+	<!-- ═══════════════════════════════════ 2. MIRROR ══ -->
 	<section class="bg-white px-5 py-20 md:px-12 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
 			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
@@ -114,34 +108,76 @@
 			>
 				{$_('landing.mirror.headline')}
 			</p>
-			<p class="mt-5 text-xl font-medium text-ink/70 md:text-2xl">
-				{$_('landing.mirror.subline')}
-			</p>
 
-			<img
-				src="/images/busy.jpeg"
-				alt="Cavemen too busy pushing square wheels to accept a round one"
-				class="mt-14 w-full max-w-md rounded-xl opacity-80 md:mt-16"
-			/>
-
-			<div class="mt-12 space-y-6 md:mt-14">
-				{#each $_('landing.mirror.items') as item}
-					<div class="border-l-2 border-brand pl-6">
-						<p class="text-xl leading-relaxed text-ink md:text-2xl">{item}</p>
-					</div>
-				{/each}
+			<div
+				class="mt-14 flex flex-col items-start gap-10 md:mt-16 md:flex-row md:items-center md:gap-14"
+			>
+				<img
+					src="/images/busy.jpeg"
+					alt="Cavemen too busy pushing square wheels to accept a round one"
+					class="w-full rounded-xl opacity-80 md:w-96 md:flex-shrink-0"
+				/>
+				<div class="space-y-6">
+					{#each $_('landing.mirror.items') as item}
+						<div class="border-l-2 border-brand pl-6">
+							<p class="text-xl leading-relaxed text-ink md:text-2xl">{item}</p>
+						</div>
+					{/each}
+				</div>
 			</div>
 
-			<p class="mt-12 text-lg font-semibold text-brand md:mt-14 md:text-xl">
+			<p class="mt-12 text-xl font-medium text-ink/70 md:mt-14 md:text-2xl">
+				{$_('landing.mirror.subline')}
+			</p>
+			<p class="mt-4 text-lg font-semibold text-brand md:text-xl">
 				{$_('landing.mirror.bridge')}
 			</p>
 		</div>
 	</section>
 
-	<!-- ══════════════════════════════════════════════ -->
-	<!-- 3. WHY EFFORTS FAIL — canvas-soft, 3 cards   -->
-	<!-- ══════════════════════════════════════════════ -->
+	<!-- ═══════════════════════════════════ 3. FOMO ══ -->
 	<section class="border-y border-canvas-warm bg-canvas-soft px-5 py-20 md:px-12 md:py-28 lg:py-36">
+		<div class="mx-auto max-w-4xl">
+			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
+				{$_('landing.fomo.badge')}
+			</span>
+			<p
+				class="text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:text-5xl lg:text-[52px]"
+			>
+				{$_('landing.fomo.headline')}
+			</p>
+			<p class="mt-6 text-lg leading-relaxed text-ink/80 md:text-xl">{$_('landing.fomo.p1')}</p>
+			<p class="mt-4 text-lg leading-relaxed text-ink/80 md:text-xl">{$_('landing.fomo.p2')}</p>
+
+			<div class="mt-12 overflow-hidden rounded-2xl border border-canvas-warm md:mt-14">
+				<div class="grid grid-cols-2">
+					<div class="border-r border-canvas-warm bg-ink/[.04] px-6 py-4 md:px-8">
+						<p class="text-xs font-bold uppercase tracking-[0.2em] text-ink/60">
+							{$_('landing.fomo.fomoLabel')}
+						</p>
+					</div>
+					<div class="bg-brand/[.06] px-6 py-4 md:px-8">
+						<p class="text-xs font-bold uppercase tracking-[0.2em] text-brand">
+							{$_('landing.fomo.realLabel')}
+						</p>
+					</div>
+				</div>
+				{#each $_('landing.fomo.rows') as row}
+					<div class="grid grid-cols-2 border-t border-canvas-warm bg-white">
+						<div class="border-r border-canvas-warm px-6 py-5 md:px-8 md:py-6">
+							<p class="text-base leading-snug text-ink/60 line-through md:text-lg">"{row.fomo}"</p>
+						</div>
+						<div class="px-6 py-5 md:px-8 md:py-6">
+							<p class="text-base font-semibold leading-snug text-ink md:text-lg">"{row.real}"</p>
+						</div>
+					</div>
+				{/each}
+			</div>
+		</div>
+	</section>
+
+	<!-- ══════════════════════════ 4. WHY EFFORTS FAIL ══ -->
+	<section class="bg-white px-5 py-20 md:px-12 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
 			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
 				{$_('landing.effortsFail.badge')}
@@ -151,23 +187,16 @@
 			>
 				{$_('landing.effortsFail.headline')}
 			</p>
-			<p class="mt-5 text-xl font-medium text-ink/70 md:text-2xl">
-				{$_('landing.effortsFail.subline')}
-			</p>
 
 			<div class="mt-14 space-y-5 md:mt-16">
 				{#each [0, 1, 2] as i}
-					<div class="rounded-2xl border border-canvas-warm bg-white p-7 md:p-9">
-						<div class="flex items-center justify-between gap-4">
-							<p class="text-lg font-bold leading-snug text-ink md:text-xl">
-								{i + 1}. {$_(`landing.effortsFail.items.${i}.label`)}
-							</p>
-							<span
-								class="flex-shrink-0 rounded-full bg-ink/[.06] px-3 py-1 text-sm font-semibold uppercase tracking-[0.14em] text-ink/85"
-							>
-								{$_(`landing.effortsFail.items.${i}.tag`)}
-							</span>
-						</div>
+					<div class="rounded-2xl border border-canvas-warm bg-canvas-soft p-7 md:p-9">
+						<p class="mb-3 text-lg font-bold leading-snug text-ink md:text-xl">
+							{i + 1}. {$_(`landing.effortsFail.items.${i}.label`)}
+						</p>
+						<p class="text-base leading-relaxed text-ink/70 md:text-lg">
+							{$_(`landing.effortsFail.items.${i}.description`)}
+						</p>
 					</div>
 				{/each}
 			</div>
@@ -183,64 +212,12 @@
 		</div>
 	</section>
 
-	<!-- ══════════════════════════════════════════════ -->
-	<!-- 4. FOMO TRAP — white, pattern interrupt       -->
-	<!-- ══════════════════════════════════════════════ -->
-	<section class="bg-white px-5 py-20 md:px-12 md:py-28 lg:py-36">
-		<div class="mx-auto max-w-4xl">
-			<span class="mb-12 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
-				{$_('landing.fomo.badge')}
-			</span>
-
-			<p
-				class="text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:text-5xl lg:text-[52px]"
-			>
-				{$_('landing.fomo.headline')}
-			</p>
-			<p class="mt-5 text-xl font-medium text-ink/70 md:text-2xl">
-				{$_('landing.fomo.subline')}
-			</p>
-
-			<!-- Contrast: wrong vs. right -->
-			<div class="mt-16 grid gap-5 md:mt-20 md:grid-cols-2">
-				<!-- FOMO — muted, struck -->
-				<div class="rounded-2xl border border-canvas-warm p-7 md:p-9">
-					<p class="mb-5 text-sm font-bold uppercase tracking-[0.18em] text-ink/80">
-						{$_('landing.fomo.wrongLabel')}
-					</p>
-					<p
-						class="text-xl font-medium leading-snug text-ink/85 md:text-2xl"
-						style="text-decoration: line-through; text-decoration-color: rgba(41,40,39,0.15);"
-					>
-						"{$_('landing.fomo.wrongQuote')}"
-					</p>
-				</div>
-
-				<!-- Real problem — vivid -->
-				<div
-					class="rounded-2xl bg-brand/[.04] p-7 md:p-9"
-					style="border: 1.5px solid rgba(27,25,56,0.12);"
-				>
-					<p class="mb-5 text-sm font-bold uppercase tracking-[0.18em] text-brand">
-						{$_('landing.fomo.rightLabel')}
-					</p>
-					<p class="text-xl font-semibold leading-snug text-ink md:text-2xl">
-						"{$_('landing.fomo.rightQuote')}"
-					</p>
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- ══════════════════════════════════════════════ -->
-	<!-- 5. METHOD — canvas-soft, large scale          -->
-	<!-- ══════════════════════════════════════════════ -->
+	<!-- ═══════════════════════════════════ 5. METHOD ══ -->
 	<section class="border-y border-canvas-warm bg-canvas-soft px-5 py-20 md:px-12 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
 			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
 				{$_('landing.method.badge')}
 			</span>
-
 			<p
 				class="mb-16 text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:mb-20 md:text-5xl lg:text-[52px]"
 			>
@@ -252,7 +229,7 @@
 					<div class="flex gap-8 md:gap-12">
 						<div
 							class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-white md:h-12 md:w-12"
-							style="margin-top: 6px;"
+							style="margin-top: 4px;"
 						>
 							{i + 1}
 						</div>
@@ -262,6 +239,9 @@
 							>
 								{$_(`landing.method.steps.${i}.title`)}
 							</h3>
+							<p class="mt-4 text-lg leading-relaxed text-ink/70 md:text-xl">
+								{$_(`landing.method.steps.${i}.description`)}
+							</p>
 						</div>
 					</div>
 				{/each}
@@ -269,175 +249,93 @@
 		</div>
 	</section>
 
-	<!-- ══════════════════════════════════════════════ -->
-	<!-- 6. TRANSFORMATION — white                     -->
-	<!-- ══════════════════════════════════════════════ -->
+	<!-- ══════════════════════════ 6. TRANSFORMATION ══ -->
 	<section class="bg-white px-5 py-20 md:px-12 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
-			<span
-				class="mb-12 block text-sm font-semibold uppercase tracking-[0.2em] text-brand md:mb-14"
-			>
+			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
 				{$_('landing.transformation.badge')}
 			</span>
-
 			<p
-				class="text-3xl font-bold leading-[1.12] tracking-tight text-ink sm:text-4xl md:text-5xl lg:text-[52px]"
+				class="text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:text-5xl lg:text-[52px]"
 			>
 				{$_('landing.transformation.headline')}
 			</p>
-			<p class="mt-5 text-xl font-medium text-ink/70 md:text-2xl">
-				{$_('landing.transformation.subline')}
-			</p>
 
-			<div class="mt-16 grid grid-cols-[1fr_32px_1fr] md:mt-20">
-				<p class="text-sm font-bold uppercase tracking-[0.18em] text-ink/80">
-					{$_('landing.transformation.beforeLabel')}
-				</p>
-				<div></div>
-				<p class="text-sm font-bold uppercase tracking-[0.18em] text-brand">
-					{$_('landing.transformation.afterLabel')}
-				</p>
+			<div class="mt-12 overflow-hidden rounded-2xl border border-canvas-warm md:mt-14">
+				<div class="grid grid-cols-2">
+					<div class="border-r border-canvas-warm bg-ink/[.04] px-6 py-4 md:px-8">
+						<p class="text-xs font-bold uppercase tracking-[0.2em] text-ink/60">
+							{$_('landing.transformation.beforeLabel')}
+						</p>
+					</div>
+					<div class="bg-brand/[.06] px-6 py-4 md:px-8">
+						<p class="text-xs font-bold uppercase tracking-[0.2em] text-brand">
+							{$_('landing.transformation.afterLabel')}
+						</p>
+					</div>
+				</div>
+				<div class="grid grid-cols-2 border-t border-canvas-warm bg-white">
+					<div class="border-r border-canvas-warm px-6 py-8 md:px-8 md:py-10">
+						<p class="text-lg leading-relaxed text-ink/70 md:text-xl">
+							{$_('landing.transformation.before')}
+						</p>
+					</div>
+					<div class="px-6 py-8 md:px-8 md:py-10">
+						<p class="text-lg font-semibold leading-relaxed text-ink md:text-xl">
+							{$_('landing.transformation.after')}
+						</p>
+					</div>
+				</div>
 			</div>
 
-			<div class="mt-4 border-t border-canvas-warm">
-				{#each $_('landing.transformation.rows') as row}
-					<div
-						class="grid grid-cols-[1fr_32px_1fr] items-center border-b border-canvas-warm py-6 md:py-7"
-					>
-						<p class="text-base leading-snug text-ink/80 md:text-lg">{row.before}</p>
-						<span class="text-center text-sm text-ink/80">→</span>
-						<p class="text-base font-semibold leading-snug text-ink md:text-lg">{row.after}</p>
-					</div>
-				{/each}
+			<div class="mt-10 space-y-4 md:mt-12">
+				<p class="text-lg leading-relaxed text-ink/70 md:text-xl">
+					{$_('landing.transformation.p1')}
+				</p>
+				<p class="text-lg leading-relaxed text-ink/70 md:text-xl">
+					{$_('landing.transformation.p2')}
+				</p>
+				<p class="text-lg leading-relaxed text-ink/70 md:text-xl">
+					{$_('landing.transformation.p3')}
+				</p>
 			</div>
 		</div>
 	</section>
 
-	<!-- ══════════════════════════════════════════════ -->
-	<!-- 7. EMPLOYEE TRANSFORM — canvas-soft           -->
-	<!-- ══════════════════════════════════════════════ -->
+	<!-- ══════════════════════════ 7. FOR / NOT FOR ══ -->
 	<section class="border-y border-canvas-warm bg-canvas-soft px-5 py-20 md:px-12 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
 			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
-				{$_('landing.employeeTransform.badge')}
-			</span>
-			<p
-				class="mb-14 text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:mb-16 md:text-5xl lg:text-[52px]"
-			>
-				{$_('landing.employeeTransform.headline')}
-			</p>
-
-			<img
-				src="/images/employee.png"
-				alt={$_('landing.employeeTransform.imageAlt')}
-				class="mb-12 w-full rounded-2xl object-cover md:mb-16"
-			/>
-
-			<div>
-				<p class="mb-8 text-sm font-bold uppercase tracking-[0.2em] text-brand">
-					{$_('landing.employeeTransform.afterLabel')}
-				</p>
-				<div class="space-y-5">
-					{#each $_('landing.employeeTransform.afterItems') as item}
-						<div class="flex items-start gap-4">
-							<div class="mt-2.5 h-2 w-2 flex-shrink-0 rounded-full bg-brand"></div>
-							<p class="text-xl font-semibold leading-snug text-ink md:text-2xl">{item}</p>
-						</div>
-					{/each}
-				</div>
-			</div>
-		</div>
-	</section>
-
-	<!-- ══════════════════════════════════════════════ -->
-	<!-- 8. FOR / NOT FOR — white                      -->
-	<!-- ══════════════════════════════════════════════ -->
-	<section class="bg-white px-5 py-20 md:px-12 md:py-28 lg:py-36">
-		<div class="mx-auto max-w-4xl">
-			<span
-				class="mb-12 block text-sm font-semibold uppercase tracking-[0.2em] text-brand md:mb-14"
-			>
 				{$_('landing.forNotFor.badge')}
 			</span>
-
 			<p
 				class="text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:text-5xl lg:text-[52px]"
 			>
 				{$_('landing.forNotFor.headline')}
 			</p>
 
-			<div class="mt-16 overflow-hidden rounded-2xl border border-canvas-warm md:mt-20">
-				<div class="grid grid-cols-2">
-					<div class="border-r border-white/10 bg-red-600 px-6 py-4 md:px-8">
-						<p class="text-xs font-bold uppercase tracking-[0.2em] text-white/90">
-							{$_('landing.forNotFor.notForLabel')}
-						</p>
-					</div>
-					<div class="bg-brand px-6 py-4 md:px-8">
-						<p class="text-xs font-bold uppercase tracking-[0.2em] text-white/90">
-							{$_('landing.forNotFor.forLabel')}
-						</p>
-					</div>
-				</div>
-				{#each $_('landing.forNotFor.notForItems') as notItem, i}
-					<div class="grid grid-cols-2 border-t border-canvas-warm bg-white">
+			<div class="mt-12 md:mt-14">
+				<p class="mb-6 text-sm font-bold uppercase tracking-[0.18em] text-ink/60">
+					{$_('landing.forNotFor.notForLabel')}
+				</p>
+				<div class="space-y-4">
+					{#each $_('landing.forNotFor.notForItems') as item}
 						<div
-							class="flex items-start gap-3 border-r border-canvas-warm px-6 py-6 md:px-8 md:py-7"
+							class="flex items-start gap-4 rounded-2xl border border-canvas-warm bg-white px-6 py-5"
 						>
-							<X class="mt-1 h-4 w-4 flex-shrink-0 text-red-500" />
-							<p class="text-base leading-snug text-ink md:text-lg">{notItem}</p>
+							<span class="mt-0.5 text-lg text-ink/30">—</span>
+							<p class="text-lg leading-snug text-ink md:text-xl">{item}</p>
 						</div>
-						<div class="flex items-start gap-3 px-6 py-6 md:px-8 md:py-7">
-							<Check class="mt-1 h-4 w-4 flex-shrink-0 text-brand" />
-							<p class="faq-for-item text-base font-semibold leading-snug text-ink md:text-lg">
-								{@html $_('landing.forNotFor.forItems')[i]}
-							</p>
-						</div>
-					</div>
-				{/each}
+					{/each}
+				</div>
+				<p class="mt-8 text-base leading-relaxed text-ink/60 md:text-lg">
+					{$_('landing.forNotFor.note')}
+				</p>
 			</div>
 		</div>
 	</section>
 
-	<!-- ══════════════════════════════════════════════ -->
-	<!-- 9. WORKSHOP RESULTS — canvas-soft             -->
-	<!-- ══════════════════════════════════════════════ -->
-	<section class="border-y border-canvas-warm bg-canvas-soft px-5 py-20 md:px-8 md:py-28 lg:py-36">
-		<div class="mx-auto max-w-4xl">
-			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
-				{$_('testimonials.badge')}
-			</span>
-			<p
-				class="mb-16 text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:text-5xl lg:text-[52px]"
-			>
-				{$_('testimonials.title')}
-			</p>
-			<div class="grid gap-6 md:grid-cols-3">
-				{#each staticTestimonials as clientKey}
-					<div class="flex flex-col rounded-2xl border border-canvas-warm bg-white p-7">
-						<div class="mb-5 border-b border-canvas-warm pb-5">
-							<p class="text-2xl font-bold leading-none tracking-tight text-brand">
-								{$_(`testimonials.clients.${clientKey}.metric`)}
-							</p>
-							<p class="mt-1.5 text-sm font-semibold uppercase tracking-[0.15em] text-ink/70">
-								{$_(`testimonials.clients.${clientKey}.metricLabel`)}
-							</p>
-						</div>
-						<blockquote class="flex-1 text-base leading-relaxed text-ink/85">
-							"{$_(`testimonials.clients.${clientKey}.quote`)}"
-						</blockquote>
-						<p class="mt-6 text-sm font-semibold uppercase tracking-[0.15em] text-ink/80">
-							{$_(`testimonials.clients.${clientKey}.context`)}
-						</p>
-					</div>
-				{/each}
-			</div>
-		</div>
-	</section>
-
-	<!-- ══════════════════════════════════════════════ -->
-	<!-- 10. FAQ — white                               -->
-	<!-- ══════════════════════════════════════════════ -->
+	<!-- ════════════════════════════════════ 8. FAQ ══ -->
 	<section class="bg-white px-5 py-20 md:px-8 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
 			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
@@ -449,7 +347,7 @@
 				{$_('landing.faq.title')}
 			</h2>
 			<div class="divide-y divide-canvas-warm border-t border-canvas-warm">
-				{#each [0, 1, 2, 3] as i}
+				{#each [0, 1, 2, 3, 4] as i}
 					{@const isOpen = openFaq === i}
 					<button
 						class="flex w-full items-start justify-between gap-6 py-7 text-left md:py-8"
@@ -476,9 +374,7 @@
 		</div>
 	</section>
 
-	<!-- ══════════════════════════════════════════════ -->
-	<!-- 11. CLOSING — axe narrative + scale or fade  -->
-	<!-- ══════════════════════════════════════════════ -->
+	<!-- ══════════════════════════════ 9. CLOSING ══ -->
 	<section class="bg-brand px-5 pb-24 pt-20 md:px-12 md:pb-32 md:pt-28 lg:pb-40 lg:pt-36">
 		<div class="mx-auto max-w-4xl">
 			<p
@@ -507,7 +403,6 @@
 						{/each}
 					</div>
 				</div>
-
 				<div class="rounded-2xl border border-brand-violet/20 bg-brand-violet/10 p-7 md:p-8">
 					<p class="mb-5 text-sm font-bold uppercase tracking-[0.18em] text-brand-violet">
 						{$_('landing.closing.scaleLabel')}
@@ -534,24 +429,16 @@
 					{$_('landing.closing.lead')}
 				</p>
 				<div class="mt-10 md:mt-12">
-					<a
-						href="/workshops"
+					<button
+						onclick={() => book('diagnosis')}
 						class="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-brand transition-opacity hover:opacity-90 active:translate-y-px"
 					>
 						{$_('landing.closing.cta')}
 						<ArrowRight class="h-4 w-4" />
-					</a>
+					</button>
+					<p class="mt-3 text-sm text-white/50">{$_('landing.closing.ctaSub')}</p>
 				</div>
 			</div>
 		</div>
 	</section>
 </main>
-
-<style>
-	.faq-for-item :global(mark) {
-		background-color: #fde047;
-		color: inherit;
-		padding: 0 3px;
-		border-radius: 2px;
-	}
-</style>
