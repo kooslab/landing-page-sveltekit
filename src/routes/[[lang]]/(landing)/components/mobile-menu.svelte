@@ -4,7 +4,7 @@
 	import { goto } from '$app/navigation';
 	import { _ } from 'svelte-i18n';
 
-	import { Menu, Home, User, BookOpen, Hammer, ArrowRight, Briefcase } from 'lucide-svelte';
+	import { Menu, Home, User, BookOpen, Hammer, Briefcase } from 'lucide-svelte';
 
 	import { buttonVariants } from '$lib/components/ui/button';
 	import { Button } from '$lib/components/ui/button';
@@ -15,11 +15,6 @@
 	let langPrefix = $derived(lang === 'en' ? '' : `/${lang}`);
 
 	let sheetOpen = $state(false);
-
-	function openBooking() {
-		sheetOpen = false;
-		setTimeout(() => document.dispatchEvent(new CustomEvent('open-booking-modal')), 300);
-	}
 </script>
 
 <Sheet.Root bind:open={sheetOpen}>
@@ -108,16 +103,6 @@
 				<BookOpen class="h-5 w-5" />
 				{$_('nav.blog')}
 			</a>
-
-			<div class="mt-6 border-t border-border pt-6">
-				<button
-					onclick={openBooking}
-					class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand px-5 py-2.5 text-sm font-bold text-white"
-				>
-					{$_('nav.bookCall')}
-					<ArrowRight class="h-4 w-4" />
-				</button>
-			</div>
 		</nav>
 	</Sheet.Content>
 </Sheet.Root>
