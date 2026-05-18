@@ -36,7 +36,7 @@ export const blogPosts = pgTable('blog_posts', {
 // Workshop reservations table
 export const workshopReservations = pgTable('workshop_reservations', {
 	id: uuid('id').defaultRandom().primaryKey(),
-	workshopType: text('workshop_type').notNull(), // 'requirements' | 'vibe' | 'free'
+	workshopType: text('workshop_type').notNull(), // 'diagnosis' | 'ax_l1' | 'ax_l2' | 'ax_l3' | 'custom'
 	name: text('name').notNull(),
 	email: text('email').notNull(),
 	message: text('message'),

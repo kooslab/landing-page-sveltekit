@@ -162,13 +162,17 @@
 						</p>
 					</div>
 				</div>
-				{#each $_('landing.fomo.rows') as row}
+				{#each [0, 1, 2] as i}
 					<div class="grid grid-cols-2 border-t border-canvas-warm bg-white">
 						<div class="border-r border-canvas-warm px-6 py-5 md:px-8 md:py-6">
-							<p class="text-base leading-snug text-ink/60 line-through md:text-lg">"{row.fomo}"</p>
+							<p class="text-base leading-snug text-ink/60 line-through md:text-lg">
+								"{$_(`landing.fomo.rows.${i}.fomo`)}"
+							</p>
 						</div>
 						<div class="px-6 py-5 md:px-8 md:py-6">
-							<p class="text-base font-semibold leading-snug text-ink md:text-lg">"{row.real}"</p>
+							<p class="text-base font-semibold leading-snug text-ink md:text-lg">
+								"{$_(`landing.fomo.rows.${i}.real`)}"
+							</p>
 						</div>
 					</div>
 				{/each}

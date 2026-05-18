@@ -50,11 +50,15 @@ export const POST: RequestHandler = async ({ request }) => {
 			.returning();
 
 		const workshopLabel =
-			workshopType === 'requirements'
-				? 'Requirements Workshop'
-				: workshopType === 'vibe'
-					? 'Vibe Coding Workshop'
-					: 'Free Requirements Consulting';
+			workshopType === 'diagnosis'
+				? 'Free 30-min Discovery Call'
+				: workshopType === 'ax_l1'
+					? 'AX Level 1 — Individual Productivity'
+					: workshopType === 'ax_l2'
+						? 'AX Level 2 — Team Workflow Automation'
+						: workshopType === 'ax_l3'
+							? 'AX Level 3 — Department Automation'
+							: 'Custom Workshop';
 
 		const formattedDates = preferredDates
 			.map((d) =>

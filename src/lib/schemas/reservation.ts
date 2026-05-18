@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 export const reservationSchema = z.object({
-	workshopType: z.enum(['requirements', 'vibe', 'free']),
+	workshopType: z.enum(['diagnosis', 'ax_l1', 'ax_l2', 'ax_l3', 'custom']),
 	name: z.string().min(1, 'Name is required').max(100),
 	email: z.string().email('Invalid email address'),
 	message: z.string().max(1000).optional().default(''),
