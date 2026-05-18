@@ -58,7 +58,7 @@
 	<!-- ══════════════════════════════════════════════ -->
 	<!-- 1. HERO — indigo navy                         -->
 	<!-- ══════════════════════════════════════════════ -->
-	<section class="overflow-hidden bg-brand">
+	<section class="min-h-screen overflow-hidden bg-brand">
 		<div class="mx-auto flex max-w-7xl flex-col lg:flex-row lg:items-stretch">
 			<!-- Left: copy -->
 			<div
