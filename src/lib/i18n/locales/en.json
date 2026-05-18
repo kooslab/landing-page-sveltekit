@@ -23,6 +23,16 @@
 			"ctaSub": "Tell us your problem. We'll tell you honestly whether AI solves it.",
 			"meta": "Hands-on workshops · In-person · Berlin"
 		},
+		"mirror": {
+			"badge": "Sound familiar",
+			"headline": "A heavy operation means you built something real.",
+			"subline": "From here, the next gear isn’t more hours or more people — it’s a different way of running.",
+			"items": [
+				"Your team has been running the same steps for years. Not because it’s the best way — because the week never stops long enough to question it.",
+				"The workflow lives in people’s heads. Ask someone to document their process. Watch them struggle."
+			],
+			"bridge": "That’s the exact gear we help you shift."
+		},
 		"reality": {
 			"badge": "The honest truth",
 			"title": "Most Businesses Don't Fail Because of Lack of Technology.",
@@ -256,8 +266,14 @@
 			"beforeLabel": "Before",
 			"afterLabel": "After",
 			"rows": [
-				{ "before": "Executes tasks manually", "after": "Defines what needs to happen" },
-				{ "before": "Repeats the same steps every week", "after": "Sets it up once. AI runs it." },
+				{
+					"before": "Executes tasks manually",
+					"after": "Defines what needs to happen"
+				},
+				{
+					"before": "Repeats the same steps every week",
+					"after": "Sets it up once. AI runs it."
+				},
 				{
 					"before": "Output limited by their hours",
 					"after": "Output limited only by their thinking"
@@ -514,9 +530,18 @@
 				"title": "Executive Summary",
 				"text": "The virtual address service at this shared office in Seoul runs almost entirely on manual processes. Every customer touchpoint — inquiry, contract, payment — depends on a single contact person. This creates delays, human errors, and customer churn. Three high-impact automation opportunities were identified.",
 				"stats": [
-					{ "value": "5", "label": "manual steps in customer journey" },
-					{ "value": "4", "label": "bottlenecks identified" },
-					{ "value": "3", "label": "suggested actions" }
+					{
+						"value": "5",
+						"label": "manual steps in customer journey"
+					},
+					{
+						"value": "4",
+						"label": "bottlenecks identified"
+					},
+					{
+						"value": "3",
+						"label": "suggested actions"
+					}
 				]
 			},
 			"asIsIntro": "We mapped the complete customer journey from first inquiry to monthly payment. Red markers show where delays and errors occur.",
@@ -544,9 +569,15 @@
 			"suggestionsIntro": "Prioritized by customer impact. Each suggestion can be implemented independently.",
 			"suggestions": {
 				"items": [
-					{ "category": "Customer Journey · Inquiry" },
-					{ "category": "Customer Journey · Contract" },
-					{ "category": "Customer Journey · Payment" }
+					{
+						"category": "Customer Journey · Inquiry"
+					},
+					{
+						"category": "Customer Journey · Contract"
+					},
+					{
+						"category": "Customer Journey · Payment"
+					}
 				]
 			},
 			"priority": {
@@ -563,8 +594,18 @@
 						"effort": "Low",
 						"order": "#1"
 					},
-					{ "action": "E-signature API", "impact": "High", "effort": "Medium", "order": "#2" },
-					{ "action": "Card subscription", "impact": "Medium", "effort": "Medium", "order": "#3" }
+					{
+						"action": "E-signature API",
+						"impact": "High",
+						"effort": "Medium",
+						"order": "#2"
+					},
+					{
+						"action": "Card subscription",
+						"impact": "Medium",
+						"effort": "Medium",
+						"order": "#3"
+					}
 				]
 			},
 			"nextSteps": {

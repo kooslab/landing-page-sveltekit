@@ -102,57 +102,38 @@
 	</section>
 
 	<!-- ══════════════════════════════════════════════ -->
-	<!-- 3. FOMO TRAP — white, pattern interrupt       -->
+	<!-- 2. MIRROR — empathy, rapport                  -->
 	<!-- ══════════════════════════════════════════════ -->
 	<section class="bg-white px-5 py-20 md:px-12 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
-			<span class="mb-12 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
-				{$_('landing.fomo.badge')}
+			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
+				{$_('landing.mirror.badge')}
 			</span>
-
-			<!-- Opener -->
 			<p
 				class="text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:text-5xl lg:text-[52px]"
 			>
-				{$_('landing.fomo.headline')}
+				{$_('landing.mirror.headline')}
 			</p>
 			<p class="mt-5 text-xl font-medium text-ink/70 md:text-2xl">
-				{$_('landing.fomo.subline')}
+				{$_('landing.mirror.subline')}
 			</p>
 
-			<!-- Contrast: wrong vs. right -->
-			<div class="mt-16 grid gap-5 md:mt-20 md:grid-cols-2">
-				<!-- FOMO — muted, struck -->
-				<div class="rounded-2xl border border-canvas-warm p-7 md:p-9">
-					<p class="mb-5 text-sm font-bold uppercase tracking-[0.18em] text-ink/80">
-						{$_('landing.fomo.wrongLabel')}
-					</p>
-					<p
-						class="text-xl font-medium leading-snug text-ink/85 md:text-2xl"
-						style="text-decoration: line-through; text-decoration-color: rgba(41,40,39,0.15);"
-					>
-						"{$_('landing.fomo.wrongQuote')}"
-					</p>
-				</div>
-
-				<!-- Real problem — vivid -->
-				<div
-					class="rounded-2xl bg-brand/[.04] p-7 md:p-9"
-					style="border: 1.5px solid rgba(27,25,56,0.12);"
-				>
-					<p class="mb-5 text-sm font-bold uppercase tracking-[0.18em] text-brand">
-						{$_('landing.fomo.rightLabel')}
-					</p>
-					<p class="text-xl font-semibold leading-snug text-ink md:text-2xl">
-						"{$_('landing.fomo.rightQuote')}"
-					</p>
-				</div>
+			<div class="mt-14 space-y-6 md:mt-16">
+				{#each $_('landing.mirror.items') as item}
+					<div class="border-l-2 border-brand pl-6">
+						<p class="text-xl leading-relaxed text-ink md:text-2xl">"{item}"</p>
+					</div>
+				{/each}
 			</div>
+
+			<p class="mt-12 text-lg font-semibold text-brand md:mt-14 md:text-xl">
+				{$_('landing.mirror.bridge')}
+			</p>
 		</div>
 	</section>
 
 	<!-- ══════════════════════════════════════════════ -->
-	<!-- WHY EFFORTS FAIL — canvas-soft, 3 cards      -->
+	<!-- 3. WHY EFFORTS FAIL — canvas-soft, 3 cards   -->
 	<!-- ══════════════════════════════════════════════ -->
 	<section class="border-y border-canvas-warm bg-canvas-soft px-5 py-20 md:px-12 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
@@ -197,7 +178,56 @@
 	</section>
 
 	<!-- ══════════════════════════════════════════════ -->
-	<!-- 4. METHOD — canvas-soft, large scale          -->
+	<!-- 4. FOMO TRAP — white, pattern interrupt       -->
+	<!-- ══════════════════════════════════════════════ -->
+	<section class="bg-white px-5 py-20 md:px-12 md:py-28 lg:py-36">
+		<div class="mx-auto max-w-4xl">
+			<span class="mb-12 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
+				{$_('landing.fomo.badge')}
+			</span>
+
+			<p
+				class="text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:text-5xl lg:text-[52px]"
+			>
+				{$_('landing.fomo.headline')}
+			</p>
+			<p class="mt-5 text-xl font-medium text-ink/70 md:text-2xl">
+				{$_('landing.fomo.subline')}
+			</p>
+
+			<!-- Contrast: wrong vs. right -->
+			<div class="mt-16 grid gap-5 md:mt-20 md:grid-cols-2">
+				<!-- FOMO — muted, struck -->
+				<div class="rounded-2xl border border-canvas-warm p-7 md:p-9">
+					<p class="mb-5 text-sm font-bold uppercase tracking-[0.18em] text-ink/80">
+						{$_('landing.fomo.wrongLabel')}
+					</p>
+					<p
+						class="text-xl font-medium leading-snug text-ink/85 md:text-2xl"
+						style="text-decoration: line-through; text-decoration-color: rgba(41,40,39,0.15);"
+					>
+						"{$_('landing.fomo.wrongQuote')}"
+					</p>
+				</div>
+
+				<!-- Real problem — vivid -->
+				<div
+					class="rounded-2xl bg-brand/[.04] p-7 md:p-9"
+					style="border: 1.5px solid rgba(27,25,56,0.12);"
+				>
+					<p class="mb-5 text-sm font-bold uppercase tracking-[0.18em] text-brand">
+						{$_('landing.fomo.rightLabel')}
+					</p>
+					<p class="text-xl font-semibold leading-snug text-ink md:text-2xl">
+						"{$_('landing.fomo.rightQuote')}"
+					</p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ══════════════════════════════════════════════ -->
+	<!-- 5. METHOD — canvas-soft, large scale          -->
 	<!-- ══════════════════════════════════════════════ -->
 	<section class="border-y border-canvas-warm bg-canvas-soft px-5 py-20 md:px-12 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
@@ -214,14 +244,12 @@
 			<div class="space-y-16 md:space-y-20">
 				{#each [0, 1, 2] as i}
 					<div class="flex gap-8 md:gap-12">
-						<!-- Step number -->
 						<div
 							class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-white md:h-12 md:w-12"
 							style="margin-top: 6px;"
 						>
 							{i + 1}
 						</div>
-						<!-- Step content -->
 						<div>
 							<h3
 								class="text-2xl font-bold leading-[1.15] tracking-tight text-brand sm:text-3xl md:text-4xl lg:text-[40px]"
@@ -236,7 +264,7 @@
 	</section>
 
 	<!-- ══════════════════════════════════════════════ -->
-	<!-- 4. TRANSFORMATION — white                    -->
+	<!-- 6. TRANSFORMATION — white                     -->
 	<!-- ══════════════════════════════════════════════ -->
 	<section class="bg-white px-5 py-20 md:px-12 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
@@ -246,7 +274,6 @@
 				{$_('landing.transformation.badge')}
 			</span>
 
-			<!-- Headline -->
 			<p
 				class="text-3xl font-bold leading-[1.12] tracking-tight text-ink sm:text-4xl md:text-5xl lg:text-[52px]"
 			>
@@ -256,7 +283,6 @@
 				{$_('landing.transformation.subline')}
 			</p>
 
-			<!-- Column headers -->
 			<div class="mt-16 grid grid-cols-[1fr_32px_1fr] md:mt-20">
 				<p class="text-sm font-bold uppercase tracking-[0.18em] text-ink/80">
 					{$_('landing.transformation.beforeLabel')}
@@ -267,19 +293,14 @@
 				</p>
 			</div>
 
-			<!-- Transformation rows -->
 			<div class="mt-4 border-t border-canvas-warm">
 				{#each $_('landing.transformation.rows') as row}
 					<div
 						class="grid grid-cols-[1fr_32px_1fr] items-center border-b border-canvas-warm py-6 md:py-7"
 					>
-						<p class="text-base leading-snug text-ink/80 md:text-lg">
-							{row.before}
-						</p>
+						<p class="text-base leading-snug text-ink/80 md:text-lg">{row.before}</p>
 						<span class="text-center text-sm text-ink/80">→</span>
-						<p class="text-base font-semibold leading-snug text-ink md:text-lg">
-							{row.after}
-						</p>
+						<p class="text-base font-semibold leading-snug text-ink md:text-lg">{row.after}</p>
 					</div>
 				{/each}
 			</div>
@@ -287,7 +308,7 @@
 	</section>
 
 	<!-- ══════════════════════════════════════════════ -->
-	<!-- EMPLOYEE TRANSFORM — canvas-soft, image+list -->
+	<!-- 7. EMPLOYEE TRANSFORM — canvas-soft           -->
 	<!-- ══════════════════════════════════════════════ -->
 	<section class="border-y border-canvas-warm bg-canvas-soft px-5 py-20 md:px-12 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
@@ -306,7 +327,6 @@
 				class="mb-12 w-full rounded-2xl object-cover md:mb-16"
 			/>
 
-			<!-- After bullets only — image already shows the before -->
 			<div>
 				<p class="mb-8 text-sm font-bold uppercase tracking-[0.2em] text-brand">
 					{$_('landing.employeeTransform.afterLabel')}
@@ -324,9 +344,9 @@
 	</section>
 
 	<!-- ══════════════════════════════════════════════ -->
-	<!-- 5. FOR / NOT FOR — canvas-soft               -->
+	<!-- 8. FOR / NOT FOR — white                      -->
 	<!-- ══════════════════════════════════════════════ -->
-	<section class="border-y border-canvas-warm bg-canvas-soft px-5 py-20 md:px-12 md:py-28 lg:py-36">
+	<section class="bg-white px-5 py-20 md:px-12 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
 			<span
 				class="mb-12 block text-sm font-semibold uppercase tracking-[0.2em] text-brand md:mb-14"
@@ -340,9 +360,7 @@
 				{$_('landing.forNotFor.headline')}
 			</p>
 
-			<!-- Row-by-row comparison table -->
 			<div class="mt-16 overflow-hidden rounded-2xl border border-canvas-warm md:mt-20">
-				<!-- Header row -->
 				<div class="grid grid-cols-2">
 					<div class="border-r border-white/10 bg-red-600 px-6 py-4 md:px-8">
 						<p class="text-xs font-bold uppercase tracking-[0.2em] text-white/90">
@@ -355,7 +373,6 @@
 						</p>
 					</div>
 				</div>
-				<!-- Data rows -->
 				{#each $_('landing.forNotFor.notForItems') as notItem, i}
 					<div class="grid grid-cols-2 border-t border-canvas-warm bg-white">
 						<div
@@ -377,7 +394,7 @@
 	</section>
 
 	<!-- ══════════════════════════════════════════════ -->
-	<!-- 6. WORKSHOP RESULTS — canvas-soft             -->
+	<!-- 9. WORKSHOP RESULTS — canvas-soft             -->
 	<!-- ══════════════════════════════════════════════ -->
 	<section class="border-y border-canvas-warm bg-canvas-soft px-5 py-20 md:px-8 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
@@ -392,7 +409,6 @@
 			<div class="grid gap-6 md:grid-cols-3">
 				{#each staticTestimonials as clientKey}
 					<div class="flex flex-col rounded-2xl border border-canvas-warm bg-white p-7">
-						<!-- Metric delta -->
 						<div class="mb-5 border-b border-canvas-warm pb-5">
 							<p class="text-2xl font-bold leading-none tracking-tight text-brand">
 								{$_(`testimonials.clients.${clientKey}.metric`)}
@@ -401,11 +417,9 @@
 								{$_(`testimonials.clients.${clientKey}.metricLabel`)}
 							</p>
 						</div>
-						<!-- Quote -->
 						<blockquote class="flex-1 text-base leading-relaxed text-ink/85">
 							"{$_(`testimonials.clients.${clientKey}.quote`)}"
 						</blockquote>
-						<!-- Context tag — no fake names -->
 						<p class="mt-6 text-sm font-semibold uppercase tracking-[0.15em] text-ink/80">
 							{$_(`testimonials.clients.${clientKey}.context`)}
 						</p>
@@ -416,7 +430,7 @@
 	</section>
 
 	<!-- ══════════════════════════════════════════════ -->
-	<!-- 8. FAQ — white                                -->
+	<!-- 10. FAQ — white                               -->
 	<!-- ══════════════════════════════════════════════ -->
 	<section class="bg-white px-5 py-20 md:px-8 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
@@ -457,27 +471,23 @@
 	</section>
 
 	<!-- ══════════════════════════════════════════════ -->
-	<!-- CLOSING — axe narrative + scale or fade CTA  -->
+	<!-- 11. CLOSING — axe narrative + scale or fade  -->
 	<!-- ══════════════════════════════════════════════ -->
 	<section class="bg-brand px-5 pb-24 pt-20 md:px-12 md:pb-32 md:pt-28 lg:pb-40 lg:pt-36">
 		<div class="mx-auto max-w-4xl">
-			<!-- Axe headline -->
 			<p
 				class="mb-12 text-3xl font-bold leading-[1.12] tracking-tight text-white sm:text-4xl md:mb-16 md:text-5xl lg:text-[52px]"
 			>
 				{$_('landing.closing.axeHeadline')}
 			</p>
 
-			<!-- Axe image -->
 			<img
 				src="/images/ax.png"
 				alt={$_('landing.axeStory.imageAlt')}
 				class="mx-auto w-4/5 rounded-2xl object-cover opacity-90"
 			/>
 
-			<!-- Fade vs Scale two columns -->
 			<div class="mt-10 grid gap-8 md:mt-14 md:grid-cols-2 md:gap-10">
-				<!-- Fade -->
 				<div class="rounded-2xl border border-white/10 bg-white/[.05] p-7 md:p-8">
 					<p class="mb-5 text-sm font-bold uppercase tracking-[0.18em] text-white/50">
 						{$_('landing.closing.fadeLabel')}
@@ -492,7 +502,6 @@
 					</div>
 				</div>
 
-				<!-- Scale -->
 				<div class="rounded-2xl border border-brand-violet/20 bg-brand-violet/10 p-7 md:p-8">
 					<p class="mb-5 text-sm font-bold uppercase tracking-[0.18em] text-brand-violet">
 						{$_('landing.closing.scaleLabel')}
@@ -508,7 +517,6 @@
 				</div>
 			</div>
 
-			<!-- Scale or Fade title + CTA -->
 			<div class="mt-16 text-center md:mt-20">
 				<h2
 					class="text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl"
