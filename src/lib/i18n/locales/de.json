@@ -16,11 +16,232 @@
 	},
 	"landing": {
 		"hero": {
-			"title": "Software rettet\nIhr Geschaft nicht.",
+			"eyebrow": "Berlin · KI-Workshops für wachsende Teams",
+			"title": "Lösen Sie ein echtes Geschäftsproblem mit KI. Heute.",
 			"target": "Fur kleine Teams, die in Tabellen, Handarbeit und zusammengeflickten Prozessen versinken.",
-			"subtitle": "Es sei denn, Sie setzen sie richtig ein. Wir beginnen mit Ihrem Problem — oft brauchen Sie gar keine Software.",
-			"cta": "Kostenlose Problem-Discovery-Sitzung buchen",
-			"scroll": "Warum das so ist"
+			"subtitle": "Keine Demos, keine Folien, kein Seminar, das Sie in zwei Wochen vergessen haben. Hands-on Workshops, in denen Ihr Team echte Engpässe mit KI löst.",
+			"cta": "Kostenloses 20-Min-Gespräch buchen",
+			"ctaSub": "Schildern Sie uns Ihr Problem. Wir sagen Ihnen ehrlich, ob KI das löst.",
+			"scroll": "Warum das so ist",
+			"meta": "Hands-on Workshops · Vor Ort · Berlin"
+		},
+		"mirror": {
+			"badge": "Kommt Ihnen das bekannt vor",
+			"headline": "Erkennen Sie das?",
+			"items": [
+				"\"Das haben wir schon immer so gemacht.\" — und niemand hatte je eine Stunde Zeit, um zu fragen, warum.",
+				"Der Workflow steckt in den Köpfen. Bitten Sie jemanden, seinen Prozess zu dokumentieren. Beobachten Sie, wie er ins Stocken gerät."
+			],
+			"subline": "Zeit, die Betriebsweise zu überdenken, entsteht nicht von selbst. Jemand muss sich verpflichten, das Risiko eingehen und das Team hindurchführen. Meistens ist das der CEO.",
+			"bridge": "Genau diesen Schalter helfen wir Ihnen umzulegen."
+		},
+		"fomo": {
+			"badge": "Bevor Sie weiterscrollen",
+			"headline": "Alle reden über KI. Das ist kein Grund, KI zu lernen.",
+			"p1": "Das haben Sie schon gehört. Cloud. Blockchain. Big Data. Metaverse. Digitale Transformation. Alle paar Jahre füllt ein neues Wort die Vorstandspräsentationen und LinkedIn-Feeds. Die meisten Unternehmen sind mitgelaufen — und haben nichts vorzuweisen.",
+			"p2": "Immer dasselbe Muster. Ein neues Tool erscheint. Unternehmen stürzen sich mit dem Tool voran. Nichts bleibt hängen. Die Gewinner fangen mit einem Problem an — und suchen dann das Tool, das es löst.",
+			"fomoLabel": "Das ist FOMO",
+			"realLabel": "Das ist ein echtes Problem",
+			"rows": [
+				{
+					"fomo": "Unsere Mitbewerber nutzen KI. Wir sollten das auch.",
+					"real": "Unser Team verbringt jeden Montag 4 Stunden mit einem Bericht, der 20 Minuten dauern sollte."
+				},
+				{
+					"fomo": "Unser Vorstand hat nach unserer KI-Strategie gefragt.",
+					"real": "Wir verlieren Aufträge, weil Angebote 4 Tage brauchen. 4 Stunden sollten reichen."
+				},
+				{
+					"fomo": "Wir haben das Gefühl, den Anschluss zu verlieren.",
+					"real": "Das Onboarding ist manuell und scheitert jedes Mal. Es kostet eine Person eine ganze Woche pro Monat."
+				}
+			]
+		},
+		"effortsFail": {
+			"badge": "Warum KI-Initiativen scheitern",
+			"headline": "So läuft es ab, wenn das Tool zuerst kommt.",
+			"items": [
+				{
+					"label": "Abonnements bezahlen und liegenlassen.",
+					"description": "Die Mitarbeiter sehen es als Benefit. Und das war's. Nichts passiert."
+				},
+				{
+					"label": "KI-KPIs setzen und mit der Leistungsbeurteilung verknüpfen.",
+					"description": "Die Mitarbeiter erfinden künstliche Probleme, nur um leistungsstarke KI-Tools zu nutzen. Am Ende jagen sie Tool-KPIs, nicht Business-KPIs. Falsche Motivation. Falsches Ergebnis."
+				},
+				{
+					"label": "Mitarbeiter lernen KI eigenständig auf Abruf.",
+					"description": "Zuschauen verändert kein Verhalten — der E-Learning-Boom hat das bewiesen. Kein Geld für bezahlte Kurse ausgeben. Die besten KI-Inhalte sind kostenlos, öffentlich und werden wöchentlich aktualisiert. Was fehlt, ist ein echtes Problem zum Lösen."
+				}
+			],
+			"conclusion": "Es gibt einen Weg. Nichts Revolutionäres. Sie wissen es eigentlich schon längst.",
+			"conclusionBold": "Das Schwierige war nie das Wissen — sondern das Tun."
+		},
+		"method": {
+			"badge": "So funktioniert es",
+			"headline": "Drei Schritte. Alle hands-on.",
+			"steps": [
+				{
+					"title": "Bringen Sie Ihr echtes Problem mit.",
+					"description": "Kein erfundenes. Kein Problem, das Sie irgendwann haben könnten. Das, woran Sie gestern gescheitert sind. Es muss nicht gross sein — eine kleine Unannehmlichkeit, eine wiederkehrende Ärgerlichkeit, irgendetwas, das Sie ausgebremst hat. Aber es muss Ihres sein. Sie besitzen es, Sie lösen es."
+				},
+				{
+					"title": "Ein voller Intensivtag. Kein Abbruch bis es gelöst ist.",
+					"description": "Handy aus. Keine sozialen Medien. Sie sind aus einem Grund hier — um dieses Problem heute zu lösen. Kaputt machen. Reparieren. Wieder kaputt machen. Wiederholen. Die Dichte dieser Stunden ist der springende Punkt. Sie verlassen den Raum nicht, bis es fertig ist."
+				},
+				{
+					"title": "Mit Wissen gehen — nicht nur mit einem Ergebnis.",
+					"description": "Nicht: \"Jemand hat das für mich gebaut.\" Sie haben es gebaut. Sie verstehen jeden Schritt, wie Sie dorthin gekommen sind. Sie können es morgen alleine reproduzieren. Sie können es jemand anderem vollständig erklären. Das ist der Beweis, dass es real ist."
+				}
+			]
+		},
+		"ax_training": {
+			"badge": "AX-Trainingsprogramm",
+			"title": "Drei Stufen. Von KI-Grundlagen bis zur eigenen App.",
+			"intro": "Jede Session ist eigenständig buchbar oder als komplettes Programm. Konzipiert für Mitarbeiter ohne technischen Hintergrund, die echte Kompetenz aufbauen wollen — keine Folien.",
+			"levels": {
+				"basic": {
+					"level": "Stufe 1",
+					"title": "KI-Produktivität für den Arbeitsalltag",
+					"description": "ChatGPT, Claude und KI-Tools angewandt auf echte Aufgaben. Dokumente erstellen, E-Mails schreiben, Daten analysieren, Meetings zusammenfassen. Kein technisches Vorwissen erforderlich.",
+					"duration": "Halber Tag"
+				},
+				"intermediate": {
+					"level": "Stufe 2",
+					"title": "KI-Workflows & Automatisierung",
+					"description": "Prompt-Workflows aufbauen, repetitive Prozesse automatisieren, Tools ohne Code verbinden. Ihr Team verlässt die Session mit funktionierenden Automatisierungen — nicht mit Theorie.",
+					"duration": "Ganzer Tag"
+				},
+				"advanced": {
+					"level": "Stufe 3",
+					"title": "Claude Code — Echte Anwendungen bauen",
+					"description": "Praxisnahes Bauen von Anwendungen mit Claude Code. Am Ende des Tages hat Ihr Mitarbeiter ein funktionierendes, veröffentlichtes Web-Tool selbst gebaut. Für Teams, die ihre Lösungen selbst besitzen wollen.",
+					"duration": "Ganzer Tag + 1 Woche Follow-up"
+				}
+			},
+			"note": "Alle Sessions verfügbar: Vor Ort (Berlin) oder online. Gruppen- und Firmenpreise auf Anfrage.",
+			"cta": "AX-Training in Ihrer Diagnose-Session anfragen"
+		},
+		"pricing": {
+			"badge": "Aktuelle Preise",
+			"title": "Transparente Preise.",
+			"note": "Unsere Preise steigen mit der Kundennachfrage. Was Sie sehen, ist der heutige Preis — und der günstigste überhaupt.",
+			"diagnosis": {
+				"label": "Business-Diagnose",
+				"price": "300",
+				"currency": "EUR",
+				"format": "Halber Tag · Vor Ort · Berlin",
+				"credit": "Wird auf Ihr Projekt angerechnet, wenn Sie mit uns fortfahren",
+				"cta": "Diagnose buchen"
+			},
+			"ax": {
+				"label": "AX-Training",
+				"perGroup": "pro Gruppe",
+				"levels": {
+					"basic": {
+						"label": "Stufe 1",
+						"title": "KI-Produktivität",
+						"price": "400",
+						"format": "Halber Tag · Gruppensession"
+					},
+					"intermediate": {
+						"label": "Stufe 2",
+						"title": "KI-Workflows",
+						"price": "700",
+						"format": "Ganzer Tag · Gruppensession"
+					},
+					"advanced": {
+						"label": "Stufe 3",
+						"title": "Claude Code",
+						"price": "1.200",
+						"format": "Ganzer Tag · Gruppensession + 60-Min-Videogespräch 5 Tage danach"
+					}
+				},
+				"cta": "AX-Training anfragen"
+			},
+			"custom": {
+				"label": "Individuelle Software",
+				"title": "Lassen Sie uns über Ihr Projekt sprechen.",
+				"description": "Jedes Projekt wird individuell abgestimmt. Sagen Sie uns, was Sie brauchen, und wir finden gemeinsam den richtigen Ansatz.",
+				"cta": "Kontakt aufnehmen"
+			}
+		},
+		"transformation": {
+			"badge": "Was sich verändert",
+			"headline": "Einmal vorher und nachher.",
+			"beforeLabel": "Vorher",
+			"afterLabel": "Nachher",
+			"before": "Sie sind die Axt. Schärfer werden. Schneller hacken. Mehr leisten.",
+			"after": "Sie sind nicht mehr die Axt. Sie entscheiden, welcher Baum. Sie finden die Wurzel. Sie gestalten den Schnitt. KI erledigt die Arbeit.",
+			"p1": "Nichts davon ist neu. Beobachten, diagnostizieren, gestalten, delegieren — so haben die besten Manager seit Jahrhunderten gearbeitet. KI hat das nicht erfunden.",
+			"p2": "Keine Ausreden mehr. Das Schwierige ist jetzt das Denken, nicht das Tun.",
+			"p3": "Und wer kommt zuerst ans Ziel? Nicht immer der stärkste Performer im Raum. In jedem Workshop waren diejenigen, die den grössten Sprung gemacht haben, die echte Neugier zeigten und ihr Problem vollständig in die Hand genommen haben."
+		},
+		"forNotFor": {
+			"badge": "Bevor Sie buchen",
+			"headline": "Ist das das Richtige für Sie?",
+			"notForLabel": "Das ist nicht für Sie oder Ihr Team, wenn:",
+			"notForItems": [
+				"Sie kein konkretes Problem benennen können, das Sie in die Session mitbringen.",
+				"Jemand kommt, weil er es muss, nicht weil er es will.",
+				"Jemand erwartet zuzuschauen, statt zu handeln."
+			],
+			"note": "Sie müssen nicht selbst im Raum sein. Aber Sie sind verantwortlich dafür, wen Sie schicken. Der falsche Teilnehmer verschwendet den Tag aller — einschließlich Ihrer eigenen Investition."
+		},
+		"faq": {
+			"badge": "Häufige Fragen",
+			"title": "Was CEOs uns fragen",
+			"items": [
+				{
+					"q": "Wie viele Personen soll ich schicken, und wie lange dauert es?",
+					"a": "Einen ganzen Tag. Wen Sie schicken — weniger ist mehr. Zwei bis vier motivierte Personen übertreffen ein Zimmer mit zehn, die hingeschickt wurden. Denken Sie nicht an Besetzung. Denken Sie daran, wer ein echtes Problem hat und es wirklich lösen will."
+				},
+				{
+					"q": "Ich weiss immer noch nicht, wen ich schicken soll.",
+					"a": "Genau dafür ist das Vorgespräch. Wir reden, stellen Fragen und helfen Ihnen, die richtigen Personen zu finden. Kontaktieren Sie uns und wir finden gemeinsam die Lösung."
+				},
+				{
+					"q": "Online oder offline?",
+					"a": "Nur offline. Das intensive Format funktioniert nicht per Videoanruf — Fokus, Energie und die hands-on Dynamik hängen davon ab, im selben Raum zu sein."
+				},
+				{
+					"q": "Wir sind kein Tech-Unternehmen. Ist das relevant für uns?",
+					"a": "Das Ziel ist nie, Ihr Team in Ingenieure zu verwandeln. Das Ziel ist das Delta — wie viel kann Ihr Team vom heutigen Stand aus verbessern. Vor der Session definieren wir gemeinsam Ziele, die bedeutsam, erreichbar und direkt mit Ihren Business-KPIs verknüpft sind. Die Branche spielt keine Rolle. Das Problem schon."
+				},
+				{
+					"q": "Wo finden die Workshops statt?",
+					"a": "Wir sind in Berlin ansässig. Für Berliner Kunden kommen wir zu Ihnen. Wir reisen auch durch ganz Deutschland — kontaktieren Sie uns einfach."
+				}
+			]
+		},
+		"axeStory": {
+			"badge": "Die Initiative, die Sie immer wieder aufschieben",
+			"headline": "Zu beschäftigt, um die Axt zu schärfen.",
+			"subline": "Es gibt immer etwas Dringenderes. Währenddessen ziehen die Führungskräfte, die investiert haben, davon. Jede Woche, die Sie warten, wächst der Abstand.",
+			"leftLabel": "Das beschäftigte Team",
+			"leftCaption": "Produziert immer. Skaliert nie. Die Axt wird jede Woche stumpfer.",
+			"middleLabel": "Die Investition",
+			"middleCaption": "Anhalten. Lernen. Etwas Klügeres aufbauen. Andere werden es als Zeitverschwendung bezeichnen.",
+			"rightLabel": "Das trainierte Team",
+			"rightCaption": "Eine echte Investition. Dann dauerhaft bessere Ergebnisse mit weniger Aufwand.",
+			"imageAlt": "Zwei Holzfäller — einer hackt hektisch mit einer stumpfen Axt, der andere hält inne, schärft seine Axt und arbeitet dann viel effizienter"
+		},
+		"closing": {
+			"title": "Wachsen oder Zurückfallen.",
+			"axeHeadline": "Zu beschäftigt, um die Axt zu schärfen.",
+			"fadeLabel": "Unternehmen, die weiter hacken",
+			"fadeItems": [
+				"Gleiche Leistung. Gleicher Aufwand. Jeden Tag.",
+				"Fallen hinter Mitbewerber zurück, die investiert haben."
+			],
+			"scaleLabel": "Unternehmen, die geschärft haben",
+			"scaleItems": [
+				"Eine Investition. Dauerhafter Multiplikator.",
+				"Dieselben Leute. 10-fache Leistung."
+			],
+			"lead": "Jetzt ist die Zeit. Nicht nächstes Quartal. Nicht später.",
+			"cta": "Kostenloses 30-Min-Gespräch buchen",
+			"ctaSub": "Kein Verkaufsgespräch. Bringen Sie einfach Ihr Problem mit."
 		},
 		"reality": {
 			"badge": "Die ehrliche Wahrheit",
@@ -792,7 +1013,8 @@
 		"portfolio": "Portfolio",
 		"workshops": "Workshops",
 		"blog": "Blog",
-		"backHome": "Zurück zur Startseite"
+		"backHome": "Zurück zur Startseite",
+		"bookCall": "Kostenloses Gespräch"
 	},
 	"profile": {
 		"seo": {
@@ -1071,9 +1293,11 @@
 		"title": "Workshop reservieren",
 		"workshopLabel": "Workshop-Typ",
 		"types": {
-			"requirements": "Anforderungsworkshop (200 EUR)",
-			"vibe": "Vibe-Coding-Workshop (100 EUR)",
-			"free": "Kostenlose Problem-Discovery"
+			"diagnosis": "Business-Diagnose — €300 · Halber Tag · Vor Ort · Berlin",
+			"ax_l1": "AX-Training L1 — KI-Produktivität · €400 · Halber Tag · Gruppe",
+			"ax_l2": "AX-Training L2 — KI-Workflows · €700 · Ganzer Tag · Gruppe",
+			"ax_l3": "AX-Training L3 — Claude Code · €1.200 · Ganzer Tag + 1 Woche Follow-up",
+			"custom": "Individuelle Softwareentwicklung — Gemeinsam definieren"
 		},
 		"datesLabel": "Wunschtermine (bis zu 3)",
 		"nameLabel": "Name",
