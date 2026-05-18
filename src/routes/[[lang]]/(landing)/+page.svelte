@@ -118,10 +118,16 @@
 				{$_('landing.mirror.subline')}
 			</p>
 
-			<div class="mt-14 space-y-6 md:mt-16">
+			<img
+				src="/images/busy.jpeg"
+				alt="Cavemen too busy pushing square wheels to accept a round one"
+				class="mt-14 w-full max-w-md rounded-xl opacity-80 md:mt-16"
+			/>
+
+			<div class="mt-12 space-y-6 md:mt-14">
 				{#each $_('landing.mirror.items') as item}
 					<div class="border-l-2 border-brand pl-6">
-						<p class="text-xl leading-relaxed text-ink md:text-2xl">"{item}"</p>
+						<p class="text-xl leading-relaxed text-ink md:text-2xl">{item}</p>
 					</div>
 				{/each}
 			</div>
