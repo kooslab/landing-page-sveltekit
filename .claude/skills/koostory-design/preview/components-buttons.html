@@ -1,0 +1,29 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; background: var(--canvas); }
+  .card { padding: 24px 28px; display: flex; flex-direction: column; gap: 12px; }
+  .row { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+  .dark-row { background: #1B1938; padding: 16px; border-radius: 12px; gap: 12px; }
+  .teal-row { background: #0E3030; padding: 16px; border-radius: 12px; gap: 12px; }
+  .btn { font-family: var(--font-display); font-size: 16px; font-weight: 700; padding: 12px 20px; border-radius: 8px; cursor: pointer; border: 1px solid transparent; display: inline-flex; align-items: center; gap: 8px; line-height: 1; letter-spacing: 0; }
+  .primary-dark { background: #1B1938; color: #fff; }
+  .pill { background: #C9B4FA; color: #1B1938; border-radius: 9999px; padding: 12px 22px; }
+  .outline { background: #fff; color: #292827; border-color: #3F3A52; }
+  .on-teal { background: #fff; color: #0E3030; }
+  .arrow { width: 14px; height: 14px; }
+</style></head><body>
+<div class="card">
+  <div class="row">
+    <button class="btn primary-dark">Book a 30-min call<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+    <button class="btn outline">See case studies</button>
+  </div>
+  <div class="row dark-row">
+    <button class="btn pill">Get started<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+  </div>
+  <div class="row teal-row">
+    <button class="btn on-teal">Book a 30-min call<svg class="arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+  </div>
+</div>
+</body></html>

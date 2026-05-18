@@ -7,7 +7,11 @@
 		slug: string;
 		originalTitle: string;
 		originalHtmlContent: string;
-		onTranslate: (translatedTitle: string, translatedHtmlContent: string, lang: SupportedLang) => void;
+		onTranslate: (
+			translatedTitle: string,
+			translatedHtmlContent: string,
+			lang: SupportedLang
+		) => void;
 		onShowOriginal: () => void;
 	}
 
@@ -66,7 +70,11 @@
 		localStorage.setItem(getCacheKey(lang), JSON.stringify({ title, content }));
 	}
 
-	async function translateText(text: string, targetLang: SupportedLang, isHtml = false): Promise<string> {
+	async function translateText(
+		text: string,
+		targetLang: SupportedLang,
+		isHtml = false
+	): Promise<string> {
 		const response = await fetch('/api/translate', {
 			method: 'POST',
 			headers: { 'Content-Type': 'application/json' },
@@ -189,13 +197,7 @@
 					fill="none"
 					viewBox="0 0 24 24"
 				>
-					<circle
-						class="opacity-25"
-						cx="12"
-						cy="12"
-						r="10"
-						stroke="currentColor"
-						stroke-width="4"
+					<circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"
 					></circle>
 					<path
 						class="opacity-75"
@@ -237,9 +239,7 @@
 		</button>
 
 		{#if showDropdown}
-			<div
-				class="absolute left-0 z-50 mt-2 w-36 rounded-md border bg-popover p-1 shadow-md"
-			>
+			<div class="absolute left-0 z-50 mt-2 w-36 rounded-md border bg-popover p-1 shadow-md">
 				{#each languages as lang}
 					<button
 						type="button"

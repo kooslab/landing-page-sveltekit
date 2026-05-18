@@ -1,0 +1,21 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; background: var(--canvas-soft); }
+  .card { padding: 32px 28px; display: flex; align-items: center; justify-content: space-around; gap: 16px; }
+  .tile { width: 120px; height: 80px; background: var(--canvas); border-radius: var(--radius-lg); display: flex; align-items: flex-end; padding: 8px; }
+  .l0 { border: 1px solid var(--hairline); }
+  .l1 { box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  .l2 { box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+  .l3 { background: linear-gradient(180deg,#1B1938 0%,#4F3E8A 50%,#7BA0E0 100%); }
+  .l3 .lbl { color: rgba(255,255,255,0.85); }
+  .lbl { font-family: var(--font-mono); font-size: 10px; color: var(--ink-mute); }
+</style></head><body>
+<div class="card">
+  <div class="tile l0"><span class="lbl">0 · flat</span></div>
+  <div class="tile l1"><span class="lbl">1 · subtle</span></div>
+  <div class="tile l2"><span class="lbl">2 · floating</span></div>
+  <div class="tile l3"><span class="lbl">3 · hero atmospheric</span></div>
+</div>
+</body></html>

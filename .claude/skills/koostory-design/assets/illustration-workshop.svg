@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" role="img" aria-label="Workshop illustration">
+  
+  <g fill="none" stroke="#14181F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    
+    <ellipse cx="120" cy="100" rx="70" ry="22"></ellipse>
+    
+  </g>
+  <ellipse cx="120" cy="100" rx="66" ry="19" fill="#DDE2FB" opacity="0.6"></ellipse>
+  <g fill="none" stroke="#14181F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    <ellipse cx="120" cy="100" rx="70" ry="22"></ellipse>
+    
+    <path d="M48 60 L52 78 M60 60 L58 78 M46 78 L62 78"></path>
+    
+    <path d="M180 60 L184 78 M192 60 L190 78 M178 78 L194 78"></path>
+    
+    <path d="M58 140 L62 158 M70 140 L68 158 M56 158 L72 158"></path>
+    
+    <path d="M170 140 L174 158 M182 140 L180 158 M168 158 L184 158"></path>
+    
+    <path d="M108 92 q-2 6 0 10 q8 2 14 0 q2 -4 0 -10 z"></path>
+    <path d="M122 96 q4 0 4 4 q0 3 -4 3"></path>
+    
+    <rect x="130" y="94" width="20" height="14" rx="1"></rect>
+    <line x1="134" y1="99" x2="146" y2="99"></line>
+    <line x1="134" y1="103" x2="144" y2="103"></line>
+  </g>
+</svg>

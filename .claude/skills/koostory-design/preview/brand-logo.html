@@ -1,0 +1,35 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; background: var(--canvas); }
+  .card { display: flex; align-items: stretch; gap: 0; padding: 0; }
+  .pane { flex: 1; padding: 26px 28px; display: flex; align-items: center; gap: 16px; }
+  .light { background: #fff; }
+  .dark { background: #1B1938; }
+  .brand { font-family: var(--font-display); font-size: 36px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; display: inline-flex; align-items: baseline; gap: 1px; }
+  .light .brand { color: #292827; }
+  .light .brand .dot { color: #1B1938; }
+  .dark .brand { color: #fff; }
+  .dark .brand .dot { color: #C9B4FA; }
+  .mark { width: 56px; height: 56px; border-radius: 12px; position: relative; display: flex; align-items: flex-end; padding: 8px; }
+  .mark .k { font-family: var(--font-display); font-size: 32px; font-weight: 800; letter-spacing: -0.03em; line-height: 1; }
+  .mark .acc { position: absolute; top: 10px; right: 10px; width: 8px; height: 8px; border-radius: 50%; }
+  .light .mark { background: #1B1938; }
+  .light .mark .k { color: #fff; }
+  .light .mark .acc { background: #C9B4FA; }
+  .dark .mark { background: #fff; }
+  .dark .mark .k { color: #1B1938; }
+  .dark .mark .acc { background: #1B1938; }
+</style></head><body>
+<div class="card">
+  <div class="pane light">
+    <div class="brand">KooStory<span class="dot">.</span></div>
+    <div class="mark"><span class="k">k</span><span class="acc"></span></div>
+  </div>
+  <div class="pane dark">
+    <div class="brand">KooStory<span class="dot">.</span></div>
+    <div class="mark"><span class="k">k</span><span class="acc"></span></div>
+  </div>
+</div>
+</body></html>

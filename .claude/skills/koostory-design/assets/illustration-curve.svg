@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 180" role="img" aria-label="Adoption curve illustration">
+  
+  <path d="M30 140 C 80 138, 110 130, 130 96 C 150 62, 180 50, 210 46 L 210 150 L 30 150 Z" fill="#DDE2FB" opacity="0.55"></path>
+  <g fill="none" stroke="#14181F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+    
+    <path d="M30 30 L30 150 L210 150"></path>
+    
+    <path d="M30 140 C 80 138, 110 130, 130 96 C 150 62, 180 50, 210 46"></path>
+    
+    <line x1="30" y1="150" x2="30" y2="154"></line>
+    <line x1="90" y1="150" x2="90" y2="154"></line>
+    <line x1="150" y1="150" x2="150" y2="154"></line>
+    <line x1="210" y1="150" x2="210" y2="154"></line>
+    
+    <circle cx="210" cy="46" r="3.5" fill="#4F6BED" stroke="none"></circle>
+    
+    <circle cx="105" cy="134" r="2.5" fill="#14181F" stroke="none"></circle>
+  </g>
+</svg>

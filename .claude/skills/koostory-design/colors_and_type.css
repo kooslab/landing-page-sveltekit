@@ -1,0 +1,285 @@
+/* ============================================================
+   KooStory Design System — Tokens
+   Built to the Superhumon spec (see DESIGN.md / README.md).
+   Drop in any page: <link rel="stylesheet" href="colors_and_type.css">
+   ============================================================ */
+
+/* ---------- Fonts ----------
+   Display + UI tier is Inter Variable (substituting for Super Sans VF).
+   The brand uses sub-default weights — 460 / 540 / 600 — accessed via
+   the variable-weight axis. JetBrains Mono for utility.
+   -------------------------- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;460;500;540;600;700&family=JetBrains+Mono&display=swap');
+
+:root {
+  /* ---------- Brand & Accent ---------- */
+  --primary:               #1B1938;   /* indigo navy — hero canvas, primary CTA, featured pricing */
+  --primary-deep:          #0E0C1F;   /* pressed / hero gradient deeper stop */
+  --surface-violet-soft:   #C9B4FA;   /* hero pill CTA fill, atmospheric accents */
+  --surface-teal-deep:     #0E3030;   /* closing-CTA band, signature chromatic interlude */
+  --surface-teal-mid:      #155555;   /* nested chrome inside the teal band */
+
+  /* ---------- Surfaces ---------- */
+  --canvas:        #FFFFFF;   /* default body background */
+  --canvas-soft:   #FAFAF8;   /* alternating feature rows, barely-warm off-white */
+  --hairline:      #E8E4DD;   /* 1px borders on light, slightly warm grey */
+  --hairline-dark: #3F3A52;   /* 1px borders on dark surfaces */
+
+  /* ---------- Text / Ink ---------- */
+  --ink:            #292827;   /* warm dark grey — body text. Never pure black. */
+  --ink-mute:       #73706D;   /* secondary text, captions */
+  --ink-faint:      #9A9794;   /* tertiary, disabled */
+  --on-primary:     #FFFFFF;   /* text on dark navy / teal */
+  --on-dark-mute:   rgba(255, 255, 255, 0.72);
+  --on-dark-faint:  rgba(255, 255, 255, 0.50);
+
+  /* ---------- Semantic states ---------- */
+  --success:        #10B981;
+  --success-soft:   #D1FAE5;
+  --warning:        #F59E0B;
+  --warning-soft:   #FEF3C7;
+  --danger:         #EF4444;
+  --danger-soft:    #FEE2E2;
+  --info:           #3B82F6;
+  --info-soft:      #DBEAFE;
+
+  /* ---------- Typography: families ---------- */
+  --font-display: 'Inter', system-ui, 'Helvetica Neue', Helvetica, sans-serif;
+  --font-body:    'Inter', system-ui, 'Helvetica Neue', Helvetica, sans-serif;
+  --font-mono:    'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  /* ---------- Typography: size scale ---------- */
+  --display-xxl: 64px;   /* hero headline */
+  --display-xl:  48px;   /* light-surface section opener */
+  --display-lg:  28px;   /* sub-section / feature title */
+  --display-md:  22px;   /* card title */
+  --heading-lg:  20px;   /* compact card title */
+  --body-lg:     18px;   /* marketing lead */
+  --body-md:     16px;   /* default UI body */
+  --button-md:   16px;
+  --button-cap:  14px;
+  --caption:     14px;
+  --micro:       12px;
+
+  /* ---------- Typography: weights (variable axis) ---------- */
+  --w-body:      460;    /* body-md, caption */
+  --w-medium:    540;    /* display-xxl, body-lg, micro */
+  --w-semibold:  600;    /* button-cap */
+  --w-bold:      700;    /* button-md, body-strong */
+
+  /* ---------- Typography: line-height & tracking ----------
+     Display sizes use tight 0.96 LH and negative tracking.
+     Body stays at 1.5. ------------------------ */
+  --lh-display:    0.96;
+  --lh-display-lg: 1.14;
+  --lh-display-md: 1.10;
+  --lh-heading:    1.20;
+  --lh-body:       1.50;
+  --lh-caption:    1.40;
+
+  --track-display-xl: -1.32px;
+  --track-display-lg: -0.63px;
+  --track-display-md: -0.315px;
+  --track-heading:    -0.40px;
+  --track-body-lg:    -0.135px;
+
+  /* ---------- Spacing (8px base + 2/4/12 subtokens) ---------- */
+  --space-xxs: 2px;
+  --space-xs:  4px;
+  --space-sm:  8px;
+  --space-md:  12px;
+  --space-lg:  16px;
+  --space-xl:  24px;
+  --space-xxl: 32px;
+  --space-huge: 64px;
+  --space-mega: 96px;
+  --space-giga: 128px;
+
+  /* ---------- Radii ---------- */
+  --radius-xs:   4px;     /* hairline tags */
+  --radius-sm:   6px;     /* form inputs */
+  --radius-md:   8px;     /* buttons (signature rectangle) */
+  --radius-lg:   12px;    /* cards */
+  --radius-xl:   16px;    /* modals, large feature cards */
+  --radius-full: 9999px;  /* pills (hero CTA only) */
+
+  /* ---------- Elevation ---------- */
+  --shadow-1: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-2: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  /* ---------- Motion ---------- */
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+  --dur-fast: 120ms;
+  --dur-normal: 240ms;
+  --dur-slow: 400ms;
+
+  /* ---------- Containers ---------- */
+  --container-content: 1100px;
+  --container-narrow:  960px;
+  --container-prose:   720px;
+}
+
+/* ============================================================
+   Semantic element styles.
+   Apply on body or wrap content in .koo.
+   ============================================================ */
+
+body, .koo {
+  font-family: var(--font-body);
+  font-size: var(--body-md);
+  font-weight: var(--w-body);
+  line-height: var(--lh-body);
+  color: var(--ink);
+  background: var(--canvas);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Display tier */
+.koo h1, h1.koo,
+.koo h2, h2.koo,
+.koo h3, h3.koo,
+.koo h4, h4.koo {
+  font-family: var(--font-display);
+  color: var(--ink);
+  margin: 0 0 var(--space-lg);
+  text-wrap: balance;
+}
+.koo h1, h1.koo {
+  font-size: var(--display-xxl);
+  font-weight: var(--w-medium);
+  line-height: var(--lh-display);
+  letter-spacing: -1.76px;
+}
+.koo h2, h2.koo {
+  font-size: var(--display-xl);
+  font-weight: var(--w-body);
+  line-height: var(--lh-display);
+  letter-spacing: var(--track-display-xl);
+}
+.koo h3, h3.koo {
+  font-size: var(--display-lg);
+  font-weight: var(--w-medium);
+  line-height: var(--lh-display-lg);
+  letter-spacing: var(--track-display-lg);
+}
+.koo h4, h4.koo {
+  font-size: var(--display-md);
+  font-weight: var(--w-body);
+  line-height: var(--lh-display-md);
+  letter-spacing: var(--track-display-md);
+}
+
+/* Body */
+.koo p, p.koo {
+  font-size: var(--body-md);
+  font-weight: var(--w-body);
+  line-height: var(--lh-body);
+  color: var(--ink);
+  margin: 0 0 var(--space-lg);
+  text-wrap: pretty;
+  max-width: 65ch;
+}
+.koo .lead, .lead.koo {
+  font-family: var(--font-body);
+  font-size: var(--body-lg);
+  font-weight: var(--w-medium);
+  line-height: var(--lh-body);
+  letter-spacing: var(--track-body-lg);
+  color: var(--ink);
+  max-width: 56ch;
+}
+.koo .body-strong, strong.koo {
+  font-size: 18.72px;
+  font-weight: var(--w-bold);
+  line-height: var(--lh-body);
+}
+.koo .caption, .caption.koo,
+.koo small, small.koo {
+  font-size: var(--caption);
+  font-weight: var(--w-body);
+  line-height: var(--lh-caption);
+  color: var(--ink-mute);
+}
+.koo .micro, .micro.koo {
+  font-size: var(--micro);
+  font-weight: var(--w-medium);
+  line-height: var(--lh-caption);
+}
+
+/* Eyebrow / overline */
+.koo .eyebrow, .eyebrow.koo {
+  font-family: var(--font-display);
+  font-size: var(--micro);
+  font-weight: var(--w-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--ink-mute);
+}
+
+/* Links */
+.koo a, a.koo {
+  color: var(--ink);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color var(--dur-fast) var(--ease);
+}
+.koo a:hover, a.koo:hover {
+  color: var(--primary);
+}
+
+/* Mono */
+.koo code, code.koo,
+.koo pre, pre.koo {
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+}
+.koo code, code.koo {
+  background: var(--canvas-soft);
+  padding: 0.1em 0.4em;
+  border-radius: var(--radius-xs);
+  color: var(--ink);
+  border: 1px solid var(--hairline);
+}
+.koo pre, pre.koo {
+  background: var(--canvas-soft);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  padding: var(--space-lg);
+  line-height: var(--lh-body);
+  overflow-x: auto;
+}
+
+/* Blockquote */
+.koo blockquote, blockquote.koo {
+  font-family: var(--font-display);
+  font-size: var(--display-lg);
+  font-weight: var(--w-medium);
+  line-height: var(--lh-display-lg);
+  letter-spacing: var(--track-display-lg);
+  color: var(--ink);
+  border-left: 3px solid var(--primary);
+  padding-left: var(--space-xl);
+  margin: var(--space-xl) 0;
+  max-width: 50ch;
+}
+
+.koo hr, hr.koo {
+  border: none;
+  border-top: 1px solid var(--hairline);
+  margin: var(--space-xxl) 0;
+}
+
+.koo ::selection {
+  background: var(--surface-violet-soft);
+  color: var(--primary);
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0ms !important;
+    transition-duration: 0ms !important;
+  }
+}

@@ -86,3 +86,7 @@ bun run format       # Auto-format code with Prettier
 - Cannot use `export let` in runes mode — use `$props()` instead
 - use Drizzle for ORM
 - use sveltekit best practice for navigation and asynchronous data handling
+
+## git commit rules
+
+- commit for every important changes, not every single change

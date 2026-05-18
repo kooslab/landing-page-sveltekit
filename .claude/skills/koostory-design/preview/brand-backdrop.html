@@ -1,0 +1,23 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; background: #1B1938; }
+  .card { position: relative; height: 320px; overflow: hidden; }
+  .backdrop {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(60% 80% at 78% 30%, rgba(201, 180, 250, 0.55), transparent 70%),
+      radial-gradient(40% 60% at 92% 78%, rgba(124, 162, 230, 0.30), transparent 70%),
+      radial-gradient(50% 60% at 20% 90%, rgba(40, 30, 90, 0.6), transparent 70%),
+      linear-gradient(180deg, #0E0C1F 0%, #1B1938 60%);
+  }
+  .lbl { position: absolute; bottom: 18px; left: 22px; font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.6); letter-spacing: 0.06em; }
+  .lbl-r { position: absolute; bottom: 18px; right: 22px; font-family: var(--font-mono); font-size: 11px; color: rgba(255,255,255,0.45); }
+</style></head><body>
+<div class="card">
+  <div class="backdrop"></div>
+  <div class="lbl">HERO ATMOSPHERIC BACKDROP</div>
+  <div class="lbl-r">violet-sky · radial wash · over #1B1938</div>
+</div>
+</body></html>

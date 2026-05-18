@@ -1,0 +1,322 @@
+/* Slide deck styles — KooStory workshop/proposal deck.
+   Builds on the design system tokens via colors_and_type.css.
+   Slides are 1920×1080. */
+
+* { box-sizing: border-box; }
+html, body { margin: 0; background: #0E0C1F; }
+body { font-family: var(--font-display); color: var(--ink); }
+
+deck-stage {
+  --deck-w: 1920px;
+  --deck-h: 1080px;
+}
+deck-stage section {
+  width: 1920px;
+  height: 1080px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ============================
+   Slide chrome — wordmark + page no.
+   ============================ */
+.kd-chrome {
+  position: absolute;
+  inset: 56px 80px auto 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 5;
+  font-family: var(--font-display);
+}
+.kd-brand {
+  font-weight: 800;
+  font-size: 28px;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+}
+.kd-brand .dot { color: var(--primary); }
+.kd-brand.is-on-dark { color: var(--on-primary); }
+.kd-brand.is-on-dark .dot { color: var(--surface-violet-soft); }
+.kd-eyebrow {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-mute);
+}
+.kd-eyebrow.is-on-dark { color: rgba(255,255,255,0.5); }
+.kd-foot {
+  position: absolute;
+  left: 80px;
+  right: 80px;
+  bottom: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  color: var(--ink-mute);
+  z-index: 5;
+}
+.kd-foot.is-on-dark { color: rgba(255,255,255,0.45); }
+
+/* ============================
+   1. TITLE — indigo + violet-sky
+   ============================ */
+.kd-title {
+  background: var(--primary);
+  color: var(--on-primary);
+  padding: 200px 120px 140px;
+  justify-content: flex-end;
+}
+.kd-title .kd-backdrop {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(60% 80% at 78% 30%, rgba(201, 180, 250, 0.55), transparent 70%),
+    radial-gradient(45% 65% at 90% 80%, rgba(124, 162, 230, 0.30), transparent 70%),
+    radial-gradient(50% 60% at 18% 95%, rgba(40, 30, 90, 0.65), transparent 70%),
+    linear-gradient(180deg, var(--primary-deep) 0%, var(--primary) 60%);
+  z-index: 0;
+}
+.kd-title > * { position: relative; z-index: 2; }
+.kd-title-eyebrow {
+  font-size: 22px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: var(--surface-violet-soft);
+  margin-bottom: 40px;
+}
+.kd-title h1 {
+  font-size: 160px;
+  font-weight: 540;
+  line-height: 0.94;
+  letter-spacing: -4.4px;
+  color: var(--on-primary);
+  margin: 0;
+  text-wrap: balance;
+  max-width: 16ch;
+}
+.kd-title h1 em {
+  font-style: italic;
+  color: var(--surface-violet-soft);
+  font-weight: 540;
+}
+.kd-title .kd-title-meta {
+  margin-top: 56px;
+  display: flex;
+  gap: 24px;
+  font-size: 22px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.72);
+}
+
+/* ============================
+   2. CONTENT — white body
+   ============================ */
+.kd-content {
+  background: var(--canvas);
+  color: var(--ink);
+  padding: 200px 120px 140px;
+  justify-content: flex-start;
+}
+.kd-content-eyebrow {
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-mute);
+  margin-bottom: 40px;
+}
+.kd-content h2 {
+  font-size: 128px;
+  font-weight: 460;
+  line-height: 0.96;
+  letter-spacing: -3.5px;
+  color: var(--ink);
+  margin: 0 0 56px;
+  text-wrap: balance;
+  max-width: 18ch;
+}
+.kd-content h2 em {
+  font-style: italic;
+  color: var(--primary);
+  font-weight: 460;
+}
+.kd-content .kd-lede {
+  font-size: 36px;
+  font-weight: 540;
+  line-height: 1.4;
+  letter-spacing: -0.27px;
+  color: var(--ink-mute);
+  max-width: 32ch;
+  margin: 0;
+}
+
+/* ============================
+   3. AGENDA — numbered list
+   ============================ */
+.kd-agenda {
+  background: var(--canvas);
+  padding: 200px 120px 140px;
+}
+.kd-agenda h2 { font-size: 96px; font-weight: 460; line-height: 1; letter-spacing: -2.5px; color: var(--ink); margin: 0 0 80px; }
+.kd-agenda-list { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 24px; }
+.kd-agenda-row {
+  display: grid;
+  grid-template-columns: 80px 1fr 200px;
+  align-items: center;
+  gap: 40px;
+  padding: 24px 0;
+  border-top: 1px solid var(--hairline);
+}
+.kd-agenda-row:last-child { border-bottom: 1px solid var(--hairline); }
+.kd-agenda-n { font-family: var(--font-mono); font-size: 22px; color: var(--ink-mute); }
+.kd-agenda-title { font-size: 36px; font-weight: 460; letter-spacing: -0.5px; color: var(--ink); }
+.kd-agenda-time { font-family: var(--font-mono); font-size: 22px; color: var(--ink-mute); text-align: right; }
+
+/* ============================
+   4. TWO-COL — comparison
+   ============================ */
+.kd-twocol {
+  background: var(--canvas);
+  padding: 180px 120px 140px;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+.kd-twocol h2 { font-size: 96px; font-weight: 460; line-height: 1; letter-spacing: -2.5px; color: var(--ink); margin: 0 0 80px; max-width: 22ch; }
+.kd-twocol-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-content: start; }
+.kd-twocol-card {
+  background: var(--canvas-soft);
+  border: 1px solid var(--hairline);
+  border-radius: 16px;
+  padding: 56px 48px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.kd-twocol-card.featured { background: var(--primary); color: var(--on-primary); border-color: transparent; }
+.kd-twocol-card-eyebrow {
+  font-size: 18px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--ink-mute);
+}
+.kd-twocol-card.featured .kd-twocol-card-eyebrow { color: var(--surface-violet-soft); }
+.kd-twocol-card h3 { font-size: 64px; font-weight: 540; line-height: 0.96; letter-spacing: -1.5px; color: var(--ink); margin: 0; }
+.kd-twocol-card.featured h3 { color: var(--on-primary); }
+.kd-twocol-card p { font-size: 24px; font-weight: 460; line-height: 1.45; color: var(--ink-mute); margin: 0; }
+.kd-twocol-card.featured p { color: rgba(255,255,255,0.72); }
+.kd-twocol-card ul { list-style: none; padding: 0; margin: 8px 0 0; display: flex; flex-direction: column; gap: 14px; }
+.kd-twocol-card li { font-size: 22px; line-height: 1.4; color: var(--ink); position: relative; padding-left: 32px; }
+.kd-twocol-card li::before { content: ""; position: absolute; left: 0; top: 13px; width: 18px; height: 2px; background: var(--primary); }
+.kd-twocol-card.featured li { color: rgba(255,255,255,0.92); }
+.kd-twocol-card.featured li::before { background: var(--surface-violet-soft); }
+
+/* ============================
+   5. QUOTE
+   ============================ */
+.kd-quote {
+  background: var(--canvas);
+  padding: 240px 160px 140px;
+  justify-content: center;
+}
+.kd-quote blockquote {
+  font-size: 96px;
+  font-weight: 460;
+  line-height: 1.04;
+  letter-spacing: -2.5px;
+  color: var(--ink);
+  margin: 0 0 56px;
+  max-width: 26ch;
+  border: 0;
+  padding: 0;
+  text-wrap: balance;
+}
+.kd-quote-attr { display: flex; flex-direction: column; gap: 6px; }
+.kd-quote-name { font-size: 26px; font-weight: 700; color: var(--ink); }
+.kd-quote-role { font-size: 22px; color: var(--ink-mute); }
+
+/* ============================
+   6. METRICS — three big numbers
+   ============================ */
+.kd-metrics {
+  background: var(--canvas-soft);
+  padding: 200px 120px 140px;
+}
+.kd-metrics h2 { font-size: 80px; font-weight: 460; line-height: 1; letter-spacing: -2px; color: var(--ink); margin: 0 0 96px; max-width: 24ch; }
+.kd-metrics-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; }
+.kd-metric { display: flex; flex-direction: column; gap: 16px; padding: 48px 0 0; border-top: 2px solid var(--ink); }
+.kd-metric-value { font-size: 144px; font-weight: 540; line-height: 1; letter-spacing: -4px; color: var(--ink); }
+.kd-metric-value em { font-style: normal; color: var(--primary); font-weight: 540; }
+.kd-metric-label { font-size: 24px; font-weight: 460; line-height: 1.4; color: var(--ink-mute); max-width: 22ch; }
+
+/* ============================
+   7. PRINCIPLES — 4 in 2x2
+   ============================ */
+.kd-principles-slide {
+  background: var(--canvas);
+  padding: 180px 120px 140px;
+}
+.kd-principles-slide h2 { font-size: 88px; font-weight: 460; line-height: 1; letter-spacing: -2.2px; color: var(--ink); margin: 0 0 72px; }
+.kd-principles-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px 64px; }
+.kd-principle-card {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 24px;
+  padding: 32px;
+  background: var(--canvas-soft);
+  border-radius: 12px;
+}
+.kd-principle-n { font-family: var(--font-mono); font-size: 22px; color: var(--primary); padding-top: 8px; }
+.kd-principle-title { font-size: 38px; font-weight: 460; line-height: 1.1; letter-spacing: -0.6px; color: var(--ink); margin: 0 0 12px; }
+.kd-principle-body { font-size: 22px; line-height: 1.45; color: var(--ink-mute); margin: 0; }
+
+/* ============================
+   8. CLOSING — teal
+   ============================ */
+.kd-closing {
+  background: var(--surface-teal-deep);
+  color: var(--on-primary);
+  padding: 240px 120px;
+  justify-content: center;
+}
+.kd-closing-eyebrow {
+  font-size: 22px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.18em;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 40px;
+}
+.kd-closing h2 {
+  font-size: 200px;
+  font-weight: 540;
+  line-height: 0.94;
+  letter-spacing: -5.5px;
+  color: var(--on-primary);
+  margin: 0;
+  max-width: 14ch;
+}
+.kd-closing h2 em {
+  font-style: italic;
+  color: var(--surface-violet-soft);
+  font-weight: 540;
+}
+.kd-closing-foot {
+  margin-top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.kd-closing-cta { font-size: 36px; font-weight: 540; color: var(--on-primary); letter-spacing: -0.5px; }
+.kd-closing-meta { font-size: 22px; font-weight: 500; color: rgba(255,255,255,0.6); font-family: var(--font-mono); }

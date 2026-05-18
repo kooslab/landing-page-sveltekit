@@ -1,0 +1,20 @@
+<!doctype html>
+<html><head><meta charset="utf-8"/>
+<link rel="stylesheet" href="../colors_and_type.css"/>
+<style>
+  html, body { margin: 0; background: var(--canvas); }
+  .card { padding: 18px 22px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .swatch { display: flex; flex-direction: column; gap: 8px; }
+  .chip { height: 64px; border-radius: var(--radius-md); border: 1px solid var(--hairline); }
+  .name { font-family: var(--font-display); font-size: 13px; color: var(--ink); font-weight: 600; }
+  .hex { font-family: var(--font-mono); font-size: 11px; color: var(--ink-mute); }
+</style></head><body>
+<div class="card">
+  <div class="swatch"><div class="chip" style="background:#1B1938"></div><div class="name">Primary</div><div class="hex">#1B1938</div></div>
+  <div class="swatch"><div class="chip" style="background:#0E0C1F"></div><div class="name">Primary Deep</div><div class="hex">#0E0C1F</div></div>
+  <div class="swatch"><div class="chip" style="background:#C9B4FA"></div><div class="name">Violet Soft</div><div class="hex">#C9B4FA</div></div>
+  <div class="swatch"><div class="chip" style="background:#0E3030"></div><div class="name">Teal Deep</div><div class="hex">#0E3030</div></div>
+  <div class="swatch"><div class="chip" style="background:#155555"></div><div class="name">Teal Mid</div><div class="hex">#155555</div></div>
+  <div class="swatch"><div class="chip" style="background:linear-gradient(180deg,#1B1938 0%,#4F3E8A 50%,#7BA0E0 100%)"></div><div class="name">Hero backdrop</div><div class="hex">violet-sky wash</div></div>
+</div>
+</body></html>
