@@ -54,5 +54,28 @@ const auth: Handle = async ({ event, resolve }) => {
 	return resolve(event);
 };
 
+// Redirect /ko/subpage and /de/subpage to /subpage, preserving lang in cookie
+const redirectLangPrefixedSubpages: Handle = async ({ event, resolve }) => {
+	const supportedLangs = ['en', 'ko', 'de'];
+	const pathname = event.url.pathname;
+
+	for (const lang of supportedLangs) {
+		if (pathname.startsWith(`/${lang}/`)) {
+			const newPath = pathname.slice(`/${lang}`.length) + event.url.search;
+			event.cookies.set('preferred-lang', lang, {
+				path: '/',
+				maxAge: 365 * 24 * 60 * 60,
+				sameSite: 'lax'
+			});
+			return new Response(null, {
+				status: 302,
+				headers: { location: newPath }
+			});
+		}
+	}
+
+	return resolve(event);
+};
+
 // Apply the handlers in sequence
-export const handle: Handle = sequence(filterDevToolsRequests, auth);
+export const handle: Handle = sequence(filterDevToolsRequests, redirectLangPrefixedSubpages, auth);

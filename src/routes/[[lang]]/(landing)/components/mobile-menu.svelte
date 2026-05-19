@@ -2,7 +2,7 @@
 	import { enhance } from '$app/forms';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import { _ } from 'svelte-i18n';
+	import { _, locale } from 'svelte-i18n';
 
 	import { Menu, Home, User, BookOpen, Hammer, Briefcase } from 'lucide-svelte';
 
@@ -11,8 +11,9 @@
 	import * as Sheet from '$lib/components/ui/sheet';
 
 	let { session } = $derived($page.data);
-	let lang = $derived($page.params?.lang || 'en');
-	let langPrefix = $derived(lang === 'en' ? '' : `/${lang}`);
+	// Use locale store so sub-pages (no lang param) still link to correct home
+	let currentLang = $derived($locale || 'en');
+	let homeHref = $derived(currentLang === 'en' ? '/' : `/${currentLang}`);
 
 	let sheetOpen = $state(false);
 </script>
@@ -38,14 +39,12 @@
 		</Sheet.Header>
 		<nav class="flex flex-col gap-4 px-2 py-6">
 			<a
-				href="{langPrefix}/"
+				href={homeHref}
 				class="flex items-center gap-3 rounded-md px-3 py-2 text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
 				onclick={(e) => {
 					e.preventDefault();
 					sheetOpen = false;
-					setTimeout(() => {
-						goto(`${langPrefix}/`);
-					}, 300);
+					setTimeout(() => goto(homeHref), 300);
 				}}
 			>
 				<Home class="h-5 w-5" />
@@ -53,12 +52,12 @@
 			</a>
 
 			<a
-				href="{langPrefix}/about"
+				href="/about"
 				class="flex items-center gap-3 rounded-md px-3 py-2 text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
 				onclick={(e) => {
 					e.preventDefault();
 					sheetOpen = false;
-					setTimeout(() => goto(`${langPrefix}/about`), 300);
+					setTimeout(() => goto('/about'), 300);
 				}}
 			>
 				<User class="h-5 w-5" />
@@ -66,12 +65,12 @@
 			</a>
 
 			<a
-				href="{langPrefix}/workshops"
+				href="/workshops"
 				class="flex items-center gap-3 rounded-md px-3 py-2 text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
 				onclick={(e) => {
 					e.preventDefault();
 					sheetOpen = false;
-					setTimeout(() => goto(`${langPrefix}/workshops`), 300);
+					setTimeout(() => goto('/workshops'), 300);
 				}}
 			>
 				<Hammer class="h-5 w-5" />
@@ -79,12 +78,12 @@
 			</a>
 
 			<a
-				href="{langPrefix}/use-cases"
+				href="/use-cases"
 				class="flex items-center gap-3 rounded-md px-3 py-2 text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
 				onclick={(e) => {
 					e.preventDefault();
 					sheetOpen = false;
-					setTimeout(() => goto(`${langPrefix}/use-cases`), 300);
+					setTimeout(() => goto('/use-cases'), 300);
 				}}
 			>
 				<Briefcase class="h-5 w-5" />

@@ -24,7 +24,7 @@
 		</div>
 
 		<div class="flex items-center space-x-2 md:space-x-4">
-			{#if isMainRoute}<LanguageSwitcher />{/if}
+			{#if isMainRoute}<LanguageSwitcher {scrolled} />{/if}
 			<MobileMenu />
 		</div>
 	</nav>

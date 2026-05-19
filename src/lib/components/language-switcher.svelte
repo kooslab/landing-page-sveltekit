@@ -4,6 +4,8 @@
 	import { locale } from 'svelte-i18n';
 	import { updateLocale } from '$lib/i18n';
 
+	let { scrolled = true }: { scrolled?: boolean } = $props();
+
 	const languages = [
 		{ code: 'en', name: 'English' },
 		{ code: 'ko', name: '한국어' },
@@ -23,40 +25,18 @@
 	async function switchLanguage(langCode: string, event: MouseEvent) {
 		event.stopPropagation();
 
-		// Don't do anything if it's the same language
 		if (langCode === currentLang) {
 			showDropdown = false;
 			return;
 		}
 
-		// Get the current pathname
-		const currentPath = window.location.pathname;
+		// Persist preference in cookie
+		document.cookie = `preferred-lang=${langCode}; path=/; max-age=${365 * 24 * 60 * 60}; samesite=lax`;
 
-		// Split path and remove empty strings
-		const pathSegments = currentPath.split('/').filter(Boolean);
-
-		// Remove the current language code if it exists as the first segment
-		if (
-			pathSegments.length > 0 &&
-			(pathSegments[0] === 'en' || pathSegments[0] === 'ko' || pathSegments[0] === 'de')
-		) {
-			pathSegments.shift();
-		}
-
-		// Build the new path
-		// For English, use root path. For other languages, include the language code
-		let newPath: string;
-		if (langCode === 'en') {
-			newPath = pathSegments.length > 0 ? '/' + pathSegments.join('/') : '/';
-		} else {
-			newPath = `/${langCode}${pathSegments.length > 0 ? '/' + pathSegments.join('/') : ''}`;
-		}
-
-		// Update locale immediately for better UX
+		// Always navigate to the lang-prefixed main page
+		// (sub-pages use plain URLs with language from cookie)
 		await updateLocale(langCode);
-
-		// Navigate to the new path
-		window.location.href = newPath;
+		window.location.href = langCode === 'en' ? '/' : `/${langCode}`;
 	}
 
 	// Close dropdown when clicking outside
@@ -73,7 +53,9 @@
 <div class="language-switcher relative">
 	<button
 		onclick={toggleDropdown}
-		class="flex h-9 w-9 items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none"
+		class="flex h-9 w-9 items-center justify-center rounded-md text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none {scrolled
+			? 'text-foreground'
+			: 'text-white/80 hover:text-white'}"
 		aria-label="Change language"
 		type="button"
 	>

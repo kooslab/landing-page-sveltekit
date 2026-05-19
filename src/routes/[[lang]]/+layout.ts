@@ -4,19 +4,17 @@ import { updateLocale } from '$lib/i18n';
 
 const supportedLanguages = ['en', 'ko', 'de'];
 
-export const load: LayoutLoad = async ({ params }) => {
-	// Default to 'en' if no language parameter is provided
-	const lang = params.lang || 'en';
+export const load: LayoutLoad = async ({ params, data }) => {
+	// URL param takes priority; fall back to server-resolved lang (from cookie)
+	const lang = params.lang || data?.lang || 'en';
 
-	// Validate language parameter
 	if (!supportedLanguages.includes(lang)) {
 		throw error(404, 'Language not supported');
 	}
 
-	// Set the locale
+	// Update locale on client-side navigation
 	await updateLocale(lang);
 
-	return {
-		lang
-	};
+	// Return lang so the component has a typed data.lang property
+	return { lang };
 };

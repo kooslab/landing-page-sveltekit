@@ -12,22 +12,23 @@ addMessages('en', en);
 addMessages('ko', ko);
 addMessages('de', de);
 
-// Get initial locale from URL if available
+// Get initial locale from URL, then cookie, then default English
 function getInitialLocale() {
 	if (browser) {
 		const path = window.location.pathname;
 		const segments = path.split('/').filter(Boolean);
 
-		// Check if the first segment is a language code
-		if (segments.length > 0 && segments[0] === 'ko') {
-			return 'ko';
-		}
-		if (segments.length > 0 && segments[0] === 'de') {
-			return 'de';
+		if (segments.length > 0 && (segments[0] === 'ko' || segments[0] === 'de')) {
+			return segments[0];
 		}
 
-		// If no language segment or root path, default to English
-		// since English is now served at root
+		// No lang in URL — check cookie preference
+		const cookieMatch = document.cookie.match(/(?:^|;\s*)preferred-lang=([^;]+)/);
+		const cookieLang = cookieMatch ? cookieMatch[1] : null;
+		if (cookieLang === 'ko' || cookieLang === 'de') {
+			return cookieLang;
+		}
+
 		return 'en';
 	}
 	return 'en';

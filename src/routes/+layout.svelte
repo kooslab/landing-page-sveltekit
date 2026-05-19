@@ -22,26 +22,23 @@
 	let { data, children }: Props = $props();
 	let { user } = $derived(data);
 
-	// Ensure locale is properly initialized from URL
+	// Ensure locale is properly initialized from URL or cookie preference
 	$effect(() => {
 		if (browser) {
 			const path = window.location.pathname;
 			const segments = path.split('/').filter(Boolean);
 			const supportedLangs = ['en', 'ko', 'de'];
 
-			// Check if first segment is a supported language
 			if (segments.length > 0 && supportedLangs.includes(segments[0])) {
+				// URL has an explicit lang segment (main page routes like /ko, /de)
 				const urlLang = segments[0];
-				if ($locale !== urlLang) {
-					console.log(`[Root Layout] Updating locale to ${urlLang}`);
-					locale.set(urlLang);
-				}
+				if ($locale !== urlLang) locale.set(urlLang);
 			} else {
-				// Default to English for root or any other path
-				if ($locale !== 'en') {
-					console.log('[Root Layout] Updating locale to English');
-					locale.set('en');
-				}
+				// No lang in URL — use cookie preference
+				const cookieMatch = document.cookie.match(/(?:^|;\s*)preferred-lang=([^;]+)/);
+				const cookieLang = cookieMatch ? cookieMatch[1] : null;
+				const preferredLang = cookieLang && supportedLangs.includes(cookieLang) ? cookieLang : 'en';
+				if ($locale !== preferredLang) locale.set(preferredLang);
 			}
 		}
 	});
