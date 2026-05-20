@@ -35,15 +35,16 @@
 	<section class="bg-brand px-5 pb-20 pt-24 md:px-12 md:pb-28 md:pt-32">
 		<div class="mx-auto max-w-4xl">
 			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand-violet">
-				{$_('landing.ax_training.badge')}
+				Berlin · Hands-on AI Workshops
 			</span>
 			<h1
 				class="text-4xl font-bold leading-[1.08] tracking-tight text-white sm:text-5xl md:text-[52px] lg:text-[60px]"
 			>
-				{$_('landing.ax_training.title')}
+				Pick a problem in the morning.<br class="hidden sm:block" /> Ship a solution by end of day.
 			</h1>
 			<p class="mt-6 max-w-2xl text-lg leading-relaxed text-white/75 md:mt-8 md:text-xl">
-				{$_('landing.ax_training.intro')}
+				Hands-on workshops where every participant works on a real problem from their own job. You
+				leave with something that runs — not a certificate.
 			</p>
 			<div class="mt-10 md:mt-12">
 				<button
