@@ -8,16 +8,16 @@
 </script>
 
 <div class="hidden items-center gap-6 md:ml-8 md:flex">
-	<a href="/about" class="text-sm font-medium transition-colors duration-300 {linkClass}">
+	<a href="/about" class="text-base font-medium transition-colors duration-300 {linkClass}">
 		{$_('nav.about')}
 	</a>
-	<a href="/workshops" class="text-sm font-medium transition-colors duration-300 {linkClass}">
+	<a href="/workshops" class="text-base font-medium transition-colors duration-300 {linkClass}">
 		{$_('nav.workshops')}
 	</a>
-	<a href="/use-cases" class="text-sm font-medium transition-colors duration-300 {linkClass}">
+	<a href="/use-cases" class="text-base font-medium transition-colors duration-300 {linkClass}">
 		{$_('nav.useCases')}
 	</a>
-	<a href="/blog" class="text-sm font-medium transition-colors duration-300 {linkClass}">
+	<a href="/blog" class="text-base font-medium transition-colors duration-300 {linkClass}">
 		{$_('nav.blog')}
 	</a>
 </div>

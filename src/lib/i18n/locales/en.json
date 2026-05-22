@@ -19,7 +19,7 @@
 			"eyebrow": "Berlin · AI workshops for growing teams",
 			"title": "Solve a real business problem with AI. Today.",
 			"subtitle": "We run hands-on workshops where your team solves their actual bottlenecks using AI — not demos, not slides, not a seminar you forget in two weeks.",
-			"cta": "Book a free 20-min call",
+			"cta": "Book a free 45-min video call",
 			"ctaSub": "Tell us your problem. We'll tell you honestly whether AI solves it.",
 			"meta": "Hands-on workshops · In-person · Berlin"
 		},
@@ -280,7 +280,7 @@
 			"scaleLabel": "Companies that stopped to sharpen",
 			"scaleItems": ["One investment. Permanent multiplier.", "Same people. 10× the output."],
 			"lead": "Now is the time. Not next quarter. Not later.",
-			"cta": "Book a 30-min discovery call",
+			"cta": "Book a 45-min discovery call",
 			"ctaSub": "No pitch. Just bring your problem."
 		},
 		"faq": {
@@ -1531,7 +1531,7 @@
 			"steps": {
 				"call": {
 					"title": "Video Call",
-					"description": "We talk about what's slowing your team down and what you need. 30 minutes, no commitment."
+					"description": "We talk about what's slowing your team down and what you need. 45 minutes, no commitment."
 				},
 				"prototype": {
 					"title": "Prototype",

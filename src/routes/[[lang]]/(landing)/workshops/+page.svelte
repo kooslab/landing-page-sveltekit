@@ -51,10 +51,50 @@
 					onclick={() => book('diagnosis')}
 					class="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-sm font-semibold text-white/90 transition-all hover:border-white/40 hover:text-white"
 				>
-					Not sure which level? Book a free 20-min call
+					Not sure which level? Book a free 45-min video call
 					<ArrowRight class="h-4 w-4" />
 				</button>
 			</div>
+		</div>
+	</section>
+
+	<!-- ══════════════════════════════════════════════ -->
+	<!-- WHY IT MATTERS                                 -->
+	<!-- ══════════════════════════════════════════════ -->
+	<section class="bg-white px-5 py-20 md:px-12 md:py-28 lg:py-36">
+		<div class="mx-auto max-w-4xl">
+			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
+				{$_('landing.mirror.badge')}
+			</span>
+			<p
+				class="text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:text-5xl lg:text-[52px]"
+			>
+				{$_('landing.mirror.headline')}
+			</p>
+
+			<div
+				class="mt-14 flex flex-col items-start gap-10 md:mt-16 md:flex-row md:items-center md:gap-14"
+			>
+				<img
+					src="/images/busy.jpeg"
+					alt="Cavemen too busy pushing square wheels to accept a round one"
+					class="w-full rounded-xl opacity-80 md:w-96 md:flex-shrink-0"
+				/>
+				<div class="space-y-6">
+					{#each $_('landing.mirror.items') as item}
+						<div class="border-l-2 border-brand pl-6">
+							<p class="text-xl leading-relaxed text-ink md:text-2xl">{item}</p>
+						</div>
+					{/each}
+				</div>
+			</div>
+
+			<p class="mt-12 text-xl font-medium text-ink/70 md:mt-14 md:text-2xl">
+				{$_('landing.mirror.subline')}
+			</p>
+			<p class="mt-4 text-lg font-semibold text-brand md:text-xl">
+				{$_('landing.mirror.bridge')}
+			</p>
 		</div>
 	</section>
 
@@ -75,7 +115,7 @@
 			</p>
 
 			<div class="mt-14 space-y-0 divide-y divide-canvas-warm border-y border-canvas-warm">
-				{#each [{ n: '01', tag: 'Spot the pattern', q: 'What do you do every week that feels mechanical or repetitive?', examples: [{ label: 'Manual data entry', note: 'Copying rows between spreadsheets by hand' }, { label: 'Status reports', note: 'Compiling the same metrics into a slide every Monday' }, { label: 'Invoice processing', note: 'Checking and logging each invoice before payment' }, { label: 'Email templates', note: 'Sending the same onboarding email to every new client' }, { label: 'Meeting notes', note: 'Transcribing and formatting notes after every call' }] }, { n: '02', tag: 'Find the bottleneck', q: 'Which task would you hand off first if you had a junior assistant?', examples: [{ label: 'Scheduling', note: 'Back-and-forth emails just to agree on a meeting time' }, { label: 'CRM updates', note: 'Logging every call and email into the system by hand' }, { label: 'Document formatting', note: 'Making every proposal look the same before sending' }, { label: 'Approval chasing', note: 'Following up with three people to sign off on one thing' }, { label: 'Research', note: 'Gathering competitor info before every client call' }] }, { n: '03', tag: 'Name the frustration', q: 'Where do you always think "there must be a better way"?', examples: [{ label: 'Print → Sign → Scan', note: 'Every contract takes a week just for approvals' }, { label: 'Employee onboarding', note: 'New hires spend day one reading PDFs and filling forms' }, { label: 'Expense reports', note: 'Collecting receipts and submitting them manually each month' }, { label: 'Client reports', note: 'Building the same PDF layout for every client, every month' }, { label: 'Data cleanup', note: 'Fixing the same formatting errors in every import file' }] }] as item}
+				{#each [{ n: '01', tag: 'Spot the pattern', q: 'What do you do every week that feels mechanical or repetitive?', examples: ['📋 Copy-pasting numbers into a new sheet every Monday', '✉️ Writing the same onboarding email for every new client', '📝 Transcribing meeting notes by hand after every call'] }, { n: '02', tag: 'Find the bottleneck', q: 'Which task would you hand off first if you had a junior assistant?', examples: ['📅 Back-and-forth emails just to agree on a meeting time', '💾 Logging every call and email into the CRM manually', '📄 Reformatting every proposal before it goes out'] }, { n: '03', tag: 'Name the frustration', q: 'Where do you always think "there must be a better way"?', examples: ['🖨️ Printing, signing, and scanning the same contract each time', '👋 Walking every new hire through the same steps in person', '🧾 Typing up expense receipts at the end of every month'] }] as item}
 					<div class="py-10 md:py-12">
 						<div class="flex items-start gap-6 md:gap-10">
 							<span
@@ -92,12 +132,13 @@
 								<p class="text-2xl font-semibold leading-snug text-ink md:text-3xl">
 									{item.q}
 								</p>
-								<div class="mt-6 flex flex-wrap gap-3">
+								<div class="mt-7 flex flex-col items-start gap-2.5">
 									{#each item.examples as ex}
-										<div class="rounded-xl border border-canvas-warm bg-canvas-soft px-4 py-3">
-											<p class="text-sm font-semibold text-ink">{ex.label}</p>
-											<p class="mt-0.5 text-sm text-ink/50">{ex.note}</p>
-										</div>
+										<span
+											class="inline-flex items-center gap-2 rounded-full border border-brand/15 bg-brand/[0.06] px-4 py-2 text-sm font-medium text-ink"
+										>
+											{ex}
+										</span>
 									{/each}
 								</div>
 							</div>
@@ -163,6 +204,41 @@
 						<p class="mt-2 text-base leading-relaxed text-ink/70">{item.desc}</p>
 					</div>
 				{/each}
+			</div>
+		</div>
+	</section>
+
+	<!-- ══════════════════════════════════════════════ -->
+	<!-- FOR / NOT FOR                                  -->
+	<!-- ══════════════════════════════════════════════ -->
+	<section class="border-y border-canvas-warm bg-canvas-soft px-5 py-20 md:px-12 md:py-28 lg:py-36">
+		<div class="mx-auto max-w-4xl">
+			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
+				{$_('landing.forNotFor.badge')}
+			</span>
+			<p
+				class="text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:text-5xl lg:text-[52px]"
+			>
+				{$_('landing.forNotFor.headline')}
+			</p>
+
+			<div class="mt-12 md:mt-14">
+				<p class="mb-6 text-sm font-bold uppercase tracking-[0.18em] text-ink/60">
+					{$_('landing.forNotFor.notForLabel')}
+				</p>
+				<div class="space-y-4">
+					{#each $_('landing.forNotFor.notForItems') as item}
+						<div
+							class="flex items-start gap-4 rounded-2xl border border-canvas-warm bg-white px-6 py-5"
+						>
+							<span class="mt-0.5 text-lg text-ink/30">—</span>
+							<p class="text-lg leading-snug text-ink md:text-xl">{item}</p>
+						</div>
+					{/each}
+				</div>
+				<p class="mt-8 text-base leading-relaxed text-ink/60 md:text-lg">
+					{$_('landing.forNotFor.note')}
+				</p>
 			</div>
 		</div>
 	</section>
@@ -238,27 +314,42 @@
 	<!-- ══════════════════════════════════════════════ -->
 	<!-- FREE DIAGNOSIS CTA                             -->
 	<!-- ══════════════════════════════════════════════ -->
-	<section class="border-y border-canvas-warm bg-canvas-soft px-5 py-16 md:px-12 md:py-20">
+	<section class="bg-canvas-soft px-5 py-16 md:px-12 md:py-20">
 		<div class="mx-auto max-w-4xl">
-			<div class="flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
-				<div>
-					<p class="mb-1 text-sm font-bold uppercase tracking-[0.18em] text-brand">
-						{$_('workshops.free.badge')}
-					</p>
-					<h3 class="text-2xl font-bold text-ink md:text-3xl">
-						{$_('workshops.free.title')}
-					</h3>
-					<p class="mt-2 max-w-lg text-base leading-relaxed text-ink/70">
-						{$_('workshops.free.description')}
-					</p>
+			<div class="rounded-2xl border border-brand/10 bg-white p-8 md:p-10">
+				<div class="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+					<div>
+						<span
+							class="mb-4 inline-block rounded-full border border-brand/20 bg-brand/[0.06] px-3 py-1 text-xs font-bold uppercase tracking-[0.15em] text-brand"
+						>
+							Free until July 31, 2026
+						</span>
+						<h3 class="text-2xl font-bold text-ink md:text-3xl">Business AI Diagnosis</h3>
+						<div class="mt-2 flex items-center gap-3">
+							<span class="text-base text-ink/30 line-through">€100</span>
+							<span class="text-xl font-bold text-brand">Free</span>
+							<span class="text-base text-ink/40">· 45 min · Video call</span>
+						</div>
+						<div class="mt-5 space-y-3">
+							{#each ['Where your biggest time waste is right now', 'Which 1–2 processes to automate first', 'A clear next step — yours to keep, no strings'] as item}
+								<div class="flex items-center gap-2">
+									<span class="flex-shrink-0 font-bold text-brand">✓</span>
+									<p class="text-base leading-snug text-ink/70">{item}</p>
+								</div>
+							{/each}
+						</div>
+					</div>
+					<div class="flex flex-col items-start gap-2 md:items-end">
+						<button
+							onclick={() => book('diagnosis')}
+							class="inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-base font-bold text-white transition-opacity hover:opacity-90"
+						>
+							Book Free Diagnosis
+							<ArrowRight class="h-4 w-4" />
+						</button>
+						<p class="text-sm text-ink/40">No commitment. No pitch. Just clarity.</p>
+					</div>
 				</div>
-				<button
-					onclick={() => book('diagnosis')}
-					class="inline-flex flex-shrink-0 items-center gap-2 rounded-full bg-brand px-7 py-3.5 text-sm font-bold text-white transition-opacity hover:opacity-90"
-				>
-					{$_('workshops.free.cta')}
-					<ArrowRight class="h-4 w-4" />
-				</button>
 			</div>
 		</div>
 	</section>
