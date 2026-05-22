@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/state';
-	import { toggleMode, mode } from 'mode-watcher';
 	import {
 		LayoutGrid,
 		BookOpen,
@@ -8,9 +7,7 @@
 		Plus,
 		Lightbulb,
 		Settings,
-		ExternalLink,
-		Sun,
-		Moon
+		ExternalLink
 	} from 'lucide-svelte';
 
 	let { children } = $props();
@@ -19,7 +16,7 @@
 		{ href: '/admin', label: 'Dashboard', icon: LayoutGrid, exact: true },
 		{ href: '/admin/topics', label: 'Topic Explorer', icon: Lightbulb },
 		{ href: '/admin/blogs', label: 'Blog Posts', icon: BookOpen },
-		{ href: '/admin/blogs/new', label: 'Create Article', icon: Plus, exact: true },
+		{ href: '/admin/blogs/new', label: 'New Article', icon: Plus, exact: true },
 		{ href: '/admin/reservations', label: 'Reservations', icon: Calendar },
 		{ href: '/admin/settings', label: 'Settings', icon: Settings }
 	];
@@ -32,47 +29,48 @@
 </script>
 
 <div class="flex min-h-screen">
-	<aside class="w-64 border-r bg-background p-6">
-		<div class="mb-8">
-			<h2 class="text-lg font-semibold">Admin Panel</h2>
+	<!-- Sidebar -->
+	<aside class="flex w-60 flex-shrink-0 flex-col bg-brand px-4 py-7">
+		<!-- Brand -->
+		<div class="mb-8 flex items-center gap-2 px-2">
+			<span class="text-lg font-bold text-white">KooStory</span>
+			<span
+				class="rounded-full bg-white/10 px-2 py-0.5 text-xs font-bold uppercase tracking-wider text-white/50"
+			>
+				Admin
+			</span>
 		</div>
-		<nav class="space-y-2">
+
+		<!-- Nav -->
+		<nav class="flex-1 space-y-0.5">
 			{#each navItems as item}
 				{@const active = isActive(item)}
 				<a
 					href={item.href}
-					class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors {active
-						? 'bg-accent text-accent-foreground'
-						: 'hover:bg-accent hover:text-accent-foreground'}"
+					class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors {active
+						? 'bg-white/10 text-white'
+						: 'text-white/45 hover:bg-white/5 hover:text-white/80'}"
 				>
-					<item.icon size={20} />
+					<item.icon size={17} />
 					{item.label}
 				</a>
 			{/each}
+		</nav>
 
-			<div class="my-4 border-t"></div>
-
+		<!-- Bottom -->
+		<div class="mt-4 space-y-0.5 border-t border-white/10 pt-4">
 			<a
 				href="/"
-				class="flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
+				class="flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium text-white/45 transition-colors hover:bg-white/5 hover:text-white/80"
 			>
-				<ExternalLink size={20} />
+				<ExternalLink size={17} />
 				View Site
 			</a>
-			<button
-				onclick={toggleMode}
-				class="flex w-full items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground"
-			>
-				{#if $mode === 'dark'}
-					<Sun size={20} />
-					Light Mode
-				{:else}
-					<Moon size={20} />
-					Dark Mode
-				{/if}
-			</button>
-		</nav>
+		</div>
 	</aside>
 
-	{@render children()}
+	<!-- Main content -->
+	<main class="flex flex-1 flex-col bg-canvas-soft">
+		{@render children()}
+	</main>
 </div>

@@ -3,25 +3,22 @@
 	import { page } from '$app/stores';
 	import SEO from '$lib/components/SEO.svelte';
 	import PromoPopup from '$lib/components/sections/promo-popup.svelte';
-	import ReservationModal from './workshops/components/reservation-modal.svelte';
-	import { ArrowRight, ChevronDown } from 'lucide-svelte';
+	import DiagnosisModal from './workshops/components/diagnosis-modal.svelte';
+	import { ArrowRight } from 'lucide-svelte';
 
 	let { data } = $props();
 
-	let reservationOpen = $state(false);
-	let reservationType = $state<'diagnosis' | 'ax_l1' | 'ax_l2' | 'ax_l3' | 'custom'>('ax_l1');
-	let openFaq = $state<number | null>(null);
+	let diagnosisOpen = $state(false);
 
 	let lang = $derived($page.params?.lang || 'en');
 	let isKorean = $derived(lang === 'ko');
 
-	function book(type: 'diagnosis' | 'ax_l1' | 'ax_l2' | 'ax_l3' | 'custom' = 'ax_l1') {
-		reservationType = type;
-		reservationOpen = true;
+	function book() {
+		diagnosisOpen = true;
 	}
 
 	$effect(() => {
-		const handler = () => book('diagnosis');
+		const handler = () => book();
 		document.addEventListener('open-booking-modal', handler);
 		return () => document.removeEventListener('open-booking-modal', handler);
 	});
@@ -49,8 +46,8 @@
 	}}
 />
 
-<PromoPopup showPromo={data.showPromo} onBook={() => book('diagnosis')} />
-<ReservationModal bind:open={reservationOpen} bind:workshopType={reservationType} />
+<PromoPopup showPromo={data.showPromo} onBook={book} />
+<DiagnosisModal bind:open={diagnosisOpen} />
 
 <main class="w-full">
 	<!-- ═══════════════════════════════════ 1. HERO ══ -->
@@ -61,28 +58,30 @@
 				class="flex flex-col justify-center px-5 pb-16 pt-16 md:px-12 md:pb-20 md:pt-20 lg:w-1/2 lg:py-28 lg:pl-16 lg:pr-12 xl:pl-20"
 			>
 				<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand-violet">
-					{$_('landing.hero.eyebrow')}
+					Berlin · AI for SMEs
 				</span>
 				<h1
 					class="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-[52px] xl:text-[58px]"
 					style="line-height: 1.08;"
 				>
-					{$_('landing.hero.title')}
+					Your business needs an AI layer.<br class="hidden sm:block" />
+					<span class="text-brand-violet">We'll build it with you — or for you.</span>
 				</h1>
-				<p class="mt-6 max-w-md text-lg leading-relaxed text-white/80 md:mt-8 md:text-xl">
-					{$_('landing.hero.subtitle')}
+				<p class="mt-6 max-w-md text-lg leading-relaxed text-white/75 md:mt-8 md:text-xl">
+					85% of your team is already capable of using AI. The bottleneck isn't your people — it's
+					not knowing where to point them first.
 				</p>
 				<div class="mt-10 md:mt-12">
 					<button
-						onclick={() => book('diagnosis')}
-						class="inline-flex items-center gap-2 rounded-full bg-brand-violet px-7 py-3.5 text-sm font-bold text-brand transition-opacity hover:opacity-90 active:translate-y-px"
+						onclick={() =>
+							document
+								.getElementById('diagnosis')
+								?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
+						class="inline-flex items-center gap-2 rounded-full bg-brand-violet px-7 py-3.5 text-base font-bold text-brand transition-opacity hover:opacity-90 active:translate-y-px"
 					>
-						{$_('landing.hero.cta')}
+						Find out where to start
 						<ArrowRight class="h-4 w-4" />
 					</button>
-					<p class="mt-3 text-base text-white/75">
-						{$_('landing.hero.ctaSub')}
-					</p>
 				</div>
 			</div>
 
@@ -97,288 +96,433 @@
 		</div>
 	</section>
 
-	<!-- ═══════════════════════════════════ 2. MIRROR ══ -->
+	<!-- ═══════════════════════════════════ 2. AI GAP ══ -->
 	<section class="bg-white px-5 py-20 md:px-12 md:py-28 lg:py-36">
-		<div class="mx-auto max-w-4xl">
-			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
-				{$_('landing.mirror.badge')}
-			</span>
-			<p
-				class="text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:text-5xl lg:text-[52px]"
-			>
-				{$_('landing.mirror.headline')}
-			</p>
-
-			<div
-				class="mt-14 flex flex-col items-start gap-10 md:mt-16 md:flex-row md:items-center md:gap-14"
-			>
-				<img
-					src="/images/busy.jpeg"
-					alt="Cavemen too busy pushing square wheels to accept a round one"
-					class="w-full rounded-xl opacity-80 md:w-96 md:flex-shrink-0"
-				/>
-				<div class="space-y-6">
-					{#each $_('landing.mirror.items') as item}
-						<div class="border-l-2 border-brand pl-6">
-							<p class="text-xl leading-relaxed text-ink md:text-2xl">{item}</p>
-						</div>
-					{/each}
-				</div>
-			</div>
-
-			<p class="mt-12 text-xl font-medium text-ink/70 md:mt-14 md:text-2xl">
-				{$_('landing.mirror.subline')}
-			</p>
-			<p class="mt-4 text-lg font-semibold text-brand md:text-xl">
-				{$_('landing.mirror.bridge')}
-			</p>
-		</div>
-	</section>
-
-	<!-- ═══════════════════════════════════ 3. FOMO ══ -->
-	<section class="border-y border-canvas-warm bg-canvas-soft px-5 py-20 md:px-12 md:py-28 lg:py-36">
-		<div class="mx-auto max-w-4xl">
-			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
-				{$_('landing.fomo.badge')}
-			</span>
-			<p
-				class="text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:text-5xl lg:text-[52px]"
-			>
-				{$_('landing.fomo.headline')}
-			</p>
-			<p class="mt-6 text-lg leading-relaxed text-ink/80 md:text-xl">{$_('landing.fomo.p1')}</p>
-			<p class="mt-4 text-lg leading-relaxed text-ink/80 md:text-xl">{$_('landing.fomo.p2')}</p>
-
-			<div class="mt-12 overflow-hidden rounded-2xl border border-canvas-warm md:mt-14">
-				<div class="grid grid-cols-2">
-					<div class="border-r border-canvas-warm bg-ink/[.04] px-6 py-4 md:px-8">
-						<p class="text-xs font-bold uppercase tracking-[0.2em] text-ink/60">
-							{$_('landing.fomo.fomoLabel')}
-						</p>
-					</div>
-					<div class="bg-brand/[.06] px-6 py-4 md:px-8">
-						<p class="text-xs font-bold uppercase tracking-[0.2em] text-brand">
-							{$_('landing.fomo.realLabel')}
-						</p>
-					</div>
-				</div>
-				{#each [0, 1, 2] as i}
-					<div class="grid grid-cols-2 border-t border-canvas-warm bg-white">
-						<div class="border-r border-canvas-warm px-6 py-5 md:px-8 md:py-6">
-							<p class="text-base leading-snug text-ink/60 line-through md:text-lg">
-								"{$_(`landing.fomo.rows.${i}.fomo`)}"
-							</p>
-						</div>
-						<div class="px-6 py-5 md:px-8 md:py-6">
-							<p class="text-base font-semibold leading-snug text-ink md:text-lg">
-								"{$_(`landing.fomo.rows.${i}.real`)}"
-							</p>
-						</div>
-					</div>
-				{/each}
-			</div>
-		</div>
-	</section>
-
-	<!-- ══════════════════════════ 4. WHY EFFORTS FAIL ══ -->
-	<section class="bg-white px-5 py-20 md:px-12 md:py-28 lg:py-36">
-		<div class="mx-auto max-w-4xl">
-			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
-				{$_('landing.effortsFail.badge')}
-			</span>
-			<p
-				class="text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:text-5xl lg:text-[52px]"
-			>
-				{$_('landing.effortsFail.headline')}
-			</p>
-
-			<div class="mt-14 space-y-5 md:mt-16">
-				{#each [0, 1, 2] as i}
-					<div class="rounded-2xl border border-canvas-warm bg-canvas-soft p-7 md:p-9">
-						<p class="mb-3 text-lg font-bold leading-snug text-ink md:text-xl">
-							{i + 1}. {$_(`landing.effortsFail.items.${i}.label`)}
-						</p>
-						<p class="text-base leading-relaxed text-ink/70 md:text-lg">
-							{$_(`landing.effortsFail.items.${i}.description`)}
-						</p>
-					</div>
-				{/each}
-			</div>
-
-			<div class="mt-10 rounded-2xl bg-brand px-8 py-7 md:mt-12">
-				<p class="text-base font-medium text-white/60 md:text-lg">
-					{$_('landing.effortsFail.conclusion')}
-				</p>
-				<p class="mt-1 text-xl font-bold text-white md:text-2xl">
-					{$_('landing.effortsFail.conclusionBold')}
-				</p>
-			</div>
-		</div>
-	</section>
-
-	<!-- ═══════════════════════════════════ 5. METHOD ══ -->
-	<section class="border-y border-canvas-warm bg-canvas-soft px-5 py-20 md:px-12 md:py-28 lg:py-36">
-		<div class="mx-auto max-w-4xl">
-			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
-				{$_('landing.method.badge')}
-			</span>
-			<p
-				class="mb-16 text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:mb-20 md:text-5xl lg:text-[52px]"
-			>
-				{$_('landing.method.headline')}
-			</p>
-
-			<div class="space-y-16 md:space-y-20">
-				{#each [0, 1, 2] as i}
-					<div class="flex gap-8 md:gap-12">
-						<div
-							class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-brand text-sm font-bold text-white md:h-12 md:w-12"
-							style="margin-top: 4px;"
-						>
-							{i + 1}
-						</div>
-						<div>
-							<h3
-								class="text-2xl font-bold leading-[1.15] tracking-tight text-brand sm:text-3xl md:text-4xl lg:text-[40px]"
+		<div class="mx-auto max-w-6xl">
+			<div class="flex flex-col gap-16 lg:flex-row lg:items-center lg:gap-20">
+				<!-- Left: copy -->
+				<div class="lg:w-2/5">
+					<span class="mb-4 block text-xs font-semibold uppercase tracking-[0.2em] text-brand/40">
+						IBM CEO Study · 2026 · 2,000 CEOs surveyed
+					</span>
+					<h2
+						class="text-3xl font-bold leading-[1.1] tracking-tight text-ink md:text-4xl lg:text-5xl"
+					>
+						Your team is ready.<br />They're just not moving.
+					</h2>
+					<div class="mt-10 space-y-6">
+						<div class="flex items-baseline gap-4">
+							<span class="text-5xl font-bold tracking-tight text-brand-violet md:text-6xl"
+								>85%</span
 							>
-								{$_(`landing.method.steps.${i}.title`)}
-							</h3>
-							<p class="mt-4 text-lg leading-relaxed text-ink/70 md:text-xl">
-								{$_(`landing.method.steps.${i}.description`)}
+							<p class="text-lg leading-snug text-ink/70">
+								of employees are capable of using AI — their CEOs say so
+							</p>
+						</div>
+						<div class="flex items-baseline gap-4">
+							<span class="text-5xl font-bold tracking-tight text-ink/25 md:text-6xl">25%</span>
+							<p class="text-lg leading-snug text-ink/70">are actually using it regularly</p>
+						</div>
+						<div class="border-l-4 border-brand-violet pl-5 pt-1">
+							<p class="text-xl font-bold text-brand">60-point gap.</p>
+							<p class="mt-1 text-lg text-ink/60">
+								That's untapped potential sitting in your team right now.
 							</p>
 						</div>
 					</div>
-				{/each}
+				</div>
+
+				<!-- Right: dot matrix (10×10 = 100 people) -->
+				<div class="lg:w-3/5">
+					<div class="grid grid-cols-10 gap-2 md:gap-3">
+						{#each Array.from({ length: 100 }) as _, i}
+							<svg
+								viewBox="0 0 24 28"
+								class="w-full {i < 25
+									? 'text-brand-violet'
+									: i < 85
+										? 'text-brand/20'
+										: 'text-brand/[0.07]'}"
+								fill="currentColor"
+								aria-hidden="true"
+							>
+								<circle cx="12" cy="6" r="5" />
+								<path d="M3 28v-2a9 9 0 0 1 18 0v2z" />
+							</svg>
+						{/each}
+					</div>
+					<div class="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-xs text-ink/50 md:text-sm">
+						<span class="flex items-center gap-2">
+							<span class="inline-block h-2.5 w-2.5 rounded-full bg-brand-violet"></span>
+							Using AI regularly (25%)
+						</span>
+						<span class="flex items-center gap-2">
+							<span class="inline-block h-2.5 w-2.5 rounded-full bg-brand/20"></span>
+							Capable but not using (60%)
+						</span>
+						<span class="flex items-center gap-2">
+							<span class="inline-block h-2.5 w-2.5 rounded-full bg-brand/[0.07]"></span>
+							Not yet ready (15%)
+						</span>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- ══════════════════════════ 6. TRANSFORMATION ══ -->
-	<section class="bg-white px-5 py-20 md:px-12 md:py-28 lg:py-36">
-		<div class="mx-auto max-w-4xl">
-			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
-				{$_('landing.transformation.badge')}
-			</span>
-			<p
-				class="text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:text-5xl lg:text-[52px]"
-			>
-				{$_('landing.transformation.headline')}
-			</p>
-
-			<div class="mt-12 overflow-hidden rounded-2xl border border-canvas-warm md:mt-14">
-				<div class="grid grid-cols-2">
-					<div class="border-r border-canvas-warm bg-ink/[.04] px-6 py-4 md:px-8">
-						<p class="text-xs font-bold uppercase tracking-[0.2em] text-ink/60">
-							{$_('landing.transformation.beforeLabel')}
+	<!-- ═══════════════════════════════════ 3. EISENHOWER MATRIX ══ -->
+	<section class="bg-canvas-soft px-5 py-20 md:px-12 md:py-28 lg:py-36">
+		<div class="mx-auto max-w-6xl">
+			<div class="flex flex-col gap-12 lg:flex-row lg:items-center lg:gap-20">
+				<!-- Left: copy -->
+				<div class="lg:w-[40%]">
+					<span class="mb-4 block text-xs font-semibold uppercase tracking-[0.2em] text-brand/40">
+						The adoption gap, explained
+					</span>
+					<h2
+						class="text-3xl font-bold leading-[1.1] tracking-tight text-ink md:text-4xl lg:text-5xl"
+					>
+						Most teams don't fail at AI. They just start in the wrong place.
+					</h2>
+					<div class="mt-8 space-y-5 text-lg leading-relaxed text-ink/70">
+						<p>
+							Without a clear picture of their operations, businesses naturally gravitate toward the
+							most impressive-sounding AI projects — custom models, complex pipelines, fancy
+							dashboards.
+						</p>
+						<p>High effort. And usually not what's draining the most time.</p>
+						<p class="font-semibold text-ink">
+							The highest-ROI tasks are boring: the weekly report no one wants to compile, the
+							proposal template rebuilt from scratch every time. Easy to automate. Hours saved every
+							week.
 						</p>
 					</div>
-					<div class="bg-brand/[.06] px-6 py-4 md:px-8">
-						<p class="text-xs font-bold uppercase tracking-[0.2em] text-brand">
-							{$_('landing.transformation.afterLabel')}
-						</p>
-					</div>
+					<p class="mt-8 text-lg font-bold text-brand">
+						The bottleneck isn't AI capability. It's knowing where to start.
+					</p>
 				</div>
-				<div class="grid grid-cols-2 border-t border-canvas-warm bg-white">
-					<div class="border-r border-canvas-warm px-6 py-8 md:px-8 md:py-10">
-						<p class="text-lg leading-relaxed text-ink/70 md:text-xl">
-							{$_('landing.transformation.before')}
-						</p>
-					</div>
-					<div class="px-6 py-8 md:px-8 md:py-10">
-						<p class="text-lg font-semibold leading-relaxed text-ink md:text-xl">
-							{$_('landing.transformation.after')}
-						</p>
-					</div>
-				</div>
-			</div>
 
-			<div class="mt-10 space-y-4 md:mt-12">
-				<p class="text-lg leading-relaxed text-ink/70 md:text-xl">
-					{$_('landing.transformation.p1')}
-				</p>
-				<p class="text-lg leading-relaxed text-ink/70 md:text-xl">
-					{$_('landing.transformation.p2')}
-				</p>
-				<p class="text-lg leading-relaxed text-ink/70 md:text-xl">
-					{$_('landing.transformation.p3')}
-				</p>
-			</div>
-		</div>
-	</section>
+				<!-- Right: Eisenhower matrix SVG -->
+				<div class="lg:w-[60%]">
+					<svg
+						viewBox="0 0 500 465"
+						class="w-full"
+						xmlns="http://www.w3.org/2000/svg"
+						aria-hidden="true"
+					>
+						<defs>
+							<filter id="pencil-ef" x="-5%" y="-5%" width="110%" height="110%">
+								<feTurbulence
+									type="fractalNoise"
+									baseFrequency="0.045 0.04"
+									numOctaves="3"
+									seed="7"
+									result="noise"
+								/>
+								<feDisplacementMap
+									in="SourceGraphic"
+									in2="noise"
+									scale="3"
+									xChannelSelector="R"
+									yChannelSelector="G"
+								/>
+							</filter>
+						</defs>
 
-	<!-- ══════════════════════════ 7. FOR / NOT FOR ══ -->
-	<section class="border-y border-canvas-warm bg-canvas-soft px-5 py-20 md:px-12 md:py-28 lg:py-36">
-		<div class="mx-auto max-w-4xl">
-			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
-				{$_('landing.forNotFor.badge')}
-			</span>
-			<p
-				class="text-3xl font-bold leading-[1.12] tracking-tight text-brand sm:text-4xl md:text-5xl lg:text-[52px]"
-			>
-				{$_('landing.forNotFor.headline')}
-			</p>
+						<!-- Quadrant backgrounds (no filter — stays crisp) -->
+						<!-- Top-left: Low Effort + High Impact = QUICK WINS -->
+						<rect x="75" y="15" width="195" height="180" fill="#f0fdf4" />
+						<!-- Top-right: High Effort + High Impact = WORTH IT -->
+						<rect x="270" y="15" width="195" height="180" fill="#fffbeb" />
+						<!-- Bottom-left: Low Effort + Low Impact = FILLER -->
+						<rect x="75" y="195" width="195" height="180" fill="#f9fafb" />
+						<!-- Bottom-right: High Effort + Low Impact = THE TRAP -->
+						<rect x="270" y="195" width="195" height="180" fill="#fff1f2" />
 
-			<div class="mt-12 md:mt-14">
-				<p class="mb-6 text-sm font-bold uppercase tracking-[0.18em] text-ink/60">
-					{$_('landing.forNotFor.notForLabel')}
-				</p>
-				<div class="space-y-4">
-					{#each $_('landing.forNotFor.notForItems') as item}
-						<div
-							class="flex items-start gap-4 rounded-2xl border border-canvas-warm bg-white px-6 py-5"
+						<!-- Trap zone emphasis (soft red glow) -->
+						<ellipse
+							cx="367"
+							cy="285"
+							rx="88"
+							ry="78"
+							fill="#fca5a5"
+							opacity="0.28"
+							filter="url(#pencil-ef)"
+						/>
+
+						<!-- Grid lines with pencil/sketch effect -->
+						<g filter="url(#pencil-ef)" fill="none" stroke="#1B1938" opacity="0.45">
+							<!-- Outer box -->
+							<rect x="75" y="15" width="390" height="360" stroke-width="2.5" />
+							<!-- Vertical center line -->
+							<line x1="270" y1="15" x2="270" y2="375" stroke-width="1.5" />
+							<!-- Horizontal center line -->
+							<line x1="75" y1="195" x2="465" y2="195" stroke-width="1.5" />
+						</g>
+
+						<!-- Y-axis arrow -->
+						<g filter="url(#pencil-ef)" opacity="0.3">
+							<line
+								x1="47"
+								y1="378"
+								x2="47"
+								y2="18"
+								stroke="#1B1938"
+								stroke-width="1.5"
+								stroke-linecap="round"
+							/>
+							<polygon points="47,12 44,26 50,26" fill="#1B1938" />
+						</g>
+						<!-- Y-axis labels -->
+						<text
+							x="22"
+							y="205"
+							font-family="'DM Sans', sans-serif"
+							font-size="10"
+							font-weight="700"
+							fill="#1B1938"
+							fill-opacity="0.35"
+							letter-spacing="2.5"
+							text-anchor="middle"
+							transform="rotate(-90 22 205)">IMPACT</text
 						>
-							<span class="mt-0.5 text-lg text-ink/30">—</span>
-							<p class="text-lg leading-snug text-ink md:text-xl">{item}</p>
-						</div>
-					{/each}
+						<text
+							x="62"
+							y="26"
+							font-family="'DM Sans', sans-serif"
+							font-size="10"
+							fill="#1B1938"
+							fill-opacity="0.4"
+							text-anchor="end">High</text
+						>
+						<text
+							x="62"
+							y="378"
+							font-family="'DM Sans', sans-serif"
+							font-size="10"
+							fill="#1B1938"
+							fill-opacity="0.4"
+							text-anchor="end">Low</text
+						>
+
+						<!-- X-axis arrow -->
+						<g filter="url(#pencil-ef)" opacity="0.3">
+							<line
+								x1="72"
+								y1="412"
+								x2="468"
+								y2="412"
+								stroke="#1B1938"
+								stroke-width="1.5"
+								stroke-linecap="round"
+							/>
+							<polygon points="474,412 460,409 460,415" fill="#1B1938" />
+						</g>
+						<!-- X-axis labels -->
+						<text
+							x="270"
+							y="452"
+							font-family="'DM Sans', sans-serif"
+							font-size="10"
+							font-weight="700"
+							fill="#1B1938"
+							fill-opacity="0.35"
+							letter-spacing="2.5"
+							text-anchor="middle">EFFORT</text
+						>
+						<text
+							x="82"
+							y="400"
+							font-family="'DM Sans', sans-serif"
+							font-size="10"
+							fill="#1B1938"
+							fill-opacity="0.4">Low</text
+						>
+						<text
+							x="458"
+							y="400"
+							font-family="'DM Sans', sans-serif"
+							font-size="10"
+							fill="#1B1938"
+							fill-opacity="0.4"
+							text-anchor="end">High</text
+						>
+
+						<!-- Quadrant label: Quick Wins (top-left) -->
+						<text
+							x="172"
+							y="68"
+							font-family="'DM Sans', sans-serif"
+							font-size="15"
+							font-weight="700"
+							fill="#15803d"
+							text-anchor="middle">🎯 Quick Wins</text
+						>
+						<text
+							x="172"
+							y="88"
+							font-family="'DM Sans', sans-serif"
+							font-size="11"
+							fill="#15803d"
+							fill-opacity="0.65"
+							text-anchor="middle">Start here</text
+						>
+
+						<!-- Quadrant label: Worth It (top-right) -->
+						<text
+							x="367"
+							y="68"
+							font-family="'DM Sans', sans-serif"
+							font-size="15"
+							font-weight="700"
+							fill="#92400e"
+							text-anchor="middle">💡 Worth It</text
+						>
+						<text
+							x="367"
+							y="88"
+							font-family="'DM Sans', sans-serif"
+							font-size="11"
+							fill="#92400e"
+							fill-opacity="0.65"
+							text-anchor="middle">High effort, high return</text
+						>
+
+						<!-- Quadrant label: Nice to Have (bottom-left) -->
+						<text
+							x="172"
+							y="268"
+							font-family="'DM Sans', sans-serif"
+							font-size="14"
+							font-weight="700"
+							fill="#6b7280"
+							text-anchor="middle">😐 Nice to Have</text
+						>
+						<text
+							x="172"
+							y="288"
+							font-family="'DM Sans', sans-serif"
+							font-size="11"
+							fill="#6b7280"
+							fill-opacity="0.7"
+							text-anchor="middle">Easy but not impactful</text
+						>
+
+						<!-- Quadrant label: THE TRAP (bottom-right) -->
+						<text
+							x="367"
+							y="248"
+							font-family="'DM Sans', sans-serif"
+							font-size="16"
+							font-weight="800"
+							fill="#dc2626"
+							text-anchor="middle">⚠️ The Trap</text
+						>
+						<text
+							x="367"
+							y="268"
+							font-family="'DM Sans', sans-serif"
+							font-size="12"
+							font-weight="600"
+							fill="#dc2626"
+							text-anchor="middle">Hard. Low impact.</text
+						>
+						<text
+							x="367"
+							y="285"
+							font-family="'DM Sans', sans-serif"
+							font-size="11"
+							fill="#dc2626"
+							fill-opacity="0.65"
+							text-anchor="middle">Where most businesses land.</text
+						>
+
+						<!-- Red dots: The Trap zone (many) -->
+						{#each [[288, 215], [310, 210], [333, 217], [356, 211], [378, 216], [400, 211], [423, 218], [446, 212], [282, 244], [305, 250], [328, 243], [352, 249], [374, 242], [397, 248], [420, 242], [444, 249], [290, 273], [314, 279], [340, 272], [366, 278], [392, 271], [418, 277], [443, 271], [296, 302], [322, 309], [350, 301], [376, 307], [404, 300], [430, 306], [303, 334], [332, 340], [362, 333], [392, 339], [420, 332], [314, 362], [348, 357], [380, 362]] as [x, y]}
+							<circle cx={x} cy={y} r="3.5" fill="#dc2626" opacity="0.32" />
+						{/each}
+
+						<!-- Green dots: Quick Wins zone (few) -->
+						{#each [[108, 52], [150, 46], [178, 58], [118, 94], [165, 82]] as [x, y]}
+							<circle cx={x} cy={y} r="3.5" fill="#16a34a" opacity="0.5" />
+						{/each}
+					</svg>
 				</div>
-				<p class="mt-8 text-base leading-relaxed text-ink/60 md:text-lg">
-					{$_('landing.forNotFor.note')}
-				</p>
 			</div>
 		</div>
 	</section>
 
-	<!-- ════════════════════════════════════ 8. FAQ ══ -->
-	<section class="bg-white px-5 py-20 md:px-8 md:py-28 lg:py-36">
-		<div class="mx-auto max-w-4xl">
-			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand">
-				{$_('landing.faq.badge')}
+	<!-- ═══════════════════════════════════ 4. HONEST TRUTH ══ -->
+	<section class="bg-brand px-5 py-20 md:px-12 md:py-28 lg:py-36">
+		<div class="mx-auto max-w-3xl">
+			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand-violet">
+				The honest take
 			</span>
 			<h2
-				class="mb-10 text-3xl font-bold leading-[1.1] tracking-tight text-brand sm:text-4xl md:mb-14 md:text-5xl lg:text-[52px]"
+				class="text-3xl font-bold leading-[1.1] tracking-tight text-white md:text-4xl lg:text-5xl"
 			>
-				{$_('landing.faq.title')}
+				Honestly? You could learn this yourself.
 			</h2>
-			<div class="divide-y divide-canvas-warm border-t border-canvas-warm">
-				{#each [0, 1, 2, 3, 4] as i}
-					{@const isOpen = openFaq === i}
-					<button
-						class="flex w-full items-start justify-between gap-6 py-7 text-left md:py-8"
-						onclick={() => (openFaq = isOpen ? null : i)}
-					>
-						<h3 class="text-lg font-semibold leading-snug text-ink md:text-xl">
-							{$_(`landing.faq.items.${i}.q`)}
-						</h3>
-						<ChevronDown
-							class="mt-1 h-6 w-6 flex-shrink-0 text-ink/60 transition-transform duration-200 {isOpen
-								? 'rotate-180'
-								: ''}"
-						/>
-					</button>
-					{#if isOpen}
-						<div class="pb-7 md:pb-8">
-							<p class="text-base leading-relaxed text-ink/80 md:text-lg">
-								{$_(`landing.faq.items.${i}.a`)}
-							</p>
-						</div>
-					{/if}
-				{/each}
+			<div class="mt-8 space-y-5 text-lg leading-relaxed text-white/70 md:text-xl">
+				<p>
+					The resources are free. YouTube, ChatGPT, a handful of good courses — that's genuinely all
+					you need. Most AI skills aren't complicated once you sit down and try.
+				</p>
+				<p>
+					If you have 3–6 months of consistent learning time, do it. Seriously. It's the best
+					long-term investment you can make.
+				</p>
+			</div>
+			<div class="mt-10 border-t border-white/10 pt-10">
+				<p class="text-lg font-semibold text-white md:text-xl">
+					But if you're running a team, closing deals, and firefighting daily — that time doesn't
+					exist.
+				</p>
+				<p class="mt-4 text-lg leading-relaxed text-white/70 md:text-xl">
+					That's where we come in. Two paths. Same outcome: your business running on AI.
+				</p>
+				<div class="mt-10 grid gap-5 sm:grid-cols-2">
+					<div class="rounded-2xl border border-white/10 bg-white/[0.05] p-7">
+						<span
+							class="mb-3 block text-xs font-bold uppercase tracking-[0.15em] text-brand-violet"
+						>
+							Path 1
+						</span>
+						<h3 class="text-2xl font-bold text-white">AI Workshops</h3>
+						<p class="mt-3 text-lg leading-relaxed text-white/60">
+							Your team learns by solving their actual problems. Hands-on, in-person, one day.
+						</p>
+						<a
+							href="/workshops"
+							class="mt-6 inline-flex items-center gap-2 text-base font-semibold text-brand-violet hover:opacity-80"
+						>
+							See how it works <ArrowRight class="h-4 w-4" />
+						</a>
+					</div>
+					<div class="rounded-2xl border border-white/10 bg-white/[0.05] p-7">
+						<span
+							class="mb-3 block text-xs font-bold uppercase tracking-[0.15em] text-brand-violet"
+						>
+							Path 2
+						</span>
+						<h3 class="text-2xl font-bold text-white">Turnkey AI Setup</h3>
+						<p class="mt-3 text-lg leading-relaxed text-white/60">
+							We build and install your AI operating system. You run the business. We handle the
+							tech.
+						</p>
+						<button
+							onclick={book}
+							class="mt-6 inline-flex items-center gap-2 text-base font-semibold text-brand-violet hover:opacity-80"
+						>
+							Book a 45-min video call <ArrowRight class="h-4 w-4" />
+						</button>
+					</div>
+				</div>
 			</div>
 		</div>
 	</section>
 
-	<!-- ══════════════════════════════ 9. CLOSING ══ -->
+	<!-- ══════════════════════════════ 5. CLOSING ══ -->
 	<section class="bg-brand px-5 pb-24 pt-20 md:px-12 md:pb-32 md:pt-28 lg:pb-40 lg:pt-36">
 		<div class="mx-auto max-w-4xl">
 			<p
@@ -422,25 +566,81 @@
 				</div>
 			</div>
 
-			<div class="mt-16 text-center md:mt-20">
-				<h2
-					class="text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl"
-					style="line-height: 0.96;"
-				>
-					{$_('landing.closing.title')}
-				</h2>
-				<p class="mx-auto mt-6 max-w-lg text-base leading-relaxed text-white/70 md:mt-8 md:text-lg">
-					{$_('landing.closing.lead')}
-				</p>
-				<div class="mt-10 md:mt-12">
-					<button
-						onclick={() => book('diagnosis')}
-						class="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-bold text-brand transition-opacity hover:opacity-90 active:translate-y-px"
-					>
-						{$_('landing.closing.cta')}
-						<ArrowRight class="h-4 w-4" />
-					</button>
-					<p class="mt-3 text-sm text-white/50">{$_('landing.closing.ctaSub')}</p>
+			<!-- Profile -->
+			<div class="mt-16 md:mt-20">
+				<div class="flex flex-col items-start gap-8 sm:flex-row sm:items-center sm:gap-10">
+					<img
+						src="/images/ilmo-koo.jpg"
+						alt="Ilmo Koo"
+						class="h-24 w-24 flex-shrink-0 rounded-full object-cover object-top ring-2 ring-white/20 sm:h-28 sm:w-28"
+					/>
+					<div>
+						<p class="text-lg font-bold text-white">Ilmo Koo</p>
+						<p class="mt-0.5 text-base text-brand-violet">Founder, KooStory · Berlin</p>
+						<p class="mt-4 text-lg leading-relaxed text-white/70">
+							Ten years in sales, operations, and management taught me exactly what repetitive work
+							costs a team. For the last seven years I've been the person who comes in and fixes it
+							— with automations that fit the way real businesses run, not just tech demos.
+						</p>
+						<div class="mt-5 flex flex-wrap gap-x-8 gap-y-3">
+							{#each [{ years: '10 yrs', label: 'Sales, ops & management' }, { years: '7 yrs', label: 'Workflow & AI automation' }, { years: '5 yrs', label: 'Fullstack engineering' }] as stat}
+								<div class="flex items-baseline gap-2">
+									<span class="text-xl font-bold text-brand-violet">{stat.years}</span>
+									<span class="text-base text-white/50">{stat.label}</span>
+								</div>
+							{/each}
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div id="diagnosis" class="mt-16 scroll-mt-8 md:mt-20">
+				<div class="rounded-2xl bg-white p-8 md:p-12">
+					<!-- Header -->
+					<div class="text-center">
+						<span
+							class="mb-5 inline-block rounded-full border border-brand/20 bg-brand/[0.06] px-4 py-1.5 text-sm font-bold uppercase tracking-[0.15em] text-brand"
+						>
+							Free until July 31, 2026
+						</span>
+						<h2 class="text-3xl font-bold text-ink md:text-4xl">Business AI Diagnosis</h2>
+						<div class="mt-3 flex items-center justify-center gap-3">
+							<span class="text-xl text-ink/30 line-through">€100</span>
+							<span class="text-3xl font-bold text-brand">Free</span>
+							<span class="text-base text-ink/40">· 45 min · Video call</span>
+						</div>
+					</div>
+
+					<!-- 3-step flow -->
+					<div class="mt-10 space-y-3">
+						{#each [{ step: '01', time: '15 min', title: 'You talk', desc: 'Tell us how your operations work today. No prep, no jargon — just walk us through a normal week.' }, { step: '02', time: '15 min', title: 'We map', desc: 'We identify your top 2–3 time wasters and show you exactly where AI fits your specific setup.' }, { step: '03', time: '15 min', title: 'You leave with', desc: 'A prioritized action list — what to fix first and how. Yours to keep, whether you work with us or not.' }] as s}
+							<div
+								class="flex items-start gap-6 rounded-xl border border-brand/10 bg-brand/[0.03] px-6 py-5"
+							>
+								<span class="w-8 flex-shrink-0 text-2xl font-bold text-brand/20">{s.step}</span>
+								<span
+									class="mt-0.5 flex-shrink-0 rounded-full bg-brand/10 px-3 py-1 text-sm font-bold text-brand"
+									>{s.time}</span
+								>
+								<div class="flex-1">
+									<h3 class="text-lg font-bold text-ink">{s.title}</h3>
+									<p class="mt-1 text-base leading-relaxed text-ink/60">{s.desc}</p>
+								</div>
+							</div>
+						{/each}
+					</div>
+
+					<!-- CTA -->
+					<div class="mt-8 text-center">
+						<button
+							onclick={book}
+							class="inline-flex items-center gap-2 rounded-full bg-brand px-8 py-4 text-base font-bold text-white transition-opacity hover:opacity-90 active:translate-y-px"
+						>
+							Book Free Diagnosis
+							<ArrowRight class="h-4 w-4" />
+						</button>
+						<p class="mt-3 text-base text-ink/40">No commitment. No pitch. Just clarity.</p>
+					</div>
 				</div>
 			</div>
 		</div>

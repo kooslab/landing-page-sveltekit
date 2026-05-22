@@ -22,29 +22,6 @@
 		}
 	});
 
-	// Scroll trigger — only if showPromo is true (geo-targeted)
-	$effect(() => {
-		if (!browser || dismissed || !showPromo) return;
-
-		let triggered = false;
-
-		function onScroll() {
-			if (triggered) return;
-			const scrollPercent = window.scrollY / (document.body.scrollHeight - window.innerHeight);
-			if (scrollPercent > 0.15) {
-				triggered = true;
-				// Small delay so it doesn't feel jarring
-				setTimeout(() => {
-					open = true;
-				}, 500);
-				window.removeEventListener('scroll', onScroll);
-			}
-		}
-
-		window.addEventListener('scroll', onScroll, { passive: true });
-		return () => window.removeEventListener('scroll', onScroll);
-	});
-
 	function dismiss() {
 		open = false;
 		dismissed = true;

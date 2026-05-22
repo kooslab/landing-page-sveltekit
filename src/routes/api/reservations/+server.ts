@@ -51,7 +51,7 @@ export const POST: RequestHandler = async ({ request }) => {
 
 		const workshopLabel =
 			workshopType === 'diagnosis'
-				? 'Free 30-min Discovery Call'
+				? 'Business AI Diagnosis (Free · 45 min)'
 				: workshopType === 'ax_l1'
 					? 'AX Level 1 — Individual Productivity'
 					: workshopType === 'ax_l2'
@@ -59,6 +59,8 @@ export const POST: RequestHandler = async ({ request }) => {
 						: workshopType === 'ax_l3'
 							? 'AX Level 3 — Department Automation'
 							: 'Custom Workshop';
+
+		const isDiagnosis = workshopType === 'diagnosis';
 
 		const formattedDates = preferredDates
 			.map((d) =>
@@ -76,10 +78,23 @@ export const POST: RequestHandler = async ({ request }) => {
 			try {
 				// Confirmation to customer
 				const { error: customerError } = await resend.emails.send({
-					from: 'KooStory Workshops <no-reply@mail.koostory.net>',
+					from: 'KooStory <no-reply@mail.koostory.net>',
 					to: email,
-					subject: `Workshop Reservation Confirmed — ${workshopLabel}`,
-					html: `
+					subject: isDiagnosis
+						? `Your AI Diagnosis is booked — we'll confirm shortly`
+						: `Workshop Reservation Confirmed — ${workshopLabel}`,
+					html: isDiagnosis
+						? `
+						<h2>You're booked, ${name}!</h2>
+						<p>We received your request for a <strong>Business AI Diagnosis (45 min)</strong>.</p>
+						<p><strong>Your preferred dates:</strong> ${formattedDates}</p>
+						${message ? `<p><strong>Your note:</strong> ${message}</p>` : ''}
+						<p>We'll confirm your slot within 24 hours and send a video call link.</p>
+						<p>No prep needed — just show up and tell us how your week looks.</p>
+						<br>
+						<p>Best,<br>Ilmo Koo — KooStory</p>
+					`
+						: `
 						<h2>Thank you for your reservation, ${name}!</h2>
 						<p>We received your reservation for <strong>${workshopLabel}</strong>.</p>
 						<p><strong>Preferred dates:</strong> ${formattedDates}</p>
@@ -93,12 +108,14 @@ export const POST: RequestHandler = async ({ request }) => {
 
 				// Notification to admin
 				const { error: adminError } = await resend.emails.send({
-					from: 'KooStory Workshops <no-reply@mail.koostory.net>',
+					from: 'KooStory <no-reply@mail.koostory.net>',
 					to: ADMIN_EMAIL,
-					subject: `New Workshop Reservation: ${workshopLabel} — ${name}`,
+					subject: isDiagnosis
+						? `New AI Diagnosis booking: ${name}`
+						: `New Workshop Reservation: ${workshopLabel} — ${name}`,
 					html: `
-						<h2>New Workshop Reservation</h2>
-						<p><strong>Workshop:</strong> ${workshopLabel}</p>
+						<h2>${isDiagnosis ? 'New AI Diagnosis Booking' : 'New Workshop Reservation'}</h2>
+						<p><strong>Type:</strong> ${workshopLabel}</p>
 						<p><strong>Name:</strong> ${name}</p>
 						<p><strong>Email:</strong> ${email}</p>
 						<p><strong>Preferred dates:</strong> ${formattedDates}</p>
