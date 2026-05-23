@@ -1,23 +1,10 @@
 import type { LayoutServerLoad } from './$types';
 import { updateLocale } from '$lib/i18n';
 
-const supportedLanguages = ['en', 'ko', 'de'];
-
-export const load: LayoutServerLoad = async ({ params, cookies }) => {
-	// URL lang takes priority; fall back to cookie preference
-	const urlLang = params.lang;
-	const cookieLang = cookies.get('preferred-lang');
-	const lang =
-		urlLang || (cookieLang && supportedLanguages.includes(cookieLang) ? cookieLang : null) || 'en';
-
-	// Persist URL-based lang into cookie so sub-pages inherit it
-	if (urlLang && urlLang !== cookieLang) {
-		cookies.set('preferred-lang', urlLang, {
-			path: '/',
-			maxAge: 365 * 24 * 60 * 60,
-			sameSite: 'lax'
-		});
-	}
+export const load: LayoutServerLoad = async ({ params }) => {
+	// URL lang prefix is the only source of truth — no cookie fallback
+	// /workshops → English, /ko/workshops → Korean
+	const lang = params.lang || 'en';
 
 	// Set locale for SSR rendering
 	await updateLocale(lang);

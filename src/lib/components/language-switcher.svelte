@@ -30,11 +30,6 @@
 			return;
 		}
 
-		// Persist preference in cookie
-		document.cookie = `preferred-lang=${langCode}; path=/; max-age=${365 * 24 * 60 * 60}; samesite=lax`;
-
-		// Always navigate to the lang-prefixed main page
-		// (sub-pages use plain URLs with language from cookie)
 		await updateLocale(langCode);
 		window.location.href = langCode === 'en' ? '/' : `/${langCode}`;
 	}

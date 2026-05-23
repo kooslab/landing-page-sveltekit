@@ -1,12 +1,6 @@
 <script lang="ts">
 	import { _ } from 'svelte-i18n';
-	import { page } from '$app/stores';
 	import SEO from '$lib/components/SEO.svelte';
-	import { Button } from '$lib/components/ui/button';
-	import { ArrowRight } from 'lucide-svelte';
-
-	let lang = $derived($page.params?.lang || 'en');
-	let langPrefix = $derived(lang === 'en' ? '' : `/${lang}`);
 </script>
 
 <SEO
@@ -95,55 +89,6 @@
 					<p>{$_('profile.about.p3')}</p>
 				</div>
 			</div>
-		</section>
-
-		<!-- WORKSHOPS -->
-		<section class="pb-24 md:pb-32">
-			<p class="mb-6 text-xs font-medium uppercase tracking-widest text-muted-foreground">
-				{$_('profile.workshops.title')}
-			</p>
-			<p class="mb-8 text-lg leading-relaxed">
-				{$_('profile.workshops.intro')}
-			</p>
-
-			<div class="mb-4 rounded-lg border border-dashed border-border bg-muted/20 p-6">
-				<div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-					<div>
-						<p class="mb-1 text-xs font-semibold uppercase tracking-widest text-primary">
-							{$_('profile.workshops.free.price')}
-						</p>
-						<p class="font-semibold">{$_('profile.workshops.free.title')}</p>
-						<p class="mt-1 text-sm">
-							{$_('profile.workshops.free.description')}
-						</p>
-					</div>
-					<Button
-						size="sm"
-						class="group flex-shrink-0"
-						onclick={() => {
-							window.location.href = `${langPrefix}/#contact`;
-						}}
-					>
-						{$_('profile.workshops.free.cta')}
-						<ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-					</Button>
-				</div>
-			</div>
-
-			<a
-				href="{langPrefix}/workshops"
-				class="group flex items-center justify-between rounded-lg border border-border p-6 transition-colors hover:border-primary/30 hover:bg-muted/30"
-			>
-				<div>
-					<p class="font-semibold">{$_('profile.workshops.paidLink.title')}</p>
-					<p class="mt-1 text-sm">
-						{$_('profile.workshops.paidLink.description')}
-					</p>
-				</div>
-				<ArrowRight
-					class="h-5 w-5 flex-shrink-0 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary"
-				/>
-			</a>
 		</section>
 	</div>
 </main>

@@ -8,17 +8,9 @@
 	let { children, data }: { children: Snippet; data: LayoutData } = $props();
 
 	$effect(() => {
+		// Sync client locale with URL prefix on every navigation
 		const urlLang = $page.params?.lang;
-		if (urlLang) {
-			// Explicit lang in URL — update locale and persist to cookie
-			updateLocale(urlLang);
-			if (browser) {
-				document.cookie = `preferred-lang=${urlLang}; path=/; max-age=${365 * 24 * 60 * 60}; samesite=lax`;
-			}
-		} else if (browser) {
-			// No lang in URL — use the server-resolved lang (from cookie / default)
-			updateLocale(data.lang);
-		}
+		updateLocale(urlLang || 'en');
 	});
 </script>
 

@@ -16,14 +16,11 @@
 	},
 	"landing": {
 		"hero": {
-			"eyebrow": "Berlin · KI-Workshops für wachsende Teams",
-			"title": "Lösen Sie ein echtes Geschäftsproblem mit KI. Heute.",
-			"target": "Fur kleine Teams, die in Tabellen, Handarbeit und zusammengeflickten Prozessen versinken.",
-			"subtitle": "Keine Demos, keine Folien, kein Seminar, das Sie in zwei Wochen vergessen haben. Hands-on Workshops, in denen Ihr Team echte Engpässe mit KI löst.",
-			"cta": "Kostenloses 20-Min-Gespräch buchen",
-			"ctaSub": "Schildern Sie uns Ihr Problem. Wir sagen Ihnen ehrlich, ob KI das löst.",
-			"scroll": "Warum das so ist",
-			"meta": "Hands-on Workshops · Vor Ort · Berlin"
+			"eyebrow": "Berlin · KI für KMUs",
+			"titleLine1": "Ihr Unternehmen braucht eine KI-Schicht.",
+			"titleLine2": "Wir bauen sie mit Ihnen — oder für Sie.",
+			"subtitle": "85 % Ihres Teams ist bereits in der Lage, KI zu nutzen. Der Engpass sind nicht Ihre Mitarbeiter — es fehlt der Einstiegspunkt.",
+			"cta": "Herausfinden, wo man anfängt"
 		},
 		"mirror": {
 			"badge": "Kommt Ihnen das bekannt vor",
@@ -36,26 +33,26 @@
 			"bridge": "Genau diesen Schalter helfen wir Ihnen umzulegen."
 		},
 		"fomo": {
-			"badge": "Bevor Sie weiterscrollen",
-			"headline": "Alle reden über KI. Das ist kein Grund, KI zu lernen.",
-			"p1": "Das haben Sie schon gehört. Cloud. Blockchain. Big Data. Metaverse. Digitale Transformation. Alle paar Jahre füllt ein neues Wort die Vorstandspräsentationen und LinkedIn-Feeds. Die meisten Unternehmen sind mitgelaufen — und haben nichts vorzuweisen.",
-			"p2": "Immer dasselbe Muster. Ein neues Tool erscheint. Unternehmen stürzen sich mit dem Tool voran. Nichts bleibt hängen. Die Gewinner fangen mit einem Problem an — und suchen dann das Tool, das es löst.",
-			"fomoLabel": "Das ist FOMO",
-			"realLabel": "Das ist ein echtes Problem",
-			"rows": [
-				{
-					"fomo": "Unsere Mitbewerber nutzen KI. Wir sollten das auch.",
-					"real": "Unser Team verbringt jeden Montag 4 Stunden mit einem Bericht, der 20 Minuten dauern sollte."
-				},
-				{
-					"fomo": "Unser Vorstand hat nach unserer KI-Strategie gefragt.",
-					"real": "Wir verlieren Aufträge, weil Angebote 4 Tage brauchen. 4 Stunden sollten reichen."
-				},
-				{
-					"fomo": "Wir haben das Gefühl, den Anschluss zu verlieren.",
-					"real": "Das Onboarding ist manuell und scheitert jedes Mal. Es kostet eine Person eine ganze Woche pro Monat."
-				}
-			]
+			"eyebrow": "Warum die meisten KI-Einführungen scheitern",
+			"title": "Beginnen Sie mit dem Problem. Nicht mit dem Tool.",
+			"loopLabel": "Der falsche Ansatz — FOMO",
+			"loop1": "Neues KI-Tool veröffentlicht — anhand der Anbieter-Beispiele ausprobieren",
+			"loop2": "Nach ähnlichen Problemen im eigenen Betrieb suchen",
+			"loop3": "Kein echtes Ergebnis — aber das nächste Tool sieht schon wieder spannend aus",
+			"loop4": "Kein echtes Ergebnis — aber das nächste Tool sieht schon wieder spannend aus",
+			"loopRepeat": "Zurück zu Schritt 1. Echte Probleme bleiben ungelöst. Keine KI-Erfahrung wird aufgebaut.",
+			"pathLabel": "Der richtige Ansatz — Problem zuerst",
+			"path1": "Das echte Problem mit KI identifizieren",
+			"path2": "Die richtige Lösung mit KI finden",
+			"path3": "Das Problem lösen",
+			"pathDone": "Erledigt. Weiter zum nächsten Problem.",
+			"truth1Title": "Langweilige Probleme sind mehr wert als spannende Tools",
+			"truth1Desc": "Die repetitive, manuelle Arbeit, die Ihr Team schon hasst — dort liegt der echte ROI.",
+			"truth2Title": "Vielleicht brauchen Sie KI gar nicht",
+			"truth2Desc": "Ein klarerer Prozess, eine bessere Checkliste oder eine weniger Besprechung könnte es vollständig lösen.",
+			"truth3Title": "KI ist ein Verstärker, keine Magie",
+			"truth3Desc": "Sie verstärkt, was bereits da ist. Wenn der Prozess kaputt ist, macht KI ihn schneller kaputt.",
+			"pathTagline": "Kleine Erfolge. Zusammengesetzte Erfahrung. So wird Ihr Unternehmen KI-nativ — nicht durch die Einführung jedes Tools, sondern durch das Lösen echter Probleme."
 		},
 		"effortsFail": {
 			"badge": "Warum KI-Initiativen scheitern",
@@ -225,6 +222,78 @@
 			"rightLabel": "Das trainierte Team",
 			"rightCaption": "Eine echte Investition. Dann dauerhaft bessere Ergebnisse mit weniger Aufwand.",
 			"imageAlt": "Zwei Holzfäller — einer hackt hektisch mit einer stumpfen Axt, der andere hält inne, schärft seine Axt und arbeitet dann viel effizienter"
+		},
+		"aiGap": {
+			"eyebrow": "IBM CEO-Studie · 2026 · 2.000 befragte CEOs",
+			"title1": "Ihr Team ist bereit.",
+			"title2": "Es bewegt sich nur nicht.",
+			"stat85desc": "der Mitarbeiter können KI nutzen — so ihre CEOs",
+			"stat25desc": "nutzen sie tatsächlich regelmäßig",
+			"gapLabel": "60-Punkte-Lücke.",
+			"gapDesc": "Ungenutztes Potenzial, das gerade in Ihrem Team schlummert.",
+			"legendUsing": "Nutzt KI regelmäßig (25 %)",
+			"legendCapable": "Fähig, aber nicht aktiv (60 %)",
+			"legendNotReady": "Noch nicht bereit (15 %)"
+		},
+		"matrix": {
+			"eyebrow": "Die Adoptionslücke, erklärt",
+			"title": "Die meisten Teams scheitern nicht an KI. Sie starten nur am falschen Ort.",
+			"p1": "Ohne ein klares Bild ihrer Abläufe greifen Unternehmen zu den beeindruckendsten KI-Projekten — eigene Modelle, komplexe Pipelines, aufwendige Dashboards.",
+			"p2": "Hoher Aufwand. Und meist nicht das, was am meisten Zeit kostet.",
+			"p3": "Die Tasks mit dem besten ROI sind langweilig: der Wochenbericht, den niemand erstellen will, die Angebotsvorlage, die jedes Mal neu gebaut wird. Leicht zu automatisieren. Stunden gespart jede Woche.",
+			"tagline": "Der Engpass ist nicht die KI-Fähigkeit. Es ist das Wissen, wo man anfangen soll.",
+			"quickWins": "Schnelle Erfolge",
+			"quickWinsSub": "Hier anfangen",
+			"worthIt": "Lohnt sich",
+			"worthItSub": "Hoher Aufwand, hohe Rendite",
+			"niceToHave": "Wäre schön",
+			"niceToHaveSub": "Einfach, aber nicht wirkungsvoll",
+			"trap": "Die Falle",
+			"trapSub": "Schwer. Geringe Wirkung.",
+			"trapDesc": "Wo die meisten Unternehmen landen."
+		},
+		"honest": {
+			"eyebrow": "Die ehrliche Wahrheit",
+			"title": "KI-Ressourcen gibt es überall. Das ist nicht das Problem.",
+			"p1": "Das Problem ist, KI in Ihre tatsächlichen Abläufe zu übersetzen. Das erfordert Beteiligung — Ihr Team, Ihre Probleme, jemanden, der den Prozess führt und weiß, wie gutes Ergebnis aussieht.",
+			"p2": "",
+			"but": "Genau das machen wir.",
+			"intro": "Zwei Wege. Dasselbe Ergebnis: Ihr Unternehmen läuft auf KI.",
+			"path1Label": "Weg 1",
+			"path1Title": "KI-Workshops",
+			"path1Desc": "Ihr Team lernt, indem es echte Probleme löst. Praktisch, vor Ort, ein Tag.",
+			"path1Cta": "So funktioniert es",
+			"path2Label": "Weg 2",
+			"path2Title": "KI-Komplettlösung",
+			"path2Desc": "Wir bauen und installieren Ihr KI-Betriebssystem. Sie führen das Unternehmen. Wir kümmern uns um die Technik.",
+			"path2Cta": "45-Minuten-Videocall buchen"
+		},
+		"profile": {
+			"name": "Ilmo Koo",
+			"role": "Gründer, KooStory · Berlin",
+			"bio": "Zehn Jahre in Vertrieb, Betrieb und Management haben mir gezeigt, was repetitive Arbeit ein Team kostet. In den letzten sieben Jahren war ich derjenige, der kommt und es behebt — mit Automatisierungen, die zur Arbeitsweise echter Unternehmen passen, nicht zu Tech-Demos.",
+			"stat1Years": "10 J.",
+			"stat1Label": "Vertrieb, Betrieb & Management",
+			"stat2Years": "7 J.",
+			"stat2Label": "Workflow & KI-Automatisierung",
+			"stat3Years": "5 J.",
+			"stat3Label": "Fullstack-Entwicklung"
+		},
+		"diagnosis": {
+			"badge": "Kostenlos · 45 Min · Videogespräch",
+			"title": "Problem-Discovery-Session",
+			"intro": "Wir beginnen mit Ihrem Problem — nicht mit einem Tool. Dann identifizieren wir, wo KI oder Automatisierung bei Ihnen Sinn ergibt.",
+			"step1Time": "15 Min",
+			"step1Title": "Beschreiben Sie Ihren Workflow",
+			"step1Desc": "Führen Sie uns durch eine typische Woche. Keine Vorbereitung nötig — nur wie die Arbeit tatsächlich abläuft.",
+			"step2Time": "15 Min",
+			"step2Title": "Wir diagnostizieren die Engpässe",
+			"step2Desc": "Wir identifizieren Ihre 2–3 größten Engpässe und bestimmen, ob KI, Automatisierung oder ein einfacherer Prozess die richtige Lösung ist.",
+			"step3Time": "15 Min",
+			"step3Title": "Sie erhalten einen klaren Aktionsplan",
+			"step3Desc": "Eine priorisierte Liste, was verbessert werden soll und wie. Zum Behalten — egal ob Sie mit uns arbeiten oder nicht.",
+			"cta": "Kostenlose Problem-Discovery buchen",
+			"ctaSub": "Keine Verpflichtung. Kein Verkaufsgespräch. Nur Klarheit."
 		},
 		"closing": {
 			"title": "Wachsen oder Zurückfallen.",
@@ -494,9 +563,18 @@
 				"title": "Zusammenfassung",
 				"text": "Der virtuelle Adressservice dieses Shared Office in Seoul lauft fast vollstandig uber manuelle Prozesse. Jeder Kundenkontaktpunkt — Anfrage, Vertrag, Zahlung — hangt von einer einzigen Kontaktperson ab. Das verursacht Verzogerungen, menschliche Fehler und Kundenabwanderung. Drei Automatisierungsmoglichkeiten mit hoher Wirkung wurden identifiziert.",
 				"stats": [
-					{ "value": "5", "label": "manuelle Schritte in der Customer Journey" },
-					{ "value": "4", "label": "Engpasse identifiziert" },
-					{ "value": "3", "label": "vorgeschlagene Massnahmen" }
+					{
+						"value": "5",
+						"label": "manuelle Schritte in der Customer Journey"
+					},
+					{
+						"value": "4",
+						"label": "Engpasse identifiziert"
+					},
+					{
+						"value": "3",
+						"label": "vorgeschlagene Massnahmen"
+					}
 				]
 			},
 			"asIsIntro": "Wir haben die komplette Customer Journey von der ersten Anfrage bis zur monatlichen Zahlung erfasst. Rote Markierungen zeigen, wo Verzogerungen und Fehler auftreten.",
@@ -524,9 +602,15 @@
 			"suggestionsIntro": "Priorisiert nach Kundenauswirkung. Jeder Vorschlag kann unabhangig umgesetzt werden.",
 			"suggestions": {
 				"items": [
-					{ "category": "Customer Journey · Anfrage" },
-					{ "category": "Customer Journey · Vertrag" },
-					{ "category": "Customer Journey · Zahlung" }
+					{
+						"category": "Customer Journey · Anfrage"
+					},
+					{
+						"category": "Customer Journey · Vertrag"
+					},
+					{
+						"category": "Customer Journey · Zahlung"
+					}
 				]
 			},
 			"priority": {
@@ -543,8 +627,18 @@
 						"effort": "Niedrig",
 						"order": "#1"
 					},
-					{ "action": "E-Signatur-API", "impact": "Hoch", "effort": "Mittel", "order": "#2" },
-					{ "action": "Karten-Abo", "impact": "Mittel", "effort": "Mittel", "order": "#3" }
+					{
+						"action": "E-Signatur-API",
+						"impact": "Hoch",
+						"effort": "Mittel",
+						"order": "#2"
+					},
+					{
+						"action": "Karten-Abo",
+						"impact": "Mittel",
+						"effort": "Mittel",
+						"order": "#3"
+					}
 				]
 			},
 			"nextSteps": {

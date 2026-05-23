@@ -183,12 +183,8 @@
 					>
 						{$_('landing.matrix.title')}
 					</h2>
-					<div class="mt-8 space-y-5 text-lg leading-relaxed text-ink/70">
-						<p>
-							{$_('landing.matrix.p1')}
-						</p>
-						<p>{$_('landing.matrix.p2')}</p>
-						<p class="font-semibold text-ink">
+					<div class="mt-8 space-y-5 text-lg leading-relaxed">
+						<p class="text-ink">
 							{$_('landing.matrix.p3')}
 						</p>
 					</div>
@@ -234,17 +230,6 @@
 						<!-- Bottom-right: High Effort + Low Impact = THE TRAP -->
 						<rect x="270" y="195" width="195" height="180" fill="#fff1f2" />
 
-						<!-- Trap zone emphasis (soft red glow) -->
-						<ellipse
-							cx="367"
-							cy="285"
-							rx="88"
-							ry="78"
-							fill="#fca5a5"
-							opacity="0.28"
-							filter="url(#pencil-ef)"
-						/>
-
 						<!-- Grid lines with pencil/sketch effect -->
 						<g filter="url(#pencil-ef)" fill="none" stroke="#1B1938" opacity="0.45">
 							<!-- Outer box -->
@@ -273,30 +258,29 @@
 							x="22"
 							y="205"
 							font-family="'DM Sans', sans-serif"
-							font-size="10"
+							font-size="13"
 							font-weight="700"
 							fill="#1B1938"
-							fill-opacity="0.35"
 							letter-spacing="2.5"
 							text-anchor="middle"
 							transform="rotate(-90 22 205)">IMPACT</text
 						>
 						<text
 							x="62"
-							y="26"
+							y="28"
 							font-family="'DM Sans', sans-serif"
-							font-size="10"
+							font-size="13"
+							font-weight="600"
 							fill="#1B1938"
-							fill-opacity="0.4"
 							text-anchor="end">High</text
 						>
 						<text
 							x="62"
-							y="378"
+							y="380"
 							font-family="'DM Sans', sans-serif"
-							font-size="10"
+							font-size="13"
+							font-weight="600"
 							fill="#1B1938"
-							fill-opacity="0.4"
 							text-anchor="end">Low</text
 						>
 
@@ -316,131 +300,120 @@
 						<!-- X-axis labels -->
 						<text
 							x="270"
-							y="452"
+							y="455"
 							font-family="'DM Sans', sans-serif"
-							font-size="10"
+							font-size="13"
 							font-weight="700"
 							fill="#1B1938"
-							fill-opacity="0.35"
 							letter-spacing="2.5"
 							text-anchor="middle">EFFORT</text
 						>
 						<text
 							x="82"
-							y="400"
+							y="402"
 							font-family="'DM Sans', sans-serif"
-							font-size="10"
-							fill="#1B1938"
-							fill-opacity="0.4">Low</text
+							font-size="13"
+							font-weight="600"
+							fill="#1B1938">Low</text
 						>
 						<text
 							x="458"
-							y="400"
+							y="402"
 							font-family="'DM Sans', sans-serif"
-							font-size="10"
+							font-size="13"
+							font-weight="600"
 							fill="#1B1938"
-							fill-opacity="0.4"
 							text-anchor="end">High</text
 						>
 
-						<!-- Quadrant label: Quick Wins (top-left) -->
+						<!-- Quadrant label: Quick Wins (top-left) — center y=105 -->
 						<text
 							x="172"
-							y="68"
+							y="96"
 							font-family="'DM Sans', sans-serif"
-							font-size="15"
+							font-size="18"
 							font-weight="700"
 							fill="#15803d"
 							text-anchor="middle">{$_('landing.matrix.quickWins')}</text
 						>
 						<text
 							x="172"
-							y="88"
+							y="118"
 							font-family="'DM Sans', sans-serif"
-							font-size="11"
+							font-size="13"
 							fill="#15803d"
 							fill-opacity="0.65"
 							text-anchor="middle">{$_('landing.matrix.quickWinsSub')}</text
 						>
 
-						<!-- Quadrant label: Worth It (top-right) -->
+						<!-- Quadrant label: Worth It (top-right) — center y=105 -->
 						<text
 							x="367"
-							y="68"
+							y="96"
 							font-family="'DM Sans', sans-serif"
-							font-size="15"
+							font-size="18"
 							font-weight="700"
 							fill="#92400e"
 							text-anchor="middle">{$_('landing.matrix.worthIt')}</text
 						>
 						<text
 							x="367"
-							y="88"
+							y="118"
 							font-family="'DM Sans', sans-serif"
-							font-size="11"
+							font-size="13"
 							fill="#92400e"
 							fill-opacity="0.65"
 							text-anchor="middle">{$_('landing.matrix.worthItSub')}</text
 						>
 
-						<!-- Quadrant label: Nice to Have (bottom-left) -->
+						<!-- Quadrant label: Nice to Have (bottom-left) — center y=285 -->
 						<text
 							x="172"
-							y="268"
+							y="276"
 							font-family="'DM Sans', sans-serif"
-							font-size="14"
+							font-size="17"
 							font-weight="700"
 							fill="#6b7280"
 							text-anchor="middle">{$_('landing.matrix.niceToHave')}</text
 						>
 						<text
 							x="172"
-							y="288"
+							y="298"
 							font-family="'DM Sans', sans-serif"
-							font-size="11"
+							font-size="13"
 							fill="#6b7280"
 							fill-opacity="0.7"
 							text-anchor="middle">{$_('landing.matrix.niceToHaveSub')}</text
 						>
 
-						<!-- Quadrant label: THE TRAP (bottom-right) -->
+						<!-- Quadrant label: THE TRAP (bottom-right) — center y=285, 3 lines -->
 						<text
 							x="367"
-							y="248"
+							y="263"
 							font-family="'DM Sans', sans-serif"
-							font-size="16"
+							font-size="20"
 							font-weight="800"
 							fill="#dc2626"
 							text-anchor="middle">{$_('landing.matrix.trap')}</text
 						>
 						<text
 							x="367"
-							y="268"
+							y="284"
 							font-family="'DM Sans', sans-serif"
-							font-size="12"
+							font-size="14"
 							font-weight="600"
 							fill="#dc2626"
 							text-anchor="middle">{$_('landing.matrix.trapSub')}</text
 						>
 						<text
 							x="367"
-							y="285"
+							y="302"
 							font-family="'DM Sans', sans-serif"
-							font-size="11"
+							font-size="13"
 							fill="#dc2626"
 							fill-opacity="0.65"
 							text-anchor="middle">{$_('landing.matrix.trapDesc')}</text
 						>
-
-						<!-- Red dots: The Trap zone (many) -->
-						{#each [[288, 215], [310, 210], [333, 217], [356, 211], [378, 216], [400, 211], [423, 218], [446, 212], [282, 244], [305, 250], [328, 243], [352, 249], [374, 242], [397, 248], [420, 242], [444, 249], [290, 273], [314, 279], [340, 272], [366, 278], [392, 271], [418, 277], [443, 271], [296, 302], [322, 309], [350, 301], [376, 307], [404, 300], [430, 306], [303, 334], [332, 340], [362, 333], [392, 339], [420, 332], [314, 362], [348, 357], [380, 362]] as [x, y]}
-							<circle cx={x} cy={y} r="3.5" fill="#dc2626" opacity="0.32" />
-						{/each}
-
-						<!-- Green dots: Quick Wins zone (few) -->
-						{#each [[108, 52], [150, 46], [178, 58], [118, 94], [165, 82]] as [x, y]}
-							<circle cx={x} cy={y} r="3.5" fill="#16a34a" opacity="0.5" />
-						{/each}
 					</svg>
 				</div>
 			</div>
@@ -458,15 +431,14 @@
 			>
 				{$_('landing.honest.title')}
 			</h2>
-			<div class="mt-8 space-y-5 text-lg leading-relaxed text-white/70 md:text-xl">
-				<p>{$_('landing.honest.p1')}</p>
-				<p>{$_('landing.honest.p2')}</p>
-			</div>
+			<p class="mt-6 text-lg leading-relaxed text-white md:text-xl">
+				{$_('landing.honest.p1')}
+			</p>
 			<div class="mt-10 border-t border-white/10 pt-10">
-				<p class="text-lg font-semibold text-white md:text-xl">
+				<p class="text-xl font-bold text-white md:text-2xl">
 					{$_('landing.honest.but')}
 				</p>
-				<p class="mt-4 text-lg leading-relaxed text-white/70 md:text-xl">
+				<p class="mt-3 text-lg leading-relaxed text-white md:text-xl">
 					{$_('landing.honest.intro')}
 				</p>
 				<div class="mt-10 grid gap-5 sm:grid-cols-2">
@@ -511,50 +483,68 @@
 		</div>
 	</section>
 
-	<!-- ══════════════════════════════ 5. CLOSING ══ -->
-	<section class="bg-brand px-5 pb-24 pt-20 md:px-12 md:pb-32 md:pt-28 lg:pb-40 lg:pt-36">
-		<div class="mx-auto max-w-4xl">
-			<p
-				class="mb-12 text-3xl font-bold leading-[1.12] tracking-tight text-white sm:text-4xl md:mb-16 md:text-5xl lg:text-[52px]"
-			>
-				{$_('landing.closing.axeHeadline')}
-			</p>
+	<!-- ══════════════════════════════ 5. PROBLEM FIRST ══ -->
+	<section class="bg-white px-5 py-20 md:px-12 md:py-28 lg:py-36">
+		<div class="mx-auto max-w-5xl">
+			<span class="mb-4 block text-sm font-bold uppercase tracking-[0.2em] text-brand">
+				{$_('landing.fomo.eyebrow')}
+			</span>
+			<h2 class="text-3xl font-bold leading-[1.1] tracking-tight text-ink md:text-4xl lg:text-5xl">
+				{$_('landing.fomo.title')}
+			</h2>
 
-			<img
-				src="/images/ax.png"
-				alt={$_('landing.axeStory.imageAlt')}
-				class="mx-auto w-4/5 rounded-2xl object-cover opacity-90"
-			/>
-
-			<div class="mt-10 grid gap-8 md:mt-14 md:grid-cols-2 md:gap-10">
-				<div class="rounded-2xl border border-white/10 bg-white/[.05] p-7 md:p-8">
-					<p class="mb-5 text-sm font-bold uppercase tracking-[0.18em] text-white/50">
-						{$_('landing.closing.fadeLabel')}
+			<!-- Full-width stacked comparison -->
+			<div class="mt-12 flex flex-col gap-10">
+				<!-- FOMO loop -->
+				<div>
+					<p class="mb-4 text-sm font-bold uppercase tracking-widest text-red-600">
+						{$_('landing.fomo.loopLabel')}
 					</p>
-					<div class="space-y-3">
-						{#each $_('landing.closing.fadeItems') as item}
-							<div class="flex items-start gap-3">
-								<span class="mt-1 text-white/30">✕</span>
-								<p class="text-base leading-snug text-white/60 md:text-lg">{item}</p>
+					<div class="flex flex-col items-stretch gap-2 sm:flex-row">
+						{#each [$_('landing.fomo.loop1'), $_('landing.fomo.loop2'), $_('landing.fomo.loop3')] as step, i}
+							{#if i > 0}
+								<span
+									class="flex flex-shrink-0 items-center justify-center text-xl font-bold text-red-400 sm:px-1"
+									><span class="inline-block rotate-90 sm:rotate-0">→</span></span
+								>
+							{/if}
+							<div class="flex flex-1 items-center rounded-xl bg-red-500 px-5 py-5">
+								<span class="text-base font-medium text-white">{step}</span>
 							</div>
 						{/each}
 					</div>
+					<p class="mt-4 text-base font-bold text-red-600">— {$_('landing.fomo.loopRepeat')}</p>
 				</div>
-				<div class="rounded-2xl border border-brand-violet/20 bg-brand-violet/10 p-7 md:p-8">
-					<p class="mb-5 text-sm font-bold uppercase tracking-[0.18em] text-brand-violet">
-						{$_('landing.closing.scaleLabel')}
+
+				<!-- Problem-first path -->
+				<div>
+					<p class="mb-4 text-sm font-bold uppercase tracking-widest text-brand">
+						{$_('landing.fomo.pathLabel')}
 					</p>
-					<div class="space-y-3">
-						{#each $_('landing.closing.scaleItems') as item}
-							<div class="flex items-start gap-3">
-								<span class="mt-1 text-brand-violet">✓</span>
-								<p class="text-base font-medium leading-snug text-white md:text-lg">{item}</p>
+					<div class="flex flex-col items-stretch gap-2 sm:flex-row">
+						{#each [$_('landing.fomo.path1'), $_('landing.fomo.path2'), $_('landing.fomo.path3')] as step, i}
+							{#if i > 0}
+								<span
+									class="flex flex-shrink-0 items-center justify-center text-xl font-bold text-brand sm:px-1"
+									><span class="inline-block rotate-90 sm:rotate-0">→</span></span
+								>
+							{/if}
+							<div class="flex flex-1 items-center rounded-xl bg-brand px-5 py-5">
+								<span class="text-base font-medium text-white">{step}</span>
 							</div>
 						{/each}
 					</div>
+					<p class="mt-6 max-w-2xl text-lg font-medium text-ink">
+						{$_('landing.fomo.pathTagline')}
+					</p>
 				</div>
 			</div>
+		</div>
+	</section>
 
+	<!-- ══════════════════════════════ 6. CLOSING ══ -->
+	<section class="bg-brand px-5 pb-24 pt-20 md:px-12 md:pb-32 md:pt-28 lg:pb-40 lg:pt-36">
+		<div class="mx-auto max-w-4xl">
 			<!-- Profile -->
 			<div class="mt-16 md:mt-20">
 				<div class="flex flex-col items-start gap-8 sm:flex-row sm:items-center sm:gap-10">
@@ -591,32 +581,110 @@
 							{$_('landing.diagnosis.badge')}
 						</span>
 						<h2 class="text-3xl font-bold text-ink md:text-4xl">{$_('landing.diagnosis.title')}</h2>
-						<div class="mt-3 flex items-center justify-center gap-3">
-							<span class="text-xl text-ink/30 line-through"
-								>{$_('landing.diagnosis.originalPrice')}</span
-							>
-							<span class="text-3xl font-bold text-brand">{$_('landing.diagnosis.price')}</span>
-							<span class="text-base text-ink/40">{$_('landing.diagnosis.format')}</span>
-						</div>
+						<p class="mx-auto mt-4 max-w-xl text-lg leading-relaxed text-ink">
+							{$_('landing.diagnosis.intro')}
+						</p>
 					</div>
 
-					<!-- 3-step flow -->
-					<div class="mt-10 space-y-3">
-						{#each [{ step: '01', time: $_('landing.diagnosis.step1Time'), title: $_('landing.diagnosis.step1Title'), desc: $_('landing.diagnosis.step1Desc') }, { step: '02', time: $_('landing.diagnosis.step2Time'), title: $_('landing.diagnosis.step2Title'), desc: $_('landing.diagnosis.step2Desc') }, { step: '03', time: $_('landing.diagnosis.step3Time'), title: $_('landing.diagnosis.step3Title'), desc: $_('landing.diagnosis.step3Desc') }] as s}
-							<div
-								class="flex items-start gap-6 rounded-xl border border-brand/10 bg-brand/[0.03] px-6 py-5"
-							>
-								<span class="w-8 flex-shrink-0 text-2xl font-bold text-brand/20">{s.step}</span>
+					<!-- 3-row steps -->
+					<div class="mt-10 flex flex-col gap-4">
+						<!-- Step 1: neutral workflow nodes (unmapped) -->
+						<div
+							class="flex flex-col gap-4 rounded-xl border border-brand/10 bg-brand/[0.02] p-6 sm:flex-row sm:items-center sm:gap-8"
+						>
+							<div class="flex items-center gap-2 sm:w-48 sm:flex-shrink-0">
+								<div
+									class="h-10 w-10 flex-shrink-0 rounded-full border-2 border-brand bg-white"
+								></div>
+								<div class="flex-1 border-t-2 border-dashed border-brand/60"></div>
+								<div
+									class="h-10 w-10 flex-shrink-0 rounded-full border-2 border-brand bg-white"
+								></div>
+								<div class="flex-1 border-t-2 border-dashed border-brand/60"></div>
+								<div
+									class="h-10 w-10 flex-shrink-0 rounded-full border-2 border-brand bg-white"
+								></div>
+							</div>
+							<div class="flex-1">
 								<span
-									class="mt-0.5 flex-shrink-0 rounded-full bg-brand/10 px-3 py-1 text-sm font-bold text-brand"
-									>{s.time}</span
+									class="mb-2 inline-block rounded-full border border-brand px-3 py-1 text-sm font-bold text-brand"
 								>
-								<div class="flex-1">
-									<h3 class="text-lg font-bold text-ink">{s.title}</h3>
-									<p class="mt-1 text-base leading-relaxed text-ink/60">{s.desc}</p>
+									{$_('landing.diagnosis.step1Time')}
+								</span>
+								<h3 class="text-lg font-bold text-ink">{$_('landing.diagnosis.step1Title')}</h3>
+								<p class="mt-1 text-base leading-relaxed text-ink">
+									{$_('landing.diagnosis.step1Desc')}
+								</p>
+							</div>
+						</div>
+
+						<!-- Step 2: friction detected on middle node -->
+						<div
+							class="flex flex-col gap-4 rounded-xl border border-brand/10 bg-brand/[0.02] p-6 sm:flex-row sm:items-center sm:gap-8"
+						>
+							<div class="flex items-center gap-2 sm:w-48 sm:flex-shrink-0">
+								<div
+									class="h-10 w-10 flex-shrink-0 rounded-full border-2 border-brand bg-white"
+								></div>
+								<div class="flex-1 border-t-2 border-dashed border-brand/60"></div>
+								<div
+									class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-orange-400 bg-orange-50"
+								>
+									<span class="text-sm font-bold text-orange-500">!</span>
+								</div>
+								<div class="flex-1 border-t-2 border-dashed border-brand/60"></div>
+								<div
+									class="h-10 w-10 flex-shrink-0 rounded-full border-2 border-brand bg-white"
+								></div>
+							</div>
+							<div class="flex-1">
+								<span
+									class="mb-2 inline-block rounded-full border border-brand px-3 py-1 text-sm font-bold text-brand"
+								>
+									{$_('landing.diagnosis.step2Time')}
+								</span>
+								<h3 class="text-lg font-bold text-ink">{$_('landing.diagnosis.step2Title')}</h3>
+								<p class="mt-1 text-base leading-relaxed text-ink">
+									{$_('landing.diagnosis.step2Desc')}
+								</p>
+							</div>
+						</div>
+
+						<!-- Step 3: all nodes resolved -->
+						<div
+							class="flex flex-col gap-4 rounded-xl border border-brand/10 bg-brand/[0.02] p-6 sm:flex-row sm:items-center sm:gap-8"
+						>
+							<div class="flex items-center gap-2 sm:w-48 sm:flex-shrink-0">
+								<div
+									class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-brand bg-brand"
+								>
+									<span class="text-sm font-bold text-white">✓</span>
+								</div>
+								<div class="flex-1 border-t-2 border-brand/40"></div>
+								<div
+									class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-brand bg-brand"
+								>
+									<span class="text-sm font-bold text-white">✓</span>
+								</div>
+								<div class="flex-1 border-t-2 border-brand/40"></div>
+								<div
+									class="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-brand bg-brand"
+								>
+									<span class="text-sm font-bold text-white">✓</span>
 								</div>
 							</div>
-						{/each}
+							<div class="flex-1">
+								<span
+									class="mb-2 inline-block rounded-full border border-brand px-3 py-1 text-sm font-bold text-brand"
+								>
+									{$_('landing.diagnosis.step3Time')}
+								</span>
+								<h3 class="text-lg font-bold text-ink">{$_('landing.diagnosis.step3Title')}</h3>
+								<p class="mt-1 text-base leading-relaxed text-ink">
+									{$_('landing.diagnosis.step3Desc')}
+								</p>
+							</div>
+						</div>
 					</div>
 
 					<!-- CTA -->
@@ -628,7 +696,7 @@
 							{$_('landing.diagnosis.cta')}
 							<ArrowRight class="h-4 w-4" />
 						</button>
-						<p class="mt-3 text-base text-ink/40">{$_('landing.diagnosis.ctaSub')}</p>
+						<p class="mt-3 text-base text-ink">{$_('landing.diagnosis.ctaSub')}</p>
 					</div>
 				</div>
 			</div>

@@ -16,12 +16,11 @@
 	},
 	"landing": {
 		"hero": {
-			"eyebrow": "Berlin · AI workshops for growing teams",
-			"title": "Solve a real business problem with AI. Today.",
-			"subtitle": "We run hands-on workshops where your team solves their actual bottlenecks using AI — not demos, not slides, not a seminar you forget in two weeks.",
-			"cta": "Book a free 45-min video call",
-			"ctaSub": "Tell us your problem. We'll tell you honestly whether AI solves it.",
-			"meta": "Hands-on workshops · In-person · Berlin"
+			"eyebrow": "Berlin · AI for SMEs",
+			"titleLine1": "Your business needs an AI layer.",
+			"titleLine2": "We'll build it with you — or for you.",
+			"subtitle": "85% of your team is already capable of using AI. The bottleneck isn't your people — it's not knowing where to point them first.",
+			"cta": "Find out where to start"
 		},
 		"mirror": {
 			"badge": "Sound familiar",
@@ -159,26 +158,26 @@
 			}
 		},
 		"fomo": {
-			"badge": "Before you scroll further",
-			"headline": "Everyone is talking about AI. That’s not a reason to learn AI.",
-			"p1": "You’ve heard this before. Cloud. Blockchain. Big data. Metaverse. Digital transformation. Every few years, a new word fills the board decks and LinkedIn feeds. Most companies chased it — and came out with nothing to show.",
-			"p2": "Same story, every time. A new tool appears. Companies rush in tool-first. Nothing sticks. The ones who win start with a problem — and find the tool that solves it.",
-			"fomoLabel": "This is FOMO",
-			"realLabel": "This is a real problem",
-			"rows": [
-				{
-					"fomo": "Our competitors are using AI. We should too.",
-					"real": "Our team wastes 4 hours every Monday on a report that should take 20 minutes."
-				},
-				{
-					"fomo": "Our board asked about our AI strategy.",
-					"real": "We lose deals because proposals take 4 days. They should take 4 hours."
-				},
-				{
-					"fomo": "We feel like we’re falling behind.",
-					"real": "Onboarding is manual and breaks every time. It costs one person a full week every month."
-				}
-			]
+			"eyebrow": "Why most AI adoptions fail",
+			"title": "Start with the Problem. Not the Tool.",
+			"loopLabel": "The wrong approach — FOMO",
+			"loop1": "New AI tool releases — try it using the vendor's examples",
+			"loop2": "Hunt for similar problems in our operations",
+			"loop3": "No real outcome — but the next tool already looks exciting",
+			"loop4": "No real outcome — but the next tool already looks exciting",
+			"loopRepeat": "Back to step 1. Real problems stay unsolved. No AI experience is built.",
+			"pathLabel": "The right approach — problem-first",
+			"path1": "Identify the real problem with AI",
+			"path2": "Find the right solution using AI",
+			"path3": "Solve the problem",
+			"pathDone": "Done. Move to the next problem.",
+			"truth1Title": "Boring problems are worth more than exciting tools",
+			"truth1Desc": "The repetitive, manual work your team already hates — that's where real ROI lives.",
+			"truth2Title": "Maybe you don't need AI at all",
+			"truth2Desc": "A cleaner process, a better checklist, or one fewer meeting might solve it completely.",
+			"truth3Title": "AI is an enhancer, not magic",
+			"truth3Desc": "It amplifies what's already there. If the process is broken, AI makes it worse, faster.",
+			"pathTagline": "Small wins. Compound experience. That's how your company becomes AI-native — not by adopting every tool, but by solving real problems."
 		},
 		"method": {
 			"badge": "How it works",
@@ -268,6 +267,78 @@
 			"p1": "None of this is new. Observe, diagnose, design, delegate — this is how the best managers have worked for hundreds of years. AI didn’t invent it.",
 			"p2": "No more excuses. The hard part now is the thinking, not the doing.",
 			"p3": "And who gets there first? Not always the strongest performer in the room. In every workshop, the ones who made the biggest leap were the ones who were genuinely curious and took full ownership of their problem."
+		},
+		"aiGap": {
+			"eyebrow": "IBM CEO Study · 2026 · 2,000 CEOs surveyed",
+			"title1": "Your team is ready.",
+			"title2": "They're just not moving.",
+			"stat85desc": "of employees are capable of using AI — their CEOs say so",
+			"stat25desc": "are actually using it regularly",
+			"gapLabel": "60-point gap.",
+			"gapDesc": "That's untapped potential sitting in your team right now.",
+			"legendUsing": "Using AI regularly (25%)",
+			"legendCapable": "Capable but not using (60%)",
+			"legendNotReady": "Not yet ready (15%)"
+		},
+		"matrix": {
+			"eyebrow": "The adoption gap, explained",
+			"title": "Most teams don't fail at AI. They just start in the wrong place.",
+			"p1": "Without a clear picture of their operations, businesses naturally gravitate toward the most impressive-sounding AI projects — custom models, complex pipelines, fancy dashboards.",
+			"p2": "High effort. And usually not what's draining the most time.",
+			"p3": "The highest-ROI tasks are boring: the weekly report no one wants to compile, the proposal template rebuilt from scratch every time. Easy to automate. Hours saved every week.",
+			"tagline": "The bottleneck isn't AI capability. It's knowing where to start.",
+			"quickWins": "Quick Wins",
+			"quickWinsSub": "Start here",
+			"worthIt": "Worth It",
+			"worthItSub": "High effort, high return",
+			"niceToHave": "Nice to Have",
+			"niceToHaveSub": "Easy but not impactful",
+			"trap": "The Trap",
+			"trapSub": "Hard. Low impact.",
+			"trapDesc": "Where most businesses land."
+		},
+		"honest": {
+			"eyebrow": "The honest take",
+			"title": "AI resources are everywhere. That's not the problem.",
+			"p1": "The problem is translating AI into your actual operations. That requires participation — your team, your problems, someone guiding the process who knows what good looks like.",
+			"p2": "",
+			"but": "That's what we do.",
+			"intro": "Two paths. Same outcome: your business running on AI.",
+			"path1Label": "Path 1",
+			"path1Title": "AI Workshops",
+			"path1Desc": "Your team learns by solving their actual problems. Hands-on, in-person, one day.",
+			"path1Cta": "See how it works",
+			"path2Label": "Path 2",
+			"path2Title": "Turnkey AI Setup",
+			"path2Desc": "We build and install your AI operating system. You run the business. We handle the tech.",
+			"path2Cta": "Book a 45-min video call"
+		},
+		"profile": {
+			"name": "Ilmo Koo",
+			"role": "Founder, KooStory · Berlin",
+			"bio": "Ten years in sales, operations, and management taught me exactly what repetitive work costs a team. For the last seven years I've been the person who comes in and fixes it — with automations that fit the way real businesses run, not just tech demos.",
+			"stat1Years": "10 yrs",
+			"stat1Label": "Sales, ops & management",
+			"stat2Years": "7 yrs",
+			"stat2Label": "Workflow & AI automation",
+			"stat3Years": "5 yrs",
+			"stat3Label": "Fullstack engineering"
+		},
+		"diagnosis": {
+			"badge": "Free · 45 min · Video call",
+			"title": "Problem Discovery Session",
+			"intro": "We start with your problem — not a tool. Then we identify exactly where AI or automation makes sense for you.",
+			"step1Time": "15 min",
+			"step1Title": "Describe your workflow",
+			"step1Desc": "Walk us through a typical week. No prep needed — just how work actually gets done.",
+			"step2Time": "15 min",
+			"step2Title": "We diagnose the friction",
+			"step2Desc": "We identify your top 2–3 bottlenecks and determine whether AI, automation, or a simpler process is the right fix.",
+			"step3Time": "15 min",
+			"step3Title": "You receive a clear action plan",
+			"step3Desc": "A prioritized list of what to improve and how. Yours to keep, whether you work with us or not.",
+			"cta": "Book a Free Problem Discovery",
+			"ctaSub": "No commitment. No sales pitch. Just clarity."
 		},
 		"closing": {
 			"title": "Scale or Fade.",

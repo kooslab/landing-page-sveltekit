@@ -12,23 +12,13 @@ addMessages('en', en);
 addMessages('ko', ko);
 addMessages('de', de);
 
-// Get initial locale from URL, then cookie, then default English
+// Locale is determined solely by URL prefix — /ko/* or /de/* use that lang, everything else is English
 function getInitialLocale() {
 	if (browser) {
-		const path = window.location.pathname;
-		const segments = path.split('/').filter(Boolean);
-
+		const segments = window.location.pathname.split('/').filter(Boolean);
 		if (segments.length > 0 && (segments[0] === 'ko' || segments[0] === 'de')) {
 			return segments[0];
 		}
-
-		// No lang in URL — check cookie preference
-		const cookieMatch = document.cookie.match(/(?:^|;\s*)preferred-lang=([^;]+)/);
-		const cookieLang = cookieMatch ? cookieMatch[1] : null;
-		if (cookieLang === 'ko' || cookieLang === 'de') {
-			return cookieLang;
-		}
-
 		return 'en';
 	}
 	return 'en';
