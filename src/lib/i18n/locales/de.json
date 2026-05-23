@@ -1112,13 +1112,13 @@
 	},
 	"profile": {
 		"seo": {
-			"title": "Uber uns — KooStory",
-			"description": "KooStory ist ein Software-Studio in Berlin. Massgeschneiderte Tools, Prozessautomatisierung und interne Systeme."
+			"title": "Über uns — KooStory",
+			"description": "KooStory ist eine Berliner KI-Betriebsagentur. Wir helfen KMUs, ohne mehr Personal zu wachsen — durch Workshops oder maßgeschneiderte KI-Systeme."
 		},
 		"badge": "Uber uns",
 		"hero": {
-			"title": "Ihr Betrieb sollte nicht davon abhangen, wer heute erscheint.",
-			"subtitle": "Wir helfen Berliner Kleinunternehmen, manuelle, personenabhangige Ablaufe durch Systeme zu ersetzen, die sich selbst betreiben — damit Sie wachsen konnen, ohne mehr Mitarbeiter einzustellen."
+			"title": "Wir sind der KI-Betriebspartner für KMUs.",
+			"subtitle": "Jedes KMU sollte Zugang zur gleichen betrieblichen Hebelwirkung haben, die große Unternehmen durch große Teams erzielen. KI ist dieser Hebel."
 		},
 		"cases": {
 			"title": "Echte Probleme, die ich gelost habe",
@@ -1278,16 +1278,16 @@
 		},
 		"about": {
 			"title": "Hinter dem Unternehmen",
-			"p1": "KooStory wurde von Ilmo Koo gegrundet — Ingenieur von Haus aus, CPO durch Erfahrung, Entwickler in der Praxis.",
+			"p1": "KooStory wurde von Ilmo Koo gegründet — jemand, der Unternehmen von Grund auf aufgebaut, Betrieb unter Druck skaliert und den Code geschrieben hat, um zu reparieren, was immer wieder kaputt ging.",
 			"p2": "Hintergrund: Flugsteuerungssysteme bei Korean Air, Automotive Embedded Software bei Vector Korea, und Code States als CPO auf 27 Mio. $ Umsatz skaliert.",
 			"p3": "Standort: Berlin."
 		},
 		"wontDo": {
-			"title": "Was wir nicht ubernehmen",
-			"p1": "Wir bauen keine Software, die niemand nutzen wird.",
-			"p2": "Wenn eine Idee kein echtes tagliches Problem lost, sagen wir es ehrlich.",
-			"p3": "<strong>Code, der keinen Geschaftswert schafft, ist Verschwendung.</strong>",
-			"p4": "Manchmal ist die richtige Antwort: nicht bauen."
+			"title": "Was wir nicht tun",
+			"p1": "Wir führen kein generisches KI-Training durch.",
+			"p2": "Wir demonstrieren keine Tools ohne Geschäftskontext.",
+			"p3": "Wir beginnen nicht mit einer Lösung und arbeiten rückwärts.",
+			"p4": "Jede Zusammenarbeit beginnt mit der Frage: Welches Problem kostet Sie gerade Zeit oder Geld?"
 		},
 		"workshops": {
 			"title": "Workshops",
@@ -1313,6 +1313,20 @@
 				"description": "Anforderungsworkshop (200 EUR) und Vibe-Coding-Workshop (100 EUR). 50% Rabatt bis 30. April 2026."
 			},
 			"priceNote": "Die Preise werden bald steigen. Jetzt buchen, um den aktuellen Preis zu sichern."
+		},
+		"mission": {
+			"title": "Unsere Mission",
+			"p1": "Wir helfen wachsenden Unternehmen, mehr mit dem Team zu erreichen, das sie bereits haben. Nicht durch neue Tools — sondern indem wir KI in die tatsächlichen Abläufe integrieren. Damit die Arbeit erledigt wird, ohne mehr Personal.",
+			"p2": "Mehr Menschen bedeuten mehr Komplexität. Mehr Koordination, mehr Missverständnisse, mehr Fehlerquellen. Unternehmen, die gut skalieren, haben nicht am schnellsten eingestellt — sie haben klügere Prozesse aufgebaut.",
+			"p3": "Genau das machen wir."
+		},
+		"paths": {
+			"title": "Zwei Wege der Zusammenarbeit",
+			"path1Label": "Workshop",
+			"path1Desc": "Ihr Team, Ihr Problem, ein Tag. Wir moderieren. Sie gehen mit einer funktionierenden KI-Lösung für ein echtes Geschäftsproblem.",
+			"path2Label": "Wir bauen es",
+			"path2Desc": "Sie haben keine Zeit, es selbst zu tun. Wir nehmen das Problem, entwerfen das KI-Betriebssystem und liefern es betriebsbereit.",
+			"footnote": "In jedem Fall beginnt es mit dem Problem — nie mit dem Tool."
 		}
 	},
 	"workshops": {

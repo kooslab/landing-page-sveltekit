@@ -1144,12 +1144,12 @@
 	"profile": {
 		"seo": {
 			"title": "About — KooStory",
-			"description": "KooStory is a Berlin-based software studio. Custom tools, process automation, and internal systems."
+			"description": "KooStory is a Berlin-based AI operations agency. We help SMEs scale without headcount — through workshops or custom AI systems."
 		},
 		"badge": "About",
 		"hero": {
-			"title": "Your operations shouldn't depend on who shows up today.",
-			"subtitle": "We help Berlin's small businesses replace manual, people-dependent workflows with systems that run themselves — so you can scale without hiring more people."
+			"title": "We are the AI operations partner for SMEs.",
+			"subtitle": "Every SME should have access to the same operational leverage that enterprise companies get from large teams. AI is that lever."
 		},
 		"cases": {
 			"title": "Real Problems We've Solved",
@@ -1322,7 +1322,7 @@
 		},
 		"about": {
 			"title": "Behind the company",
-			"p1": "KooStory was founded by Ilmo Koo — aerospace engineer by training, CPO by experience, developer by practice.",
+			"p1": "KooStory was founded by Ilmo Koo — someone who has built companies from scratch, scaled operations under pressure, and written the code to fix what kept breaking.",
 			"growthFrom": "5",
 			"growthTo": "270",
 			"growthFromLabel": "people at founding",
@@ -1331,11 +1331,11 @@
 			"p3": "The hard lesson: hiring without an operational foundation doesn't compound. It's like building a sand castle — each wave of growth erodes what you built before."
 		},
 		"wontDo": {
-			"title": "What we don't take on",
-			"p1": "We don't build software nobody will use.",
-			"p2": "If an idea doesn't solve a real daily problem, we'll say so honestly.",
-			"p3": "<strong>Code that creates no business value is waste.</strong>",
-			"p4": "Sometimes the right answer is: don't build it."
+			"title": "What we don’t do",
+			"p1": "We don’t run generic AI training.",
+			"p2": "We don’t demo tools disconnected from your business.",
+			"p3": "We don’t start with a solution and work backwards.",
+			"p4": "Every engagement starts with: what is the actual problem costing you time or money right now?"
 		},
 		"workshops": {
 			"title": "Workshops",
@@ -1361,6 +1361,20 @@
 				"description": "Requirements Workshop (200 EUR) and Vibe Coding Workshop (100 EUR). 50% off until April 30, 2026."
 			},
 			"priceNote": "Prices will rise soon. Book now to lock in the current rate."
+		},
+		"mission": {
+			"title": "Our mission",
+			"p1": "We help growing businesses do more with the team they already have. Not by adding tools — by embedding AI into how they actually operate. So the work gets done, without the headcount.",
+			"p2": "More people bring more complexity. More coordination, more miscommunication, more things that can go wrong. The businesses that scale well aren’t the ones that hired fastest — they’re the ones that built smarter operations.",
+			"p3": "That’s what we do."
+		},
+		"paths": {
+			"title": "Two ways to work with us",
+			"path1Label": "Workshop",
+			"path1Desc": "Your team, your problem, one day. We facilitate. You leave with a working AI solution to a real business problem.",
+			"path2Label": "We build it",
+			"path2Desc": "You don’t have time to do it yourself. We take the problem, design the AI operation system, and deliver it ready to run.",
+			"footnote": "Either way, it starts with the problem — never the tool."
 		}
 	},
 	"workshops": {
