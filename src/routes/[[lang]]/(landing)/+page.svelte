@@ -58,18 +58,17 @@
 				class="flex flex-col justify-center px-5 pb-16 pt-16 md:px-12 md:pb-20 md:pt-20 lg:w-1/2 lg:py-28 lg:pl-16 lg:pr-12 xl:pl-20"
 			>
 				<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand-violet">
-					Berlin · AI for SMEs
+					{$_('landing.hero.eyebrow')}
 				</span>
 				<h1
 					class="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-[52px] xl:text-[58px]"
 					style="line-height: 1.08;"
 				>
-					Your business needs an AI layer.<br class="hidden sm:block" />
-					<span class="text-brand-violet">We'll build it with you — or for you.</span>
+					{$_('landing.hero.titleLine1')}<br class="hidden sm:block" />
+					<span class="text-brand-violet">{$_('landing.hero.titleLine2')}</span>
 				</h1>
 				<p class="mt-6 max-w-md text-lg leading-relaxed text-white/75 md:mt-8 md:text-xl">
-					85% of your team is already capable of using AI. The bottleneck isn't your people — it's
-					not knowing where to point them first.
+					{$_('landing.hero.subtitle')}
 				</p>
 				<div class="mt-10 md:mt-12">
 					<button
@@ -79,7 +78,7 @@
 								?.scrollIntoView({ behavior: 'smooth', block: 'start' })}
 						class="inline-flex items-center gap-2 rounded-full bg-brand-violet px-7 py-3.5 text-base font-bold text-brand transition-opacity hover:opacity-90 active:translate-y-px"
 					>
-						Find out where to start
+						{$_('landing.hero.cta')}
 						<ArrowRight class="h-4 w-4" />
 					</button>
 				</div>
@@ -103,12 +102,12 @@
 				<!-- Left: copy -->
 				<div class="lg:w-2/5">
 					<span class="mb-4 block text-xs font-semibold uppercase tracking-[0.2em] text-brand/40">
-						IBM CEO Study · 2026 · 2,000 CEOs surveyed
+						{$_('landing.aiGap.eyebrow')}
 					</span>
 					<h2
 						class="text-3xl font-bold leading-[1.1] tracking-tight text-ink md:text-4xl lg:text-5xl"
 					>
-						Your team is ready.<br />They're just not moving.
+						{$_('landing.aiGap.title1')}<br />{$_('landing.aiGap.title2')}
 					</h2>
 					<div class="mt-10 space-y-6">
 						<div class="flex items-baseline gap-4">
@@ -116,17 +115,17 @@
 								>85%</span
 							>
 							<p class="text-lg leading-snug text-ink/70">
-								of employees are capable of using AI — their CEOs say so
+								{$_('landing.aiGap.stat85desc')}
 							</p>
 						</div>
 						<div class="flex items-baseline gap-4">
 							<span class="text-5xl font-bold tracking-tight text-ink/25 md:text-6xl">25%</span>
-							<p class="text-lg leading-snug text-ink/70">are actually using it regularly</p>
+							<p class="text-lg leading-snug text-ink/70">{$_('landing.aiGap.stat25desc')}</p>
 						</div>
 						<div class="border-l-4 border-brand-violet pl-5 pt-1">
-							<p class="text-xl font-bold text-brand">60-point gap.</p>
+							<p class="text-xl font-bold text-brand">{$_('landing.aiGap.gapLabel')}</p>
 							<p class="mt-1 text-lg text-ink/60">
-								That's untapped potential sitting in your team right now.
+								{$_('landing.aiGap.gapDesc')}
 							</p>
 						</div>
 					</div>
@@ -154,15 +153,15 @@
 					<div class="mt-5 flex flex-wrap gap-x-6 gap-y-2 text-xs text-ink/50 md:text-sm">
 						<span class="flex items-center gap-2">
 							<span class="inline-block h-2.5 w-2.5 rounded-full bg-brand-violet"></span>
-							Using AI regularly (25%)
+							{$_('landing.aiGap.legendUsing')}
 						</span>
 						<span class="flex items-center gap-2">
 							<span class="inline-block h-2.5 w-2.5 rounded-full bg-brand/20"></span>
-							Capable but not using (60%)
+							{$_('landing.aiGap.legendCapable')}
 						</span>
 						<span class="flex items-center gap-2">
 							<span class="inline-block h-2.5 w-2.5 rounded-full bg-brand/[0.07]"></span>
-							Not yet ready (15%)
+							{$_('landing.aiGap.legendNotReady')}
 						</span>
 					</div>
 				</div>
@@ -177,28 +176,24 @@
 				<!-- Left: copy -->
 				<div class="lg:w-[40%]">
 					<span class="mb-4 block text-xs font-semibold uppercase tracking-[0.2em] text-brand/40">
-						The adoption gap, explained
+						{$_('landing.matrix.eyebrow')}
 					</span>
 					<h2
 						class="text-3xl font-bold leading-[1.1] tracking-tight text-ink md:text-4xl lg:text-5xl"
 					>
-						Most teams don't fail at AI. They just start in the wrong place.
+						{$_('landing.matrix.title')}
 					</h2>
 					<div class="mt-8 space-y-5 text-lg leading-relaxed text-ink/70">
 						<p>
-							Without a clear picture of their operations, businesses naturally gravitate toward the
-							most impressive-sounding AI projects — custom models, complex pipelines, fancy
-							dashboards.
+							{$_('landing.matrix.p1')}
 						</p>
-						<p>High effort. And usually not what's draining the most time.</p>
+						<p>{$_('landing.matrix.p2')}</p>
 						<p class="font-semibold text-ink">
-							The highest-ROI tasks are boring: the weekly report no one wants to compile, the
-							proposal template rebuilt from scratch every time. Easy to automate. Hours saved every
-							week.
+							{$_('landing.matrix.p3')}
 						</p>
 					</div>
 					<p class="mt-8 text-lg font-bold text-brand">
-						The bottleneck isn't AI capability. It's knowing where to start.
+						{$_('landing.matrix.tagline')}
 					</p>
 				</div>
 
@@ -356,7 +351,7 @@
 							font-size="15"
 							font-weight="700"
 							fill="#15803d"
-							text-anchor="middle">🎯 Quick Wins</text
+							text-anchor="middle">{$_('landing.matrix.quickWins')}</text
 						>
 						<text
 							x="172"
@@ -365,7 +360,7 @@
 							font-size="11"
 							fill="#15803d"
 							fill-opacity="0.65"
-							text-anchor="middle">Start here</text
+							text-anchor="middle">{$_('landing.matrix.quickWinsSub')}</text
 						>
 
 						<!-- Quadrant label: Worth It (top-right) -->
@@ -376,7 +371,7 @@
 							font-size="15"
 							font-weight="700"
 							fill="#92400e"
-							text-anchor="middle">💡 Worth It</text
+							text-anchor="middle">{$_('landing.matrix.worthIt')}</text
 						>
 						<text
 							x="367"
@@ -385,7 +380,7 @@
 							font-size="11"
 							fill="#92400e"
 							fill-opacity="0.65"
-							text-anchor="middle">High effort, high return</text
+							text-anchor="middle">{$_('landing.matrix.worthItSub')}</text
 						>
 
 						<!-- Quadrant label: Nice to Have (bottom-left) -->
@@ -396,7 +391,7 @@
 							font-size="14"
 							font-weight="700"
 							fill="#6b7280"
-							text-anchor="middle">😐 Nice to Have</text
+							text-anchor="middle">{$_('landing.matrix.niceToHave')}</text
 						>
 						<text
 							x="172"
@@ -405,7 +400,7 @@
 							font-size="11"
 							fill="#6b7280"
 							fill-opacity="0.7"
-							text-anchor="middle">Easy but not impactful</text
+							text-anchor="middle">{$_('landing.matrix.niceToHaveSub')}</text
 						>
 
 						<!-- Quadrant label: THE TRAP (bottom-right) -->
@@ -416,7 +411,7 @@
 							font-size="16"
 							font-weight="800"
 							fill="#dc2626"
-							text-anchor="middle">⚠️ The Trap</text
+							text-anchor="middle">{$_('landing.matrix.trap')}</text
 						>
 						<text
 							x="367"
@@ -425,7 +420,7 @@
 							font-size="12"
 							font-weight="600"
 							fill="#dc2626"
-							text-anchor="middle">Hard. Low impact.</text
+							text-anchor="middle">{$_('landing.matrix.trapSub')}</text
 						>
 						<text
 							x="367"
@@ -434,7 +429,7 @@
 							font-size="11"
 							fill="#dc2626"
 							fill-opacity="0.65"
-							text-anchor="middle">Where most businesses land.</text
+							text-anchor="middle">{$_('landing.matrix.trapDesc')}</text
 						>
 
 						<!-- Red dots: The Trap zone (many) -->
@@ -456,65 +451,59 @@
 	<section class="bg-brand px-5 py-20 md:px-12 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-3xl">
 			<span class="mb-6 block text-sm font-semibold uppercase tracking-[0.2em] text-brand-violet">
-				The honest take
+				{$_('landing.honest.eyebrow')}
 			</span>
 			<h2
 				class="text-3xl font-bold leading-[1.1] tracking-tight text-white md:text-4xl lg:text-5xl"
 			>
-				Honestly? You could learn this yourself.
+				{$_('landing.honest.title')}
 			</h2>
 			<div class="mt-8 space-y-5 text-lg leading-relaxed text-white/70 md:text-xl">
-				<p>
-					The resources are free. YouTube, ChatGPT, a handful of good courses — that's genuinely all
-					you need. Most AI skills aren't complicated once you sit down and try.
-				</p>
-				<p>
-					If you have 3–6 months of consistent learning time, do it. Seriously. It's the best
-					long-term investment you can make.
-				</p>
+				<p>{$_('landing.honest.p1')}</p>
+				<p>{$_('landing.honest.p2')}</p>
 			</div>
 			<div class="mt-10 border-t border-white/10 pt-10">
 				<p class="text-lg font-semibold text-white md:text-xl">
-					But if you're running a team, closing deals, and firefighting daily — that time doesn't
-					exist.
+					{$_('landing.honest.but')}
 				</p>
 				<p class="mt-4 text-lg leading-relaxed text-white/70 md:text-xl">
-					That's where we come in. Two paths. Same outcome: your business running on AI.
+					{$_('landing.honest.intro')}
 				</p>
 				<div class="mt-10 grid gap-5 sm:grid-cols-2">
 					<div class="rounded-2xl border border-white/10 bg-white/[0.05] p-7">
 						<span
 							class="mb-3 block text-xs font-bold uppercase tracking-[0.15em] text-brand-violet"
 						>
-							Path 1
+							{$_('landing.honest.path1Label')}
 						</span>
-						<h3 class="text-2xl font-bold text-white">AI Workshops</h3>
+						<h3 class="text-2xl font-bold text-white">{$_('landing.honest.path1Title')}</h3>
 						<p class="mt-3 text-lg leading-relaxed text-white/60">
-							Your team learns by solving their actual problems. Hands-on, in-person, one day.
+							{$_('landing.honest.path1Desc')}
 						</p>
 						<a
 							href="/workshops"
 							class="mt-6 inline-flex items-center gap-2 text-base font-semibold text-brand-violet hover:opacity-80"
 						>
-							See how it works <ArrowRight class="h-4 w-4" />
+							{$_('landing.honest.path1Cta')}
+							<ArrowRight class="h-4 w-4" />
 						</a>
 					</div>
 					<div class="rounded-2xl border border-white/10 bg-white/[0.05] p-7">
 						<span
 							class="mb-3 block text-xs font-bold uppercase tracking-[0.15em] text-brand-violet"
 						>
-							Path 2
+							{$_('landing.honest.path2Label')}
 						</span>
-						<h3 class="text-2xl font-bold text-white">Turnkey AI Setup</h3>
+						<h3 class="text-2xl font-bold text-white">{$_('landing.honest.path2Title')}</h3>
 						<p class="mt-3 text-lg leading-relaxed text-white/60">
-							We build and install your AI operating system. You run the business. We handle the
-							tech.
+							{$_('landing.honest.path2Desc')}
 						</p>
 						<button
 							onclick={book}
 							class="mt-6 inline-flex items-center gap-2 text-base font-semibold text-brand-violet hover:opacity-80"
 						>
-							Book a 45-min video call <ArrowRight class="h-4 w-4" />
+							{$_('landing.honest.path2Cta')}
+							<ArrowRight class="h-4 w-4" />
 						</button>
 					</div>
 				</div>
@@ -575,15 +564,13 @@
 						class="h-24 w-24 flex-shrink-0 rounded-full object-cover object-top ring-2 ring-white/20 sm:h-28 sm:w-28"
 					/>
 					<div>
-						<p class="text-lg font-bold text-white">Ilmo Koo</p>
-						<p class="mt-0.5 text-base text-brand-violet">Founder, KooStory · Berlin</p>
+						<p class="text-lg font-bold text-white">{$_('landing.profile.name')}</p>
+						<p class="mt-0.5 text-base text-brand-violet">{$_('landing.profile.role')}</p>
 						<p class="mt-4 text-lg leading-relaxed text-white/70">
-							Ten years in sales, operations, and management taught me exactly what repetitive work
-							costs a team. For the last seven years I've been the person who comes in and fixes it
-							— with automations that fit the way real businesses run, not just tech demos.
+							{$_('landing.profile.bio')}
 						</p>
 						<div class="mt-5 flex flex-wrap gap-x-8 gap-y-3">
-							{#each [{ years: '10 yrs', label: 'Sales, ops & management' }, { years: '7 yrs', label: 'Workflow & AI automation' }, { years: '5 yrs', label: 'Fullstack engineering' }] as stat}
+							{#each [{ years: $_('landing.profile.stat1Years'), label: $_('landing.profile.stat1Label') }, { years: $_('landing.profile.stat2Years'), label: $_('landing.profile.stat2Label') }, { years: $_('landing.profile.stat3Years'), label: $_('landing.profile.stat3Label') }] as stat}
 								<div class="flex items-baseline gap-2">
 									<span class="text-xl font-bold text-brand-violet">{stat.years}</span>
 									<span class="text-base text-white/50">{stat.label}</span>
@@ -601,19 +588,21 @@
 						<span
 							class="mb-5 inline-block rounded-full border border-brand/20 bg-brand/[0.06] px-4 py-1.5 text-sm font-bold uppercase tracking-[0.15em] text-brand"
 						>
-							Free until July 31, 2026
+							{$_('landing.diagnosis.badge')}
 						</span>
-						<h2 class="text-3xl font-bold text-ink md:text-4xl">Business AI Diagnosis</h2>
+						<h2 class="text-3xl font-bold text-ink md:text-4xl">{$_('landing.diagnosis.title')}</h2>
 						<div class="mt-3 flex items-center justify-center gap-3">
-							<span class="text-xl text-ink/30 line-through">€100</span>
-							<span class="text-3xl font-bold text-brand">Free</span>
-							<span class="text-base text-ink/40">· 45 min · Video call</span>
+							<span class="text-xl text-ink/30 line-through"
+								>{$_('landing.diagnosis.originalPrice')}</span
+							>
+							<span class="text-3xl font-bold text-brand">{$_('landing.diagnosis.price')}</span>
+							<span class="text-base text-ink/40">{$_('landing.diagnosis.format')}</span>
 						</div>
 					</div>
 
 					<!-- 3-step flow -->
 					<div class="mt-10 space-y-3">
-						{#each [{ step: '01', time: '15 min', title: 'You talk', desc: 'Tell us how your operations work today. No prep, no jargon — just walk us through a normal week.' }, { step: '02', time: '15 min', title: 'We map', desc: 'We identify your top 2–3 time wasters and show you exactly where AI fits your specific setup.' }, { step: '03', time: '15 min', title: 'You leave with', desc: 'A prioritized action list — what to fix first and how. Yours to keep, whether you work with us or not.' }] as s}
+						{#each [{ step: '01', time: $_('landing.diagnosis.step1Time'), title: $_('landing.diagnosis.step1Title'), desc: $_('landing.diagnosis.step1Desc') }, { step: '02', time: $_('landing.diagnosis.step2Time'), title: $_('landing.diagnosis.step2Title'), desc: $_('landing.diagnosis.step2Desc') }, { step: '03', time: $_('landing.diagnosis.step3Time'), title: $_('landing.diagnosis.step3Title'), desc: $_('landing.diagnosis.step3Desc') }] as s}
 							<div
 								class="flex items-start gap-6 rounded-xl border border-brand/10 bg-brand/[0.03] px-6 py-5"
 							>
@@ -636,10 +625,10 @@
 							onclick={book}
 							class="inline-flex items-center gap-2 rounded-full bg-brand px-8 py-4 text-base font-bold text-white transition-opacity hover:opacity-90 active:translate-y-px"
 						>
-							Book Free Diagnosis
+							{$_('landing.diagnosis.cta')}
 							<ArrowRight class="h-4 w-4" />
 						</button>
-						<p class="mt-3 text-base text-ink/40">No commitment. No pitch. Just clarity.</p>
+						<p class="mt-3 text-base text-ink/40">{$_('landing.diagnosis.ctaSub')}</p>
 					</div>
 				</div>
 			</div>
