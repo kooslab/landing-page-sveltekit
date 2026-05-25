@@ -65,12 +65,12 @@
 			</a>
 
 			<a
-				href="/workshops"
+				href="/discovery"
 				class="flex items-center gap-3 rounded-md px-3 py-2 text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
 				onclick={(e) => {
 					e.preventDefault();
 					sheetOpen = false;
-					setTimeout(() => goto('/workshops'), 300);
+					setTimeout(() => goto('/discovery'), 300);
 				}}
 			>
 				<Hammer class="h-5 w-5" />

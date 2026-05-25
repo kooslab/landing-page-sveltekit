@@ -3,7 +3,7 @@
 	import { page } from '$app/stores';
 	import { Button } from '$lib/components/ui/button';
 	import { ArrowLeft } from 'lucide-svelte';
-	import ReservationModal from '../workshops/components/reservation-modal.svelte';
+	import ReservationModal from '../discovery/components/reservation-modal.svelte';
 
 	let lang = $derived($page.params?.lang || 'en');
 	let langPrefix = $derived(lang === 'en' ? '' : `/${lang}`);

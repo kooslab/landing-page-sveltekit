@@ -10,8 +10,6 @@
 <a class="contents" href={homeHref}>
 	<div class="flex h-9 items-center space-x-2 md:space-x-3">
 		<Logo size="sm" />
-		<div class="text-lg font-medium transition-colors duration-300 {scrolled ? '' : 'text-white'}">
-			Koostory
-		</div>
+		<div class="font-display text-lg font-bold text-foreground">KooStory</div>
 	</div>
 </a>

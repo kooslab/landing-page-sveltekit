@@ -1,76 +1,52 @@
+@import '@fontsource-variable/geist';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
 	:root {
-		--background: 40 33% 98%;
-		--foreground: 180 15% 12%;
+		/* Dark-first — Basement Studio aesthetic */
+		--background: 0 0% 4%;
+		--foreground: 0 0% 94%;
 
-		--muted: 40 20% 93%;
-		--muted-foreground: 180 5% 45%;
+		--muted: 0 0% 8%;
+		--muted-foreground: 0 0% 45%;
 
-		--popover: 40 33% 98%;
-		--popover-foreground: 180 15% 12%;
+		--popover: 0 0% 5%;
+		--popover-foreground: 0 0% 94%;
 
-		--card: 40 25% 99%;
-		--card-foreground: 180 15% 12%;
+		--card: 0 0% 6%;
+		--card-foreground: 0 0% 94%;
 
-		--border: 40 15% 88%;
-		--input: 40 15% 88%;
+		--border: 0 0% 13%;
+		--input: 0 0% 13%;
 
-		--primary: 180 56% 23%;
-		--primary-foreground: 40 33% 98%;
+		--primary: 0 0% 94%;
+		--primary-foreground: 0 0% 4%;
 
-		--secondary: 175 20% 93%;
-		--secondary-foreground: 180 40% 20%;
+		--secondary: 0 0% 10%;
+		--secondary-foreground: 0 0% 94%;
 
-		--accent: 175 20% 93%;
-		--accent-foreground: 180 40% 20%;
+		--accent: 0 0% 10%;
+		--accent-foreground: 0 0% 94%;
 
-		--destructive: 0 72% 51%;
-		--destructive-foreground: 40 33% 98%;
+		--destructive: 0 63% 40%;
+		--destructive-foreground: 0 0% 94%;
 
-		--ring: 180 56% 23%;
+		--ring: 270 85% 84%;
 
-		--radius: 0.5rem;
-	}
-
-	.dark {
-		--background: 180 20% 7%;
-		--foreground: 40 15% 93%;
-
-		--muted: 180 15% 14%;
-		--muted-foreground: 40 10% 60%;
-
-		--popover: 180 20% 7%;
-		--popover-foreground: 40 15% 93%;
-
-		--card: 180 20% 7%;
-		--card-foreground: 40 15% 93%;
-
-		--border: 180 15% 18%;
-		--input: 180 15% 18%;
-
-		--primary: 175 50% 45%;
-		--primary-foreground: 180 20% 7%;
-
-		--secondary: 180 15% 14%;
-		--secondary-foreground: 40 15% 93%;
-
-		--accent: 180 15% 14%;
-		--accent-foreground: 40 15% 93%;
-
-		--destructive: 0 63% 31%;
-		--destructive-foreground: 40 15% 93%;
-
-		--ring: 175 50% 45%;
+		--radius: 0.375rem;
 	}
 }
 
 @layer base {
 	* {
 		@apply border-border;
+	}
+	html {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
 	}
 	body {
 		@apply bg-background text-foreground;

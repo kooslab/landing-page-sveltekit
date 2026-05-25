@@ -64,8 +64,9 @@ const config: Config = {
 				sm: 'calc(var(--radius) - 4px)'
 			},
 			fontFamily: {
-				sans: ['"DM Sans"', ...fontFamily.sans],
-				mono: ['"DM Mono"', ...fontFamily.mono]
+				sans: ['"Geist Variable"', ...fontFamily.sans],
+				display: ['"Cabinet Grotesk"', ...fontFamily.sans],
+				mono: [...fontFamily.mono]
 			}
 		}
 	},

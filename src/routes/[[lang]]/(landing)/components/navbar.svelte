@@ -14,8 +14,8 @@
 
 <header
 	class="sticky top-0 z-50 w-full transition-all duration-300 {scrolled
-		? 'border-b border-border bg-background/95 backdrop-blur-sm'
-		: 'bg-brand'}"
+		? 'border-b border-border bg-background/90 backdrop-blur-sm'
+		: 'bg-transparent'}"
 >
 	<nav class="container flex w-full items-center justify-between px-5 py-3 md:px-5 md:py-4">
 		<div class="flex items-center">

@@ -24,7 +24,7 @@
 		Layers,
 		Rocket
 	} from 'lucide-svelte';
-	import ReservationModal from '../../workshops/components/reservation-modal.svelte';
+	import ReservationModal from '../../discovery/components/reservation-modal.svelte';
 
 	let reservationOpen = $state(false);
 	let reservationType = $state<'diagnosis' | 'ax_l1' | 'ax_l2' | 'ax_l3' | 'custom'>('diagnosis');
