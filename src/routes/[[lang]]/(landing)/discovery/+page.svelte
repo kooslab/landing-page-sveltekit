@@ -13,7 +13,7 @@
 <SEO
 	title="AI OS Discovery — KooStory Berlin"
 	description="Free 45-min diagnostic. We map your recurring workflows, find your Quick Wins, and give you a prioritised build order — whether you work with us after or not."
-	ogImage="/og-image-landing.png"
+	ogImage="/og?title=AI+OS+Discovery&subtitle=Free+45-min+diagnostic+for+your+business"
 />
 
 <DiagnosisModal bind:open={modalOpen} />

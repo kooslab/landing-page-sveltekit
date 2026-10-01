@@ -13,7 +13,7 @@ export const GET: RequestHandler = async ({ url }) => {
 				? '#059669'
 				: type === 'spreadsheet'
 					? '#d97706'
-					: '#18181b';
+					: '#7c3aed';
 
 	const html = {
 		type: 'div',
@@ -25,7 +25,7 @@ export const GET: RequestHandler = async ({ url }) => {
 				flexDirection: 'column',
 				justifyContent: 'space-between',
 				padding: '60px 80px',
-				backgroundColor: '#fafafa',
+				backgroundColor: '#09090b',
 				fontFamily: 'system-ui, -apple-system, sans-serif'
 			},
 			children: [
@@ -55,7 +55,7 @@ export const GET: RequestHandler = async ({ url }) => {
 									style: {
 										fontSize: title.length > 50 ? '48px' : '56px',
 										fontWeight: 700,
-										color: '#18181b',
+										color: '#fafafa',
 										lineHeight: 1.15,
 										letterSpacing: '-0.02em',
 										maxWidth: '900px'
@@ -68,7 +68,7 @@ export const GET: RequestHandler = async ({ url }) => {
 								props: {
 									style: {
 										fontSize: '24px',
-										color: '#71717a',
+										color: '#a1a1aa',
 										lineHeight: 1.4,
 										maxWidth: '700px'
 									},
@@ -102,7 +102,7 @@ export const GET: RequestHandler = async ({ url }) => {
 												style: {
 													width: '32px',
 													height: '32px',
-													backgroundColor: '#18181b',
+													backgroundColor: accentColor,
 													borderRadius: '6px'
 												}
 											}
@@ -113,7 +113,7 @@ export const GET: RequestHandler = async ({ url }) => {
 												style: {
 													fontSize: '22px',
 													fontWeight: 600,
-													color: '#18181b'
+													color: '#fafafa'
 												},
 												children: 'KooStory'
 											}
@@ -126,7 +126,7 @@ export const GET: RequestHandler = async ({ url }) => {
 								props: {
 									style: {
 										fontSize: '18px',
-										color: '#a1a1aa'
+										color: '#71717a'
 									},
 									children: 'koostory.net'
 								}

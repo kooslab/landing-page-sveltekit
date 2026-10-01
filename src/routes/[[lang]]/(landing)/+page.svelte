@@ -29,7 +29,7 @@
 	description={isKorean
 		? 'AI 자동화로 인력 충원 없이 비즈니스를 확장하세요. 베를린 기반 AI 운영 파트너.'
 		: 'We identify the workflows costing you time and replace them with AI automations that run without you. Berlin-based AI operations partner.'}
-	ogImage="/og-image-landing.png"
+	ogImage="/og?title=KooStory&subtitle=AI+Operations+Partner+for+SMEs+%7C+Berlin"
 />
 
 <!-- ══════════════════════════════════════════ HERO ══ -->

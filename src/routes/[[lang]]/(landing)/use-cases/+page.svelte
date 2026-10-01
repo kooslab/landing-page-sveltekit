@@ -145,7 +145,7 @@
 <SEO
 	title="Use Cases — KooStory"
 	description="Real problems solved by KooStory. Requirements consulting, process automation, and custom software development."
-	ogImage="/og-image-landing.png"
+	ogImage="/og?title=Use+Cases&subtitle=Real+problems+solved+by+KooStory"
 />
 
 <main class="w-full">

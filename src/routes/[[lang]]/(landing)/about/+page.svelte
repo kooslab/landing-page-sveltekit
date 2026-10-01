@@ -6,7 +6,7 @@
 <SEO
 	title={$_('profile.seo.title')}
 	description={$_('profile.seo.description')}
-	ogImage="/og-image-landing.png"
+	ogImage="/og?title=About+KooStory&subtitle=AI+Operations+Partner+%7C+Berlin"
 />
 
 <main class="w-full">

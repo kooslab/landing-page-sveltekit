@@ -2,14 +2,14 @@ import { type MetaTagsProps } from 'svelte-meta-tags';
 import type { LayoutLoad } from './$types';
 
 export const load: LayoutLoad = async ({ data, url }) => {
-	const title = `Koostory`;
-	const description = `Enterprise-grade tools at freelancer prices. Help your small business save time, work efficiently, and boost productivity without breaking the bank. Try free for 14 days.`;
+	const title = `KooStory`;
+	const description = `We identify the workflows costing you time and replace them with AI automations that run without you. Berlin-based AI operations partner for SMEs.`;
 	const canonicalUrl = new URL(url.pathname, url.origin).href;
-	const OGImage = 'https://media.fromkian.com/acme.jpg';
+	const OGImage = `${url.origin}/og?title=KooStory&subtitle=AI+Operations+Partner+for+SMEs+%7C+Berlin`;
 
 	const baseMetaTags: MetaTagsProps = {
 		title,
-		titleTemplate: `%s — ${title}`,
+		titleTemplate: `%s | ${title}`,
 		description,
 		canonical: canonicalUrl,
 		openGraph: {
@@ -22,7 +22,7 @@ export const load: LayoutLoad = async ({ data, url }) => {
 			images: [
 				{
 					url: OGImage,
-					alt: title,
+					alt: 'KooStory — AI Operations Partner for SMEs',
 					width: 1200,
 					height: 630,
 					type: 'image/png'
@@ -30,12 +30,10 @@ export const load: LayoutLoad = async ({ data, url }) => {
 			]
 		},
 		twitter: {
-			creator: `@example`,
-			site: `@example`,
 			cardType: 'summary_large_image',
 			description,
 			image: OGImage,
-			imageAlt: description
+			imageAlt: 'KooStory — AI Operations Partner for SMEs'
 		}
 	};
 
