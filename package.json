@@ -90,6 +90,6 @@
 		"svelte-sonner": "^0.3.28"
 	},
 	"engines": {
-		"node": "20.x"
+		"node": "22.x"
 	}
 }
