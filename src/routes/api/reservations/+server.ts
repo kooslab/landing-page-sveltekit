@@ -3,7 +3,8 @@ import type { RequestHandler } from './$types';
 import { db, workshopReservations } from '$lib/server/db';
 import { reservationSchema } from '$lib/schemas/reservation';
 import { Resend } from 'resend';
-import { RESEND_API_KEY, ADMIN_EMAIL } from '$env/static/private';
+import { RESEND_API_KEY } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 import { sql } from 'drizzle-orm';
 
 const resend = new Resend(RESEND_API_KEY);
@@ -109,7 +110,7 @@ export const POST: RequestHandler = async ({ request }) => {
 				// Notification to admin
 				const { error: adminError } = await resend.emails.send({
 					from: 'KooStory <no-reply@mail.koostory.net>',
-					to: ADMIN_EMAIL,
+					to: env.ADMIN_EMAIL,
 					subject: isDiagnosis
 						? `New AI Diagnosis booking: ${name}`
 						: `New Workshop Reservation: ${workshopLabel} — ${name}`,

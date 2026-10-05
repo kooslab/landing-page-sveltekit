@@ -2,7 +2,8 @@ import { json } from '@sveltejs/kit';
 import type { RequestHandler } from './$types';
 import { db, emailConsents } from '$lib/server/db';
 import { Resend } from 'resend';
-import { RESEND_API_KEY, ADMIN_EMAIL } from '$env/static/private';
+import { RESEND_API_KEY } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 
 const resend = new Resend(RESEND_API_KEY);
 
@@ -28,7 +29,7 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 		// Notify admin
 		resend.emails.send({
 			from: 'KooStory <no-reply@mail.koostory.net>',
-			to: ADMIN_EMAIL,
+			to: env.ADMIN_EMAIL,
 			subject: `Sample Report Viewed: ${email}`,
 			html: `<p>Someone viewed the sample report.</p><p><strong>Email:</strong> ${email}</p><p><strong>Date:</strong> ${today()}</p>`
 		});
@@ -36,7 +37,7 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 		// Send promotion email to the user
 		resend.emails.send({
 			from: 'Ilmo Koo — KooStory <no-reply@mail.koostory.net>',
-			replyTo: ADMIN_EMAIL,
+			replyTo: env.ADMIN_EMAIL,
 			to: email,
 			subject: "You looked at the report — here's what's next",
 			html: `

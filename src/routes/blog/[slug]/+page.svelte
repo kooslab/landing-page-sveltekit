@@ -21,7 +21,7 @@
 			const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
 			if (mermaidBlocks.length === 0) return;
 
-			const mermaid = (await import('mermaid')).default;
+			const mermaid = (await import('https://esm.sh/mermaid@11/dist/mermaid.esm.min.mjs')).default;
 			mermaid.initialize({
 				startOnLoad: false,
 				theme: document.documentElement.classList.contains('dark') ? 'dark' : 'default',
