@@ -105,7 +105,9 @@ export const POST: RequestHandler = async ({ request }) => {
 						<p>Best regards,<br>Ilmo Koo — KooStory</p>
 					`
 				});
-				if (customerError) console.error('Failed to send customer email:', customerError);
+				if (customerError)
+					console.error('[email] FAILED → reservation-customer to:', email, customerError);
+				else console.log('[email] sent OK → reservation-customer to:', email);
 
 				// Notification to admin
 				const { error: adminError } = await resend.emails.send({
@@ -126,7 +128,9 @@ export const POST: RequestHandler = async ({ request }) => {
 						<p><a href="https://koostory.net/admin/reservations">View in Admin Panel</a></p>
 					`
 				});
-				if (adminError) console.error('Failed to send admin email:', adminError);
+				if (adminError)
+					console.error('[email] FAILED → reservation-admin to:', env.ADMIN_EMAIL, adminError);
+				else console.log('[email] sent OK → reservation-admin to:', env.ADMIN_EMAIL);
 			} catch (emailError) {
 				console.error('Email sending failed:', emailError);
 			}

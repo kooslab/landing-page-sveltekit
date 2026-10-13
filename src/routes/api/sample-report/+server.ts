@@ -27,20 +27,28 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 		});
 
 		// Notify admin
-		resend.emails.send({
-			from: 'KooStory <no-reply@mail.koostory.net>',
-			to: env.ADMIN_EMAIL,
-			subject: `Sample Report Viewed: ${email}`,
-			html: `<p>Someone viewed the sample report.</p><p><strong>Email:</strong> ${email}</p><p><strong>Date:</strong> ${today()}</p>`
-		});
+		resend.emails
+			.send({
+				from: 'KooStory <no-reply@mail.koostory.net>',
+				to: env.ADMIN_EMAIL,
+				subject: `Sample Report Viewed: ${email}`,
+				html: `<p>Someone viewed the sample report.</p><p><strong>Email:</strong> ${email}</p><p><strong>Date:</strong> ${today()}</p>`
+			})
+			.then(({ error }) => {
+				if (error)
+					console.error('[email] FAILED → sample-report-admin to:', env.ADMIN_EMAIL, error);
+				else console.log('[email] sent OK → sample-report-admin to:', env.ADMIN_EMAIL);
+			});
 
 		// Send promotion email to the user
-		resend.emails.send({
-			from: 'Ilmo Koo — KooStory <no-reply@mail.koostory.net>',
-			replyTo: env.ADMIN_EMAIL,
-			to: email,
-			subject: "You looked at the report — here's what's next",
-			html: `
+		resend.emails
+			.send({
+				from: 'Ilmo Koo — KooStory <no-reply@mail.koostory.net>',
+				replyTo: env.ADMIN_EMAIL,
+				to: email,
+				subject: "You looked at the report — here's what's next",
+				html: `
+
 <div style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; max-width: 560px; margin: 0 auto; color: #1a1a1a; line-height: 1.6;">
 	<p>Hi,</p>
 
@@ -72,7 +80,11 @@ export const POST: RequestHandler = async ({ request, getClientAddress }) => {
 	</p>
 </div>
 			`
-		});
+			})
+			.then(({ error }) => {
+				if (error) console.error('[email] FAILED → sample-report-promo to:', email, error);
+				else console.log('[email] sent OK → sample-report-promo to:', email);
+			});
 
 		return json({ success: true });
 	} catch (error) {

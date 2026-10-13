@@ -28,6 +28,7 @@ export const GET: RequestHandler = async () => {
 			);
 		}
 
+		console.log('[email] sent OK → test-email to: johnnykoo@koostory.net, id:', data?.id);
 		return json({
 			success: true,
 			message: 'Test email sent successfully',
