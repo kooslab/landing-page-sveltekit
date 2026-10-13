@@ -36,7 +36,7 @@ export const actions: Actions = {
 
 			const resetUrl = `${url.origin}/reset-password/${token}`;
 
-			await resend.emails.send({
+			const { error: emailError } = await resend.emails.send({
 				from: 'KooStory <no-reply@mail.koostory.net>',
 				to: email,
 				subject: 'Reset your KooStory admin password',
@@ -48,6 +48,11 @@ export const actions: Actions = {
 					<p style="color:#999;font-size:12px;">Link: ${resetUrl}</p>
 				`
 			});
+
+			if (emailError) {
+				console.error('Resend error sending reset email:', emailError);
+				return fail(500, { error: 'Failed to send reset email. Please try again.' });
+			}
 
 			return { success: true };
 		} catch (error) {
