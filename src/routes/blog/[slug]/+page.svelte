@@ -24,7 +24,7 @@
 			const mermaid = (await import('mermaid')).default;
 			mermaid.initialize({
 				startOnLoad: false,
-				theme: document.documentElement.classList.contains('dark') ? 'dark' : 'default',
+				theme: 'dark',
 				fontFamily: 'system-ui, -apple-system, sans-serif'
 			});
 
