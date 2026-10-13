@@ -37,6 +37,7 @@
 
 	let activeTab: 'write' | 'preview' = $state('write');
 	let previewHtml = $state('');
+	let previewContainer: HTMLDivElement | undefined = $state();
 
 	let textarea: HTMLTextAreaElement;
 	let fileInput: HTMLInputElement;
@@ -82,6 +83,33 @@
 			? slashCommands.filter((c) => c.label.toLowerCase().includes(slashQuery.toLowerCase()))
 			: slashCommands
 	);
+
+	async function renderMermaid() {
+		if (!previewContainer) return;
+		const blocks = previewContainer.querySelectorAll('pre code.language-mermaid');
+		if (blocks.length === 0) return;
+		const mermaid = (await import('mermaid')).default;
+		mermaid.initialize({
+			startOnLoad: false,
+			theme: 'default',
+			fontFamily: 'system-ui, -apple-system, sans-serif'
+		});
+		for (const block of blocks) {
+			const pre = block.parentElement;
+			if (!pre) continue;
+			const code = block.textContent || '';
+			const id = `mermaid-${Math.random().toString(36).slice(2, 9)}`;
+			try {
+				const { svg } = await mermaid.render(id, code);
+				const wrapper = document.createElement('div');
+				wrapper.className = 'my-8 flex justify-center';
+				wrapper.innerHTML = svg; // Safe: mermaid.render produces sanitized SVG
+				pre.replaceWith(wrapper);
+			} catch (e) {
+				console.error('Mermaid render error:', e);
+			}
+		}
+	}
 
 	async function uploadImage(file: File): Promise<string | null> {
 		if (!file.type.startsWith('image/')) return null;
@@ -443,6 +471,8 @@
 			onclick={async () => {
 				previewHtml = await marked(content || '*Nothing to preview*');
 				activeTab = 'preview';
+				await tick();
+				await renderMermaid();
 			}}
 		>
 			Preview
@@ -500,6 +530,7 @@
 		/>
 	{:else}
 		<div
+			bind:this={previewContainer}
 			class="prose prose-lg min-h-[400px] max-w-none p-4 [&_img]:h-auto [&_img]:max-w-full [&_img]:rounded-lg"
 		>
 			{@html previewHtml}
