@@ -2,11 +2,9 @@ import { fail } from '@sveltejs/kit';
 import { db, users, passwordResetTokens } from '$lib/server/db';
 import { eq } from 'drizzle-orm';
 import { Resend } from 'resend';
-import { RESEND_API_KEY } from '$env/static/private';
+import { env } from '$env/dynamic/private';
 import { randomBytes } from 'node:crypto';
 import type { Actions } from './$types';
-
-const resend = new Resend(RESEND_API_KEY);
 
 export const actions: Actions = {
 	default: async ({ request, url }) => {
@@ -18,6 +16,7 @@ export const actions: Actions = {
 		}
 
 		try {
+			console.log('[forgot-password] action started for:', email);
 			const [user] = await db.select().from(users).where(eq(users.email, email)).limit(1);
 
 			if (!user) {
@@ -35,6 +34,12 @@ export const actions: Actions = {
 
 			const resetUrl = `${url.origin}/reset-password/${token}`;
 
+			if (!env.RESEND_API_KEY) {
+				console.error('[forgot-password] RESEND_API_KEY is not set');
+				return fail(500, { error: 'Email service not configured.' });
+			}
+
+			const resend = new Resend(env.RESEND_API_KEY);
 			const { data: emailData, error: emailError } = await resend.emails.send({
 				from: 'KooStory <no-reply@mail.koostory.net>',
 				to: email,
