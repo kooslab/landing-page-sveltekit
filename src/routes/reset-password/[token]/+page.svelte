@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { Eye, EyeOff } from 'lucide-svelte';
+	import { Eye, EyeOff, Loader2, CheckCircle2 } from 'lucide-svelte';
 
 	let { data, form }: { data: any; form: any } = $props();
 
 	let showPassword = $state(false);
 	let showConfirm = $state(false);
+	let loading = $state(false);
 </script>
 
 <div class="flex min-h-screen items-center justify-center bg-brand px-4 py-12">
@@ -37,13 +38,7 @@
 					<div
 						class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-brand/10"
 					>
-						<svg class="h-7 w-7 text-brand" viewBox="0 0 20 20" fill="currentColor">
-							<path
-								fill-rule="evenodd"
-								d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-								clip-rule="evenodd"
-							/>
-						</svg>
+						<CheckCircle2 class="h-7 w-7 text-brand" />
 					</div>
 					<h2 class="text-xl font-bold text-ink">Password updated</h2>
 					<p class="mt-2 text-base text-ink/60">Your password has been changed successfully.</p>
@@ -58,7 +53,17 @@
 				<h1 class="text-2xl font-bold text-ink">New password</h1>
 				<p class="mt-1 text-base text-ink/50">Choose a strong password.</p>
 
-				<form method="POST" use:enhance class="mt-7 space-y-5">
+				<form
+					method="POST"
+					use:enhance={() => {
+						loading = true;
+						return async ({ update }) => {
+							await update();
+							loading = false;
+						};
+					}}
+					class="mt-7 space-y-5"
+				>
 					{#if form?.error}
 						<div class="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
 							{form.error}
@@ -126,9 +131,15 @@
 
 					<button
 						type="submit"
-						class="mt-2 inline-flex w-full items-center justify-center rounded-full bg-brand px-6 py-3.5 text-base font-bold text-white transition-opacity hover:opacity-90 active:translate-y-px"
+						disabled={loading}
+						class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand px-6 py-3.5 text-base font-bold text-white transition-opacity hover:opacity-90 active:translate-y-px disabled:cursor-not-allowed disabled:opacity-60"
 					>
-						Update Password
+						{#if loading}
+							<Loader2 class="h-4 w-4 animate-spin" />
+							Updating…
+						{:else}
+							Update Password
+						{/if}
 					</button>
 				</form>
 			{/if}

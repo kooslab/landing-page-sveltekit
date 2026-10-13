@@ -70,7 +70,7 @@
 	</aside>
 
 	<!-- Main content -->
-	<main class="flex flex-1 flex-col bg-canvas-soft">
+	<main class="admin-light flex flex-1 flex-col bg-canvas-soft text-foreground">
 		{@render children()}
 	</main>
 </div>

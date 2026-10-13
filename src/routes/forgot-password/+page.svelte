@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
+	import { Loader2, CheckCircle2 } from 'lucide-svelte';
 
 	let { form }: { form: any } = $props();
 	let loading = $state(false);
@@ -22,13 +23,7 @@
 					<div
 						class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-brand/10"
 					>
-						<svg class="h-7 w-7 text-brand" viewBox="0 0 20 20" fill="currentColor">
-							<path
-								fill-rule="evenodd"
-								d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-								clip-rule="evenodd"
-							/>
-						</svg>
+						<CheckCircle2 class="h-7 w-7 text-brand" />
 					</div>
 					<h2 class="text-xl font-bold text-ink">Check your email</h2>
 					<p class="mt-2 text-base text-ink/60">
@@ -80,21 +75,7 @@
 						class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand px-6 py-3.5 text-base font-bold text-white transition-opacity hover:opacity-90 active:translate-y-px disabled:cursor-not-allowed disabled:opacity-60"
 					>
 						{#if loading}
-							<svg class="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
-								<circle
-									class="opacity-25"
-									cx="12"
-									cy="12"
-									r="10"
-									stroke="currentColor"
-									stroke-width="4"
-								/>
-								<path
-									class="opacity-75"
-									fill="currentColor"
-									d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-								/>
-							</svg>
+							<Loader2 class="h-4 w-4 animate-spin" />
 							Sending…
 						{:else}
 							Send Reset Link

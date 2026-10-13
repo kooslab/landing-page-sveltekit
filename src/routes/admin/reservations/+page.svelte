@@ -85,7 +85,7 @@
 	</div>
 
 	{#if data.reservations.length === 0}
-		<p class="text-muted-foreground">No reservations yet.</p>
+		<p>No reservations yet.</p>
 	{:else}
 		<div class="overflow-x-auto">
 			<table class="w-full border-collapse">

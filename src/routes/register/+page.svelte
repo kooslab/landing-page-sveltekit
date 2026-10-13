@@ -1,11 +1,12 @@
 <script lang="ts">
 	import { enhance } from '$app/forms';
-	import { Eye, EyeOff } from 'lucide-svelte';
+	import { Eye, EyeOff, Loader2 } from 'lucide-svelte';
 
 	let { form }: { form: any } = $props();
 
 	let showPassword = $state(false);
 	let showConfirm = $state(false);
+	let loading = $state(false);
 </script>
 
 <div class="flex min-h-screen items-center justify-center bg-brand px-4 py-12">
@@ -25,7 +26,18 @@
 			<h1 class="text-2xl font-bold text-ink">Create account</h1>
 			<p class="mt-1 text-base text-ink/50">Register a new admin account</p>
 
-			<form method="POST" action="?/register" use:enhance class="mt-7 space-y-5">
+			<form
+				method="POST"
+				action="?/register"
+				use:enhance={() => {
+					loading = true;
+					return async ({ update }) => {
+						await update();
+						loading = false;
+					};
+				}}
+				class="mt-7 space-y-5"
+			>
 				{#if form?.error}
 					<div class="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
 						{form.error}
@@ -104,9 +116,15 @@
 
 				<button
 					type="submit"
-					class="mt-2 inline-flex w-full items-center justify-center rounded-full bg-brand px-6 py-3.5 text-base font-bold text-white transition-opacity hover:opacity-90 active:translate-y-px"
+					disabled={loading}
+					class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand px-6 py-3.5 text-base font-bold text-white transition-opacity hover:opacity-90 active:translate-y-px disabled:cursor-not-allowed disabled:opacity-60"
 				>
-					Create Account
+					{#if loading}
+						<Loader2 class="h-4 w-4 animate-spin" />
+						Creating account…
+					{:else}
+						Create Account
+					{/if}
 				</button>
 			</form>
 

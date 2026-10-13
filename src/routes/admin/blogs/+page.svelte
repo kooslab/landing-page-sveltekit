@@ -46,7 +46,7 @@
 	</div>
 
 	{#if data.posts.length === 0}
-		<p class="text-muted-foreground">No blog posts yet. Create your first one!</p>
+		<p>No blog posts yet. Create your first one!</p>
 	{:else}
 		<div class="overflow-x-auto">
 			<table class="w-full border-collapse">
