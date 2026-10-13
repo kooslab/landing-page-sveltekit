@@ -7,11 +7,34 @@ import type { Actions, PageServerLoad } from './$types';
 export const load: PageServerLoad = async ({ params }) => {
 	const { token } = params;
 
+	// Check if token exists at all (ignore expiry)
+	const [anyRecord] = await db
+		.select()
+		.from(passwordResetTokens)
+		.where(eq(passwordResetTokens.token, token))
+		.limit(1);
+
+	if (!anyRecord) {
+		console.log('[reset-password] token not found in DB:', token.slice(0, 8) + '...');
+		return { valid: false };
+	}
+
+	console.log(
+		'[reset-password] token found, expiresAt:',
+		anyRecord.expiresAt,
+		'| now:',
+		new Date()
+	);
+
 	const [record] = await db
 		.select()
 		.from(passwordResetTokens)
 		.where(and(eq(passwordResetTokens.token, token), gt(passwordResetTokens.expiresAt, new Date())))
 		.limit(1);
+
+	if (!record) {
+		console.log('[reset-password] token EXPIRED');
+	}
 
 	return { valid: !!record };
 };
