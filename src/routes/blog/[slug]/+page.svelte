@@ -151,7 +151,7 @@
 	</header>
 
 	<div
-		class="prose prose-lg max-w-none dark:prose-invert [&_table]:w-full [&_table]:border-collapse [&_td]:border [&_td]:border-gray-300 [&_td]:p-3 dark:[&_td]:border-gray-600 [&_th]:border [&_th]:border-gray-300 [&_th]:bg-gray-100 [&_th]:p-3 [&_th]:font-bold dark:[&_th]:border-gray-600 dark:[&_th]:bg-gray-800"
+		class="prose prose-lg max-w-none prose-invert [&_p]:text-foreground/85 [&_li]:text-foreground/85 [&_table]:w-full [&_table]:border-collapse [&_td]:border [&_td]:border-gray-600 [&_td]:p-3 [&_th]:border [&_th]:border-gray-600 [&_th]:bg-gray-800 [&_th]:p-3 [&_th]:font-bold"
 	>
 		{@html htmlContent}
 	</div>
