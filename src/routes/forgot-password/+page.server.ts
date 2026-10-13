@@ -20,9 +20,8 @@ export const actions: Actions = {
 		try {
 			const [user] = await db.select().from(users).where(eq(users.email, email)).limit(1);
 
-			// Always return success to prevent email enumeration
 			if (!user) {
-				return { success: true };
+				return fail(400, { error: 'No account found with that email address.' });
 			}
 
 			// Delete any existing tokens for this user
