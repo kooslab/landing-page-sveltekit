@@ -500,7 +500,7 @@
 		/>
 	{:else}
 		<div
-			class="prose prose-lg min-h-[400px] max-w-none p-4 dark:prose-invert [&_img]:h-auto [&_img]:max-w-full [&_img]:rounded-lg"
+			class="prose prose-lg min-h-[400px] max-w-none p-4 [&_img]:h-auto [&_img]:max-w-full [&_img]:rounded-lg"
 		>
 			{@html previewHtml}
 		</div>

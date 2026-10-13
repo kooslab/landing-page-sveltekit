@@ -8,7 +8,7 @@
 </script>
 
 <div
-	class="prose prose-sm max-w-none break-words dark:prose-invert
+	class="prose prose-sm max-w-none break-words
 		prose-headings:mb-2 prose-headings:mt-3 prose-headings:font-semibold
 		prose-p:my-2 prose-p:leading-relaxed
 		prose-a:text-primary
