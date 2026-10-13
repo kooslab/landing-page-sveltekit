@@ -2,6 +2,7 @@
 	import { enhance } from '$app/forms';
 
 	let { form }: { form: any } = $props();
+	let loading = $state(false);
 </script>
 
 <div class="flex min-h-screen items-center justify-center bg-brand px-4 py-12">
@@ -44,7 +45,17 @@
 				<h1 class="text-2xl font-bold text-ink">Forgot password</h1>
 				<p class="mt-1 text-base text-ink/50">Enter your email and we'll send a reset link.</p>
 
-				<form method="POST" use:enhance class="mt-7 space-y-5">
+				<form
+					method="POST"
+					use:enhance={() => {
+						loading = true;
+						return async ({ update }) => {
+							await update();
+							loading = false;
+						};
+					}}
+					class="mt-7 space-y-5"
+				>
 					{#if form?.error}
 						<div class="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-600">
 							{form.error}
@@ -65,9 +76,29 @@
 
 					<button
 						type="submit"
-						class="mt-2 inline-flex w-full items-center justify-center rounded-full bg-brand px-6 py-3.5 text-base font-bold text-white transition-opacity hover:opacity-90 active:translate-y-px"
+						disabled={loading}
+						class="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand px-6 py-3.5 text-base font-bold text-white transition-opacity hover:opacity-90 active:translate-y-px disabled:cursor-not-allowed disabled:opacity-60"
 					>
-						Send Reset Link
+						{#if loading}
+							<svg class="h-4 w-4 animate-spin" viewBox="0 0 24 24" fill="none">
+								<circle
+									class="opacity-25"
+									cx="12"
+									cy="12"
+									r="10"
+									stroke="currentColor"
+									stroke-width="4"
+								/>
+								<path
+									class="opacity-75"
+									fill="currentColor"
+									d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+								/>
+							</svg>
+							Sending…
+						{:else}
+							Send Reset Link
+						{/if}
 					</button>
 				</form>
 
