@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount, tick } from 'svelte';
+	import { tick } from 'svelte';
 	import type { PageData } from './$types';
 	import { marked } from 'marked';
 	import SEO from '$lib/components/SEO.svelte';
@@ -13,9 +13,9 @@
 		breaks: true
 	});
 
-	// Render mermaid diagrams after content loads
-	onMount(() => {
-		// Wait for DOM to settle, then render mermaid
+	// Re-render mermaid on initial load and on client-side slug changes
+	$effect(() => {
+		const _ = htmlContent; // track so this re-runs when slug changes
 		setTimeout(async () => {
 			await tick();
 			const mermaidBlocks = document.querySelectorAll('pre code.language-mermaid');
@@ -34,11 +34,10 @@
 				const code = block.textContent || '';
 				const id = `mermaid-${Math.random().toString(36).slice(2, 9)}`;
 				try {
-					// mermaid.render returns sanitized SVG output
 					const { svg } = await mermaid.render(id, code);
 					const wrapper = document.createElement('div');
 					wrapper.className = 'my-8 flex justify-center';
-					wrapper.innerHTML = svg; // Safe: mermaid.render produces sanitized SVG
+					wrapper.innerHTML = svg; // Safe: mermaid.render output is sanitized SVG
 					pre.replaceWith(wrapper);
 				} catch (e) {
 					console.error('Mermaid render error:', e);
