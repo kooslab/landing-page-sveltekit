@@ -4,7 +4,6 @@
 	import { Textarea } from '$lib/components/ui/textarea';
 	import { Label } from '$lib/components/ui/label';
 	import { toast } from 'svelte-sonner';
-	import { _ } from 'svelte-i18n';
 	import { page } from '$app/stores';
 
 	let formData = $state({
@@ -71,35 +70,35 @@
 
 <form onsubmit={handleSubmit} class="space-y-6">
 	<div class="space-y-2">
-		<Label for="name">{$_('contact.form.name')}</Label>
+		<Label for="name">Name</Label>
 		<Input
 			id="name"
 			type="text"
 			bind:value={formData.name}
-			placeholder={$_('contact.form.namePlaceholder')}
+			placeholder="John Doe"
 			required
 			disabled={isSubmitting}
 		/>
 	</div>
 
 	<div class="space-y-2">
-		<Label for="email">{$_('contact.form.email')}</Label>
+		<Label for="email">Email</Label>
 		<Input
 			id="email"
 			type="email"
 			bind:value={formData.email}
-			placeholder={$_('contact.form.emailPlaceholder')}
+			placeholder="example@email.com"
 			required
 			disabled={isSubmitting}
 		/>
 	</div>
 
 	<div class="space-y-2">
-		<Label for="message">{$_('contact.form.message')}</Label>
+		<Label for="message">Message</Label>
 		<Textarea
 			id="message"
 			bind:value={formData.message}
-			placeholder={$_('contact.form.messagePlaceholder')}
+			placeholder="Tell us about your business challenge..."
 			rows={5}
 			required
 			disabled={isSubmitting}
@@ -115,18 +114,18 @@
 				disabled={isSubmitting}
 			/>
 			<span class="text-sm text-foreground/70">
-				{$_('contact.form.consent')}
+				I agree that KooStory (Koostory UG) may process my name and email to respond to my inquiry. I can withdraw consent at any time by emailing ilmokoo@koostory.net.
 				<a href="{langPrefix}/privacy" class="underline hover:text-foreground/90">
-					{$_('footer.privacy')}
+					Privacy Policy
 				</a>
 			</span>
 		</label>
 		{#if consentError}
-			<p class="text-xs text-destructive">{$_('contact.form.consentError')}</p>
+			<p class="text-xs text-destructive">Please agree to continue</p>
 		{/if}
 	</div>
 
 	<Button type="submit" class="w-full" disabled={isSubmitting}>
-		{isSubmitting ? $_('contact.form.sending') : $_('contact.form.submit')}
+		{isSubmitting ? 'Sending...' : 'Send Message'}
 	</Button>
 </form>

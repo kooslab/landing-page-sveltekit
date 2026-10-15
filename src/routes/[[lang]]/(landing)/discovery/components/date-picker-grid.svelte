@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { _ } from 'svelte-i18n';
 	import { ChevronLeft, ChevronRight } from 'lucide-svelte';
 
 	let {
@@ -15,15 +14,7 @@
 
 	let today = $derived(new Date().toISOString().split('T')[0]);
 
-	let weekdays = $derived([
-		$_('reservation.calendar.sun'),
-		$_('reservation.calendar.mon'),
-		$_('reservation.calendar.tue'),
-		$_('reservation.calendar.wed'),
-		$_('reservation.calendar.thu'),
-		$_('reservation.calendar.fri'),
-		$_('reservation.calendar.sat')
-	]);
+	const weekdays = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
 
 	let monthLabel = $derived(
 		new Date(currentYear, currentMonth).toLocaleDateString(undefined, {
@@ -138,6 +129,6 @@
 
 	<!-- Selection hint -->
 	<p class="mt-3 text-center text-xs text-muted-foreground">
-		{$_('reservation.calendar.hint', { values: { selected: selectedDates.length, max: maxDates } })}
+		{selectedDates.length} of {maxDates} dates selected
 	</p>
 </div>

@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { _ } from 'svelte-i18n';
-	import { page } from '$app/stores';
 	import { Button } from '$lib/components/ui/button';
 	import SEO from '$lib/components/SEO.svelte';
 	import {
@@ -31,8 +29,6 @@
 	let checked = $state([false, false, false, false, false, false]);
 	let checkedCount = $derived(checked.filter(Boolean).length);
 
-	let lang = $derived($page.params?.lang || 'en');
-
 	function openBooking() {
 		reservationType = 'diagnosis';
 		reservationOpen = true;
@@ -49,24 +45,86 @@
 		{ icon: Layers, key: 'design' },
 		{ icon: Rocket, key: 'build' }
 	];
+
+	const researchCards = [
+		{
+			stat: '94%',
+			label: 'of business spreadsheets contain errors',
+			source: 'University of Hawaii study',
+			sub: 'Error rates compound as files grow and more people edit them.'
+		},
+		{
+			stat: '9 hrs',
+			label: 'per week lost searching and gathering data',
+			source: 'McKinsey',
+			sub: 'Coordination time grows exponentially as your team scales — not linearly.'
+		},
+		{
+			stat: '60%',
+			label: 'of workers say 6+ hrs/week could be automated',
+			source: 'Smartsheet survey',
+			sub: "Most manual work your team does every week doesn't need a human."
+		}
+	];
+
+	const symptomItems = [
+		'Multiple versions of the same tracker live in different folders',
+		'Someone spends hours every week syncing data between files',
+		'New team members struggle to understand the system',
+		"Critical knowledge lives in one person's head",
+		"You've added more tabs, more sheets, more color-coding — but it's still messy",
+		'A formula error or accidental edit once caused a real problem'
+	];
+
+	const solutions: Record<string, { problem: string; pain: string; fix: string; flow: string[] }> = {
+		inventory: {
+			problem: '"Which file has the real stock numbers?"',
+			pain: "Multiple people update inventory in different spreadsheets. By Friday, the numbers don't match. Reconciling takes hours — and reorders get delayed.",
+			fix: "A single inventory system — real-time stock levels, automatic low-stock alerts, and a clear audit trail. One source of truth, always up to date.",
+			flow: ['Stock updated', 'Auto-calculate totals', 'Low-stock alert', 'Reorder triggered']
+		},
+		orders: {
+			problem: '"Did we ship that order? Let me check... which sheet was it in?"',
+			pain: "Orders arrive by email, get logged in a spreadsheet, then someone copies the info to another file for fulfillment. Things slip through the cracks every week.",
+			fix: "An order management system where everything flows in one place — from intake to fulfillment to invoicing. No copy-pasting, no lost orders.",
+			flow: ['Order received', 'Auto-assign', 'Track fulfillment', 'Invoice & close']
+		},
+		clients: {
+			problem: '"Where\'s that client\'s contract? Somewhere in the shared drive..."',
+			pain: "Client details are scattered across spreadsheets, email threads, and folders. When someone calls, your team spends 10 minutes just finding the right info.",
+			fix: "A client management system — every interaction, contract, and note in one searchable place. Anyone on the team can pick up right where someone else left off.",
+			flow: ['Client onboarded', 'All data centralized', 'Team collaborates', 'Client self-serves']
+		}
+	};
+
+	const processStepData: Record<string, { title: string; description: string }> = {
+		consult: {
+			title: 'Understand Your Workflows',
+			description: "We spend 45 minutes mapping how your team actually works — what data goes where, which spreadsheets matter most, and where the friction is."
+		},
+		design: {
+			title: 'Design the Right System',
+			description: "We design a custom tool that fits your workflows — not the other way around. You'll see a working prototype within 1-2 weeks."
+		},
+		build: {
+			title: 'Build, Migrate & Launch',
+			description: "We build it, move your data over, train your team, and support you through the transition. Your spreadsheets served you well — now you have something built for what's next."
+		}
+	};
 </script>
 
 <SEO
-	title={lang === 'de'
-		? 'Ihre Tabellen wachsen Ihnen über den Kopf? — KooStory'
-		: 'Outgrown Your Spreadsheets? Custom Internal Tools — KooStory'}
-	description={lang === 'de'
-		? 'Wir ersetzen Ihr Excel-Chaos durch maßgeschneiderte interne Systeme.'
-		: 'We replace your spreadsheet chaos with custom internal management systems for inventory, orders, and client tracking.'}
+	title="Outgrown Your Spreadsheets? Custom Internal Tools — KooStory"
+	description="We replace your spreadsheet chaos with custom internal management systems for inventory, orders, and client tracking."
 	keywords="replace spreadsheets, custom internal tools, spreadsheet alternative, internal management system, inventory management, order tracking, Excel replacement, Google Sheets alternative, custom business software Berlin"
 />
 
 <ReservationModal bind:open={reservationOpen} bind:workshopType={reservationType} />
 
 <main class="w-full overflow-hidden">
-	<!-- ══════════════════════════��════════════════════ -->
+	<!-- ═══════════════════════════════════════════════ -->
 	<!-- 1. HERO                                        -->
-	<!-- ══════���════════════════════════════════════════ -->
+	<!-- ═══════════════════════════════════════════════ -->
 	<section class="px-5 pb-20 pt-16 md:px-10 md:pb-36 md:pt-36 lg:pb-44 lg:pt-44">
 		<div class="mx-auto max-w-4xl">
 			<div
@@ -74,20 +132,21 @@
 			>
 				<span class="h-2 w-2 rounded-full bg-primary"></span>
 				<span class="text-xs font-medium tracking-wide text-primary md:text-sm">
-					{$_('noMoreOffices.hero.badge')}
+					For Growing Teams
 				</span>
 			</div>
 
 			<h1
 				class="text-[2.25rem] font-bold leading-[1.08] tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
 			>
-				{$_('noMoreOffices.hero.title')}
+				Spreadsheets Are Great.
+Until They're Not.
 			</h1>
 
 			<p
 				class="mt-6 max-w-2xl text-base leading-relaxed text-muted-foreground md:mt-8 md:text-xl lg:text-2xl lg:leading-relaxed"
 			>
-				{$_('noMoreOffices.hero.subtitle')}
+				Excel and Google Sheets are amazing tools — for the right scale. But when your team grows and workflows get complex, they start holding you back. We help you graduate to a system built for how you actually work.
 			</p>
 
 			<div class="mt-10 flex items-center gap-5 md:mt-14">
@@ -96,7 +155,7 @@
 					class="group h-12 px-7 text-sm font-medium md:h-14 md:px-9 md:text-base"
 					onclick={openBooking}
 				>
-					{$_('noMoreOffices.hero.cta')}
+					Book a Free Consulting Session
 					<ArrowRight
 						class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1 md:h-5 md:w-5"
 					/>
@@ -115,10 +174,10 @@
 			<p
 				class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground md:mb-5 md:text-sm"
 			>
-				{$_('noMoreOffices.research.badge')}
+				What the research says
 			</p>
 			<h2 class="text-2xl font-bold leading-tight tracking-tight sm:text-3xl md:text-5xl">
-				{$_('noMoreOffices.research.title')}
+				Spreadsheets work — until your team scales.
 			</h2>
 
 			<div class="mt-10 grid gap-5 md:mt-14 md:grid-cols-3 md:gap-6">
@@ -140,18 +199,18 @@
 					</div>
 					<div class="mt-6">
 						<span class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-							{$_('noMoreOffices.research.cards.0.stat')}
+							{researchCards[0].stat}
 						</span>
 						<p class="mt-1 text-sm font-medium text-foreground/80 md:text-base">
-							{$_('noMoreOffices.research.cards.0.label')}
+							{researchCards[0].label}
 						</p>
 						<p class="mt-3 text-xs leading-relaxed text-muted-foreground md:text-sm">
-							{$_('noMoreOffices.research.cards.0.sub')}
+							{researchCards[0].sub}
 						</p>
 						<p
 							class="mt-3 text-[10px] font-medium uppercase tracking-wider text-muted-foreground/60"
 						>
-							{$_('noMoreOffices.research.cards.0.source')}
+							{researchCards[0].source}
 						</p>
 					</div>
 				</div>
@@ -210,18 +269,18 @@
 					</div>
 					<div class="mt-6">
 						<span class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-							{$_('noMoreOffices.research.cards.1.stat')}
+							{researchCards[1].stat}
 						</span>
 						<p class="mt-1 text-sm font-medium text-foreground/80 md:text-base">
-							{$_('noMoreOffices.research.cards.1.label')}
+							{researchCards[1].label}
 						</p>
 						<p class="mt-3 text-xs leading-relaxed text-muted-foreground md:text-sm">
-							{$_('noMoreOffices.research.cards.1.sub')}
+							{researchCards[1].sub}
 						</p>
 						<p
 							class="mt-3 text-[10px] font-medium uppercase tracking-wider text-muted-foreground/60"
 						>
-							{$_('noMoreOffices.research.cards.1.source')}
+							{researchCards[1].source}
 						</p>
 					</div>
 				</div>
@@ -261,18 +320,18 @@
 					</div>
 					<div class="mt-6">
 						<span class="text-3xl font-bold tracking-tight text-foreground md:text-4xl">
-							{$_('noMoreOffices.research.cards.2.stat')}
+							{researchCards[2].stat}
 						</span>
 						<p class="mt-1 text-sm font-medium text-foreground/80 md:text-base">
-							{$_('noMoreOffices.research.cards.2.label')}
+							{researchCards[2].label}
 						</p>
 						<p class="mt-3 text-xs leading-relaxed text-muted-foreground md:text-sm">
-							{$_('noMoreOffices.research.cards.2.sub')}
+							{researchCards[2].sub}
 						</p>
 						<p
 							class="mt-3 text-[10px] font-medium uppercase tracking-wider text-muted-foreground/60"
 						>
-							{$_('noMoreOffices.research.cards.2.source')}
+							{researchCards[2].source}
 						</p>
 					</div>
 				</div>
@@ -288,10 +347,10 @@
 			<p
 				class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground md:mb-5 md:text-sm"
 			>
-				{$_('noMoreOffices.symptoms.badge')}
+				Quick check
 			</p>
 			<h2 class="text-2xl font-bold leading-tight tracking-tight sm:text-3xl md:text-5xl">
-				{$_('noMoreOffices.symptoms.title')}
+				How many apply to your team?
 			</h2>
 
 			<div class="mt-10 space-y-3 md:mt-14 md:space-y-4">
@@ -333,7 +392,7 @@
 								? 'text-foreground'
 								: 'text-foreground/70'}"
 						>
-							{$_(`noMoreOffices.symptoms.items.${i}`)}
+							{symptomItems[i]}
 						</span>
 					</button>
 				{/each}
@@ -363,13 +422,13 @@
 					<div class="mx-2 h-5 w-px bg-border"></div>
 					<p class="text-sm text-foreground/70 md:text-base">
 						{#if checkedCount === 0}
-							{$_('noMoreOffices.symptoms.result0')}
+							You're in good shape — spreadsheets still work for you.
 						{:else if checkedCount <= 2}
-							{$_('noMoreOffices.symptoms.result1')}
+							A few cracks showing. Worth keeping an eye on.
 						{:else if checkedCount <= 4}
-							{$_('noMoreOffices.symptoms.result2')}
+							Your team is starting to outgrow spreadsheets.
 						{:else}
-							{$_('noMoreOffices.symptoms.result3')}
+							Let's talk — a 45-minute call could save your team hours every week.
 						{/if}
 					</p>
 				</div>
@@ -380,7 +439,7 @@
 							class="group h-11 px-6 text-sm font-medium md:h-12 md:px-8 md:text-base"
 							onclick={openBooking}
 						>
-							{$_('noMoreOffices.symptoms.resultCta')}
+							Book a Free Consulting Session
 							<ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 						</Button>
 					</div>
@@ -389,34 +448,35 @@
 		</div>
 	</section>
 
-	<!-- ══���════════════════════════════════════════════ -->
+	<!-- ═══════════════════════════════════════════════ -->
 	<!-- 4. SOLUTIONS                                   -->
-	<!-- ��════════════════���═════════════════════════════ -->
+	<!-- ═══════════════════════════════════════════════ -->
 	<section class="border-y border-border bg-muted/40 px-5 py-16 md:px-10 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
 			<p
 				class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground md:mb-5 md:text-sm"
 			>
-				{$_('noMoreOffices.solutions.badge')}
+				What we build
 			</p>
 			<h2 class="text-2xl font-bold leading-tight tracking-tight sm:text-3xl md:text-5xl">
-				{$_('noMoreOffices.solutions.title')}
+				The same data, in a system designed for your team.
 			</h2>
 
 			<div class="mt-12 space-y-6 md:mt-16 md:space-y-8">
 				{#each solutionCards as card}
 					{@const CardIcon = card.icon}
+					{@const sol = solutions[card.key]}
 					<div
 						class="group rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/20 hover:shadow-lg hover:shadow-primary/[0.03] md:p-10"
 					>
 						<!-- Problem -->
 						<h3 class="text-lg font-bold md:text-2xl">
-							{$_(`noMoreOffices.solutions.${card.key}.problem`)}
+							{sol.problem}
 						</h3>
 						<p
 							class="mt-2 text-sm leading-relaxed text-muted-foreground md:mt-3 md:text-base md:leading-relaxed"
 						>
-							{$_(`noMoreOffices.solutions.${card.key}.pain`)}
+							{sol.pain}
 						</p>
 						<!-- Fix -->
 						<div class="mt-4 flex items-start gap-2.5 md:mt-5 md:gap-3">
@@ -428,7 +488,7 @@
 							<p
 								class="text-sm font-medium leading-relaxed text-foreground md:text-base md:leading-relaxed"
 							>
-								{$_(`noMoreOffices.solutions.${card.key}.fix`)}
+								{sol.fix}
 							</p>
 						</div>
 
@@ -443,7 +503,7 @@
 									>
 										<StepFlowIcon class="h-4 w-4 flex-shrink-0 text-primary/70" />
 										<span class="text-xs font-medium text-foreground/80">
-											{$_(`noMoreOffices.solutions.${card.key}.flow.${stepIndex}`)}
+											{sol.flow[stepIndex]}
 										</span>
 									</div>
 									{#if stepIndex < 3}
@@ -465,7 +525,7 @@
 										>
 											<StepFlowIcon class="mt-0.5 h-5 w-5 flex-shrink-0 text-primary/70" />
 											<span class="text-[15px] font-medium leading-snug text-foreground/80">
-												{$_(`noMoreOffices.solutions.${card.key}.flow.${stepIndex}`)}
+												{sol.flow[stepIndex]}
 											</span>
 										</div>
 										{#if stepIndex < 3}
@@ -486,18 +546,18 @@
 		</div>
 	</section>
 
-	<!-- ══════════════════════════════════════���════════ -->
+	<!-- ═══════════════════════════════════════════════ -->
 	<!-- 5. PROCESS                                     -->
-	<!-- ═════════════��═════════════════════════════════ -->
+	<!-- ═══════════════════════════════════════════════ -->
 	<section class="px-5 py-16 md:px-10 md:py-28 lg:py-36">
 		<div class="mx-auto max-w-4xl">
 			<p
 				class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground md:mb-5 md:text-sm"
 			>
-				{$_('noMoreOffices.process.badge')}
+				How it works
 			</p>
 			<h2 class="text-2xl font-bold leading-tight tracking-tight sm:text-3xl md:text-5xl">
-				{$_('noMoreOffices.process.title')}
+				From spreadsheet to system — in three steps.
 			</h2>
 
 			<!-- Desktop: horizontal connected -->
@@ -508,6 +568,7 @@
 
 					{#each processSteps as step, i}
 						{@const StepIcon = step.icon}
+						{@const stepData = processStepData[step.key]}
 						<div class="relative text-center">
 							<div
 								class="relative z-10 mx-auto flex h-16 w-16 items-center justify-center rounded-full border-2 border-primary bg-background"
@@ -515,10 +576,10 @@
 								<StepIcon class="h-7 w-7 text-primary" />
 							</div>
 							<h3 class="mt-6 text-xl font-bold">
-								{$_(`noMoreOffices.process.steps.${step.key}.title`)}
+								{stepData.title}
 							</h3>
 							<p class="mt-3 text-base leading-relaxed text-muted-foreground">
-								{$_(`noMoreOffices.process.steps.${step.key}.description`)}
+								{stepData.description}
 							</p>
 						</div>
 					{/each}
@@ -533,6 +594,7 @@
 					<div class="space-y-8">
 						{#each processSteps as step, i}
 							{@const StepIcon = step.icon}
+							{@const stepData = processStepData[step.key]}
 							<div class="relative flex gap-6">
 								<div
 									class="relative z-10 flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-2 border-primary bg-background"
@@ -541,10 +603,10 @@
 								</div>
 								<div class="pt-1">
 									<h3 class="text-base font-bold">
-										{$_(`noMoreOffices.process.steps.${step.key}.title`)}
+										{stepData.title}
 									</h3>
 									<p class="mt-1.5 text-sm leading-relaxed text-muted-foreground">
-										{$_(`noMoreOffices.process.steps.${step.key}.description`)}
+										{stepData.description}
 									</p>
 								</div>
 							</div>
@@ -555,7 +617,7 @@
 		</div>
 	</section>
 
-	<!-- ════��══════════════════════════════════════════ -->
+	<!-- ═══════════════════════════════════════════════ -->
 	<!-- 6. CLOSING CTA                                 -->
 	<!-- ═══════════════════════════════════════════════ -->
 	<section
@@ -570,26 +632,26 @@
 
 		<div class="relative mx-auto max-w-4xl text-center">
 			<h2 class="text-2xl font-bold leading-tight tracking-tight sm:text-3xl md:text-5xl">
-				{$_('noMoreOffices.cta.title')}
+				Ready for a system that grows with you?
 			</h2>
 			<p
 				class="mx-auto mt-4 max-w-xl text-base leading-relaxed text-background/60 md:mt-6 md:text-xl"
 			>
-				{$_('noMoreOffices.cta.subtitle')}
+				Book a free 45-minute call. We'll map your current setup and show you what a purpose-built system could look like.
 			</p>
 			<div class="mt-8 md:mt-12">
 				<button
 					onclick={openBooking}
 					class="group inline-flex h-12 items-center gap-2 rounded-lg bg-primary px-7 text-sm font-medium text-primary-foreground transition-all hover:brightness-110 md:h-14 md:px-9 md:text-base"
 				>
-					{$_('noMoreOffices.cta.button')}
+					Book a Free Consulting Session
 					<ArrowRight
 						class="h-4 w-4 transition-transform group-hover:translate-x-1 md:h-5 md:w-5"
 					/>
 				</button>
 			</div>
 			<p class="mt-5 text-sm text-background/40 md:mt-6 md:text-base">
-				{$_('noMoreOffices.cta.trust')}
+				No commitment. No sales pitch. Just honest advice.
 			</p>
 		</div>
 	</section>

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { page } from '$app/stores';
-	import { locale } from 'svelte-i18n';
 
 	interface SEOProps {
 		title?: string;
@@ -41,26 +40,6 @@
 
 	// Use current URL if canonical not provided
 	const canonicalUrl = $derived(canonical || $page.url.href);
-
-	// Dynamic locale for Open Graph
-	const ogLocale = $derived(() => {
-		const lang = $locale || 'en';
-		switch (lang) {
-			case 'de':
-				return 'de_DE';
-			case 'ko':
-				return 'ko_KR';
-			default:
-				return 'en_US';
-		}
-	});
-
-	// Get base URL without language prefix for hreflang
-	const baseUrl = $derived(() => {
-		const url = canonicalUrl;
-		// Remove /ko or /de from the URL to get base
-		return url.replace(/\/(ko|de)(\/|$)/, '/');
-	});
 
 	// Default JSON-LD for organization with Berlin location (enhanced for Germany/Europe SEO)
 	const defaultJsonLd = {
@@ -132,7 +111,7 @@
 				'@type': 'ContactPoint',
 				email: 'contact@koostory.net',
 				contactType: 'customer service',
-				availableLanguage: ['English', 'German', 'Korean'],
+				availableLanguage: ['English', 'German'],
 				areaServed: ['DE', 'AT', 'CH', 'EU']
 			},
 			{
@@ -182,7 +161,7 @@
 				}
 			]
 		},
-		knowsLanguage: ['de', 'en', 'ko'],
+		knowsLanguage: ['de', 'en'],
 		sameAs: ['https://github.com/koostory', 'https://www.linkedin.com/company/koostory']
 	};
 
@@ -220,10 +199,7 @@
 	/>
 	<meta property="og:image:alt" content={ogImageAlt} />
 	<meta property="og:site_name" content="KooStory" />
-	<meta property="og:locale" content={ogLocale()} />
-	<meta property="og:locale:alternate" content="de_DE" />
-	<meta property="og:locale:alternate" content="en_US" />
-	<meta property="og:locale:alternate" content="ko_KR" />
+	<meta property="og:locale" content="en_US" />
 
 	<!-- Article specific Open Graph tags -->
 	{#if ogType === 'article'}
@@ -246,10 +222,7 @@
 	<!-- Additional SEO Meta Tags -->
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<meta
-		name="language"
-		content={$locale === 'de' ? 'German' : $locale === 'ko' ? 'Korean' : 'English'}
-	/>
+	<meta name="language" content="English" />
 	<meta name="revisit-after" content="7 days" />
 
 	<!-- Geo-targeting for Berlin/Germany -->
@@ -259,13 +232,8 @@
 	<meta name="ICBM" content="52.520008, 13.404954" />
 
 	<!-- Language and regional targeting (hreflang for international SEO) -->
-	<link rel="alternate" hreflang="en" href={baseUrl()} />
-	<link rel="alternate" hreflang="de" href={baseUrl().replace(/\/$/, '') + '/de'} />
-	<link rel="alternate" hreflang="de-DE" href={baseUrl().replace(/\/$/, '') + '/de'} />
-	<link rel="alternate" hreflang="de-AT" href={baseUrl().replace(/\/$/, '') + '/de'} />
-	<link rel="alternate" hreflang="de-CH" href={baseUrl().replace(/\/$/, '') + '/de'} />
-	<link rel="alternate" hreflang="ko" href={baseUrl().replace(/\/$/, '') + '/ko'} />
-	<link rel="alternate" hreflang="x-default" href={baseUrl()} />
+	<link rel="alternate" hreflang="en" href={canonicalUrl} />
+	<link rel="alternate" hreflang="x-default" href={canonicalUrl} />
 
 	<!-- Structured Data / JSON-LD -->
 	{#if structuredData}

@@ -1,8 +1,4 @@
 <script lang="ts">
-	import { _ } from 'svelte-i18n';
-	import { page } from '$app/stores';
-
-	let langPrefix = $derived($page.params.lang ? `/${$page.params.lang}` : '');
 </script>
 
 <footer class="min-h-16 w-full border-t">
@@ -11,11 +7,11 @@
 			<div class="flex items-center space-x-1">Koostory UG © {new Date().getFullYear()}</div>
 			<div class="flex flex-col gap-2 text-sm text-foreground/50 sm:items-end">
 				<div class="flex gap-4">
-					<a href="{langPrefix}/privacy" class="transition-colors hover:text-foreground/70">
-						{$_('footer.privacy')}
+					<a href="/privacy" class="transition-colors hover:text-foreground/70">
+						Privacy Policy
 					</a>
-					<a href="{langPrefix}/terms" class="transition-colors hover:text-foreground/70">
-						{$_('footer.terms')}
+					<a href="/terms" class="transition-colors hover:text-foreground/70">
+						Terms of Service
 					</a>
 				</div>
 				<a href="mailto:ilmokoo@koostory.net" class="transition-colors hover:text-foreground/70"

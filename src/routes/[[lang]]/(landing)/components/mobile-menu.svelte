@@ -1,8 +1,6 @@
 <script lang="ts">
-	import { enhance } from '$app/forms';
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
-	import { _, locale } from 'svelte-i18n';
 
 	import { Menu, Home, User, BookOpen, Hammer, Briefcase } from 'lucide-svelte';
 
@@ -11,9 +9,6 @@
 	import * as Sheet from '$lib/components/ui/sheet';
 
 	let { session } = $derived($page.data);
-	// Use locale store so sub-pages (no lang param) still link to correct home
-	let currentLang = $derived($locale || 'en');
-	let homeHref = $derived(currentLang === 'en' ? '/' : `/${currentLang}`);
 
 	let sheetOpen = $state(false);
 </script>
@@ -39,12 +34,12 @@
 		</Sheet.Header>
 		<nav class="flex flex-col gap-4 px-2 py-6">
 			<a
-				href={homeHref}
+				href="/"
 				class="flex items-center gap-3 rounded-md px-3 py-2 text-base font-medium text-foreground transition-colors hover:bg-muted hover:text-primary"
 				onclick={(e) => {
 					e.preventDefault();
 					sheetOpen = false;
-					setTimeout(() => goto(homeHref), 300);
+					setTimeout(() => goto('/'), 300);
 				}}
 			>
 				<Home class="h-5 w-5" />
@@ -61,7 +56,7 @@
 				}}
 			>
 				<User class="h-5 w-5" />
-				{$_('nav.about')}
+				About
 			</a>
 
 			<a
@@ -74,7 +69,7 @@
 				}}
 			>
 				<Hammer class="h-5 w-5" />
-				{$_('nav.workshops')}
+				Discovery
 			</a>
 
 			<a
@@ -87,7 +82,7 @@
 				}}
 			>
 				<Briefcase class="h-5 w-5" />
-				{$_('nav.useCases')}
+				Use Cases
 			</a>
 
 			<a
@@ -100,7 +95,7 @@
 				}}
 			>
 				<BookOpen class="h-5 w-5" />
-				{$_('nav.blog')}
+				Blog
 			</a>
 		</nav>
 	</Sheet.Content>

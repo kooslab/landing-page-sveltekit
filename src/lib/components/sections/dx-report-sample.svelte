@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { _ } from 'svelte-i18n';
 	import * as Dialog from '$lib/components/ui/dialog';
 	import { Button } from '$lib/components/ui/button';
 	import { Input } from '$lib/components/ui/input';
@@ -15,11 +14,11 @@
 	async function handleSubmit(e: SubmitEvent) {
 		e.preventDefault();
 		if (!email.trim() || !email.includes('@')) {
-			error = $_('dxReport.emailError');
+			error = 'Please enter a valid email';
 			return;
 		}
 		if (!consent) {
-			error = $_('dxReport.emailDialog.consentError');
+			error = 'Please agree to continue';
 			return;
 		}
 		error = '';
@@ -31,7 +30,7 @@
 				headers: { 'Content-Type': 'application/json' },
 				body: JSON.stringify({
 					email: email.trim(),
-					consentText: $_('dxReport.emailDialog.consent')
+					consentText: 'I agree that KooStory may store my email and contact me about their services. I can withdraw consent at any time.'
 				})
 			});
 		} catch {
@@ -47,35 +46,35 @@
 <!-- Inline preview: 2 highlight cards -->
 <div class="mt-10 md:mt-12">
 	<p class="mb-4 text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
-		{$_('dxReport.previewLabel')}
+		Sample from a real project
 	</p>
 
 	<div class="grid gap-4 sm:grid-cols-2">
 		<!-- Highlight 1: A bottleneck -->
 		<div class="rounded-xl border border-border bg-card p-5">
 			<p class="mb-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-				{$_('dxReport.case.bottleneck')}
+				Bottleneck found
 			</p>
-			<p class="mb-2 text-sm font-semibold">{$_('dxReport.case.highlight1.title')}</p>
+			<p class="mb-2 text-sm font-semibold">Inquiry reply depends on one person</p>
 			<p class="text-xs leading-relaxed text-muted-foreground">
-				{$_('dxReport.case.highlight1.description')}
+				Customer submits inquiry on landing page. Contact person receives email and has to reply manually. If they're busy or forget — the customer waits. Or leaves.
 			</p>
 			<p class="mt-3 border-t border-border pt-2.5 text-xs text-muted-foreground">
-				{$_('dxReport.case.highlight1.impact')}
+				Customer complaint: slow response, no confirmation
 			</p>
 		</div>
 
 		<!-- Highlight 2: A suggestion -->
 		<div class="rounded-xl border border-border bg-card p-5">
 			<p class="mb-3 text-[11px] font-semibold uppercase tracking-wider text-muted-foreground">
-				{$_('dxReport.case.suggestion')}
+				Suggested action
 			</p>
-			<p class="mb-2 text-sm font-semibold">{$_('dxReport.case.highlight2.title')}</p>
+			<p class="mb-2 text-sm font-semibold">Automate inquiry response + contract flow</p>
 			<p class="text-xs leading-relaxed text-muted-foreground">
-				{$_('dxReport.case.highlight2.description')}
+				Customer gets instant confirmation with pricing and contract link. No human bottleneck at the first touchpoint.
 			</p>
 			<p class="mt-3 border-t border-border pt-2.5 text-xs font-medium text-foreground/70">
-				{$_('dxReport.case.highlight2.value')}
+				No more waiting. No lost inquiries.
 			</p>
 		</div>
 	</div>
@@ -87,19 +86,19 @@
 		class="group mt-6 w-full text-sm sm:w-auto"
 		onclick={() => (open = true)}
 	>
-		{$_('dxReport.seeFullReport')}
+		See full sample report
 		<ArrowRight class="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
 	</Button>
 
-	<p class="mt-3 text-xs text-muted-foreground">{$_('dxReport.disclaimer')}</p>
+	<p class="mt-3 text-xs text-muted-foreground">Sample from a real project. Your report will be tailored to your business.</p>
 </div>
 
 <!-- Email capture dialog -->
 <Dialog.Root bind:open>
 	<Dialog.Content class="sm:max-w-sm">
 		<Dialog.Header>
-			<Dialog.Title>{$_('dxReport.emailDialog.title')}</Dialog.Title>
-			<Dialog.Description>{$_('dxReport.emailDialog.description')}</Dialog.Description>
+			<Dialog.Title>View the full report</Dialog.Title>
+			<Dialog.Description>Enter your email to see the complete sample report.</Dialog.Description>
 		</Dialog.Header>
 
 		<form onsubmit={handleSubmit} class="space-y-4">
@@ -107,7 +106,7 @@
 				<Input
 					type="email"
 					bind:value={email}
-					placeholder={$_('dxReport.emailDialog.placeholder')}
+					placeholder="you@company.com"
 				/>
 				{#if error}
 					<p class="mt-1.5 text-xs text-destructive">{error}</p>
@@ -120,11 +119,11 @@
 					class="mt-0.5 h-4 w-4 rounded border-border"
 				/>
 				<span class="text-xs leading-relaxed text-muted-foreground">
-					{$_('dxReport.emailDialog.consent')}
+					I agree that KooStory may store my email and contact me about their services. I can withdraw consent at any time.
 				</span>
 			</label>
 			<Button type="submit" class="w-full" disabled={submitting || !consent}>
-				{submitting ? $_('dxReport.emailDialog.submitting') : $_('dxReport.emailDialog.submit')}
+				{submitting ? 'Loading...' : 'View Report'}
 			</Button>
 		</form>
 	</Dialog.Content>

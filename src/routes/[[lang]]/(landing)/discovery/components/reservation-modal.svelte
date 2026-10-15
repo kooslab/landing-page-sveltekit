@@ -1,8 +1,6 @@
 <script lang="ts">
-	import { _ } from 'svelte-i18n';
 	import { X, ArrowRight } from 'lucide-svelte';
 	import DatePickerGrid from './date-picker-grid.svelte';
-	import { page } from '$app/stores';
 
 	let {
 		open = $bindable(false),
@@ -21,15 +19,13 @@
 	let result = $state<{ success: boolean; message: string } | null>(null);
 	let errors = $state<Record<string, string>>({});
 
-	let langPrefix = $derived($page.params.lang ? `/${$page.params.lang}` : '');
-
-	let workshopLabels = $derived({
-		diagnosis: $_('reservation.types.diagnosis'),
-		ax_l1: $_('reservation.types.ax_l1'),
-		ax_l2: $_('reservation.types.ax_l2'),
-		ax_l3: $_('reservation.types.ax_l3'),
-		custom: $_('reservation.types.custom')
-	});
+	const workshopLabels: Record<string, string> = {
+		diagnosis: 'Business Diagnosis — €300 · Half day · In-person · Berlin',
+		ax_l1: 'AX Training L1 — AI Productivity · €400 · Half day · Group',
+		ax_l2: 'AX Training L2 — AI Workflows · €700 · Full day · Group',
+		ax_l3: 'AX Training L3 — Claude Code · €1,200 · Full day + 1 week follow-up',
+		custom: 'Custom Software Development — Let\'s scope together'
+	};
 
 	function resetForm() {
 		name = '';
@@ -70,10 +66,10 @@
 		e.preventDefault();
 		errors = {};
 
-		if (!name.trim()) errors.name = $_('reservation.errors.nameRequired');
-		if (!email.trim() || !email.includes('@')) errors.email = $_('reservation.errors.emailInvalid');
-		if (selectedDates.length === 0) errors.dates = $_('reservation.errors.datesRequired');
-		if (!consentChecked) errors.consent = $_('reservation.errors.consentRequired');
+		if (!name.trim()) errors.name = 'Name is required';
+		if (!email.trim() || !email.includes('@')) errors.email = 'Please enter a valid email';
+		if (selectedDates.length === 0) errors.dates = 'Please select at least one preferred date';
+		if (!consentChecked) errors.consent = 'Please agree to the data processing terms';
 
 		if (Object.keys(errors).length > 0) return;
 
@@ -93,12 +89,12 @@
 
 			const data = await res.json();
 			if (res.ok && data.success) {
-				result = { success: true, message: $_('reservation.success') };
+				result = { success: true, message: "Reservation received! We'll confirm your date within 1-2 business days. Check your email for confirmation." };
 			} else {
-				result = { success: false, message: data.error || $_('reservation.error') };
+				result = { success: false, message: data.error || 'Something went wrong. Please try again.' };
 			}
 		} catch {
-			result = { success: false, message: $_('reservation.error') };
+			result = { success: false, message: 'Something went wrong. Please try again.' };
 		} finally {
 			submitting = false;
 		}
@@ -127,7 +123,7 @@
 			<div class="flex-shrink-0 border-b border-brand/10 px-6 py-5">
 				<div class="flex items-start justify-between gap-4">
 					<div>
-						<h2 class="text-xl font-bold text-ink">{$_('reservation.title')}</h2>
+						<h2 class="text-xl font-bold text-ink">Book a Session</h2>
 						<p class="mt-0.5 text-sm text-ink/50">{workshopLabels[workshopType]}</p>
 					</div>
 					<button
@@ -155,19 +151,19 @@
 								/>
 							</svg>
 						</div>
-						<h3 class="text-xl font-bold text-ink">{$_('reservation.success')}</h3>
+						<h3 class="text-xl font-bold text-ink">Reservation received! We'll confirm your date within 1-2 business days. Check your email for confirmation.</h3>
 						<button
 							onclick={close}
 							class="mt-6 inline-flex items-center rounded-full bg-brand px-6 py-3 text-base font-bold text-white hover:opacity-90"
 						>
-							{$_('reservation.close')}
+							Close
 						</button>
 					</div>
 				{:else}
 					<form onsubmit={handleSubmit} class="space-y-5">
 						<!-- Workshop type selector -->
 						<div>
-							<p class="mb-2 text-sm font-semibold text-ink">{$_('reservation.workshopLabel')}</p>
+							<p class="mb-2 text-sm font-semibold text-ink">What are you interested in?</p>
 							<div class="space-y-2">
 								{#each ['diagnosis', 'ax_l1', 'ax_l2', 'ax_l3', 'custom'] as type (type)}
 									<button
@@ -187,7 +183,7 @@
 												<span class="h-2 w-2 rounded-full bg-brand"></span>
 											{/if}
 										</span>
-										{$_(`reservation.types.${type}`)}
+										{workshopLabels[type]}
 									</button>
 								{/each}
 							</div>
@@ -195,7 +191,7 @@
 
 						<!-- Date picker -->
 						<div>
-							<p class="mb-1.5 text-sm font-semibold text-ink">{$_('reservation.datesLabel')}</p>
+							<p class="mb-1.5 text-sm font-semibold text-ink">Preferred Dates (up to 3)</p>
 							<div
 								style="--primary: 243 38% 16%; --primary-foreground: 0 0% 100%; --accent: 243 20% 96%; --muted-foreground: 243 10% 55%;"
 							>
@@ -209,13 +205,13 @@
 						<!-- Name -->
 						<div>
 							<label for="res-name" class="mb-1.5 block text-sm font-semibold text-ink"
-								>{$_('reservation.nameLabel')}</label
+								>Name</label
 							>
 							<input
 								id="res-name"
 								type="text"
 								bind:value={name}
-								placeholder={$_('reservation.namePlaceholder')}
+								placeholder="Your name"
 								class="w-full rounded-xl border border-brand/15 bg-brand/[0.02] px-4 py-3 text-base text-ink placeholder:text-ink/30 focus:border-brand/40 focus:outline-none focus:ring-2 focus:ring-brand/10"
 							/>
 							{#if errors.name}
@@ -226,13 +222,13 @@
 						<!-- Email -->
 						<div>
 							<label for="res-email" class="mb-1.5 block text-sm font-semibold text-ink"
-								>{$_('reservation.emailLabel')}</label
+								>Email</label
 							>
 							<input
 								id="res-email"
 								type="email"
 								bind:value={email}
-								placeholder={$_('reservation.emailPlaceholder')}
+								placeholder="you@example.com"
 								class="w-full rounded-xl border border-brand/15 bg-brand/[0.02] px-4 py-3 text-base text-ink placeholder:text-ink/30 focus:border-brand/40 focus:outline-none focus:ring-2 focus:ring-brand/10"
 							/>
 							{#if errors.email}
@@ -243,12 +239,12 @@
 						<!-- Message -->
 						<div>
 							<label for="res-message" class="mb-1.5 block text-sm font-semibold text-ink">
-								{$_('reservation.messageLabel')}
+								Message (optional)
 							</label>
 							<textarea
 								id="res-message"
 								bind:value={message}
-								placeholder={$_('reservation.messagePlaceholder')}
+								placeholder="Any details about your project or preferences..."
 								rows={3}
 								class="w-full resize-none rounded-xl border border-brand/15 bg-brand/[0.02] px-4 py-3 text-base text-ink placeholder:text-ink/30 focus:border-brand/40 focus:outline-none focus:ring-2 focus:ring-brand/10"
 							></textarea>
@@ -264,9 +260,9 @@
 									disabled={submitting}
 								/>
 								<span class="text-sm leading-relaxed text-ink/60">
-									{$_('reservation.consent')}
-									<a href="{langPrefix}/privacy" class="underline hover:text-ink/80">
-										{$_('footer.privacy')}
+									I agree that KooStory (Koostory UG) may store and process my name, email, and message to manage my workshop reservation and contact me about it. I can withdraw consent at any time by emailing ilmokoo@koostory.net.
+									<a href="/privacy" class="underline hover:text-ink/80">
+										Privacy Policy
 									</a>
 								</span>
 							</label>
@@ -284,7 +280,7 @@
 							disabled={submitting || !consentChecked}
 							class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-brand px-6 py-4 text-base font-bold text-white transition-opacity hover:opacity-90 active:translate-y-px disabled:cursor-not-allowed disabled:opacity-40"
 						>
-							{submitting ? $_('reservation.submitting') : $_('reservation.submit')}
+							{submitting ? 'Submitting...' : 'Reserve Workshop'}
 							{#if !submitting}
 								<ArrowRight class="h-4 w-4" />
 							{/if}

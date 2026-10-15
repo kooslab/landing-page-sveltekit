@@ -2,12 +2,9 @@
 	import LogoContainer from './logo-container.svelte';
 	import NavButtons from './nav-buttons.svelte';
 	import MobileMenu from './mobile-menu.svelte';
-	import LanguageSwitcher from '@/components/language-switcher.svelte';
-	import { page } from '$app/stores';
 
 	let scrollY: number = $state(0);
 	let scrolled = $derived(scrollY > 10);
-	let isMainRoute = $derived($page.route.id === '/[[lang]]/(landing)');
 </script>
 
 <svelte:window bind:scrollY />
@@ -24,7 +21,6 @@
 		</div>
 
 		<div class="flex items-center space-x-2 md:space-x-4">
-			{#if isMainRoute}<LanguageSwitcher {scrolled} />{/if}
 			<MobileMenu />
 		</div>
 	</nav>
