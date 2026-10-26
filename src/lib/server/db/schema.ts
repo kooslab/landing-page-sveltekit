@@ -1,4 +1,4 @@
-import { pgTable, text, boolean, timestamp, uuid, json } from 'drizzle-orm/pg-core';
+import { pgTable, text, boolean, timestamp, uuid, json, integer } from 'drizzle-orm/pg-core';
 
 // Users table for Lucia Auth
 export const users = pgTable('users', {
@@ -77,6 +77,20 @@ export const passwordResetTokens = pgTable('password_reset_tokens', {
 	createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull()
 });
 
+// Booking items (configurable workshop/service options)
+export const bookingItems = pgTable('booking_items', {
+	id: uuid('id').defaultRandom().primaryKey(),
+	key: text('key').unique().notNull(), // e.g. 'diagnosis', 'ax_l1', 'custom'
+	label: text('label').notNull(), // e.g. 'Business Diagnosis'
+	description: text('description').notNull(), // e.g. '€300 · Half day · In-person · Berlin'
+	priceCents: integer('price_cents'), // null = "Let's scope together"
+	segments: json('segments').$type<string[]>().default([]).notNull(), // e.g. ['agencies', 'education', 'studios'] - empty = show everywhere
+	sortOrder: integer('sort_order').notNull().default(0),
+	active: boolean('active').notNull().default(true),
+	createdAt: timestamp('created_at', { withTimezone: true }).defaultNow().notNull(),
+	updatedAt: timestamp('updated_at', { withTimezone: true }).defaultNow().notNull()
+});
+
 export type User = typeof users.$inferSelect;
 export type Session = typeof sessions.$inferSelect;
 export type BlogPost = typeof blogPosts.$inferSelect;
@@ -84,3 +98,5 @@ export type NewBlogPost = typeof blogPosts.$inferInsert;
 export type WorkshopReservation = typeof workshopReservations.$inferSelect;
 export type NewWorkshopReservation = typeof workshopReservations.$inferInsert;
 export type AdminSettings = typeof adminSettings.$inferSelect;
+export type BookingItem = typeof bookingItems.$inferSelect;
+export type NewBookingItem = typeof bookingItems.$inferInsert;

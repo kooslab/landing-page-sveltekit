@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Navbar from '../[[lang]]/(landing)/components/navbar.svelte';
-	import Footer from '../[[lang]]/(landing)/components/footer.svelte';
+	import Navbar from '../(landing)/components/navbar.svelte';
+	import Footer from '../(landing)/components/footer.svelte';
 	import type { Snippet } from 'svelte';
 
 	let { children }: { children: Snippet } = $props();

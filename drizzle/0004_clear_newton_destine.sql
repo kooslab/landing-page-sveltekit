@@ -1,0 +1,1 @@
+ALTER TABLE "booking_items" ADD COLUMN "segments" json DEFAULT '[]'::json NOT NULL;

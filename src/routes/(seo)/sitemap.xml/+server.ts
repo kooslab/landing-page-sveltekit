@@ -24,9 +24,7 @@ export const GET: RequestHandler = async ({ url }) => {
 			'.*/logout',
 			'.*/reqs/.*'
 		],
-		paramValues: {
-			'/[[lang]]': ['', 'en', 'ko', 'de']
-		},
+		paramValues: {},
 		additionalPaths: [
 			'/',
 			'/blog',

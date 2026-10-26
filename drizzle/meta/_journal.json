@@ -22,6 +22,20 @@
 			"when": 1777723481086,
 			"tag": "0002_white_quentin_quire",
 			"breakpoints": true
+		},
+		{
+			"idx": 3,
+			"version": "7",
+			"when": 1793011077699,
+			"tag": "0003_handy_slayback",
+			"breakpoints": true
+		},
+		{
+			"idx": 4,
+			"version": "7",
+			"when": 1793011375805,
+			"tag": "0004_clear_newton_destine",
+			"breakpoints": true
 		}
 	]
 }

@@ -4,7 +4,6 @@
 	import { Textarea } from '$lib/components/ui/textarea';
 	import { Label } from '$lib/components/ui/label';
 	import { toast } from 'svelte-sonner';
-	import { page } from '$app/stores';
 
 	let formData = $state({
 		name: '',
@@ -15,8 +14,6 @@
 	let isSubmitting = $state(false);
 	let consentChecked = $state(false);
 	let consentError = $state(false);
-
-	let langPrefix = $derived($page.params.lang ? `/${$page.params.lang}` : '');
 
 	async function handleSubmit(e: Event) {
 		e.preventDefault();
@@ -114,10 +111,9 @@
 				disabled={isSubmitting}
 			/>
 			<span class="text-sm text-foreground/70">
-				I agree that KooStory (Koostory UG) may process my name and email to respond to my inquiry. I can withdraw consent at any time by emailing ilmokoo@koostory.net.
-				<a href="{langPrefix}/privacy" class="underline hover:text-foreground/90">
-					Privacy Policy
-				</a>
+				I agree that KooStory (Koostory UG) may process my name and email to respond to my inquiry.
+				I can withdraw consent at any time by emailing ilmokoo@koostory.net.
+				<a href="/privacy" class="underline hover:text-foreground/90"> Privacy Policy </a>
 			</span>
 		</label>
 		{#if consentError}

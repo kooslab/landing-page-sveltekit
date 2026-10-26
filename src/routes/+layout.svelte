@@ -1,7 +1,4 @@
 <script lang="ts">
-	import { waitLocale } from 'svelte-i18n';
-	import '$lib/i18n';
-
 	import '../app.pcss';
 	import type { LayoutData } from './$types';
 
@@ -25,6 +22,4 @@
 <Toaster position="top-center" />
 <MetaTags {...metaTags} />
 
-{#await waitLocale() then}
-	{@render children()}
-{/await}
+{@render children()}

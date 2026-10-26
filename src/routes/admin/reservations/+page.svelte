@@ -16,17 +16,19 @@
 		cancelled: 'destructive'
 	};
 
-	const workshopLabels: Record<string, string> = {
+	// Labels from DB booking items, with legacy fallbacks
+	const fallbackLabels: Record<string, string> = {
 		diagnosis: 'Business Diagnosis',
-		ax_l1: 'AX Training L1 — AI Productivity',
-		ax_l2: 'AX Training L2 — AI Workflows',
-		ax_l3: 'AX Training L3 — Claude Code',
+		ax_l1: 'AX Training L1',
+		ax_l2: 'AX Training L2',
+		ax_l3: 'AX Training L3',
 		custom: 'Custom Software',
-		// legacy
 		requirements: 'Requirements Workshop',
 		vibe: 'Vibe Coding Workshop',
 		free: 'Free Consulting'
 	};
+
+	let workshopLabels = $derived({ ...fallbackLabels, ...data.itemLabels });
 
 	async function updateStatus(id: string, status: string) {
 		loading = id;

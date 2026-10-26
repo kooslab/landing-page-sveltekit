@@ -7,7 +7,8 @@
 		Plus,
 		Lightbulb,
 		Settings,
-		ExternalLink
+		ExternalLink,
+		ShoppingBag
 	} from 'lucide-svelte';
 
 	let { children } = $props();
@@ -17,6 +18,7 @@
 		{ href: '/admin/topics', label: 'Topic Explorer', icon: Lightbulb },
 		{ href: '/admin/blogs', label: 'Blog Posts', icon: BookOpen },
 		{ href: '/admin/blogs/new', label: 'New Article', icon: Plus, exact: true },
+		{ href: '/admin/booking-items', label: 'Booking Items', icon: ShoppingBag },
 		{ href: '/admin/reservations', label: 'Reservations', icon: Calendar },
 		{ href: '/admin/settings', label: 'Settings', icon: Settings }
 	];
@@ -70,7 +72,7 @@
 	</aside>
 
 	<!-- Main content -->
-	<main class="admin-light flex flex-1 flex-col bg-canvas-soft text-foreground">
+	<main class="flex flex-1 flex-col bg-canvas-soft text-foreground">
 		{@render children()}
 	</main>
 </div>
